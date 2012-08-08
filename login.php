@@ -13,27 +13,16 @@ exit;
 function init()
 {
 ?>
-<!DOCTYPE HTML>
-<html>
-<head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>底细,真相,还原真相,反映实际情况</title>
-<link rel="stylesheet" type="text/css" href="./login/css/bootstrap.css" media="screen" />
-<link rel="stylesheet" type="text/css" href="login/css/login.css" media="screen" />
-<script type="text/javascript" src="./js/jquery-1.7.2.min.js"></script>
-<script type="text/javascript" src="./login/js/cookie.js"></script>
-<script type="text/javascript" src="./login/js/jquery.validate.min.js"></script>
-</head>
-<body>
-<div class="dixilogo"></div>
-<br>
-<div class="headerText">
-  <h1>底细,真相,还原真相,反映实际情况</h1>
-</div>
+<link rel="stylesheet" type="text/css" href="./include/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="include/login1.css" />
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="./js/cookie.js"></script>
+<script type="text/javascript" src="./js/jquery.validate.min.js"></script>
 <div id="div_form">
   <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post" id="form_id" class="well">
     <fieldset>
-    <legend><img src="login/img/login-icon.png" /><strong>用户注册</strong></legend>
+    <legend><img src="include/login-icon.png" /><strong>用户注册</strong></legend>
     <div class="control-group">
       <label class="control-label" for="username">用户名：</label>
       <div class="controls">
@@ -46,7 +35,7 @@ function init()
       <label class="control-label" for="password">口令： </label>
       <div class="controls">
         <div class="input-prepend"> <span class="add-on"><i class="icon-lock"></i></span>
-          <input name="password" id="password" type="password" placeholder="口 令" class="input-xlarge"/>
+          <input name="password" id="password" type="text" placeholder="口 令" class="input-xlarge"/>
         </div>
       </div>
     </div>
@@ -54,13 +43,13 @@ function init()
       <div class="controls">
         <label class="checkbox">
         <input type="checkbox" id="rememberme" name="rememberme">
-        记住我的选择 </label>
+        记住我的选择！ </label>
       </div>
     </div>
     <div class="control-group">
       <div align="center">
         <button type="submit" class="btn btn-primary">登 录</button>
-        <img src="login/img/spinner.gif" width="16" height="16" border="0" style="display:none;" /> </div>
+        <img src="include/loading.gif" width="32" height="32" border="0" style="display:none;" /> </div>
     </div>
     <div class="control-group error">
       <label id="error"></label>
@@ -135,8 +124,6 @@ $(function() {
 	
 });
 </script>
-</body>
-</html>
 <?php
 }
 
