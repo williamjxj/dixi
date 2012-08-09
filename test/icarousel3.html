@@ -1,0 +1,63 @@
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>jCarousel Examples</title>
+<link rel="stylesheet" type="text/css" href="../include/jcarousel/src/style.css" />
+<script type="text/javascript" src="../js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="../include/jcarousel/src/jquery.jcarousel.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../include/jcarousel/test/jcarousel-skin-ie7.css">
+<script type="text/javascript">
+function mycarousel_itemLoadCallback(carousel, state)
+{
+    // Since we get all URLs in one file, we simply add all items
+    // at once and set the size accordingly.
+    if (state != 'init')
+        return;
+
+    jQuery.get('icarousel_ajax.txt', function(data) {
+		alert('eeeeeeeeeeeeee');
+        mycarousel_itemAddCallback(carousel, carousel.first, carousel.last, data);
+    });
+};
+
+function mycarousel_itemAddCallback(carousel, first, last, data)
+{
+    // Simply add all items at once and set the size accordingly.
+    var items = data.split('|');
+
+    for (i = 0; i < items.length; i++) {
+        carousel.add(i+1, mycarousel_getItemHTML(items[i]));
+    }
+
+    carousel.size(items.length);
+};
+
+/**
+ * Item html creation helper.
+ */
+function mycarousel_getItemHTML(url)
+{
+    return '<img src="' + url + '" width="75" height="75" alt="" />';
+};
+
+jQuery(document).ready(function() {
+    jQuery('#mycarousel').jcarousel({
+        itemLoadCallback: mycarousel_itemLoadCallback
+    });
+});
+
+</script>
+</head>
+<body>
+<div id="wrap">
+  <h1>jCarousel</h1>
+  <h2>Riding carousels with jQuery</h2>
+  <h3>Carousel with dynamic content loading via Ajax</h3>
+  <p> The data is loaded dynamically from a simple text file which contains the image urls. </p>
+  <div id="mycarousel" class="jcarousel-skin-ie7">
+    <ul>
+      <!-- The content will be dynamically loaded in here -->
+    </ul>
+  </div>
+</div>
+</body>
+</html>

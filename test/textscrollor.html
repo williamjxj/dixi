@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+<link rel="stylesheet" href="../include/rotator/styles/bookstore.css" type="text/css" media="screen" />
+<link rel="stylesheet" type="text/css" href="../include/rotator/rotators.css">
+<script type="text/javascript" src="../js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="../include/rotator/common.js"></script>
+<script type="text/javascript" src="../include/rotator/parser.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	return false;
+	$.get('./content.php', function(data) {
+		$(data).each(function() {
+			console.log(this);
+		});
+	}, "json");
+});
+</script>
+</head>
+<body>
+<h3>Recent Information</h3>
+<div id="news-feed"> News Releases </div>
+</div>
+</body>
+</html>
