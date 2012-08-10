@@ -10,6 +10,8 @@
 $(function() {
 	$('#typeahead').typeahead({
 		source: function(typeahead, query) {
+			//空字符不发送请求。
+			if(query.length==0) return false;
 			$.ajax({
 				url: 'typeahead_search.php',
 				type: 'GET',

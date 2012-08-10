@@ -28,6 +28,17 @@ exit;
 
 //////////////////////////////////
 
+public function recursive_iconv(string $in_charset, string $out_charset, $arr){
+	if (!is_array($arr)){
+		return iconv($in_charset, $out_charset, $arr);
+	}
+	$ret = $arr;
+	function array_iconv(&$val, $key, $userdata){
+		$val = iconv($userdata[0], $userdata[1], $val);
+	}
+	array_walk_recursive($ret, "array_iconv", array($in_charset, $out_charset));
+	return $ret;
+} 	
 function get_items($q) {
 	$query = "select keyword from keywords where LOWER(keyword) like '%" . $q . "%'";
 	$res = $mdb2->queryAll($query, '', MDB2_FETCHMODE_ASSOC);  //while($row=$res->fetchRow()) $ary[$row[0]]=$row[1];

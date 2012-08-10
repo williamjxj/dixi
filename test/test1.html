@@ -1,17 +1,44 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Untitled Document</title>
+<meta charset="utf-8" />
+<title>测试dixi.js</title>
 <style type="text/css">
 body.bg1 {
-    background-attachment: fixed;
-    background-color: #E5E5E5;
-    background-image: url("chrome://browser/skin/newtab/noise.png"), -moz-linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.2));
+	background-attachment: fixed;
+	background-color: #E5E5E5;
+	background-image: url("chrome://browser/skin/newtab/noise.png"), -moz-linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.2));
 }
 </style>
+<link rel="stylesheet" href="../include/bootstrap/css/bootstrap.css" />
+<script type="text/javascript" src="../js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="../include/bootstrap/js/bootstrap.js"></script>
+<script type="text/javascript" src="../js/dixi.js"></script>
+<script type="text/javascript">
+$(function() {
+	$('div#div_dt').html($.dixi.get_current_datetime());
+});
+</script>
 </head>
-
-<body class="bg1">
+<body class="bg">
+<div class="container">
+  <div class="row">
+    <div class="span4 offset4"> <a href="#" class="btn"><i class="icon-refresh"></i> 刷新</a> <a href="#" class="btn btn-success"><i class="icon-shopping-cart icon-white"></i> 提取</a> <a href="#" class="btn btn-danger"><i class="icon-trash icon-white"></i> 删除</a> <a href="#" class="btn btn-large"><i class="icon-comment"></i> 注释</a> <a href="#" class="btn btn-small"><i class="icon-cog"></i> 设置</a> <a href="#" class="btn btn-small btn-info"><i class="icon-info-sign icon-white"></i> 更多信息&raquo;</a> </div>
+    <div class="span4">
+      <div class="btn-toolbar" style="margin-bottom: 9px">
+        <div class="btn-group"> <a href="#" class="btn btn-primary"><i class="icon-user icon-white"></i> 用户</a> <a href="#" data-toggle="dropdown" class="btn btn-primary dropdown-toggle"><span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#"><i class="icon-pencil"></i> 编辑</a></li>
+            <li><a href="#"><i class="icon-trash"></i> 删除</a></li>
+            <li><a href="#"><i class="icon-ban-circle"></i> 禁止</a></li>
+            <li class="divider"></li>
+            <li><a href="#"><i class="i"></i> 系统管理员</a></li>
+          </ul>
+        </div>
+        <div id="div_dt"><i class="icon-time"></i></div>
+      </div>
+    </div>
+  </div>
+</div>
 </body>
 </html>
