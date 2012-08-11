@@ -1,0 +1,19 @@
+<meta charset="UTF-8" />
+
+{if isset($left) && is_array($left) && count($left)>0}
+{if $left.nav}
+<div class="span2">
+  <ul>
+    {foreach $left.nav as $l}
+    <li>{$l}</li>
+    {/foreach}
+  </ul>
+</div>
+{/if} 
+{else}
+<div class="span2"> {$left} </div>
+{/if}
+<script language="javascript" type="text/javascript">
+$(function() {
+});
+</script>

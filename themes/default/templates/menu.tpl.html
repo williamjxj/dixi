@@ -1,0 +1,33 @@
+<meta charset="UTF-8" />
+
+{$url={$SCRIPT_NAME}}
+{if isset($header.menu) && is_array($header.menu) && count($header.menu)>0}
+<ul class="menu">
+  {foreach $header.menu as $id=>$h}
+  <li> {if $h.url_flag=='Y'} <a id="{$id}" href="{$h.url}" class="parent ajax1" title="{$h.name}"><span>{$h.name|escape:'html'}</span></a>{else}
+    {if $h.left1=='N'}
+    {$left='&l=N'}
+    {else}
+    {$left='&l=Y'}
+    {/if}
+    {if {$h.right3} == 'N'}
+    {$right='&r=N'}
+    {else}
+    {$right='&r=Y'}
+    {/if} <a id="{$id}" href="{$url}?js_get_module=1{$left}{$right}&mid={$h.mid}" class="parent ajax" title="{$h.name}"><span>{$h.name|escape:'html'}</span></a>{/if}
+    {if isset($h.submenu) && is_array($h.submenu) && count($h.submenu)>0}
+    <div>
+      <ul>
+        {foreach $h.submenu as $m=>$n}
+        <li title="{$n}"><a id="{$m}" href="{$url}?js_get_module=1{$left}{$right}&mid={$h.mid}&amp;cid={$m}" title="{$n|escape:'html'}" class="sajax"><span>{$n}</span></a></li>
+        {/foreach}
+      </ul>
+    </div>
+    {/if} </li>
+  {/foreach}
+</ul>
+<script language="javascript" type="text/javascript">
+$(function() {
+});
+</script>
+{/if}

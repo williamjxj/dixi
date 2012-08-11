@@ -1,0 +1,20 @@
+<div class="row">
+  <div class="span4">
+    <div id="logo"> <a href="{$common.header.url}" title="{$common.header.title}"> {$common.header.logo} </a> </div>
+  </div>
+  <div class="span8">
+    <ul>
+      <li><img alt="Member login" src="{$config.path}images/lock.png">&nbsp;<a id="login_signup" href="login.php">用户注册</a></li>
+      <li><a href="{$config.path}/templates/help.tpl.html" id="help" title="帮助信息">帮助信息</a></li>
+      <li>当前时间： {$smarty.now|date_format:'%Y-%m-%d %H:%M'}</li>
+      <li><span id="st" style="cursor: pointer;" onmouseover="$(this).css('color', 'red');" onmouseout="$(this).css('color', 'white');">切至繁体版</span></li>
+    </ul>
+  </div>
+</div>
+<div class="row">
+  <div id="menu" class="span12"> {include file="{$menu_template}"} </div>
+</div>
+<script language="javascript" type="text/javascript">
+$(function() {
+});
+</script>

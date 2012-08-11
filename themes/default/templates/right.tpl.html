@@ -1,0 +1,20 @@
+<meta charset="UTF-8" />
+<!-- 通常广告或不是很重要的内容 -->
+
+{if isset($right) && is_array($right) && count($right)>0}
+ {if $right.aside}
+<div class="span2">
+  <ul>
+    {foreach $right.aside as $r}
+    <li>{$r}</li>
+    {/foreach}
+  </ul>
+</div>
+{/if}
+{else}
+<div class="span2"> {$right} </div>
+{/if}
+<script type="text/javascript">
+$(function() {
+});
+</script>

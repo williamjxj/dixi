@@ -1,4 +1,5 @@
 ;(function ($) {
+	$.dixi = $.dixi || {};
     $.dixi = {
         version: '1.0',
         enMonthNames: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],

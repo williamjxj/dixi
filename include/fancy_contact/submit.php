@@ -1,11 +1,7 @@
 <?php
-
 /* config start */
-
-$emailAddress = '';
-
+$emailAddress = 'williamjxj@hotmail.com';
 /* config end */
-
 
 require "phpmailer/class.phpmailer.php";
 
@@ -102,7 +98,7 @@ else
 	exit;
 }
 
-function checkLen($str,$len=2)
+function checkLen($str,$len=1)
 {
 	return isset($_POST[$str]) && mb_strlen(strip_tags($_POST[$str]),"utf-8") > $len;
 }
