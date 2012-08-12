@@ -19,8 +19,11 @@ $(document).ready(function() {
       .addClass('news-wait')
       .appendTo($container);
 
-
-    $.get('./content.php', function(data) {
+    $.get('../test/content.php', function(data) {
+										  
+	  console.log(data);
+	  console.log("\n");
+	  
       $loadingIndicator.remove();
       $(data).each(function() {
         var $link = $('<a></a>')
@@ -28,29 +31,30 @@ $(document).ready(function() {
           .text(this.title);
         var $headline = $('<h4></h4>').append($link);
 
-        var pubDate = new Date();
-        var pubMonth = pubDate.getMonth() + 1;
-        var pubDay = pubDate.getDate(); 
-        var pubYear = pubDate.getFullYear();
         var $publication = $('<div></div>')
           .addClass('publication-date')
-          .text(pubMonth + '/' + pubDay + '/' + pubYear);
+          .text(this.date);
     
         var $summary = $('<div></div>')
           .addClass('summary')
-          .html(this.title);
+          .html(this.text);
         
         $('<div></div>')
           .addClass('headline')
-          .append($headline, $publication, $summary)
+          .append($headline, $summary)
           .appendTo($container);
       });
 
       var currentHeadline = 0, oldHeadline = 0;
       var hiddenPosition = $container.height() + 10;
-      $('div.headline').eq(currentHeadline).css('top', 0);
-      var headlineCount = $('div.headline').length;
-      var pause;
+
+	  for (i=0;i<=2;i++) {
+      	//$('div.headline').eq(currentHeadline).css('top', 0);
+      	$('div.headline').eq(i).css('top', 150*i);
+	  }
+
+	  var headlineCount = $('div.headline').length;
+      var pause = false;
       var rotateInProgress = false;
 
       var headlineRotate = function() {
@@ -59,6 +63,7 @@ $(document).ready(function() {
           pause = false;
           currentHeadline = (oldHeadline + 1)
             % headlineCount;
+
           $('div.headline').eq(oldHeadline).animate(
             {top: -hiddenPosition}, 'slow', function() {
               $(this).css('top', hiddenPosition);
@@ -70,14 +75,28 @@ $(document).ready(function() {
                 pause = setTimeout(headlineRotate, 5000);
               }
             });
-          oldHeadline = currentHeadline;
+          $('div.headline').eq(currentHeadline+1).animate(
+            {top: 150}, 'slow', function() {
+              rotateInProgress = false;
+              if (!pause) {
+                pause = setTimeout(headlineRotate, 5000);
+              }
+            });
+          $('div.headline').eq(currentHeadline+2).animate(
+            {top: 300}, 'slow', function() {
+              rotateInProgress = false;
+              if (!pause) {
+                pause = setTimeout(headlineRotate, 5000);
+              }
+            });
+          oldHeadline = currentHeadline;	  
         }
       };
       if (!pause) {
         pause = setTimeout(headlineRotate, 5000);
       }
-      
-      $container.hover(function() {
+
+	  $container.hover(function() {
         clearTimeout(pause);
         pause = false;
       }, function() {

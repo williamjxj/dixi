@@ -1,48 +1,64 @@
 <?php
-function rotator_content1() {
-	// mock DB tables, return JSON format.
-	return array(
-		array(
-			'id'=>1,
-			'title'=> '日本新“在留卡” 台湾人不再填中国，神州震怒',
-			'link' => 'http://www.ibenguo.cn/news/1167/42/1167.htm', 
-		),
-		array(
-			'id'=>2,
-			'title'=> '洪博培关注薄熙来和18大：中国政改是必然(图)',
-			'link' => 'http://www.wenxuecity.com/news/2012/07/17/1873377.html', 
-		),
-		array(
-			'id'=>3,
-			'title'=> '人保部提出退休年龄推迟至65岁，激起网民热议',
-			'link' => 'http://www.ibenguo.cn/news/1101/42/1101.htm', 
-		),
-		array(
-			'id'=>4,
-			'title'=> '更多公职人员宽容“裸官”背后 值得警醒',
-			'link' => 'http://www.ibenguo.cn/news/165/42/165.htm', 
-		),
-		array(
-			'id'=>5,
-			'title'=> '【温州公务接待“减肥”仅限工作餐】不含接待上级（图）',
-			'link' => 'http://www.ibenguo.cn/news/1191/73/1191.htm', 
-		),
-		array(
-			'id'=>6,
-			'title'=> '【南京长江大桥】暴雨后被“冲出”117个坑洞（多图）',
-			'link' => 'http://www.ibenguo.cn/news/1196/71/1196.htm', 
-		),
-		array(
-			'id'=>7,
-			'title'=> '【福建富二代醉驾撞6车致2死】扬言“家里有钱赔”',
-			'link' => 'http://www.ibenguo.cn/news/1194/71/1194.htm', 
-		)
-	);
+define('SINA', 'http://rss.sina.com.cn/news/marquee/ddt.xml');
+define('MAXLEN', 200);
+
+// header ("content-type: text/xml; charset=utf-8");
+if(!headers_sent())
+   header('Content-Type: application/json; charset=utf-8', true,200);
+
+
+$rawFeed = file_get_contents(SINA);
+
+$xml = simplexml_load_string($rawFeed);
+//$xml = new SimpleXmlElement($rawFeed);
+
+if(count($xml) == 0) return;
+
+$ary = array();
+foreach($xml->channel->item as $item) {
+	$sa = array();
+	$sa['title'] = (string)parse_cdata(trim($item->title));
+	$sa['text'] = parse_desc(parse_cdata(trim($item->description)));
+	$sa['link'] = (string)trim($item->link);
+	$sa['date'] = get_datetime((string)$item->pubDate);
+	
+	//array_push($ary, $sa);
+	array_push($ary, $sa);
 }
-/*
-echo "<pre>";
-print_r(rotator_content1());
-echo "</pre>";
-*/
-echo json_encode(rotator_content1());
+
+//echo "<pre>"; print_r($ary); echo "</pre>";
+echo json_encode($ary);
+exit;
+
+
+function parse_cdata($str) {
+	if(preg_match("/CDATA/", $str)) {
+		$str = preg_replace("/^.*CDATA[/", '', $str);
+		$str = preg_replace("/]]$/", '', $str);		
+	}
+	return $str;
+}
+
+function parse_desc($summary) {
+	if (!isset($summary) || empty($summary) || preg_match("/^\s+$/", $summary))		return '';
+
+//echo "\n[".$summary."]\n";
+	// Create summary as a shortened body and remove images, extraneous line breaks, etc.
+//	$summary = eregi_replace("<img[^>]*>", "", $summary);
+//	$summary = eregi_replace("^(<br[ ]?/>)*", "", $summary);
+//	$summary = eregi_replace("(<br[ ]?/>)*$", "", $summary);
+	$summary = preg_replace("/^\s+/", "", $summary);
+	$summary = preg_replace("/\s+$/", "", $summary);
+	
+	$summary = trim($summary);
+	// Truncate summary line to 100 characters, NOT WORK!
+	//if(strlen($summary) > MAXLEN)
+	//	$summary = substr($summary, 0, MAXLEN) . '...';
+
+	return '('.$summary.')';
+}
+
+function get_datetime($dt) {
+	return date("m/d H:i",  strtotime(trim($dt)));
+}
 ?>
