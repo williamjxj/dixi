@@ -5,7 +5,7 @@ if(isset($_GET['q']) && !empty($_GET['q'])) {
 	// Twitter Bootstrap - Typeahead Plugin with MySQL.
 	// William Jiang on Aug 09, 2012.
 
-	require_once(SITEROOT.'/configs/mini-app.inc.php');
+	require_once(SITEROOT.'../shared/mini-app.inc.php');
 	$mdb2 = pear_connect_dixi();
 	
 	$ary = array();
@@ -28,7 +28,7 @@ exit;
 
 //////////////////////////////////
 
-public function recursive_iconv(string $in_charset, string $out_charset, $arr){
+function recursive_iconv(string $in_charset, string $out_charset, $arr){
 	if (!is_array($arr)){
 		return iconv($in_charset, $out_charset, $arr);
 	}

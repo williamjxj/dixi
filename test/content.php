@@ -1,5 +1,9 @@
 <?php
 define('SINA', 'http://rss.sina.com.cn/news/marquee/ddt.xml');
+//define('SINA', 'http://zaobao.feedsportal.com/c/34003/f/616929/index.rss');
+// define('SINA', 'http://zaobao.feedsportal.com/c/34003/f/616930/index.rss');
+//define('SINA', 'http://mingpao.feedsportal.com/c/33528/f/585672/index.rss');
+//define('SINA', 'http://www.etaiwannews.com/rss/news_onlytn.xml');
 define('MAXLEN', 200);
 
 // header ("content-type: text/xml; charset=utf-8");
