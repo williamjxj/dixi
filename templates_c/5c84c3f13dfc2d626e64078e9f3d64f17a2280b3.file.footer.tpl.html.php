@@ -1,22 +1,23 @@
-<?php /* Smarty version Smarty-3.0.4, created on 2012-08-14 07:53:34
+<?php /* Smarty version Smarty-3.0.4, created on 2012-08-14 11:48:41
          compiled from "./themes/default/templates/footer.tpl.html" */ ?>
-<?php /*%%SmartyHeaderCode:14101485485029e7de3d6345-05688349%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:29071502a9d8937ee95-36199299%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '5c84c3f13dfc2d626e64078e9f3d64f17a2280b3' => 
     array (
       0 => './themes/default/templates/footer.tpl.html',
-      1 => 1344923354,
+      1 => 1344970005,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '14101485485029e7de3d6345-05688349',
+  'nocache_hash' => '29071502a9d8937ee95-36199299',
   'function' => 
   array (
   ),
   'has_nocache_code' => false,
 )); /*/%%SmartyHeaderCode%%*/?>
+
 <?php ob_start();?><?php echo $_smarty_tpl->getVariable('SCRIPT_NAME')->value;?>
 <?php $_tmp1=ob_get_clean();?><?php $_smarty_tpl->tpl_vars['url'] = new Smarty_variable($_tmp1, null, null);?>
 <?php if (($_smarty_tpl->getVariable('footer')->value !== null)&&is_array($_smarty_tpl->getVariable('footer')->value)&&count($_smarty_tpl->getVariable('footer')->value)>0){?>

@@ -10,14 +10,13 @@
 <link rel="stylesheet" type="text/css" href="{$common.css.qq}" media="screen" />
 <!--link rel="stylesheet" type="text/css" href="{$config.path}css/dixi2.css" media="screen" /-->
 <script type="text/javascript" src="{$common.js.jquery}"></script>
-<script type="text/javascript" src="{$common.js.bootstrap}"></script>
+<script type="text/javascript" src="{$common.js.bts}"></script>
 <script type="text/javascript" src="{$common.js.gb_big5}"></script>
-<script type="text/javascript" src="{$common.js.ga}"></script>
+<!--script type="text/javascript" src="{$common.js.ga}"></script-->
 <!------------------------>
 <meta content="index, follow" name="robots">
 <meta content="index, follow" name="googlebot">
 <!------------------------>
-
 <link rel="stylesheet" type="text/css" href="{$config.include}rotator/rotators.css">
 <script type="text/javascript" src="{$config.include}rotator/rotators.js"></script>
 <!------------------------>
@@ -26,21 +25,23 @@ $(function(){
 });
 $(window).load(function() {
   //$('.flexslider').flexslider();
+	$.ajaxSetup({ async: true });
+	$.getScript('./js/ga.js');
 });
 </script>
 </head>
 <body id="{$config.browser}">
 <div class="container">
-  <div id="header">
-      {include file="{$header_template}"}
-  </div>
-  <div class="row" id="rss"> {include file="{$rss_template}"} </div>
-  <div class="row">
+  <div id="header"> {include file="{$header_template}"} </div>
+  <div id="menu"> {include file="{$menu_template}"} </div>
+  <div id="rss"> {include file="{$rss_template}"} </div>
+  <div id="main">{include file="{$main_template}"}</div>
+  <!--div class="row">
     <div class="span2">{include file="{$left_template}"}</div>
     <div class="span8">{include file="{$main_template}"}</div>
     <div class="span2">{include file="{$right_template}"}</div>
-  </div>
-  <div class="row"> {include file="{$footer_template}"} </div>
+  </div-->
+  <div id="footer"> {include file="{$footer_template}"} </div>
 </div>
 </body>
 </html>

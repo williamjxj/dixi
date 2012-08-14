@@ -12,12 +12,16 @@ $common = array(
 		'title' => '底细,真相,还原真相,反映实际情况',
 		'desc' => '底细,真相,还原真相,反映实际情况',
 		'keywords' => '底细,真相,还原真相,反映实际情况',
-		'robots' => '',
-		'logo' => 'logo',
+		'robots' => 'index,',
+	),
+	'logo' => array(
+		'logo_290x96' => SITEROOT.'images/logo.png',
+		'logo_130x60' => 'http://www.placehold.it/130x60',
+		'logo_20x20' => 'http://www.placehold.it/20x20',
 	),
 	'footer' => array(
-		'copyright' => '',
-		'menu' => '',
+		'copyright' => '底细,真相,事实传播媒体',
+		'menu' => '底细,真相,事实传播媒体',
 	),
 	'css' => array(
 		'bootstrap' => SITEROOT.'include/bootstrap/css/bootstrap.css',
@@ -27,6 +31,7 @@ $common = array(
 	'js' => array(
 		'jquery' => SITEROOT.'js/jquery-1.7.2.min.js',
 		'bootstrap' => SITEROOT.'include/bootstrap/js/bootstrap.min.js',
+		'bts' => SITEROOT.'include/bootstrap/js/bootstrap_search.js',
 		'gb_big5' => SITEROOT.'js/init.js', 
 		'ga' => SITEROOT.'js/ga.js',
 		'fancybox'  => SITEROOT.'include/jquery.fancybox',

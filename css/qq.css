@@ -101,7 +101,7 @@ p {
 .mb10 {
 	margin-bottom: 10px;
 }
-#toTop, .mininavInner .loginSmartTop, .mininavInner .loginSmartBottom, .adEdu .hd, .leftTech .ft, .leftAuto .ft, .rightHouse .ft, .leftLady .ft, .leftBlog .ft, .rightBook .ft, .leftEdu .ft, .leftKid .ft, .leftSociety .ft, .leftGame .ft, .leftGongyi .ft, .leftMeishi .ft, .leftLive .ft, .txDynamic .ft, .mininav, .rightAikanTab .hd .aikanTimeGreen, .rightAikanTab .hd .aikanTimeBlue, .rightAikan .aikanGreen, .rightAikan .aikanBlue, .rightAikan .aikanLine, .rightAikanTitle, .leftNews .hd .newsTab h2#newsDifangH2, .leftNews .hd, .financeSearch button, .myBookIcon, .myVideoIcon, .myConstellationIcon, .leftFinance .myFinanceBox .myFinanceIcon, .rightAreaContent .hd, .leftVideoNews .hd, .leftView .hd, .txDynamic .hd, .leftLive .bd .txtArea dd .price, .nav, .soso .searchBtn button, .soso .search .searchMenu .searchSelectedUp, .soso .search .searchMenu .searchSelected, .soso .search .searchSmart li.searchSmartTip .smartX, .financeSearch #search_btn, #picFocusScroll .prev, #picFocusScroll .prev:hover, #picFocusScroll .next, #picFocusScroll .next:hover {
+#toTop, .mininavInner .loginSmartTop, .mininavInner .loginSmartBottom, .adEdu .hd, .leftTech .ft, .leftAuto .ft, .rightHouse .ft, .leftLady .ft, .leftBlog .ft, .rightBook .ft, .leftEdu .ft, .leftKid .ft, .leftSociety .ft, .leftGame .ft, .leftGongyi .ft, .leftMeishi .ft, .leftLive .ft, .txDynamic .ft, .mininav, .rightAikanTab .hd .aikanTimeGreen, .rightAikanTab .hd .aikanTimeBlue, .rightAikan .aikanGreen, .rightAikan .aikanBlue, .rightAikan .aikanLine, .rightAikanTitle, .leftNews .hd .newsTab h2#newsDifangH2, .leftNews .hd, .financeSearch button, .myBookIcon, .myVideoIcon, .myConstellationIcon, .leftFinance .myFinanceBox .myFinanceIcon, .rightAreaContent .hd, .leftVideoNews .hd, .leftView .hd, .txDynamic .hd, .leftLive .bd .txtArea dd .price, .nav, .searchBtn button, .search .searchMenu .searchSelectedUp, .search .searchMenu .searchSelected, .search .searchSmart li.searchSmartTip .smartX, .financeSearch #search_btn, #picFocusScroll .prev, #picFocusScroll .prev:hover, #picFocusScroll .next, #picFocusScroll .next:hover {
 	background-image: url("http://mat1.gtimg.com/www/images/qq2012/qqbg_1.5.2.png");
 	background-repeat: no-repeat;
 }
@@ -156,22 +156,22 @@ p {
 .txtArea dd a:hover {
 	color: #CD0200;
 }
-.soso {
+{
 	height: 48px;
 	margin: 0 auto;
 	padding: 50px 0 21px;
 	width: 1000px;
 }
-.soso .logo {
+.logo {
 	display: inline;
 	float: left;
 	margin-left: 176px;
 }
-.soso .search {
+.search {
 	float: left;
 	padding: 7px 0 0 30px;
 }
-.soso .searchTxt {
+.searchTxt {
 	-moz-border-bottom-colors: none;
 	-moz-border-image: none;
 	-moz-border-left-colors: none;
@@ -186,7 +186,7 @@ p {
 	width: 399px;
 	z-index: 22;
 }
-.soso .searchTxtHover {
+.searchTxtHover {
 	-moz-border-bottom-colors: none;
 	-moz-border-image: none;
 	-moz-border-left-colors: none;
@@ -201,10 +201,10 @@ p {
 	width: 399px;
 	z-index: 22;
 }
-.soso .search .searchMenu {
+.search .searchMenu {
 	float: left;
 }
-.soso .search .searchMenu .searchSelected {
+.search .searchMenu .searchSelected {
 	background-position: -877px -200px;
 	color: #A8A8A8;
 	cursor: pointer;
@@ -215,7 +215,7 @@ p {
 	padding: 0 10px;
 	width: 48px;
 }
-.soso .search .searchMenu .searchSelectedUp {
+.search .searchMenu .searchSelectedUp {
 	background-position: -552px -200px;
 	color: #A8A8A8;
 	cursor: pointer;
@@ -226,7 +226,7 @@ p {
 	padding: 0 10px;
 	width: 48px;
 }
-.soso .search .searchMenu .searchTab {
+.search .searchMenu .searchTab {
 	-moz-border-bottom-colors: none;
 	-moz-border-image: none;
 	-moz-border-left-colors: none;
@@ -245,21 +245,22 @@ p {
 	width: 58px;
 	z-index: 20;
 }
-.soso .search .searchMenu .searchTab li {
+.search .searchMenu .searchTab li {
 	color: #A8A8A8;
 	cursor: pointer;
 	font-size: 14px;
 	font-weight: bold;
 	height: 28px;
 	line-height: 28px;
-	text-indent: 10px;
 	width: 58px;
+	margin-left:-10px;
+	list-style:none outside none;
 }
-.soso .search .searchMenu .searchTab li.selected {
+.search .searchMenu .searchTab li.selected {
 	background: none repeat scroll 0 0 #EDF3FC;
 	color: #6994C1;
 }
-.soso .search .searchSmart {
+.search .searchSmart {
 	background: none repeat scroll 0 0 #FFFFFF;
 	border: 1px solid #CDCDCD;
 	left: 60px;
@@ -269,11 +270,11 @@ p {
 	width: 302px;
 	z-index: 11;
 }
-.soso .search .searchSmart ul {
+.search .searchSmart ul {
 	float: left;
 	width: 100%;
 }
-.soso .search .searchSmart li {
+.search .searchSmart li {
 	color: #374562;
 	cursor: pointer;
 	float: left;
@@ -285,14 +286,14 @@ p {
 	white-space: nowrap;
 	width: 100%;
 }
-.soso .search .searchSmart li.selected {
+.search .searchSmart li.selected {
 	background: none repeat scroll 0 0 #EDF3FC;
 }
-.soso .search .searchSmart li.searchSmartTip {
+.search .searchSmart li.searchSmartTip {
 	background: none repeat scroll 0 0 #F7F7F7;
 	color: #A9BACD;
 }
-.soso .search .searchSmart li.searchSmartTip .smartX {
+.search .searchSmart li.searchSmartTip .smartX {
 	background-position: -700px -210px;
 	cursor: pointer;
 	display: inline;
@@ -302,7 +303,7 @@ p {
 	overflow: hidden;
 	width: 13px;
 }
-.soso .search input {
+.search input {
 	background: none repeat scroll 0 0 #FFFFFF;
 	border: 0 none;
 	color: #333333;
@@ -314,14 +315,14 @@ p {
 	padding: 4px;
 	width: 221px;
 }
-.soso .search .sosoLogo {
+.search .sosoLogo {
 	float: right;
 	margin: 8px 6px 0 0;
 }
-.soso .searchBtn {
+.searchBtn {
 	float: left;
 }
-.soso .searchBtn button {
+.searchBtn button {
 	background-position: -350px -110px;
 	border: 0 none;
 	color: #FFFFFF;
@@ -332,7 +333,7 @@ p {
 	text-indent: -9999px;
 	width: 86px;
 }
-.soso .searchTxt .radius {
+.searchTxt .radius {
 	background: none repeat scroll 0 0 #F4F4F4;
 	height: 1px;
 	left: -2px;
@@ -341,7 +342,7 @@ p {
 	top: -2px;
 	width: 1px;
 }
-.soso .searchTxtHover .radius {
+.searchTxtHover .radius {
 	background: none repeat scroll 0 0 #CCE5F5;
 	height: 1px;
 	left: -2px;

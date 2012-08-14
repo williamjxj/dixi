@@ -1,30 +1,34 @@
 <div class="row">
-  <div class="span3">
-    <div id="logo"> <a href="{$common.header.url}" title="{$common.header.title}"> {$common.header.logo} </a> </div>
+  <div class="span2">
+    <div id="logo"> <a href="{$config.url}" title="{$common.header.title}"><img src="{$common.logo.logo_130x60}" /> </a> </div>
   </div>
-  <div class="span3">
-    <ul id="switcher">
-      <li><a href="javascript:void(0);" id="switcher-default" class="">缺省字体</a></li>
-      <li><a href="javascript:void(0);" id="switcher-large" class="">放大</a></li>
-      <li><a href="javascript:void(0);" id="switcher-small" class="">缩小</a></li>
-      <li><a href="#container" id="prlnk" class="">打印</a></li>
-    </ul>
+  <div class="span10">
+    <div class="btn-toolbar">
+    <span>当前时间： {$smarty.now|date_format:'%Y-%m-%d %H:%M'}， <span id="st" style="cursor: pointer;">切至繁体版</span> </span>
+      <div class="btn-group"> <a href="#" class="btn btn-info btn-small"><i class="icon-list-alt icon-white"></i>&nbsp;显示字体</a> <a href="#" data-toggle="dropdown" class="btn  btn-info btn-small dropdown-toggle"><span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="#" id="switcher-default">缺省</a></li>
+          <li><a href="#" id="switcher-large">放大</a></li>
+          <li><a href="#" id="switcher-small">缩小</a></li>
+          <li class="divider"></li>
+          <li><a href="#container" id="prlnk"><i class="icon-print"></i>打印</a></li>
+        </ul>
+      </div>
+      <div class="btn-group"> <a href="#" class="btn btn-info btn-small"><i class="icon-user icon-white"></i>用户</a> <a href="#" data-toggle="dropdown" class="btn btn-info btn-small dropdown-toggle"><span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="#"><i class="icon-pencil"></i>用户信息</a></li>
+          <li><a href="#"><i class="icon-trash"></i>修改</a></li>
+          <li><a href="login.php"><i class="icon-trash"></i>注册/注销</a></li>
+        </ul>
+      </div>
+      <div class="btn-group"> <a href="#" class="btn btn-info btn-small"><i class="icon-user icon-white"></i>帮助中心</a> <a href="#" data-toggle="dropdown" class="btn btn-info btn-small dropdown-toggle"><span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="{$config.path}/templates/help.tpl.html" id="help" title="帮助信息">帮助中心</a></li>
+          <li><a href="">联络我们</a></li>
+        </ul>
+      </div>
+      <a href="/weibo/" class="btn btn-info btn-small" style="vertical-align:top;"><img src="{$config.img}sina.ico" width="16px" height="16px" border="0" />新浪微博</a> <a href="/iweibo/" class="btn btn-info btn-small" style="vertical-align:top;"><img src="{$config.img}qq.ico" width="16px" height="16px" border="0" />腾讯微博</a> </div>
   </div>
-  <div class="span3">
-    <ul>
-      <li><a id="login_signup" href="login.php">用户注册</a></li>
-      <li><a href="{$config.path}/templates/help.tpl.html" id="help" title="帮助信息">帮助信息</a></li>
-      <li>当前时间： {$smarty.now|date_format:'%Y-%m-%d %H:%M'}</li>
-      <li><span id="st" style="cursor: pointer;" onmouseover="$(this).css('color', 'red');" onmouseout="$(this).css('color', 'white');">切至繁体版</span></li>
-    </ul>
-  </div>
-  <div class="span3">
-  <a href="/weibo/"><img src="{$config.img}sina.ico" width="16px" height="16px" border="0" />新浪微博</a>
-  <a href="/iweibo/"><img src="{$config.img}qq.ico" width="16px" height="16px" border="0" />腾讯微博</a>
-  </div>
-</div>
-<div id="menu" class="row">
-  <div class="span12"> {include file="{$menu_template}"} </div>
 </div>
 <script language="javascript" type="text/javascript">
 $(function() {
@@ -44,7 +48,7 @@ $('#switcher a').live("click", function () {
     default:
         num = parseFloat(defaultSize, 10);
     }
-    $('body').stop().animate({
+    $('#container').stop().animate({
         fontSize: num + 'px'
     }, 'slow');
 });
