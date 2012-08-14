@@ -49,6 +49,7 @@ $tdir = $config['templates'];
 
 $obj->assign('header_template', $tdir.'header.tpl.html');
 $obj->assign('menu_template', $tdir.'menu.tpl.html');
+$obj->assign('rss_template', $tdir.'rss.tpl.html');
 $obj->assign('left_template', $tdir.'left.tpl.html');
 $obj->assign('main_template', $tdir.'main.tpl.html');
 $obj->assign('right_template', $tdir.'right.tpl.html');

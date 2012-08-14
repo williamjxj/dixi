@@ -31,4 +31,6 @@ $common = array(
 		'fancybox'  => SITEROOT.'include/jquery.fancybox',
 	),
 );
+
+
 ?>

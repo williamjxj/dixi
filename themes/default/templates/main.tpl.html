@@ -1,8 +1,7 @@
 {if $main && count($main)>0}
-<div class="span8"> {foreach $main as $m}
-  <div class="box">{$m}</div>
-  {/foreach}
-  {else}
+ {foreach $main as $m}
+   <div class="box">{$m}</div>
+ {/foreach}
+{else}
   <div class="box">{$main.contents}</div>
-  {/if} </div>
 {/if}

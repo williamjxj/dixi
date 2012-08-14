@@ -2,7 +2,15 @@
   <div class="span4">
     <div id="logo"> <a href="{$common.header.url}" title="{$common.header.title}"> {$common.header.logo} </a> </div>
   </div>
-  <div class="span8">
+  <div class="span4">
+    <ul id="switcher">
+      <li><a href="javascript:void(0);" id="switcher-default" class="">缺省字体</a></li>
+      <li><a href="javascript:void(0);" id="switcher-large" class="">放大</a></li>
+      <li><a href="javascript:void(0);" id="switcher-small" class="">缩小</a></li>
+      <li><a href="#container" id="prlnk" class="">打印</a></li>
+    </ul>
+  </div>
+  <div class="span4">
     <ul>
       <li><img alt="Member login" src="{$config.path}images/lock.png">&nbsp;<a id="login_signup" href="login.php">用户注册</a></li>
       <li><a href="{$config.path}/templates/help.tpl.html" id="help" title="帮助信息">帮助信息</a></li>
@@ -16,5 +24,32 @@
 </div>
 <script language="javascript" type="text/javascript">
 $(function() {
+
+var $speech = $('#container');
+var defaultSize = $speech.css('fontSize') || $('body').css('fontSize');
+$('#switcher a').live("click", function () {
+    var num = parseFloat($speech.css('fontSize'), 10) || parseFloat($('body').css('fontSize'));
+	console.log(num+',' +this.id);
+    switch (this.id) {
+    case 'switcher-large':
+        num *= 1.4;
+        break;
+    case 'switcher-small':
+        num /= 1.4;
+        break;
+    default:
+        num = parseFloat(defaultSize, 10);
+    }
+    $('body').stop().animate({
+        fontSize: num + 'px'
+    }, 'slow');
+});
+
+$('#prlnk').click(function () {
+    $('#data').load($(this).attr('href'));
+    window.print();
+    return false;
+}).show();
+
 });
 </script>

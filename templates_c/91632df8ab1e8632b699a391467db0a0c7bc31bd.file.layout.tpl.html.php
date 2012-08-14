@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.0.4, created on 2012-08-13 11:41:29
+<?php /* Smarty version Smarty-3.0.4, created on 2012-08-13 15:09:56
          compiled from "./themes/default/templates/layout.tpl.html" */ ?>
-<?php /*%%SmartyHeaderCode:179150294a5903a4f0-31224074%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:1838450297b345cef33-44296285%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '91632df8ab1e8632b699a391467db0a0c7bc31bd' => 
     array (
       0 => './themes/default/templates/layout.tpl.html',
-      1 => 1344883258,
+      1 => 1344895747,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '179150294a5903a4f0-31224074',
+  'nocache_hash' => '1838450297b345cef33-44296285',
   'function' => 
   array (
   ),
@@ -47,6 +47,12 @@ css/dixi2.css" media="screen" /-->
 "></script>
 <script type="text/javascript" src="<?php echo (isset($_smarty_tpl->getVariable('common')->value['js']['ga']) ? $_smarty_tpl->getVariable('common')->value['js']['ga'] : null);?>
 "></script>
+<!------------------------>
+<link rel="stylesheet" type="text/css" href="<?php echo (isset($_smarty_tpl->getVariable('config')->value['include']) ? $_smarty_tpl->getVariable('config')->value['include'] : null);?>
+rotator/rotators.css">
+<script type="text/javascript" src="<?php echo (isset($_smarty_tpl->getVariable('config')->value['include']) ? $_smarty_tpl->getVariable('config')->value['include'] : null);?>
+rotator/rotators.js"></script>
+<!------------------------>
 <script type="text/javascript">
 $(function(){
 });
@@ -59,10 +65,14 @@ $(window).load(function() {
 ">
 <div class="container">
   <div id="header">
-    <div class="span4"> logo </div>
-    <div class="span4"> <?php $_template = new Smarty_Internal_Template(($_smarty_tpl->getVariable('header_template')->value), $_smarty_tpl->smarty, $_smarty_tpl, $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null);
+    <div class="row">
+      <div class="span4"> logo </div>
+      <div class="span8"> <?php $_template = new Smarty_Internal_Template(($_smarty_tpl->getVariable('header_template')->value), $_smarty_tpl->smarty, $_smarty_tpl, $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null);
  echo $_template->getRenderedTemplate();?><?php $_template->updateParentVariables(0);?><?php unset($_template);?> </div>
+    </div>
   </div>
+  <div class="row" id="rss"> <?php $_template = new Smarty_Internal_Template(($_smarty_tpl->getVariable('rss_template')->value), $_smarty_tpl->smarty, $_smarty_tpl, $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null);
+ echo $_template->getRenderedTemplate();?><?php $_template->updateParentVariables(0);?><?php unset($_template);?> </div>
   <div class="row">
     <div class="span2"><?php $_template = new Smarty_Internal_Template(($_smarty_tpl->getVariable('left_template')->value), $_smarty_tpl->smarty, $_smarty_tpl, $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null);
  echo $_template->getRenderedTemplate();?><?php $_template->updateParentVariables(0);?><?php unset($_template);?></div>
@@ -71,10 +81,8 @@ $(window).load(function() {
     <div class="span2"><?php $_template = new Smarty_Internal_Template(($_smarty_tpl->getVariable('right_template')->value), $_smarty_tpl->smarty, $_smarty_tpl, $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null);
  echo $_template->getRenderedTemplate();?><?php $_template->updateParentVariables(0);?><?php unset($_template);?></div>
   </div>
-  <div class="row">
-    <?php $_template = new Smarty_Internal_Template(($_smarty_tpl->getVariable('footer_template')->value), $_smarty_tpl->smarty, $_smarty_tpl, $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null);
- echo $_template->getRenderedTemplate();?><?php $_template->updateParentVariables(0);?><?php unset($_template);?>
-  </div>
+  <div class="row"> <?php $_template = new Smarty_Internal_Template(($_smarty_tpl->getVariable('footer_template')->value), $_smarty_tpl->smarty, $_smarty_tpl, $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null);
+ echo $_template->getRenderedTemplate();?><?php $_template->updateParentVariables(0);?><?php unset($_template);?> </div>
 </div>
 </body>
 </html>
