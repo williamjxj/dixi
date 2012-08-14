@@ -1,23 +1,23 @@
-<?php /* Smarty version Smarty-3.0.4, created on 2012-08-13 22:35:18
+<?php /* Smarty version Smarty-3.0.4, created on 2012-08-14 08:19:57
          compiled from "./themes/default/templates/header.tpl.html" */ ?>
-<?php /*%%SmartyHeaderCode:224065029e3966c26a4-05767252%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:15823753345029ee0d743f25-29138979%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '8da7a7fa48d3f13039e42132b3900dc480a54c9d' => 
     array (
       0 => './themes/default/templates/header.tpl.html',
-      1 => 1344922505,
+      1 => 1344925014,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '224065029e3966c26a4-05767252',
+  'nocache_hash' => '15823753345029ee0d743f25-29138979',
   'function' => 
   array (
   ),
   'has_nocache_code' => false,
 )); /*/%%SmartyHeaderCode%%*/?>
-<?php if (!is_callable('smarty_modifier_date_format')) include './include/Smarty-3.0.4/libs/plugins\modifier.date_format.php';
+<?php if (!is_callable('smarty_modifier_date_format')) include './include/Smarty-3.0.4/libs/plugins/modifier.date_format.php';
 ?><div class="row">
   <div class="span3">
     <div id="logo"> <a href="<?php echo (isset($_smarty_tpl->getVariable('common')->value['header']['url']) ? $_smarty_tpl->getVariable('common')->value['header']['url'] : null);?>
@@ -44,9 +44,9 @@ $_smarty_tpl->decodeProperties(array (
     </ul>
   </div>
   <div class="span3">
-  <a href="http://localhost/xweibo/"><img src="<?php echo (isset($_smarty_tpl->getVariable('config')->value['img']) ? $_smarty_tpl->getVariable('config')->value['img'] : null);?>
+  <a href="/weibo/"><img src="<?php echo (isset($_smarty_tpl->getVariable('config')->value['img']) ? $_smarty_tpl->getVariable('config')->value['img'] : null);?>
 sina.ico" width="16px" height="16px" border="0" />新浪微博</a>
-  <a href="http://localhost/iweibo/"><img src="<?php echo (isset($_smarty_tpl->getVariable('config')->value['img']) ? $_smarty_tpl->getVariable('config')->value['img'] : null);?>
+  <a href="/iweibo/"><img src="<?php echo (isset($_smarty_tpl->getVariable('config')->value['img']) ? $_smarty_tpl->getVariable('config')->value['img'] : null);?>
 qq.ico" width="16px" height="16px" border="0" />腾讯微博</a>
   </div>
 </div>

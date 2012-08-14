@@ -61,9 +61,9 @@ function parse_desc($summary) {
 
 	// echo "\n[".$summary."]\n";
 	// Create summary as a shortened body and remove images, extraneous line breaks, etc.
-	$summary = eregi_replace("<img[^>]*>", "", $summary);
-	$summary = eregi_replace("^(<br[ ]?/>)*", "", $summary);
-	$summary = eregi_replace("(<br[ ]?/>)*$", "", $summary);
+	$summary = preg_replace("/<img[^>]*>/i", "", $summary);
+	$summary = preg_replace("/^(<br[\s]?\/>)*/i", "", $summary);
+	$summary = preg_replace("/(<br[\s]?\/>)*$/i", "", $summary);
 	$summary = preg_replace("/^\s+/", "", $summary);
 	$summary = preg_replace("/\s+$/", "", $summary);
 	
