@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.0.4, created on 2012-08-13 15:09:56
+<?php /* Smarty version Smarty-3.0.4, created on 2012-08-13 22:24:19
          compiled from "./themes/default/templates/layout.tpl.html" */ ?>
-<?php /*%%SmartyHeaderCode:1838450297b345cef33-44296285%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:272425029e10300da41-97013135%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '91632df8ab1e8632b699a391467db0a0c7bc31bd' => 
     array (
       0 => './themes/default/templates/layout.tpl.html',
-      1 => 1344895747,
+      1 => 1344921224,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '1838450297b345cef33-44296285',
+  'nocache_hash' => '272425029e10300da41-97013135',
   'function' => 
   array (
   ),
@@ -37,6 +37,8 @@ $_smarty_tpl->decodeProperties(array (
 ">
 <link rel="stylesheet" type="text/css" href="<?php echo (isset($_smarty_tpl->getVariable('common')->value['css']['bootstrap']) ? $_smarty_tpl->getVariable('common')->value['css']['bootstrap'] : null);?>
 " media="screen" />
+<link rel="stylesheet" type="text/css" href="<?php echo (isset($_smarty_tpl->getVariable('common')->value['css']['qq']) ? $_smarty_tpl->getVariable('common')->value['css']['qq'] : null);?>
+" media="screen" />
 <!--link rel="stylesheet" type="text/css" href="<?php echo (isset($_smarty_tpl->getVariable('config')->value['path']) ? $_smarty_tpl->getVariable('config')->value['path'] : null);?>
 css/dixi2.css" media="screen" /-->
 <script type="text/javascript" src="<?php echo (isset($_smarty_tpl->getVariable('common')->value['js']['jquery']) ? $_smarty_tpl->getVariable('common')->value['js']['jquery'] : null);?>
@@ -48,6 +50,10 @@ css/dixi2.css" media="screen" /-->
 <script type="text/javascript" src="<?php echo (isset($_smarty_tpl->getVariable('common')->value['js']['ga']) ? $_smarty_tpl->getVariable('common')->value['js']['ga'] : null);?>
 "></script>
 <!------------------------>
+<meta content="index, follow" name="robots">
+<meta content="index, follow" name="googlebot">
+<!------------------------>
+
 <link rel="stylesheet" type="text/css" href="<?php echo (isset($_smarty_tpl->getVariable('config')->value['include']) ? $_smarty_tpl->getVariable('config')->value['include'] : null);?>
 rotator/rotators.css">
 <script type="text/javascript" src="<?php echo (isset($_smarty_tpl->getVariable('config')->value['include']) ? $_smarty_tpl->getVariable('config')->value['include'] : null);?>
@@ -65,11 +71,8 @@ $(window).load(function() {
 ">
 <div class="container">
   <div id="header">
-    <div class="row">
-      <div class="span4"> logo </div>
-      <div class="span8"> <?php $_template = new Smarty_Internal_Template(($_smarty_tpl->getVariable('header_template')->value), $_smarty_tpl->smarty, $_smarty_tpl, $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null);
- echo $_template->getRenderedTemplate();?><?php $_template->updateParentVariables(0);?><?php unset($_template);?> </div>
-    </div>
+      <?php $_template = new Smarty_Internal_Template(($_smarty_tpl->getVariable('header_template')->value), $_smarty_tpl->smarty, $_smarty_tpl, $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null);
+ echo $_template->getRenderedTemplate();?><?php $_template->updateParentVariables(0);?><?php unset($_template);?>
   </div>
   <div class="row" id="rss"> <?php $_template = new Smarty_Internal_Template(($_smarty_tpl->getVariable('rss_template')->value), $_smarty_tpl->smarty, $_smarty_tpl, $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null);
  echo $_template->getRenderedTemplate();?><?php $_template->updateParentVariables(0);?><?php unset($_template);?> </div>

@@ -8,6 +8,7 @@ $config = array(
   'site' => PACKAGE,
   'site_id' => 1,
   'url' => 'http://dixitruth.com/',
+  'img' => SITEROOT.'images/',
   'include' => SITEROOT.'include/',
   'path' => SITEROOT.'themes/default/',
   'templates' => SITEROOT.'themes/default/templates/',

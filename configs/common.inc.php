@@ -21,6 +21,7 @@ $common = array(
 	),
 	'css' => array(
 		'bootstrap' => SITEROOT.'include/bootstrap/css/bootstrap.css',
+		'qq' => SITEROOT.'css/qq.css',
 		'jquery-ui' => SITEROOT.'include/jqueryui/js/jquery-ui-1.8.22.custom.min.js',
 	),
 	'js' => array(

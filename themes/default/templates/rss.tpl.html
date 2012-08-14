@@ -1,19 +1,13 @@
-<div class="rss"> 
-
-<span class="span3">
+<div class="rss"> <span class="span3">
   <h3>中国大陆</h3>
-
-  <div class="btn-group"> <a class="btn btn-primary btn-small" id="cn" href="#"><i class="icon-user icon-white"></i> 新浪</a> <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+  <div class="btn-group"> <a class="btn btn-primary btn-small" id="cn" href="#"> <img src="{$config.img}sina.ico" width="16px" height="16px" border="0" /> 新浪</a> <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
     <ul class="dropdown-menu">
-      <li><a id="cn_sina" href="新浪"><i class="icon-ban-circle"></i>新浪</a></li>
-      <li><a id="cn_qq" href="腾讯"><i class="icon-ban-circle"></i>腾讯</a></li>
-      <li><a id="cn_sohu" href="搜狐"><i class="icon-pencil"></i>搜狐</a></li>
-      <li><a id="cn_163" href="网易"><i class="icon-trash"></i>网易</a></li>
+      <li><a id="cn_sina" href="新浪"> <img src="{$config.img}sina.ico" width="16px" height="16px" border="0" />&nbsp;新浪</a></li>
+      <li><a id="cn_qq" href="腾讯"> <img src="{$config.img}qq.ico" width="16px" height="16px" border="0" />&nbsp;腾讯</a></li>
+      <li><a id="cn_sohu" href="搜狐"> <img src="{$config.img}sohu.ico" width="16px" height="16px" border="0" />&nbsp;搜狐</a></li>
+      <li><a id="cn_163" href="网易"> <img src="{$config.img}163.ico" width="16px" height="16px" border="0" />&nbsp;网易</a></li>
     </ul>
   </div>
-
-
-
   <div id="rss_cn" class="news-feed newslist"> 中国大陆 </div>
   </span> <span class="span3">
   <h3>香港</h3>
@@ -39,7 +33,7 @@ $(function() {
 	$('#cn_sina, #cn_163, #cn_sohu, #cn_qq').click(function(e) {
 		e.preventDefault();
 		$('#rss_cn').rotator($(this).attr('id'));
-		$('#cn').html('<i class="icon-user icon-white"></i>'+$(this).text());
+		$('#cn').html($(this).html());
 	});
 });
 </script>
