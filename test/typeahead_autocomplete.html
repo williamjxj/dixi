@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Bootstrap Typeahead Autocomplete</title>
+<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css" />
+<script type="text/javascript" src="../js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
+<script type="text/javascript">
+$(function() {
+	$('#typeahead').typeahead({
+		source: function(typeahead, query) {
+			//空字符不发送请求。
+			if(query.length==0) return false;
+			$.ajax({
+				url: 'typeahead_search.php',
+				type: 'GET',
+				data: 'q=' + query,
+				dataType: 'JSON',
+				async: false,
+				cache: false,
+				beforeSend: function(){
+				},
+				success: function(data) {
+					// console.log(data);
+					typeahead.process(data);
+				}
+			});
+		}
+	});
+});
+</script>
+</head>
+<body>
+<div class="container">
+  <div class="well">
+    <input type="text" class="span3" id="typeahead" data-provide="typeahead" />
+  </div>
+</div>
+</body>
+</html>

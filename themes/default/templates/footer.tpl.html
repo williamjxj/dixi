@@ -1,0 +1,11 @@
+{$url={$SCRIPT_NAME}}
+{if isset($footer) && is_array($footer) && count($footer)>0}
+  {foreach $footer as $id=>$h} 
+  {/foreach}
+  {/if}
+  
+<div class="row"> {include file="{$copyright_template}"} </div>
+<script type="text/javascript">
+$(function() {
+});
+</script>

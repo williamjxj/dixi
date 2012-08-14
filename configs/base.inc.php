@@ -25,66 +25,30 @@ class BaseClass extends Smarty
     $this->cache_dir = SITEROOT.'cache/';
   }
 
-  public function pear_connect_admin() {
- 
-	if (preg_match("/^(192\.168|127\.)/", $_SERVER['REMOTE_ADDR']) || preg_match("/::1/", $_SERVER['REMOTE_ADDR'])) { 
-		$dsn = array (
-			'phptype' => 'mysqli',
-			'username' => 'church',
-			'password' => 'Benjamin001!',
-			'hostspec' => 'localhost',
-			'database' => 'church'
-		);
+  public function pear_connect_admin() 
+  {
+	$dsn = array (
+		'phptype' => 'mysqli',
+		'username' => DBUSER,
+		'password' => DBPASS,
+		'hostspec' => DBHOST,
+		'database' => DBNAME
+	);
+	$options = array(
+		'debug'       => 2,
+		'persistent'  => true,
+		'portability' => MDB2_PORTABILITY_ALL,
+	);
+	$mdb2 = MDB2::factory($dsn, $options);
+	if (PEAR::isError($mdb2)) {
+		die($mdb2->getMessage());
 	}
-	else {
-		$dsn = array (
-			'phptype' => 'mysqli',
-			'username' => 'church',
-			'password' => 'Benjamin001!',
-			'hostspec' => 'williamjxj.ipowermysql.com',
-			'database' => 'church'
-		);
-	}  
-  
-    $options = array(
-      'debug'       => 2,
-      'persistent'  => true,
-      'portability' => MDB2_PORTABILITY_ALL,
-    );
-    $mdb2 = MDB2::factory($dsn, $options);
-    if (PEAR::isError($mdb2)) {
-      die($mdb2->getMessage());
-    }
 	$mdb2->query("SET NAMES 'utf8'");
-    return $mdb2;
+	return $mdb2;
   }
-
-  function check_email($emailAddress) {
-    if (preg_match('/\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b/i', $emailAddress)){
-      $emailArray = explode("@",$emailAddress);
-      if (checkdnsrr($emailArray[1])){
-        return TRUE;
-      }
-    }
-    return false;
-  }
-
-  function get_date($date) {
-    return preg_match("/YYYY-MM-DD/i", $date) ? '' : $date;
-  }  
-
-  function clear_array($ary) {
-      if(is_array($ary) && count($ary)>0){
-        foreach($ary as $key=>$data) {
-          $ary[$key] = '';
-          unset($ary[$key]);
-        }
-      }
-  }
-
-  //return rand(1,99)*time(); //bigint instead of varchar(32);
+	
   function get_session() {
-  return session_id();
+	  return session_id();
   }
 
   function set_default_config($array) {

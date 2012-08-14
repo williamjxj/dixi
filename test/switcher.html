@@ -8,11 +8,12 @@
 <script language="javascript" type="text/javascript" src="../include/colortip/colortip-1.0-jquery.js"></script>
 <script type="text/javascript">
 $(function() {
-	var $speech = $('#contents div.box');
-	var defaultSize = $speech.css('fontSize');
-	$('#switcher a').live("click", function() {
-		var num = parseFloat( $speech.css('fontSize'), 10 );
-		switch (this.id) {
+var $speech = $('#contents div.box');
+var defaultSize = $speech.css('fontSize');
+$('#switcher a').live("click", function() {
+alert(defaultSize);
+	var num = parseFloat( $speech.css('fontSize'), 10 );
+	switch (this.id) {
 		case 'switcher-large':
 			num *= 1.4;
 			break;
@@ -23,24 +24,23 @@ $(function() {
 			num = parseFloat(defaultSize, 10);
 	}
 	$speech.animate({fontSize: num + 'px'}, 'slow');
-	});
-	
-	$('a[title]').colorTip({ color:'yellow' });
+});
 
-	$('#prlnk').click(function() { 
-		$('#data').load($(this).attr('href')); 
-		window.print(); return false; }).show();
-	});
+$('#prlnk').click(function() { 
+	$('#data').load($(this).attr('href')); 
+	window.print(); return false; 
+	}).show();
+});
+	
 </script>
 </head>
 <body>
 <div id="contents">
-<div class="box">
-<h3>8月8日</h3>
-伦敦奥运会跆拳道女子-49kg决赛，中国选手吴静钰8-1击败西班牙选手布里吉特成功卫冕，这是中国代表团的第36枚金牌！
-<p>
-【吴静钰：金牌是所有中国人的骄傲】伦敦奥运女子跆拳道49公斤级决赛，<a href="javascript:void(0);" title="跆拳道比赛场地为12×12米，可铺设高出地面50～60厘米的软垫。<br>比赛分为3局，每局2分钟，局间休息1分钟。<br/>比赛结果根据双方选手3局的得分总和来计算，得分多者为胜者。">吴静钰</a>绝对优势夺冠，赛后她直言：“感谢我的国家培养我，感谢教练这么多年的陪伴，金牌时所有中国人的骄傲。”夺冠后她的教练打起太极，对此吴静钰透露：“教练一直用中国武术的精髓来教导我，加入训练中。”</p>
-</div>
+  <div class="box">
+    <h3>8月8日</h3>
+    伦敦奥运会跆拳道女子-49kg决赛，中国选手吴静钰8-1击败西班牙选手布里吉特成功卫冕，这是中国代表团的第36枚金牌！
+    <p> 【吴静钰：金牌是所有中国人的骄傲】伦敦奥运女子跆拳道49公斤级决赛，<a href="javascript:void(0);" title="跆拳道比赛场地为12×12米，可铺设高出地面50～60厘米的软垫。<br>比赛分为3局，每局2分钟，局间休息1分钟。<br/>比赛结果根据双方选手3局的得分总和来计算，得分多者为胜者。">吴静钰</a>绝对优势夺冠，赛后她直言：“感谢我的国家培养我，感谢教练这么多年的陪伴，金牌时所有中国人的骄傲。”夺冠后她的教练打起太极，对此吴静钰透露：“教练一直用中国武术的精髓来教导我，加入训练中。”</p>
+  </div>
 </div>
 <ul id="switcher">
   <li><a href="javascript:void(0);" id="switcher-default" class="fd colorTipContainer yellow">A<span class="colorTip">Default Font Size<span class="pointyTipShadow"></span><span class="pointyTip"></span></span></a></li>

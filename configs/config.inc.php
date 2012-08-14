@@ -1,46 +1,23 @@
 <?php
-if (!defined('SITEROOT')) { //backdoor.
-  define('SITEROOT', './');
-}
-define("LOGIN", SITEROOT."login.php"); // entry point.
-define('COMMON_USER', 'common_users'); // login table.
+defined('PACKAGE') or define('PACKAGE', 'dixi');
+defined('SITEROOT') or define('SITEROOT', '/');
+defined('DEBUG') or define('DEBUG', true);
 
 $config = array(
-  'debug' => true, // usd by smarty templates as well as php.
-  'site' => 'church', //default.
+  'debug' => DEBUG,
+  'site' => PACKAGE,
   'site_id' => 1,
-  'path' => SITEROOT.'themes/default/',
-  'ipath' => SITEROOT.'include/',
+  'url' => 'http://dixitruth.com/',
+  'img' => SITEROOT.'images/',
   'include' => SITEROOT.'include/',
+  'path' => SITEROOT.'themes/default/',
+  'templates' => SITEROOT.'themes/default/templates/',
   'smarty' => SITEROOT.'configs/smarty.ini',
-  'title' => 'One Family Fellowship - Surrey Christian Alliance Church',
-  'browser' => browser_id(),
   'header' => array(
-    'title' => 'One Family Fellowship - Surrey Christian Alliance Church',
-    'description' => 'One Family Fellowship - Surrey Christian Alliance Church',
-    'keywords' => 'One Family Fellowship - Surrey Christian Alliance Church',
-    'meta_content' => 'text/html, charset=>utf-8',
-    'meta_defaultrobots' => 'index,follow',
-    'meta_robots' => '',
+	'title' => '底细,真相,还原真相,反映实际情况',
+	'desc' => '底细,真相,还原真相,反映实际情况',
+	'keywords' => '底细,真相,还原真相,反映实际情况',
   ),
 );
-
-define("HOST", "localhost");
-define("USER", "church");
-define("PASS", "Benjamin001!");
-define("DB_NAME", "church");
-
-
-function browser_id() {
-  if(strstr($_SERVER['HTTP_USER_AGENT'], 'Firefox')){ $id="firefox"; }
-  elseif(strstr($_SERVER['HTTP_USER_AGENT'], 'Safari') && !strstr($_SERVER['HTTP_USER_AGENT'], 'Chrome')){ $id="safari"; }
-  elseif(strstr($_SERVER['HTTP_USER_AGENT'], 'Chrome')){ $id="chrome"; }
-  elseif(strstr($_SERVER['HTTP_USER_AGENT'], 'Opera')){ $id="opera"; }
-  elseif(strstr($_SERVER['HTTP_USER_AGENT'], 'MSIE 6')){ $id="ie6"; }
-  elseif(strstr($_SERVER['HTTP_USER_AGENT'], 'MSIE 7')){ $id="ie7"; }
-  elseif(strstr($_SERVER['HTTP_USER_AGENT'], 'MSIE 8')){ $id="ie8"; }
-  elseif(strstr($_SERVER['HTTP_USER_AGENT'], 'MSIE 9')){ $id="ie9"; }
-  return $id;
-}
 
 ?>

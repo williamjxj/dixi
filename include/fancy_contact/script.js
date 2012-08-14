@@ -1,10 +1,8 @@
 $(document).ready(function(){
 	$('#contact-form').jqTransform();
-
+		
 	$("button").click(function(){
-
 		$(".formError").hide();
-
 	});
 
 	var use_ajax=true;
@@ -18,25 +16,24 @@ $(document).ready(function(){
 	 })
 
 	$("#contact-form").submit(function(e){
-
+			var url = $(this).attr('action');
 			if(!$('#subject').val().length)
 			{
 				$.validationEngine.buildPrompt(".jqTransformSelectWrapper","* This field is required","error")
 				return false;
 			}
-			
 			if(use_ajax)
 			{
 				$('#loading').css('visibility','visible');
-				$.post('submit.php',$(this).serialize()+'&ajax=1',
+				$.post(url,$(this).serialize()+'&ajax=1',
 				
 					function(data){
 						if(parseInt(data)==-1)
-							$.validationEngine.buildPrompt("#captcha","* Wrong verification number!","error");
+							$.validationEngine.buildPrompt("#captcha","* ´íÎóµÄÑéÖ¤ÂëWrong verification number!","error");
 							
 						else
 						{
-							$("#contact-form").hide('slow').after('<h1>Thank you!</h1>');
+							$("#contact-form").hide('slow').after('<h1>Ð»Ð»Äã!</h1><br/><a href="#" class="btn" data-dismiss="modal">Close</a>');
 						}
 						
 						$('#loading').css('visibility','hidden');
@@ -46,5 +43,4 @@ $(document).ready(function(){
 			}
 			e.preventDefault();
 	})
-
 });

@@ -14,7 +14,6 @@ function mycarousel_itemLoadCallback(carousel, state)
         return;
 
     jQuery.get('icarousel_ajax.txt', function(data) {
-		alert('eeeeeeeeeeeeee');
         mycarousel_itemAddCallback(carousel, carousel.first, carousel.last, data);
     });
 };
