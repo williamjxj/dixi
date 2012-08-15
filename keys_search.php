@@ -39,7 +39,7 @@ function recursive_iconv(string $in_charset, string $out_charset, $arr){
 } 	
 function get_items($q) {
 	$query = "select keyword from keywords where LOWER(keyword) like '%" . $q . "%'";
-	$res = $mdb2->queryAll($query, '', MDB2_FETCHMODE_ASSOC);  //while($row=$res->fetchRow()) $ary[$row[0]]=$row[1];
+	$res = $mdb2->queryAll($query, '', MDB2_FETCHMODE_ASSOC);
 	if (PEAR::isError($res)) die($res->getMessage());
 	echo json_encode($res);
 }

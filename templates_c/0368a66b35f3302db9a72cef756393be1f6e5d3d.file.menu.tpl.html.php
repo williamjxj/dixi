@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.0.4, created on 2012-08-14 21:43:32
+<?php /* Smarty version Smarty-3.0.4, created on 2012-08-14 23:45:29
          compiled from "./themes/default/templates/menu.tpl.html" */ ?>
-<?php /*%%SmartyHeaderCode:11224502b28f4397207-78480664%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:1491502b458928f148-59418667%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '0368a66b35f3302db9a72cef756393be1f6e5d3d' => 
     array (
       0 => './themes/default/templates/menu.tpl.html',
-      1 => 1344983999,
+      1 => 1345013056,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '11224502b28f4397207-78480664',
+  'nocache_hash' => '1491502b458928f148-59418667',
   'function' => 
   array (
   ),
@@ -34,7 +34,19 @@ $_smarty_tpl->decodeProperties(array (
     <div><strong><a target="_blank" href="http://games.qq.com/">游戏</a></strong><a target="_blank" href="http://comic.qq.com/">动漫</a><a target="_blank" href="http://ac.qq.com/">漫画</a><a target="_blank" href="http://astro.lady.qq.com/">星座</a></div>
     <div style="width:130px;padding:0 6px 0 4px;"><strong><a target="_blank" href="http://gongyi.qq.com/">公益</a></strong><a target="_blank" href="http://kid.qq.com/">儿童</a><a target="_blank" class="navMore" href="http://2012.qq.com/map/">更多</a></div>
   </div>
-         
+ 
+ <!-------------------->
+ <div>
+  <ul id="js-news" class="js-hidden">
+    <li class="news-item"><a href="#">这里可以循环显示RSS Feed 新闻。</a></li>
+    <li class="news-item"><a href="#">或者，用户输入的最新查询关键词。</a></li>
+    <li class="news-item"><a href="#">或者，根据tab,rank,time所得到的排名。</a></li>
+    <li class="news-item"><a href="#">或者，一些热点，焦点短新闻，或讨论，或者，从微博来的即时信息。</a></li>
+    <li class="news-item"><a href="#">或者，任何简短的提示，或帮助信息。</a></li>
+  </ul>
+</div>
+ <!-------------------->
+        
   <div class="well search">
     <form class="well form-search">
       <div class="radius" style="top:-2px;"></div>

@@ -39,7 +39,7 @@ $(function () {
             success: function (data) {
 				console.log(data);
                 if (data instanceof Object) {
-                    document.location.href = '/asap/index.php';
+                    document.location.href = '/admin/index.php';
                 } else {
                     $('#msg').hide();
                     if ($('#div1').length > 0) {

@@ -24,6 +24,10 @@
 <!------------------------>
 <link href="{$config.include}news_ticker/styles/ticker-style.css" rel="stylesheet" type="text/css" />
 <script src="{$config.include}news_ticker/includes/jquery.ticker.min.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="css/tinyscrollbar.css" />
+<script type="text/javascript" src="js/jquery.tinyscrollbar.min.js"></script>
+<link rel="stylesheet" type="text/css" href="include/jcarousel/test/jcarousel-skin-tango.css">
+<script type="text/javascript" src="include/jcarousel/src/jquery.jcarousel.min.js"></script>
 <!------------------------>
 <script type="text/javascript">
 $(function(){
@@ -41,11 +45,6 @@ $(window).load(function() {
   <div id="menu"> {include file="{$menu_template}"} </div>
   <div id="rss"> {include file="{$rss_template}"} </div>
   <div id="main">{include file="{$main_template}"}</div>
-  <!--div class="row">
-    <div class="span2">{include file="{$left_template}"}</div>
-    <div class="span8">{include file="{$main_template}"}</div>
-    <div class="span2">{include file="{$right_template}"}</div>
-  </div-->
   <div id="footer"> {include file="{$footer_template}"} </div>
 </div>
 </body>

@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.0.4, created on 2012-08-14 21:45:23
+<?php /* Smarty version Smarty-3.0.4, created on 2012-08-14 23:35:42
          compiled from "./themes/default/templates/layout.tpl.html" */ ?>
-<?php /*%%SmartyHeaderCode:23816502b296389d2a2-44595110%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:5138502b433e6d5031-55496268%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '91632df8ab1e8632b699a391467db0a0c7bc31bd' => 
     array (
       0 => './themes/default/templates/layout.tpl.html',
-      1 => 1345005896,
+      1 => 1345012531,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '23816502b296389d2a2-44595110',
+  'nocache_hash' => '5138502b433e6d5031-55496268',
   'function' => 
   array (
   ),
@@ -65,6 +65,10 @@ rotator/rotators.js"></script>
 news_ticker/styles/ticker-style.css" rel="stylesheet" type="text/css" />
 <script src="<?php echo (isset($_smarty_tpl->getVariable('config')->value['include']) ? $_smarty_tpl->getVariable('config')->value['include'] : null);?>
 news_ticker/includes/jquery.ticker.min.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="css/tinyscrollbar.css" />
+<script type="text/javascript" src="js/jquery.tinyscrollbar.min.js"></script>
+<link rel="stylesheet" type="text/css" href="include/jcarousel/test/jcarousel-skin-tango.css">
+<script type="text/javascript" src="include/jcarousel/src/jquery.jcarousel.min.js"></script>
 <!------------------------>
 <script type="text/javascript">
 $(function(){
@@ -87,14 +91,6 @@ $(window).load(function() {
  echo $_template->getRenderedTemplate();?><?php $_template->updateParentVariables(0);?><?php unset($_template);?> </div>
   <div id="main"><?php $_template = new Smarty_Internal_Template(($_smarty_tpl->getVariable('main_template')->value), $_smarty_tpl->smarty, $_smarty_tpl, $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null);
  echo $_template->getRenderedTemplate();?><?php $_template->updateParentVariables(0);?><?php unset($_template);?></div>
-  <!--div class="row">
-    <div class="span2"><?php $_template = new Smarty_Internal_Template(($_smarty_tpl->getVariable('left_template')->value), $_smarty_tpl->smarty, $_smarty_tpl, $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null);
- echo $_template->getRenderedTemplate();?><?php $_template->updateParentVariables(0);?><?php unset($_template);?></div>
-    <div class="span8"><?php $_template = new Smarty_Internal_Template(($_smarty_tpl->getVariable('main_template')->value), $_smarty_tpl->smarty, $_smarty_tpl, $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null);
- echo $_template->getRenderedTemplate();?><?php $_template->updateParentVariables(0);?><?php unset($_template);?></div>
-    <div class="span2"><?php $_template = new Smarty_Internal_Template(($_smarty_tpl->getVariable('right_template')->value), $_smarty_tpl->smarty, $_smarty_tpl, $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null);
- echo $_template->getRenderedTemplate();?><?php $_template->updateParentVariables(0);?><?php unset($_template);?></div>
-  </div-->
   <div id="footer"> <?php $_template = new Smarty_Internal_Template(($_smarty_tpl->getVariable('footer_template')->value), $_smarty_tpl->smarty, $_smarty_tpl, $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null);
  echo $_template->getRenderedTemplate();?><?php $_template->updateParentVariables(0);?><?php unset($_template);?> </div>
 </div>
