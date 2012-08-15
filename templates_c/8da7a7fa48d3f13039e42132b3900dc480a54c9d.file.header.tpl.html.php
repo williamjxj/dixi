@@ -1,23 +1,23 @@
-<?php /* Smarty version Smarty-3.0.4, created on 2012-08-15 03:36:39
+<?php /* Smarty version Smarty-3.0.4, created on 2012-08-14 21:43:32
          compiled from "./themes/default/templates/header.tpl.html" */ ?>
-<?php /*%%SmartyHeaderCode:956715155502afd27abf124-19270606%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:15035502b28f421a321-79584635%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '8da7a7fa48d3f13039e42132b3900dc480a54c9d' => 
     array (
       0 => './themes/default/templates/header.tpl.html',
-      1 => 1344994456,
+      1 => 1345004124,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '956715155502afd27abf124-19270606',
+  'nocache_hash' => '15035502b28f421a321-79584635',
   'function' => 
   array (
   ),
   'has_nocache_code' => false,
 )); /*/%%SmartyHeaderCode%%*/?>
-<?php if (!is_callable('smarty_modifier_date_format')) include './include/Smarty-3.0.4/libs/plugins/modifier.date_format.php';
+<?php if (!is_callable('smarty_modifier_date_format')) include './include/Smarty-3.0.4/libs/plugins\modifier.date_format.php';
 ?>
 <div class="row">
   <div class="span2">
@@ -56,6 +56,8 @@ $_smarty_tpl->decodeProperties(array (
           <li><a href="<?php echo (isset($_smarty_tpl->getVariable('config')->value['path']) ? $_smarty_tpl->getVariable('config')->value['path'] : null);?>
 /templates/help.tpl.html" id="help" title="帮助信息">帮助中心</a></li>
           <li><a data-toggle="modal" href="#myModal">联络我们</a></li>
+          <li class="divider"></li>
+          <li><img src="images/lock.png" width="10" height="10" border="0"><a id="login_signup" href="login/login_admin.php">后台管理</a></li>
         </ul>
       </div>
       <a href="/weibo/" class="btn btn-info btn-small" style="vertical-align:top;"><img src="<?php echo (isset($_smarty_tpl->getVariable('config')->value['img']) ? $_smarty_tpl->getVariable('config')->value['img'] : null);?>
@@ -65,6 +67,7 @@ qq.ico" width="16px" height="16px" border="0" />腾讯微博</a> </div>
 </div>
 <section>
   <div class="modal hide" id="myModal"></div>
+  <div id="div_ls" style="display:none;"></div>
 </section>
 <script language="javascript" type="text/javascript">
 $(function() {
@@ -113,5 +116,24 @@ $(function() {
         });
         return false;
     });
+
+	//dixi_admin
+	$('#login_signup').click(function(e) {
+	    e.preventDefault();
+		var t2 = $('#div_ls');
+		if($(t2).is(':visible')) {
+			$(t2).hide();
+		}
+		else {
+			if($(t2).html().length>0) {
+				$(t2).hide().fadeIn(200);
+			}
+			else {
+				$(t2).load($(this).attr('href')).hide().fadeIn(200);
+			}
+		}
+		return false;
+	});
+
 });
 </script>

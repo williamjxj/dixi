@@ -34,6 +34,7 @@ $common = array(
 		'bts' => SITEROOT.'include/bootstrap/js/bootstrap_search.js',
 		'gb_big5' => SITEROOT.'js/init.js', 
 		'ga' => SITEROOT.'js/ga.js',
+		'cookie' => SITEROOT.'js/cookie.js',
 		'fancybox'  => SITEROOT.'include/jquery.fancybox',
 	),
 );

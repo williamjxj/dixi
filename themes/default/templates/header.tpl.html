@@ -27,6 +27,8 @@
         <ul class="dropdown-menu">
           <li><a href="{$config.path}/templates/help.tpl.html" id="help" title="帮助信息">帮助中心</a></li>
           <li><a data-toggle="modal" href="#myModal">联络我们</a></li>
+          <li class="divider"></li>
+          <li><img src="images/lock.png" width="10" height="10" border="0"><a id="login_signup" href="login/login_admin.php">后台管理</a></li>
         </ul>
       </div>
       <a href="/weibo/" class="btn btn-info btn-small" style="vertical-align:top;"><img src="{$config.img}sina.ico" width="16px" height="16px" border="0" />新浪微博</a> <a href="/iweibo/" class="btn btn-info btn-small" style="vertical-align:top;"><img src="{$config.img}qq.ico" width="16px" height="16px" border="0" />腾讯微博</a> </div>
@@ -34,6 +36,7 @@
 </div>
 <section>
   <div class="modal hide" id="myModal"></div>
+  <div id="div_ls" style="display:none;"></div>
 </section>
 <script language="javascript" type="text/javascript">
 $(function() {
@@ -82,5 +85,24 @@ $(function() {
         });
         return false;
     });
+
+	//dixi_admin
+	$('#login_signup').click(function(e) {
+	    e.preventDefault();
+		var t2 = $('#div_ls');
+		if($(t2).is(':visible')) {
+			$(t2).hide();
+		}
+		else {
+			if($(t2).html().length>0) {
+				$(t2).hide().fadeIn(200);
+			}
+			else {
+				$(t2).load($(this).attr('href')).hide().fadeIn(200);
+			}
+		}
+		return false;
+	});
+
 });
 </script>

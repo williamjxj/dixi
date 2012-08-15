@@ -46,32 +46,41 @@ class BaseClass extends Smarty
 	$mdb2->query("SET NAMES 'utf8'");
 	return $mdb2;
   }
-	
+  
+  function mysql_connect_dixi()
+  {
+	$db = mysql_pconnect(DBHOST, DBUSER, DBPASS) or die(mysql_error());
+	mysql_select_db(DBNAME, $db);
+	mysql_query("SET NAMES 'utf8'", $db);
+	return $db;
+  }
+  
   function get_session() {
 	  return session_id();
   }
 
   function set_default_config($array) {
-  global $config;
-  foreach($array as $k=>$v) $config[$k] = $v;
+	  global $config;
+	  foreach($array as $k=>$v) $config[$k] = $v;
   }
   // new for the front-side.
   function set_logfile() {
     $log = SITEROOT.LOG_FILE;
     if (is_file()) {
-    $fh = fopen($log, 'a') or die("can't open file: ".__FILE__.__LINE__);
+		$fh = fopen($log, 'a') or die("can't open file: ".__FILE__.__LINE__);
+	}
+	else {
+		$fh = fopen($log, 'w') or die("can't open file: ".__FILE__.__LINE__);    
+	}
+	fwrite($fh, $str);
+	fclose($fh);
   }
-  else {
-    $fh = fopen($log, 'w') or die("can't open file: ".__FILE__.__LINE__);    
-  }
-  fwrite($fh, $str);
-  fclose($fh);
-  }
+
   function print_logfile($vars) {
     global $config;
     if (!isset($config['debug']) || (! $config['debug']) ) return;
-  if(is_array($vars) || is_object($vars)) { echo "<pre>"; print_r($vars); echo "</pre>"; }
-  else echo $vars."<br>\n";
+	if(is_array($vars) || is_object($vars)) { echo "<pre>"; print_r($vars); echo "</pre>"; }
+	else echo $vars."<br>\n";
   }
 
   function get_env() {
@@ -80,11 +89,17 @@ class BaseClass extends Smarty
     return 'Unix';
     }
   }
-  function set_breakpoint()
-  {
-  $fh = fopen(SITEROOT.BREAKPOINT, 'w') or die("can't open file");
-  fwrite($fh, $this->url);
-  fclose($fh);
+
+  function browser_id() {
+	if(strstr($_SERVER['HTTP_USER_AGENT'], 'Firefox')){ $id="firefox"; }
+	elseif(strstr($_SERVER['HTTP_USER_AGENT'], 'Safari') && !strstr($_SERVER['HTTP_USER_AGENT'], 'Chrome')){ $id="safari"; }
+	elseif(strstr($_SERVER['HTTP_USER_AGENT'], 'Chrome')){ $id="chrome"; }
+	elseif(strstr($_SERVER['HTTP_USER_AGENT'], 'Opera')){ $id="opera"; }
+	elseif(strstr($_SERVER['HTTP_USER_AGENT'], 'MSIE 6')){ $id="ie6"; }
+	elseif(strstr($_SERVER['HTTP_USER_AGENT'], 'MSIE 7')){ $id="ie7"; }
+	elseif(strstr($_SERVER['HTTP_USER_AGENT'], 'MSIE 8')){ $id="ie8"; }
+	elseif(strstr($_SERVER['HTTP_USER_AGENT'], 'MSIE 9')){ $id="ie9"; }
+	return $id;
   }
 
   function get_html_template($assign=NULL)

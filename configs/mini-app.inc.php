@@ -27,5 +27,13 @@ function pear_connect_dixi()
 	$mdb2->query("SET NAMES 'utf8'");
 	return $mdb2;
 }
-	
+
+function mysql_connect_dixi()
+{
+	$db = mysql_pconnect(DBHOST, DBUSER, DBPASS) or die(mysql_error());
+	mysql_select_db(DBNAME, $db);
+	mysql_query("SET NAMES 'utf8'", $db);
+	return $db;
+}
+
 ?>

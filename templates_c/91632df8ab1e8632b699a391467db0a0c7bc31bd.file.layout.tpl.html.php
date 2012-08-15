@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.0.4, created on 2012-08-15 03:36:39
+<?php /* Smarty version Smarty-3.0.4, created on 2012-08-14 21:45:23
          compiled from "./themes/default/templates/layout.tpl.html" */ ?>
-<?php /*%%SmartyHeaderCode:936783714502afd279c4b72-55928047%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:23816502b296389d2a2-44595110%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '91632df8ab1e8632b699a391467db0a0c7bc31bd' => 
     array (
       0 => './themes/default/templates/layout.tpl.html',
-      1 => 1344994456,
+      1 => 1345005896,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '936783714502afd279c4b72-55928047',
+  'nocache_hash' => '23816502b296389d2a2-44595110',
   'function' => 
   array (
   ),
@@ -48,6 +48,8 @@ css/dixi2.css" media="screen" /-->
 <script type="text/javascript" src="<?php echo (isset($_smarty_tpl->getVariable('common')->value['js']['gb_big5']) ? $_smarty_tpl->getVariable('common')->value['js']['gb_big5'] : null);?>
 "></script>
 <script type="text/javascript" src="<?php echo (isset($_smarty_tpl->getVariable('common')->value['js']['ga']) ? $_smarty_tpl->getVariable('common')->value['js']['ga'] : null);?>
+"></script>
+<script type="text/javascript" src="<?php echo (isset($_smarty_tpl->getVariable('common')->value['js']['cookie']) ? $_smarty_tpl->getVariable('common')->value['js']['cookie'] : null);?>
 "></script>
 <!------------------------>
 <meta content="index, follow" name="robots">
