@@ -10,14 +10,14 @@ $_SESSION['n2'] = rand(1,20);
 $_SESSION['expect'] = $_SESSION['n1']+$_SESSION['n2'];
 
 $str='';
-if($_SESSION['errStr'])
+if(isset($_SESSION['errStr']) && $_SESSION['errStr'] )
 {
 	$str='<div class="error">'.$_SESSION['errStr'].'</div>';
 	unset($_SESSION['errStr']);
 }
 
 $success='';
-if($_SESSION['sent'])
+if(isset($_SESSION['sent']) && $_SESSION['sent'])
 {
 	$success='<h1>谢谢! 我们会尽快和您联系。</h1>';
 	
@@ -26,6 +26,13 @@ if($_SESSION['sent'])
 	unset($_SESSION['sent']);
 }
 $ipath = SITEROOT . 'include/fancy_contact/';
+
+if (!isset($_SESSION['post']['name'])) {
+	$_SESSION['post']['name']='';
+	$_SESSION['post']['email']='';
+	$_SESSION['post']['message']='';
+}
+
 ?>
 <meta charset="UTF-8" />
 <link rel="stylesheet" type="text/css" href="<?=$ipath;?>jqtransformplugin/jqtransform.css" />

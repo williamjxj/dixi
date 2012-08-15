@@ -1,24 +1,24 @@
-<?php /* Smarty version Smarty-3.0.4, created on 2012-08-14 18:26:16
+<?php /* Smarty version Smarty-3.0.4, created on 2012-08-15 03:36:39
          compiled from "./themes/default/templates/header.tpl.html" */ ?>
-<?php /*%%SmartyHeaderCode:26960502afab87c8c25-43400535%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:956715155502afd27abf124-19270606%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '8da7a7fa48d3f13039e42132b3900dc480a54c9d' => 
     array (
       0 => './themes/default/templates/header.tpl.html',
-      1 => 1344993966,
+      1 => 1344994456,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '26960502afab87c8c25-43400535',
+  'nocache_hash' => '956715155502afd27abf124-19270606',
   'function' => 
   array (
   ),
   'has_nocache_code' => false,
 )); /*/%%SmartyHeaderCode%%*/?>
-<?php if (!is_callable('smarty_modifier_date_format')) include './include/Smarty-3.0.4/libs/plugins\modifier.date_format.php';
-?><?php $_smarty_tpl->smarty->loadPlugin('Smarty_Internal_Debug'); Smarty_Internal_Debug::display_debug($_smarty_tpl); ?>
+<?php if (!is_callable('smarty_modifier_date_format')) include './include/Smarty-3.0.4/libs/plugins/modifier.date_format.php';
+?>
 <div class="row">
   <div class="span2">
     <div id="logo"> <a href="<?php echo (isset($_smarty_tpl->getVariable('config')->value['url']) ? $_smarty_tpl->getVariable('config')->value['url'] : null);?>
