@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.0.4, created on 2012-08-14 23:35:42
+<?php /* Smarty version Smarty-3.0.4, created on 2012-08-15 11:41:40
          compiled from "./themes/default/templates/layout.tpl.html" */ ?>
-<?php /*%%SmartyHeaderCode:5138502b433e6d5031-55496268%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:4573502bed644f60b8-62904978%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '91632df8ab1e8632b699a391467db0a0c7bc31bd' => 
     array (
       0 => './themes/default/templates/layout.tpl.html',
-      1 => 1345012531,
+      1 => 1345052744,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '5138502b433e6d5031-55496268',
+  'nocache_hash' => '4573502bed644f60b8-62904978',
   'function' => 
   array (
   ),
@@ -67,8 +67,6 @@ news_ticker/styles/ticker-style.css" rel="stylesheet" type="text/css" />
 news_ticker/includes/jquery.ticker.min.js" type="text/javascript"></script>
 <link rel="stylesheet" type="text/css" href="css/tinyscrollbar.css" />
 <script type="text/javascript" src="js/jquery.tinyscrollbar.min.js"></script>
-<link rel="stylesheet" type="text/css" href="include/jcarousel/test/jcarousel-skin-tango.css">
-<script type="text/javascript" src="include/jcarousel/src/jquery.jcarousel.min.js"></script>
 <!------------------------>
 <script type="text/javascript">
 $(function(){

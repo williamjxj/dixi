@@ -8,6 +8,8 @@ require_once(SITEROOT.'configs/common.inc.php');
 global $common;
 
 require_once(SITEROOT."configs/config.inc.php");
+require_once(SITEROOT."main.php");
+
 global $config;
 
 //require_once(SITEROOT."configs/base.inc.php");
@@ -50,6 +52,10 @@ $tdir = $config['templates'];
 //echo "<pre>"; print_r($common); echo "</pre>";
 //echo "<pre>"; print_r($_SESSION); echo "</pre>";
 //echo "<pre>"; print_r($config); echo "</pre>";
+
+
+$obj->assign('nails_first', get_ary_thumbnails());
+$obj->assign('nails_rest', get_img_thumbnails());
 
 $obj->assign('config', $config);
 $obj->assign('common', $common);

@@ -1,22 +1,23 @@
-<?php /* Smarty version Smarty-3.0.4, created on 2012-08-14 23:42:14
+<?php /* Smarty version Smarty-3.0.4, created on 2012-08-15 12:16:15
          compiled from "./themes/default/templates/main.tpl.html" */ ?>
-<?php /*%%SmartyHeaderCode:13178502b44c64a5e38-23759876%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:16806502bf57f85d257-34433164%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '5fd2beea8d1ec96ca41966b5a6ac282a674efcba' => 
     array (
       0 => './themes/default/templates/main.tpl.html',
-      1 => 1345012898,
+      1 => 1345058170,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '13178502b44c64a5e38-23759876',
+  'nocache_hash' => '16806502bf57f85d257-34433164',
   'function' => 
   array (
   ),
   'has_nocache_code' => false,
 )); /*/%%SmartyHeaderCode%%*/?>
+<?php $_smarty_tpl->smarty->loadPlugin('Smarty_Internal_Debug'); Smarty_Internal_Debug::display_debug($_smarty_tpl); ?>
 <!----------------------->
 <div class="row">
   <div class="span12">
@@ -69,33 +70,51 @@ $_smarty_tpl->decodeProperties(array (
   </div>
 </div>
 <p></p>
-<div>
-  <ul id="mycarousel" class="jcarousel-skin-tango">
-    <li><img src="http://static.flickr.com/66/199481236_dc98b5abb3_s.jpg" width="75" height="75" alt="" /></li>
-    <li><img src="http://static.flickr.com/75/199481072_b4a0d09597_s.jpg" width="75" height="75" alt="" /></li>
-    <li><img src="http://static.flickr.com/57/199481087_33ae73a8de_s.jpg" width="75" height="75" alt="" /></li>
-    <li><img src="http://static.flickr.com/77/199481108_4359e6b971_s.jpg" width="75" height="75" alt="" /></li>
-    <li><img src="http://static.flickr.com/58/199481143_3c148d9dd3_s.jpg" width="75" height="75" alt="" /></li>
-    <li><img src="http://static.flickr.com/72/199481203_ad4cdcf109_s.jpg" width="75" height="75" alt="" /></li>
-    <li><img src="http://static.flickr.com/58/199481218_264ce20da0_s.jpg" width="75" height="75" alt="" /></li>
-    <li><img src="http://static.flickr.com/69/199481255_fdfe885f87_s.jpg" width="75" height="75" alt="" /></li>
-    <li><img src="http://static.flickr.com/60/199480111_87d4cb3e38_s.jpg" width="75" height="75" alt="" /></li>
-    <li><img src="http://static.flickr.com/70/229228324_08223b70fa_s.jpg" width="75" height="75" alt="" /></li>
-    <li><img src="http://static.flickr.com/66/199481236_dc98b5abb3_s.jpg" width="75" height="75" alt="" /></li>
-    <li><img src="http://static.flickr.com/75/199481072_b4a0d09597_s.jpg" width="75" height="75" alt="" /></li>
-    <li><img src="http://static.flickr.com/57/199481087_33ae73a8de_s.jpg" width="75" height="75" alt="" /></li>
-    <li><img src="http://static.flickr.com/77/199481108_4359e6b971_s.jpg" width="75" height="75" alt="" /></li>
-    <li><img src="http://static.flickr.com/58/199481143_3c148d9dd3_s.jpg" width="75" height="75" alt="" /></li>
-    <li><img src="http://static.flickr.com/72/199481203_ad4cdcf109_s.jpg" width="75" height="75" alt="" /></li>
-    <li><img src="http://static.flickr.com/58/199481218_264ce20da0_s.jpg" width="75" height="75" alt="" /></li>
-    <li><img src="http://static.flickr.com/69/199481255_fdfe885f87_s.jpg" width="75" height="75" alt="" /></li>
-    <li><img src="http://static.flickr.com/60/199480111_87d4cb3e38_s.jpg" width="75" height="75" alt="" /></li>
-    <li><img src="http://static.flickr.com/70/229228324_08223b70fa_s.jpg" width="75" height="75" alt="" /></li>
-  </ul>
+<!------------------>
+<style type="text/css">
+.thumbnails {
+	margin-left:0px !important;
+}
+.thumbnails > li > p {
+	margin-bottom:0 !important;
+	height: 200px;
+	overflow:hidden;
+}
+.thumbnails > li {
+	margin-bottom: 8px !important;
+	margin-left:4px !important;
+}
+.carousel-control.left {
+	left: -15px !important;
+}
+.carousel-control.right {
+	right: 25px !important;
+}
+</style>
+  <div class="span12">
+    <div id="myCarousel2" class="carousel slide">
+      <div class="carousel-inner">
+        <div class="active item">
+          <?php echo $_smarty_tpl->getVariable('nails_first')->value;?>
+
+        </div>
+        <?php  $_smarty_tpl->tpl_vars['v'] = new Smarty_Variable;
+ $_from = $_smarty_tpl->getVariable('nails_rest')->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+if ($_smarty_tpl->_count($_from) > 0){
+    foreach ($_from as $_smarty_tpl->tpl_vars['v']->key => $_smarty_tpl->tpl_vars['v']->value){
+?>
+	        <div class="item"><?php echo (isset($_smarty_tpl->tpl_vars['v']->value) ? $_smarty_tpl->tpl_vars['v']->value : null);?>
 </div>
+        <?php }} ?>
+      </div>
+      <a class="carousel-control left" href="#myCarousel2" data-slide="prev">&lsaquo;</a> <a class="carousel-control right" href="#myCarousel2" data-slide="next">&rsaquo;</a> </div>
+  </div>
+<!------------------>
 <script type="text/javascript">
 $(function() {
-    jQuery('#mycarousel').jcarousel();
+	$('#myCarousel2.carousel').carousel({
+	  interval: false
+	});
 });
 </script>
 <p></p>
