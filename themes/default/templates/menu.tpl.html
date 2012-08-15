@@ -15,7 +15,7 @@
     <div style="width:130px;padding:0 6px 0 4px;"><strong><a target="_blank" href="http://gongyi.qq.com/">公益</a></strong><a target="_blank" href="http://kid.qq.com/">儿童</a><a target="_blank" class="navMore" href="http://2012.qq.com/map/">更多</a></div>
   </div>
          
-  <div class="well columns search">
+  <div class="well search">
     <form class="well form-search">
       <div class="radius" style="top:-2px;"></div>
       <div class="radius" style="top:31px;"></div>
@@ -26,22 +26,22 @@
           <div style="top:203px;left:59px;" class="radius"></div>
           <ul>
             <li class="selected">网页</li>
-            <li class="">图片</li>
-            <li class="">视频</li>
-            <li class="">音乐</li>
-            <li class="">地图</li>
-            <li class="">问问</li>
-            <li class="">新闻</li>
+            <li>图片</li>
+            <li>视频</li>
+            <li>音乐</li>
+            <li>地图</li>
+            <li>问问</li>
+            <li>新闻</li>
           </ul>
         </div>
       </div>
-      <input type="text" class="input-medium search-query" id="typeahead" data-provide="typeahead" autocompltete="off" />
+      <input type="text" class="input-medium search-query" id="typeahead" data-provide="typeahead" autocompltete="off" placeholder="查询..." />
       <button type="submit" class="btn btn-primary"><i class="icon-search icon-white"></i>搜索</button>
     </form>
   </div>
 </div>
 <div class="row">
-  <div class="span6 columns">
+  <div class="span6">
     <div class="carousel slide" id="myCarousel">
       <div class="carousel-inner">
         <div class="item"> <img alt="" src="http://placehold.it/350x150">
@@ -90,7 +90,7 @@ $(function() {
 		}
 	});
 
-	//			'top': parseFloat(parseFloat(p.top)+30)+'px'})
+	//'top': parseFloat(parseFloat(p.top)+30)+'px'})
 	$('#searchSelected.searchSelected').click(function(e) {
 		var p = $(this).position();
 		// alert(p.left+", " + p.top);

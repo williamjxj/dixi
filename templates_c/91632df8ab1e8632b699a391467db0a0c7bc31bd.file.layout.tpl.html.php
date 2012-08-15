@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.0.4, created on 2012-08-14 12:30:17
+<?php /* Smarty version Smarty-3.0.4, created on 2012-08-14 15:40:13
          compiled from "./themes/default/templates/layout.tpl.html" */ ?>
-<?php /*%%SmartyHeaderCode:22982502aa7499aa1a4-74256691%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:17987502ad3cd1be183-08516946%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '91632df8ab1e8632b699a391467db0a0c7bc31bd' => 
     array (
       0 => './themes/default/templates/layout.tpl.html',
-      1 => 1344972614,
+      1 => 1344983694,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '22982502aa7499aa1a4-74256691',
+  'nocache_hash' => '17987502ad3cd1be183-08516946',
   'function' => 
   array (
   ),
@@ -47,24 +47,30 @@ css/dixi2.css" media="screen" /-->
 "></script>
 <script type="text/javascript" src="<?php echo (isset($_smarty_tpl->getVariable('common')->value['js']['gb_big5']) ? $_smarty_tpl->getVariable('common')->value['js']['gb_big5'] : null);?>
 "></script>
-<!--script type="text/javascript" src="<?php echo (isset($_smarty_tpl->getVariable('common')->value['js']['ga']) ? $_smarty_tpl->getVariable('common')->value['js']['ga'] : null);?>
-"></script-->
+<script type="text/javascript" src="<?php echo (isset($_smarty_tpl->getVariable('common')->value['js']['ga']) ? $_smarty_tpl->getVariable('common')->value['js']['ga'] : null);?>
+"></script>
 <!------------------------>
 <meta content="index, follow" name="robots">
 <meta content="index, follow" name="googlebot">
+<link rel="shortcut icon" href="favicon.ico">
 <!------------------------>
 <link rel="stylesheet" type="text/css" href="<?php echo (isset($_smarty_tpl->getVariable('config')->value['include']) ? $_smarty_tpl->getVariable('config')->value['include'] : null);?>
 rotator/rotators.css">
 <script type="text/javascript" src="<?php echo (isset($_smarty_tpl->getVariable('config')->value['include']) ? $_smarty_tpl->getVariable('config')->value['include'] : null);?>
 rotator/rotators.js"></script>
 <!------------------------>
+<link href="<?php echo (isset($_smarty_tpl->getVariable('config')->value['include']) ? $_smarty_tpl->getVariable('config')->value['include'] : null);?>
+news_ticker/styles/ticker-style.css" rel="stylesheet" type="text/css" />
+<script src="<?php echo (isset($_smarty_tpl->getVariable('config')->value['include']) ? $_smarty_tpl->getVariable('config')->value['include'] : null);?>
+news_ticker/includes/jquery.ticker.min.js" type="text/javascript"></script>
+<!------------------------>
 <script type="text/javascript">
 $(function(){
 });
 $(window).load(function() {
   //$('.flexslider').flexslider();
-	$.ajaxSetup({ async: true });
-	$.getScript('./js/ga.js');
+  //$.ajaxSetup({ async: true });
+  //$.getScript('./js/ga.js');
 });
 </script>
 </head>

@@ -21,8 +21,12 @@ try {
 
 $config['url'] = $obj->url;
 $config['self'] = $obj->__t($obj->self);
-
 $config['browser'] = $obj->browser_id();
+
+// login or not?
+if(isset($_SESSION['dixi']['username'])) {
+	$config['username'] = $_SESSION['dixi']['username'];
+}
 
 $obj->assign('common', $common);
 $obj->assign('config', $config);
@@ -43,10 +47,12 @@ $footer = array();
 $obj->assign('footer', $footer);
 
 $tdir = $config['templates'];
-
-//echo "<pre>"; print_r($config); echo "</pre>";
 //echo "<pre>"; print_r($common); echo "</pre>";
+//echo "<pre>"; print_r($_SESSION); echo "</pre>";
+//echo "<pre>"; print_r($config); echo "</pre>";
 
+$obj->assign('config', $config);
+$obj->assign('common', $common);
 $obj->assign('header_template', $tdir.'header.tpl.html');
 $obj->assign('menu_template', $tdir.'menu.tpl.html');
 $obj->assign('rss_template', $tdir.'rss.tpl.html');

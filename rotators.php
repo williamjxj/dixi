@@ -3,7 +3,7 @@ define('MAXLEN', 200);
 
 // header ("content-type: text/xml; charset=utf-8");
 // if(!headers_sent()) header('Content-Type: application/json; charset=utf-8', true,200);
-
+//BBC,
 $rss_array = array(
 	'cn' => 'http://rss.sina.com.cn/news/marquee/ddt.xml',
 	'cn_sina' => 'http://rss.sina.com.cn/news/marquee/ddt.xml',

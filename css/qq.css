@@ -102,11 +102,11 @@ p {
 	margin-bottom: 10px;
 }
 #toTop, .mininavInner .loginSmartTop, .mininavInner .loginSmartBottom, .adEdu .hd, .leftTech .ft, .leftAuto .ft, .rightHouse .ft, .leftLady .ft, .leftBlog .ft, .rightBook .ft, .leftEdu .ft, .leftKid .ft, .leftSociety .ft, .leftGame .ft, .leftGongyi .ft, .leftMeishi .ft, .leftLive .ft, .txDynamic .ft, .mininav, .rightAikanTab .hd .aikanTimeGreen, .rightAikanTab .hd .aikanTimeBlue, .rightAikan .aikanGreen, .rightAikan .aikanBlue, .rightAikan .aikanLine, .rightAikanTitle, .leftNews .hd .newsTab h2#newsDifangH2, .leftNews .hd, .financeSearch button, .myBookIcon, .myVideoIcon, .myConstellationIcon, .leftFinance .myFinanceBox .myFinanceIcon, .rightAreaContent .hd, .leftVideoNews .hd, .leftView .hd, .txDynamic .hd, .leftLive .bd .txtArea dd .price, .nav, .searchBtn button, .search .searchMenu .searchSelectedUp, .search .searchMenu .searchSelected, .search .searchSmart li.searchSmartTip .smartX, .financeSearch #search_btn, #picFocusScroll .prev, #picFocusScroll .prev:hover, #picFocusScroll .next, #picFocusScroll .next:hover {
-	background-image: url("http://mat1.gtimg.com/www/images/qq2012/qqbg_1.5.2.png");
+	background-image: url(../images/qqbg_1.5.2.png);
 	background-repeat: no-repeat;
 }
-.mininavInner .mininavLeft .mobileIcon, .mininavInner .mininavLeft .mobileIcon:hover, .mininavInner .mininavLeft .ipadIcon, .mininavInner .mininavLeft .ipadIcon:hover, .mininavInner .mininavLeft .qqHelp, .mininavInner .mininavLeft .qqHelp:hover, .nav div .navMore, .nav div .navMore:hover, .adEdu .hd .adEduTab li, .adEdu .bd li, .leftAreaContent .ft li, .txDynamic .bd li, #qqHelpContent, .vico, .tico, .picico, .zhiboico, .leftAreaContent .ft ul.vlist li, .layoutLeft {
-	background-image: url("http://mat1.gtimg.com/www/images/qq2012/icobg_1.0.png");
+.mininavInner .mininavLeft .mobileIcon, .mininavInner .mininavLeft .mobileIcon:hover, .mininavInner .mininavLeft .ipadIcon, .mininavInner .mininavLeft .ipadIcon:hover, .mininavInner .mininavLeft .qqHelp, .mininavInner .mininavLeft .qqHelp:hover, #mainnav.nav div .navMore, #mainnav.nav div .navMore:hover, .adEdu .hd .adEduTab li, .adEdu .bd li, .leftAreaContent .ft li, .txDynamic .bd li, #qqHelpContent, .vico, .tico, .picico, .zhiboico, .leftAreaContent .ft ul.vlist li, .layoutLeft {
+	background-image: url(../images/icobg_1.0.png);
 	background-repeat: no-repeat;
 }
 .layoutLeft {
@@ -155,17 +155,6 @@ p {
 }
 .txtArea dd a:hover {
 	color: #CD0200;
-}
-{
-	height: 48px;
-	margin: 0 auto;
-	padding: 50px 0 21px;
-	width: 1000px;
-}
-.logo {
-	display: inline;
-	float: left;
-	margin-left: 176px;
 }
 .search {
 	float: left;
@@ -315,10 +304,6 @@ p {
 	padding: 4px;
 	width: 221px;
 }
-.search .sosoLogo {
-	float: right;
-	margin: 8px 6px 0 0;
-}
 .searchBtn {
 	float: left;
 }
@@ -351,7 +336,7 @@ p {
 	top: -2px;
 	width: 1px;
 }
-.nav {
+#mainnav.nav {
 	background-position: left -35px;
 	font-size: 12px;
 	height: 38px;
@@ -361,35 +346,35 @@ p {
 	padding: 9px 5px 13px 8px;
 	width: 987px;
 }
-.nav a {
+#mainnav.nav a {
 	color: #FFFFFF;
 	margin: 0 4px 0 3px;
 	padding: 3px;
 }
-.nav a:hover {
+#mainnav.nav a:hover {
 	background: none repeat scroll 0 0 #CAE1EE;
 	color: #0D519C;
 	text-decoration: none;
 }
-.nav div {
+#mainnav.nav div {
 	float: left;
 	padding: 0 6px 0 7px;
 	text-align: left;
 	width: 156px;
 }
-.nav div .navMore {
+#mainnav.nav div .navMore {
 	background-position: 30px -175px;
 	padding-right: 14px;
 }
-.nav div .navMore:hover {
+#mainnav.nav div .navMore:hover {
 	background-color: #CAE1EE;
 	background-position: 30px -205px;
 	padding-right: 14px;
 }
-.nav a.Q-yellow {
+#mainnav.nav a.Q-yellow {
 	color: #FFCC00;
 }
-.nav a.Q-yellow:hover {
+#mainnav.nav a.Q-yellow:hover {
 	color: #0D519C;
 }
 .adScroll {

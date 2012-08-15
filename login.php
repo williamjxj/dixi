@@ -1,7 +1,13 @@
 <?php
+session_start();
 if (isset($_POST['js_check'])) {
 	if(check()) echo 'Y';
 	else echo 'N';
+}
+elseif(isset($_GET['logout'])) {
+	session_unset();
+	session_destroy();
+	init();
 }
 else {
 	init();
@@ -14,28 +20,30 @@ function init()
 {
 ?>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link rel="stylesheet" type="text/css" href="./include/css/bootstrap.css" />
-<link rel="stylesheet" type="text/css" href="include/login1.css" />
+<link rel="stylesheet" type="text/css" href="login/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="login/login.css" />
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-<script type="text/javascript" src="./js/cookie.js"></script>
-<script type="text/javascript" src="./js/jquery.validate.min.js"></script>
-<div id="div_form">
+<script type="text/javascript" src="login/js/cookie.js"></script>
+<script type="text/javascript" src="login/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="login/js/bootstrap.popover.js"></script>
+<div class="logo"></div>
+<div id="container">
   <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post" id="form_id" class="well">
     <fieldset>
-    <legend><img src="include/login-icon.png" /><strong>用户注册</strong></legend>
+    <legend><img src="login/login-icon.png" /><strong>用户注册</strong></legend>
     <div class="control-group">
       <label class="control-label" for="username">用户名：</label>
       <div class="controls">
         <div class="input-prepend"> <span class="add-on"> <i class="icon-user"></i></span>
-          <input name="username" id="username" type="text" placeholder="用 户 名" class="input-xlarge"/>
+          <input name="username" id="username" type="text" placeholder="用 户 名" class="input-xlarge" data-content="用户名栏不能为空。" data-original-title="用户名验证" />
         </div>
       </div>
     </div>
     <div class="control-group">
-      <label class="control-label" for="password">口令： </label>
+      <label class="control-label" for="password">口令：</label>
       <div class="controls">
         <div class="input-prepend"> <span class="add-on"><i class="icon-lock"></i></span>
-          <input name="password" id="password" type="text" placeholder="口 令" class="input-xlarge"/>
+          <input name="password" id="password" type="password" placeholder="口 令" class="input-xlarge" data-content="口令栏不能为空。" data-original-title="口令验证"/>
         </div>
       </div>
     </div>
@@ -49,7 +57,7 @@ function init()
     <div class="control-group">
       <div align="center">
         <button type="submit" class="btn btn-primary">登 录</button>
-        <img src="include/loading.gif" width="32" height="32" border="0" style="display:none;" /> </div>
+        <img src="login/loading.gif" width="32" height="32" border="0" style="display:none;" /> </div>
     </div>
     <div class="control-group error">
       <label id="error"></label>
@@ -57,6 +65,9 @@ function init()
     </fieldset>
   </form>
 </div>
+<!--hr width="60%" style="margin:0 auto" />-->
+<div class="copyright">Copyright &copy; 2012 <abbr title="dixiTruth Inc">dixiTruth, Inc</abbr>. All rights reserved.</div>
+
 <script type="text/javascript">
 $(function() {
 	var validator = $('#form_id').validate({
@@ -87,8 +98,14 @@ $(function() {
 	form.submit(function(e) {
 		e.preventDefault();
 		
-		if(!validator.form()) {
-			form.find('.control-group').removeClass('success').addClass('error');
+		if(!validator.element('#username')) {
+			$('#username').closest('.control-group').removeClass('success').addClass('error');
+			$('#username', '#form_id').popover('show');
+			return false;
+		}
+		if(!validator.element('#password')) {
+			$('#password').closest('.control-group').removeClass('success').addClass('error');
+			$('#password', '#form_id').popover('show');
 			return false;
 		}
 
@@ -101,8 +118,7 @@ $(function() {
 			},
 			success: function(succ) {
 				if(succ == 'Y')
-					alert('success');
-					//document.location.href='index.php';
+					document.location.href='/dixi/';
 				else {
 					var msg = "登录信息不正确，请重新输入。";
 					$('#error').html(msg).parent('div').fadeIn(100);
@@ -121,7 +137,15 @@ $(function() {
 	else {
 		$('#rememberme').attr('checked', false);
 	}
-	
+});
+$('input:text, input:password', '#form_id')
+.change(function() {
+	var t = $(this).val();
+	if(/^\s*$/.test(t)) $(this).popover('show');
+	else $(this).popover('hide');
+})
+.hover(function() {
+	$(this).popover('show');
 });
 </script>
 <?php
@@ -143,6 +167,8 @@ function check()
 			setcookie('dixi[username]', NULL);
 			setcookie('dixi[password]', NULL);
 		}
+
+		$_SESSION['dixi']['username'] = ucfirst($username);
     	return true;
     }
 	else {

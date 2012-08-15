@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.0.4, created on 2012-08-14 14:02:02
+<?php /* Smarty version Smarty-3.0.4, created on 2012-08-14 15:40:13
          compiled from "./themes/default/templates/menu.tpl.html" */ ?>
-<?php /*%%SmartyHeaderCode:5034502abcca34fa37-27244716%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:1216502ad3cd756e87-63893150%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '0368a66b35f3302db9a72cef756393be1f6e5d3d' => 
     array (
       0 => './themes/default/templates/menu.tpl.html',
-      1 => 1344978102,
+      1 => 1344983999,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '5034502abcca34fa37-27244716',
+  'nocache_hash' => '1216502ad3cd756e87-63893150',
   'function' => 
   array (
   ),
@@ -35,7 +35,7 @@ $_smarty_tpl->decodeProperties(array (
     <div style="width:130px;padding:0 6px 0 4px;"><strong><a target="_blank" href="http://gongyi.qq.com/">公益</a></strong><a target="_blank" href="http://kid.qq.com/">儿童</a><a target="_blank" class="navMore" href="http://2012.qq.com/map/">更多</a></div>
   </div>
          
-  <div class="well columns search">
+  <div class="well search">
     <form class="well form-search">
       <div class="radius" style="top:-2px;"></div>
       <div class="radius" style="top:31px;"></div>
@@ -46,22 +46,22 @@ $_smarty_tpl->decodeProperties(array (
           <div style="top:203px;left:59px;" class="radius"></div>
           <ul>
             <li class="selected">网页</li>
-            <li class="">图片</li>
-            <li class="">视频</li>
-            <li class="">音乐</li>
-            <li class="">地图</li>
-            <li class="">问问</li>
-            <li class="">新闻</li>
+            <li>图片</li>
+            <li>视频</li>
+            <li>音乐</li>
+            <li>地图</li>
+            <li>问问</li>
+            <li>新闻</li>
           </ul>
         </div>
       </div>
-      <input type="text" class="input-medium search-query" id="typeahead" data-provide="typeahead" autocompltete="off" />
+      <input type="text" class="input-medium search-query" id="typeahead" data-provide="typeahead" autocompltete="off" placeholder="查询..." />
       <button type="submit" class="btn btn-primary"><i class="icon-search icon-white"></i>搜索</button>
     </form>
   </div>
 </div>
 <div class="row">
-  <div class="span6 columns">
+  <div class="span6">
     <div class="carousel slide" id="myCarousel">
       <div class="carousel-inner">
         <div class="item"> <img alt="" src="http://placehold.it/350x150">
@@ -110,7 +110,7 @@ $(function() {
 		}
 	});
 
-	//			'top': parseFloat(parseFloat(p.top)+30)+'px'})
+	//'top': parseFloat(parseFloat(p.top)+30)+'px'})
 	$('#searchSelected.searchSelected').click(function(e) {
 		var p = $(this).position();
 		// alert(p.left+", " + p.top);
