@@ -13,5 +13,21 @@ class GeneralClass extends BaseClass
 	    $this->template_dir = SITEROOT.'themes/default/templates/';
 		$this->dbh = $this->mysql_connect_dixi();
 	}
+
+	function get_menu_info($cid) {
+		$ary = array();
+		$query = "select name, description, frequency, tag from categories where cid=" . $cid;
+		$res = mysql_query($query);
+		$row = mysql_fetch_assoc($res);
+		return $row;
+	}
+
+	function get_content($cid) {
+		$ary = array();
+		$sql = "select content, linkname, notes from contents where cid=".$cid;
+		$res = mysql_query($sql);
+		$row = mysql_fetch_assoc($res);
+		return $row;
+	}
 }
 ?>

@@ -80,3 +80,6 @@ li.tab_list{
 ul li a, .more:focus {
     outline: medium none;
 }
+.display_content {
+	background:#EEEEEE !important;
+}

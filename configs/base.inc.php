@@ -108,9 +108,9 @@ class BaseClass extends Smarty
 
 	/////////////////////
 	
-	function get_sitemap() 
+	function get_sitemap($item='') 
 	{
-		return array( 
+		$ary = array( 
 			'dixi' => '关于底细',
 			'us' => '联系我们',
 			'privacy' => '隐私保护',
@@ -123,6 +123,8 @@ class BaseClass extends Smarty
 			'law' => '法律声明',
 			'report' => '有害短信息举报',
 		);
+		if($item) return $ary[$item];
+		else return $ary;
 	}
 
 	function __t($k) {

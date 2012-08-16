@@ -19,12 +19,13 @@ $(function() {
 	});
 	$('#js-news').ticker();
 	
-	$('div.tab-pane:first a', '#TabContent1.tab-content').live('click', function(e) {
+/*	$('div.tab-pane:first a', '#TabContent1.tab-content').live('click', function(e) {
 		e.preventDefault();
 		alert($(this).attr('href'));
 		window.location.href = '{$url}?cid='+$(this).attr('href');
 		return false;
 	});
+*/
 });
 $(window).load(function() {
 	$.getJSON('{$url}?js_get_tab_list=1', function(data) {
@@ -32,7 +33,7 @@ $(window).load(function() {
 		//console.log($('#TabContent1.tab-content').find('div').first().html()+','+data.length);
 		t = '<ul>';
 		for(i=0; i<data.length; i++) {
-			t+='<li class="tab_list"><a href="'+data[i][0]+'">'+data[i][1]+'</a></li>';
+			t+='<li class="tab_list"><a href="general.php?cid='+data[i][0]+'">'+data[i][1]+'</a></li>';
 		}
 		t+='</ul>';
 		$('#TabContent1.tab-content').find('div').first().html(t);
@@ -83,6 +84,12 @@ $(window).load(function() {
 }
 #myCarousel2.carousel-control.right {
 	right: 25px !important;
+}
+.hero-unit p {
+	font-size: 12px !important;
+}
+.hero-unit {
+	padding:30px;
 }
 </style>
 <!--div class="row">
