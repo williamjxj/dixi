@@ -21,10 +21,10 @@ function get_tabs() {
 
 function get_menu() {
 	$ary = array();
-    $query = "select name from categories order by weight";
+    $query = "select cid, curl, name from categories where active='Y' order by weight";
     $res = mysql_query($query);
     while($row = mysql_fetch_assoc($res)) {
-		array_push ($ary, $row['name']);
+		array_push ($ary, $row);
 	}
 	return $ary;
 }

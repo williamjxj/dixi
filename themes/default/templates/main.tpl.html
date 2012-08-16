@@ -30,10 +30,11 @@ $(window).load(function() {
 	$.getJSON('{$url}?js_get_tab_list=1', function(data) {
 		//console.log(data);
 		//console.log($('#TabContent1.tab-content').find('div').first().html()+','+data.length);
-		t = '';
+		t = '<ul>';
 		for(i=0; i<data.length; i++) {
-			t+='<a href="'+data[i][0]+'">'+data[i][1]+'</a><br>';
+			t+='<li class="tab_list"><a href="'+data[i][0]+'">'+data[i][1]+'</a></li>';
 		}
+		t+='</ul>';
 		$('#TabContent1.tab-content').find('div').first().html(t);
 	});
 	return false;

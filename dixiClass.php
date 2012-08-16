@@ -2,6 +2,8 @@
 defined('SITEROOT') or define('SITEROOT', './');
 require_once(SITEROOT."configs/base.inc.php");
 
+define('TAB_LIST', 10);
+
 class DixiClass extends BaseClass
 {
 	var $sid, $url, $self;
@@ -41,8 +43,27 @@ class DixiClass extends BaseClass
 		return $res;
 	}
 
-	function get_tab_list() {
-		$sql = "select cid, linkname from contents where linkname != '负面新闻' and mname='食品' order by cid desc";
+	function get_latest() {
+		return $this->get_tab_list(true, 0);
+	}
+	function get_hot() {
+		return $this->get_tab_list(true, 10);
+	}
+	function get_loop1() {
+		return $this->get_tab_list(false, 0, 13);
+	}
+	function get_loop2() {
+		return $this->get_tab_list(false, 13, 13);
+	}
+	
+	//select cid, linkname from contents where linkname != '负面新闻' and mname='食品' order by cid desc limit 0, 10
+	//select cid, linkname from contents where linkname != '负面新闻' and mname='食品' order by cid desc limit 10, 10	
+	function get_tab_list($desc=false, $start=0, $limit=TAB_LIST) {
+		if($desc) $order = ' order by cid desc ';
+		else $order = ' order by cid ';
+		$limit = 'limit ' . $start . ', ' . $limit;
+		$sql = "select cid, linkname from contents where linkname != '负面新闻' and mname='食品' ". $order . $limit;
+		//echo "<br>\n".$sql."<br>\n";
         $res = $this->mdb2->queryAll($sql);
         if (PEAR::isError($res)) die($res->getMessage());
         return $res;
@@ -64,17 +85,17 @@ class DixiClass extends BaseClass
 	function get_sitemap() 
 	{
 		return array( 
-			'关于底细',
-			'联系我们',
-			'隐私保护',
-			'广告服务',
-			'商务洽谈',
-			'底细招聘',
-			'底细公益',
-			'客服中心',
-			'网站导航',
-			'法律声明',
-			'有害短信息举报',
+			'dixi' => '关于底细',
+			'us' => '联系我们',
+			'privacy' => '隐私保护',
+			'ads' => '广告服务',
+			'business' => '商务洽谈',
+			'recruit' => '底细招聘',
+			'welfare' => '底细公益',
+			'customer' => '客服中心',
+			'navigator' => '网站导航',
+			'law' => '法律声明',
+			'report' => '有害短信息举报',
 		);
 	}
 	

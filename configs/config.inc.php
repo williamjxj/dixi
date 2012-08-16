@@ -18,6 +18,7 @@ $config = array(
 	'desc' => '底细,真相,还原真相,反映实际情况',
 	'keywords' => '底细,真相,还原真相,反映实际情况',
   ),
+  'general' => SITEROOT.'general.php',
 );
 
 ?>

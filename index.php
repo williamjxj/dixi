@@ -2,7 +2,6 @@
 session_start();
 error_reporting(E_ALL);
 define("SITEROOT", "./");
-header('Content-Type: text/html; charset=utf-8'); 
  
 require_once(SITEROOT.'configs/common.inc.php');
 //require_once(SITEROOT.'configs/mini-app.inc.php');
@@ -39,9 +38,15 @@ $tdir = $config['templates'];
 
 if(isset($_GET['js_get_tab_list'])) {
 	echo json_encode($obj->get_tab_list());
-	//$c2 = $obj->get_contents();
-	//echo "<pre>"; print_r($c1); echo "</pre>";
-	//echo "<pre>"; print_r($c2); echo "</pre>";	
+}
+else if(isset($_GET['test'])) {
+	header('Content-Type: text/html; charset=utf-8'); 
+	//echo "<pre>"; print_r($obj->get_latest()); echo "</pre>";
+	//echo "<pre>"; print_r($obj->get_hot()); echo "</pre>";	
+	//echo "<pre>"; print_r($obj->get_loop1()); echo "</pre>";
+	//echo "<pre>"; print_r($obj->get_loop2()); echo "</pre>";
+	echo "<pre>"; print_r(get_menu()); echo "</pre>";
+	exit;
 }
 else {	
 	$header = array();
@@ -59,10 +64,6 @@ else {
 	$footer = array();
 	$obj->assign('footer', $footer);
 	
-	//echo "<pre>"; print_r($common); echo "</pre>";
-	//echo "<pre>"; print_r($_SESSION); echo "</pre>";
-	//echo "<pre>"; print_r($config); echo "</pre>";
-	
 	$obj->assign('config', $config);
 	$obj->assign('common', $common);
 	
@@ -76,6 +77,10 @@ else {
 	$obj->assign('sitemap', $obj->get_sitemap());
 	$obj->assign('definition', $obj->get_definition());
 	//echo "<pre>"; print_r($obj->get_definition()); echo "</pre>";
+
+	$obj->assign('latest', $obj->get_latest());
+	$obj->assign('hot', $obj->get_hot());
+
 		
 	$obj->assign('header_template', $tdir.'header.tpl.html');
 	$obj->assign('menu_template', $tdir.'menu.tpl.html');

@@ -1,8 +1,33 @@
 {$url={$SCRIPT_NAME}}
-<div class="row">
+<script type="text/javascript">
+$(function() {
+	$('#div_menu').find('a.btn').click(function(e) {
+		e.preventDefault();
+		alert($(this).attr('href'));
+		window.location.href="{$config.general}"+$(this).attr('href');
+		return false;
+	});
+});
+</script>
+<div class="span4">
+  <form class="well form-search">
+    <!--ul>
+    <li class="selected">所有栏目</li>
+    <li>食品</li>
+    <li>药物</li>
+    <li>质量</li>
+    <li>医疗</li>
+    <li>禁忌</li>
+    <li>科技</li>
+  </ul-->
+    <input type="text" class="input-medium search-query" id="typeahead" data-provide="typeahead" autocompltete="off" placeholder="查询 （比如： 负面新闻）" />
+    <button type="submit" class="btn btn-primary"><i class="icon-search icon-white"></i>搜索</button>
+  </form>
+</div>
+<div class="row" id="div_menu">
   <div class="span12">
     <div class="btn-group"> {foreach $menu as $m}
-      <button class="btn">{$m}</button>
+      <a class="btn" href="?i={$m.cid}&n={$m.curl}">{$m.name}</a>
       {/foreach} </div>
   </div>
 </div>
@@ -30,22 +55,33 @@
         {/foreach} </div>
       <a data-slide="prev" href="#myCarousel" class="left carousel-control">‹</a> <a data-slide="next" href="#myCarousel" class="right carousel-control">›</a> </div>
   </div>
-  <div class="span4">
-    <form class="well form-search">
-      <!--ul>
-    <li class="selected">所有栏目</li>
-    <li>食品</li>
-    <li>药物</li>
-    <li>质量</li>
-    <li>医疗</li>
-    <li>禁忌</li>
-    <li>科技</li>
-  </ul-->
-      <input type="text" class="input-medium search-query" id="typeahead" data-provide="typeahead" autocompltete="off" placeholder="查询 （比如： 负面新闻）" />
-      <button type="submit" class="btn btn-primary"><i class="icon-search icon-white"></i>搜索</button>
-    </form>
+  <script type="text/javascript">
+  $(function() {
+	$('#div_latest, #div_hot').find('ul>li>a').click(function(e) {
+		e.preventDefault();
+  		alert($(this).attr('href'));
+		//window.location.href = '{$url}?cid='+$(this).attr('href');
+	});
+  });
+  </script>
+  <div id="div_latest" class="span4">
+    <h5>最新曝光</h5>
+    <div class="more"><a title="食品安全问题-最新曝光查看更多" href="FoodsNewsList-0-3-0.html">查看更多</a></div>
+    <ul>
+      {foreach $latest as $l}
+      <li class="tab_list"><a href="{$l.0}">{$l.1}</a></li>
+      {/foreach}
+    </ul>
   </div>
-  <!-------------------->
+  <div id="div_hot" class="span4">
+    <h5>热点追踪</h5>
+    <div class="more"><a title="食品安全问题-最新曝光查看更多" href="FoodsNewsList-0-3-0.html">查看更多</a></div>
+    <ul>
+      {foreach $hot as $h}
+      <li class="tab_list"><a href="{$h.0}">{$h.1}</a></li>
+      {/foreach}
+    </ul>
+  </div>
 </div>
 <script language="javascript" type="text/javascript">
 $(function() {
@@ -93,6 +129,5 @@ $(function() {
 			});
 		});
 	});
-
 });
 </script>
