@@ -2,7 +2,8 @@
 session_start();
 error_reporting(E_ALL);
 define("SITEROOT", "./");
-
+header('Content-Type: text/html; charset=utf-8'); 
+ 
 require_once(SITEROOT.'configs/common.inc.php');
 //require_once(SITEROOT.'configs/mini-app.inc.php');
 global $common;
@@ -28,53 +29,63 @@ $config['browser'] = $obj->browser_id();
 if(isset($_SESSION['dixi']['username'])) {
 	$config['username'] = $_SESSION['dixi']['username'];
 }
-
 $obj->assign('common', $common);
 $obj->assign('config', $config);
 
-$header = array();
-$obj->assign('header', $header);
-
-$left = array();
-$obj->assign('left', $left);
-
-$main = array();
-$obj->assign('main', $main);
-
-$right = array();
-$obj->assign('right', $right);
-
-$footer = array();
-$obj->assign('footer', $footer);
 
 $tdir = $config['templates'];
-//echo "<pre>"; print_r($common); echo "</pre>";
-//echo "<pre>"; print_r($_SESSION); echo "</pre>";
-//echo "<pre>"; print_r($config); echo "</pre>";
 
-$obj->assign('config', $config);
-$obj->assign('common', $common);
+///////////////////////////////
 
-$obj->assign('menu', get_menu());
-$obj->assign('aoa_tabs', get_tabs());
-
-$obj->assign('nails_first', get_ary_thumbnails());
-$obj->assign('carousel1', get_carousel1());
-$obj->assign('carousel2', get_carousel2());
-
-$obj->assign('sitemap', $obj->get_sitemap());
-$obj->assign('definition', $obj->get_definition());
-
-//echo "<pre>"; print_r($obj->get_definition()); echo "</pre>";
-
-$obj->assign('header_template', $tdir.'header.tpl.html');
-$obj->assign('menu_template', $tdir.'menu.tpl.html');
-$obj->assign('rss_template', $tdir.'rss.tpl.html');
-$obj->assign('left_template', $tdir.'left.tpl.html');
-$obj->assign('main_template', $tdir.'main.tpl.html');
-$obj->assign('right_template', $tdir.'right.tpl.html');
-$obj->assign('footer_template', $tdir.'footer.tpl.html');
-$obj->assign('copyright_template', $tdir.'copyright.tpl.html');
-
-$obj->display($tdir.'layout.tpl.html');
+if(isset($_GET['js_get_tab_list'])) {
+	echo json_encode($obj->get_tab_list());
+	//$c2 = $obj->get_contents();
+	//echo "<pre>"; print_r($c1); echo "</pre>";
+	//echo "<pre>"; print_r($c2); echo "</pre>";	
+}
+else {	
+	$header = array();
+	$obj->assign('header', $header);
+	
+	$left = array();
+	$obj->assign('left', $left);
+	
+	$main = array();
+	$obj->assign('main', $main);
+	
+	$right = array();
+	$obj->assign('right', $right);
+	
+	$footer = array();
+	$obj->assign('footer', $footer);
+	
+	//echo "<pre>"; print_r($common); echo "</pre>";
+	//echo "<pre>"; print_r($_SESSION); echo "</pre>";
+	//echo "<pre>"; print_r($config); echo "</pre>";
+	
+	$obj->assign('config', $config);
+	$obj->assign('common', $common);
+	
+	$obj->assign('menu', get_menu());
+	$obj->assign('aoa_tabs', get_tabs());
+	
+	$obj->assign('nails_first', get_ary_thumbnails());
+	$obj->assign('carousel1', get_carousel1());
+	$obj->assign('carousel2', get_carousel2());
+	
+	$obj->assign('sitemap', $obj->get_sitemap());
+	$obj->assign('definition', $obj->get_definition());
+	//echo "<pre>"; print_r($obj->get_definition()); echo "</pre>";
+		
+	$obj->assign('header_template', $tdir.'header.tpl.html');
+	$obj->assign('menu_template', $tdir.'menu.tpl.html');
+	$obj->assign('rss_template', $tdir.'rss.tpl.html');
+	$obj->assign('left_template', $tdir.'left.tpl.html');
+	$obj->assign('main_template', $tdir.'main.tpl.html');
+	$obj->assign('right_template', $tdir.'right.tpl.html');
+	$obj->assign('footer_template', $tdir.'footer.tpl.html');
+	$obj->assign('copyright_template', $tdir.'copyright.tpl.html');
+	
+	$obj->display($tdir.'layout.tpl.html');
+}
 ?>

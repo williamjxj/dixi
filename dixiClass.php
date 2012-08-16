@@ -40,17 +40,23 @@ class DixiClass extends BaseClass
 		}
 		return $res;
 	}
-	
-	function get_carousel_title() {
+
+	function get_tab_list() {
+		$sql = "select cid, linkname from contents where linkname != '负面新闻' and mname='食品' order by cid desc";
+        $res = $this->mdb2->queryAll($sql);
+        if (PEAR::isError($res)) die($res->getMessage());
+        return $res;
+ 	}
+	//Same:
+	function get_contents() {
 		$ary = array();
-		$sql = "select linkname, notes from contents where linkname != '负面新闻' and mname='食品'";
+		$sql = "select cid, linkname from contents where linkname != '负面新闻' and mname='食品' order by cid desc";
 		$res = $this->mdb2->query($sql);
 		if (PEAR::isError($res)) {
 			die($res->getMessage(). ' - line ' . __LINE__ . ': ' . $sql);
 		}
 		while ($row = $res->fetchRow(MDB2_FETCHMODE_ASSOC)) {
-			$t = array('h5'=>$row['linkname'], 'a'=>$row['notes']);
-			array_push($ary, $t);
+			array_push($ary, array($row['cid'], $row['linkname']));
 		}
 		return $ary;
 	}

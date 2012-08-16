@@ -1,23 +1,25 @@
-<?php /* Smarty version Smarty-3.0.4, created on 2012-08-16 02:21:08
+<?php /* Smarty version Smarty-3.0.4, created on 2012-08-16 03:43:26
          compiled from "./themes/default/templates/main.tpl.html" */ ?>
-<?php /*%%SmartyHeaderCode:3771502cbb8456eb24-74133603%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:9321502ccece7c0158-58339283%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '5fd2beea8d1ec96ca41966b5a6ac282a674efcba' => 
     array (
       0 => './themes/default/templates/main.tpl.html',
-      1 => 1345108859,
+      1 => 1345113803,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '3771502cbb8456eb24-74133603',
+  'nocache_hash' => '9321502ccece7c0158-58339283',
   'function' => 
   array (
   ),
   'has_nocache_code' => false,
 )); /*/%%SmartyHeaderCode%%*/?>
 
+<?php ob_start();?><?php echo $_smarty_tpl->getVariable('SCRIPT_NAME')->value;?>
+<?php $_tmp1=ob_get_clean();?><?php $_smarty_tpl->tpl_vars['url'] = new Smarty_variable($_tmp1, null, null);?>
 <script type="text/javascript">
 $(function() {
 	for (var i=1; i<=6; i++) {
@@ -36,7 +38,29 @@ $(function() {
 		$(this).tab('show');
 	});
 	$('#js-news').ticker();
+	
+	$('div.tab-pane:first a', '#TabContent1.tab-content').live('click', function(e) {
+		e.preventDefault();
+		alert($(this).attr('href'));
+		window.location.href = '<?php echo $_smarty_tpl->getVariable('url')->value;?>
+?cid='+$(this).attr('href');
+		return false;
+	});
 });
+$(window).load(function() {
+	$.getJSON('<?php echo $_smarty_tpl->getVariable('url')->value;?>
+?js_get_tab_list=1', function(data) {
+		//console.log(data);
+		//console.log($('#TabContent1.tab-content').find('div').first().html()+','+data.length);
+		t = '';
+		for(i=0; i<data.length; i++) {
+			t+='<a href="'+data[i][0]+'">'+data[i][1]+'</a><br>';
+		}
+		$('#TabContent1.tab-content').find('div').first().html(t);
+	});
+	return false;
+});
+
 </script>
 <div style="margin:20px;">
 <?php  $_smarty_tpl->tpl_vars['tabs'] = new Smarty_Variable;
