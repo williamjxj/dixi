@@ -8,9 +8,9 @@ require_once(SITEROOT.'configs/common.inc.php');
 global $common;
 
 require_once(SITEROOT."configs/config.inc.php");
-require_once(SITEROOT."main.php");
-
 global $config;
+
+require_once(SITEROOT."main.php");
 
 require_once(SITEROOT.'dixiClass.php');
 
@@ -41,29 +41,11 @@ if(isset($_GET['js_get_tab_list'])) {
 }
 else if(isset($_GET['test'])) {
 	header('Content-Type: text/html; charset=utf-8'); 
-	//echo "<pre>"; print_r($obj->get_latest()); echo "</pre>";
-	//echo "<pre>"; print_r($obj->get_hot()); echo "</pre>";	
-	//echo "<pre>"; print_r($obj->get_loop1()); echo "</pre>";
-	//echo "<pre>"; print_r($obj->get_loop2()); echo "</pre>";
+	//echo "<pre>"; print_r($obj->get_latest()); print_r($obj->get_hot()); print_r($obj->get_loop1()); print_r($obj->get_loop2()); echo "</pre>";
 	echo "<pre>"; print_r(get_menu()); echo "</pre>";
 	exit;
 }
 else {	
-	$header = array();
-	$obj->assign('header', $header);
-	
-	$left = array();
-	$obj->assign('left', $left);
-	
-	$main = array();
-	$obj->assign('main', $main);
-	
-	$right = array();
-	$obj->assign('right', $right);
-	
-	$footer = array();
-	$obj->assign('footer', $footer);
-	
 	$obj->assign('config', $config);
 	$obj->assign('common', $common);
 	
@@ -76,7 +58,6 @@ else {
 	
 	$obj->assign('sitemap', $obj->get_sitemap());
 	$obj->assign('definition', $obj->get_definition());
-	//echo "<pre>"; print_r($obj->get_definition()); echo "</pre>";
 
 	$obj->assign('latest', $obj->get_latest());
 	$obj->assign('hot', $obj->get_hot());

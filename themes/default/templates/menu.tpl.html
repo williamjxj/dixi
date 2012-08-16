@@ -3,7 +3,6 @@
 $(function() {
 	$('#div_menu').find('a.btn').click(function(e) {
 		e.preventDefault();
-		alert($(this).attr('href'));
 		window.location.href="{$config.general}"+$(this).attr('href');
 		return false;
 	});

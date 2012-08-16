@@ -1,4 +1,3 @@
-{*debug*}
 <div class="row">
   <div class="span2">
     <div id="logo"> <a href="{$config.url}" title="{$common.header.title}"><img src="{$common.logo.logo_130x60}" /> </a> </div>
@@ -11,7 +10,7 @@
           <li><a href="#" id="switcher-large">放大</a></li>
           <li><a href="#" id="switcher-small">缩小</a></li>
           <li class="divider"></li>
-          <li><a href="#container" id="prlnk"><i class="icon-print"></i>打印</a></li>
+          <li><a href="#container" id="prlnk"><i class="icon-print"></i>&nbsp;打印</a></li>
         </ul>
       </div>
 {if {$config.username}}
@@ -29,7 +28,6 @@
           <li><a data-toggle="modal" href="#myModal">联络我们</a></li>
           <li class="divider"></li>
           <li><a id="login_signup" href="login/login_admin.php"><img src="images/lock.png" width="10" height="10" border="0" />&nbsp;后台管理</a></li>
-
         </ul>
       </div>
       <a href="/weibo/" class="btn btn-info btn-small" style="vertical-align:top;"><img src="{$config.img}sina.ico" width="16px" height="16px" border="0" />新浪微博</a> <a href="/iweibo/" class="btn btn-info btn-small" style="vertical-align:top;"><img src="{$config.img}qq.ico" width="16px" height="16px" border="0" />腾讯微博</a> </div>

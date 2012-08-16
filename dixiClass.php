@@ -12,26 +12,7 @@ class DixiClass extends BaseClass
 		$this -> sid = $site_id;
 		$this -> url = $_SERVER['PHP_SELF'];
 		$this -> self = basename($this -> url, '.php');
-	}
-
-	function __t($k) {
-		return array(
-			'index' => __FILE__.__LINE__.$this->url.$this->self.'底细真相事实1111',
-			'dixi' => __FILE__.__LINE__.$this->url.$this->self.'底细真相事实2222',
-			"$k" => __FILE__.__LINE__.$this->url.$this->self.'底细真相事实3333',
-		);
-	}
-	
-	function browser_id() {
-	  if(strstr($_SERVER['HTTP_USER_AGENT'], 'Firefox')){ $id="firefox"; }
-	  elseif(strstr($_SERVER['HTTP_USER_AGENT'], 'Safari') && !strstr($_SERVER['HTTP_USER_AGENT'], 'Chrome')){ $id="safari"; }
-	  elseif(strstr($_SERVER['HTTP_USER_AGENT'], 'Chrome')){ $id="chrome"; }
-	  elseif(strstr($_SERVER['HTTP_USER_AGENT'], 'Opera')){ $id="opera"; }
-	  elseif(strstr($_SERVER['HTTP_USER_AGENT'], 'MSIE 6')){ $id="ie6"; }
-	  elseif(strstr($_SERVER['HTTP_USER_AGENT'], 'MSIE 7')){ $id="ie7"; }
-	  elseif(strstr($_SERVER['HTTP_USER_AGENT'], 'MSIE 8')){ $id="ie8"; }
-	  elseif(strstr($_SERVER['HTTP_USER_AGENT'], 'MSIE 9')){ $id="ie9"; }
-	  return $id;
+	    $this->mdb2 = $this->pear_connect_admin();
 	}
 	
 	function get_definition() {
@@ -82,23 +63,5 @@ class DixiClass extends BaseClass
 		return $ary;
 	}
 
-	function get_sitemap() 
-	{
-		return array( 
-			'dixi' => '关于底细',
-			'us' => '联系我们',
-			'privacy' => '隐私保护',
-			'ads' => '广告服务',
-			'business' => '商务洽谈',
-			'recruit' => '底细招聘',
-			'welfare' => '底细公益',
-			'customer' => '客服中心',
-			'navigator' => '网站导航',
-			'law' => '法律声明',
-			'report' => '有害短信息举报',
-		);
-	}
-	
 }
-
 ?>

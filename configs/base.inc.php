@@ -6,6 +6,11 @@ define('SMARTY_DIR', SITEROOT.'include/Smarty-3.0.4/libs/');
 require_once(SMARTY_DIR . 'Smarty.class.php');
 require_once('MDB2.php');
 
+defined("DBHOST") or define("DBHOST", "localhost");
+defined('DBUSER') or define('DBUSER', 'dixitruth');
+defined("DBPASS") or define("DBPASS", "dixi123456");
+defined('DBNAME') or define('DBNAME', 'dixi');
+
 class BaseClass extends Smarty
 {
   var $url, $self, $mdb2, $template_dir, $compile_dir, $config_dir, $cache_dir, $session;
@@ -16,7 +21,6 @@ class BaseClass extends Smarty
     $this->url = $_SERVER["PHP_SELF"];
     $this->self = basename($this->url, '.php'); // will extend in sub-class.
     
-    $this->mdb2 = $this->pear_connect_admin();
     $this->caching = false; //$this->caching = Smarty::CACHING_LIFETIME_CURRENT;
     $this->auto_literal = true;
     $this->template_dir = SITEROOT.'themes/default/templates/';
@@ -102,12 +106,32 @@ class BaseClass extends Smarty
 	return $id;
   }
 
-  function get_html_template($assign=NULL)
-  {
-    global $config;
-    if($assign) $this->html = $config['path'].'/templates/'.$assign;
-    elseif(! $this->html) $this->html = $config['path'].'/templates/'.DEFAULT_LIST;
-  return $this->html;
-  }
+	/////////////////////
+	
+	function get_sitemap() 
+	{
+		return array( 
+			'dixi' => '关于底细',
+			'us' => '联系我们',
+			'privacy' => '隐私保护',
+			'ads' => '广告服务',
+			'business' => '商务洽谈',
+			'recruit' => '底细招聘',
+			'welfare' => '底细公益',
+			'customer' => '客服中心',
+			'navigator' => '网站导航',
+			'law' => '法律声明',
+			'report' => '有害短信息举报',
+		);
+	}
+
+	function __t($k) {
+		return array(
+			'index' => __FILE__.__LINE__.$this->url.$this->self.'底细真相事实1111',
+			'dixi' => __FILE__.__LINE__.$this->url.$this->self.'底细真相事实2222',
+			"$k" => __FILE__.__LINE__.$this->url.$this->self.'底细真相事实3333',
+		);
+	}
+	  
 }
 ?>
