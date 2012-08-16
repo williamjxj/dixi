@@ -1,4 +1,5 @@
 <?php
+session_start();
 if(isset($_GET['q']) && !empty($_GET['q'])) {
 	defined('SITEROOT') or define('SITEROOT', './');
 	header('Content-Type: text/html; charset=utf-8'); 

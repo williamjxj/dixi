@@ -1,4 +1,5 @@
 <?php
+session_start();
 define('MAXLEN', 200);
 
 // header ("content-type: text/xml; charset=utf-8");

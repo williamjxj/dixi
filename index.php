@@ -12,7 +12,6 @@ require_once(SITEROOT."main.php");
 
 global $config;
 
-//require_once(SITEROOT."configs/base.inc.php");
 require_once(SITEROOT.'dixiClass.php');
 
 try {
@@ -53,12 +52,21 @@ $tdir = $config['templates'];
 //echo "<pre>"; print_r($_SESSION); echo "</pre>";
 //echo "<pre>"; print_r($config); echo "</pre>";
 
-
-$obj->assign('nails_first', get_ary_thumbnails());
-$obj->assign('nails_rest', get_img_thumbnails());
-
 $obj->assign('config', $config);
 $obj->assign('common', $common);
+
+$obj->assign('menu', get_menu());
+$obj->assign('aoa_tabs', get_tabs());
+
+$obj->assign('nails_first', get_ary_thumbnails());
+$obj->assign('carousel1', get_carousel1());
+$obj->assign('carousel2', get_carousel2());
+
+$obj->assign('sitemap', $obj->get_sitemap());
+$obj->assign('definition', $obj->get_definition());
+
+//echo "<pre>"; print_r($obj->get_definition()); echo "</pre>";
+
 $obj->assign('header_template', $tdir.'header.tpl.html');
 $obj->assign('menu_template', $tdir.'menu.tpl.html');
 $obj->assign('rss_template', $tdir.'rss.tpl.html');

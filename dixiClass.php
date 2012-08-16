@@ -1,11 +1,8 @@
 <?php
 defined('SITEROOT') or define('SITEROOT', './');
-defined('SMARTY_DIR') or define('SMARTY_DIR', SITEROOT.'include/Smarty-3.0.4/libs/');
+require_once(SITEROOT."configs/base.inc.php");
 
-require_once(SMARTY_DIR . 'Smarty.class.php');
-require_once('MDB2.php');
-
-class DixiClass extends Smarty
+class DixiClass extends BaseClass
 {
 	var $sid, $url, $self;
 	public function __construct($site_id) {
@@ -13,12 +10,6 @@ class DixiClass extends Smarty
 		$this -> sid = $site_id;
 		$this -> url = $_SERVER['PHP_SELF'];
 		$this -> self = basename($this -> url, '.php');
-		$this->caching = false;
-		$this->auto_literal = true;
-		$this->template_dir = SITEROOT.'themes/default/templates/';
-		$this->compile_dir = SITEROOT.'templates_c/';
-		$this->config_dir = SITEROOT.'configs/';
-		$this->cache_dir = SITEROOT.'cache/';
 	}
 
 	function __t($k) {
@@ -40,6 +31,33 @@ class DixiClass extends Smarty
 	  elseif(strstr($_SERVER['HTTP_USER_AGENT'], 'MSIE 9')){ $id="ie9"; }
 	  return $id;
 	}
+	
+	function get_definition() {
+		$sql = "select content from contents where linkname like '负面新闻%'";
+		$res = $this->mdb2->queryOne($sql);
+		if (PEAR::isError($res)) {
+			die($res->getMessage(). ' - line ' . __LINE__ . ': ' . $sql);
+		}
+		return $res;
+	}
+	
+	function get_sitemap() 
+	{
+		return array( 
+			'关于底细',
+			'联系我们',
+			'隐私保护',
+			'广告服务',
+			'商务洽谈',
+			'底细招聘',
+			'底细公益',
+			'客服中心',
+			'网站导航',
+			'法律声明',
+			'有害短信息举报',
+		);
+	}
+	
 }
 
 ?>
