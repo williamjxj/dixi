@@ -15,9 +15,9 @@ $common = array(
 		'robots' => 'index,',
 	),
 	'logo' => array(
-		'logo_290x96' => SITEROOT.'images/logo.png',
-		'logo_130x60' => 'http://www.placehold.it/130x60',
-		'logo_20x20' => 'http://www.placehold.it/20x20',
+		'logo_290x96' => SITEROOT.'images/logo_290x96.png',
+		'logo_130x60' => SITEROOT.'images/logo_130x60.png',
+		'logo_20x12' => SITEROOT.'images/logo_20x12.png',
 	),
 	'footer' => array(
 		'copyright' => '底细,真相,事实传播媒体',

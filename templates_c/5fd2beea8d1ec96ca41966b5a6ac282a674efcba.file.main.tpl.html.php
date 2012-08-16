@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.0.4, created on 2012-08-16 00:48:48
+<?php /* Smarty version Smarty-3.0.4, created on 2012-08-16 02:21:08
          compiled from "./themes/default/templates/main.tpl.html" */ ?>
-<?php /*%%SmartyHeaderCode:9041502ca5e0752e44-83877364%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:3771502cbb8456eb24-74133603%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '5fd2beea8d1ec96ca41966b5a6ac282a674efcba' => 
     array (
       0 => './themes/default/templates/main.tpl.html',
-      1 => 1345103325,
+      1 => 1345108859,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '9041502ca5e0752e44-83877364',
+  'nocache_hash' => '3771502cbb8456eb24-74133603',
   'function' => 
   array (
   ),
@@ -22,7 +22,7 @@ $_smarty_tpl->decodeProperties(array (
 $(function() {
 	for (var i=1; i<=6; i++) {
 		$('ul.nav>li>a', '#Tab'+i).removeClass('active');
-		console.log($(('li', '#Tab'+i)).first().text());
+		//console.log($(('li', '#Tab'+i)).first().text());
 		$('li', '#Tab'+i).first().addClass('active');
 		var id = '#TabContent'+i;
 		$('div'+id).find('div:first').addClass('active in');
@@ -38,6 +38,7 @@ $(function() {
 	$('#js-news').ticker();
 });
 </script>
+<div style="margin:20px;">
 <?php  $_smarty_tpl->tpl_vars['tabs'] = new Smarty_Variable;
  $_smarty_tpl->tpl_vars['no'] = new Smarty_Variable;
  $_from = $_smarty_tpl->getVariable('aoa_tabs')->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
@@ -55,8 +56,8 @@ if ($_smarty_tpl->_count($_from) > 0){
     foreach ($_from as $_smarty_tpl->tpl_vars['tab']->key => $_smarty_tpl->tpl_vars['tab']->value){
 ?>
       <li><a data-toggle="tab" href="#<?php echo (isset($_smarty_tpl->tpl_vars['tab']->value) ? $_smarty_tpl->tpl_vars['tab']->value : null);?>
-"><?php echo (isset($_smarty_tpl->tpl_vars['tab']->value) ? $_smarty_tpl->tpl_vars['tab']->value : null);?>
-</a></li>
+"><strong><?php echo (isset($_smarty_tpl->tpl_vars['tab']->value) ? $_smarty_tpl->tpl_vars['tab']->value : null);?>
+</strong></a></li>
       <?php }} ?>
     </ul>
     <div class="tab-content" id="TabContent<?php echo (isset($_smarty_tpl->tpl_vars['no']->value) ? $_smarty_tpl->tpl_vars['no']->value : null);?>
@@ -74,6 +75,7 @@ if ($_smarty_tpl->_count($_from) > 0){
   </div>
 </div>
 <?php }} ?>
+</div>
 <!------------------>
 <style type="text/css">
 #myCarousel2.thumbnails {

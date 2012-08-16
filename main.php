@@ -40,6 +40,7 @@ function get_carousel1() {
 }
 
 function get_carousel2() {
+	//1. 图片
 	$ary = array();
     $query = "select concat(path,file) as carousel2_file from resources where file like '%220x130%'";
     $res = mysql_query($query);
@@ -48,22 +49,33 @@ function get_carousel2() {
 		array_push ($ary, $t);
 	}
 	
+	//2. 内容
+	$ary2 = array();
+	$sql = "select linkname, notes from contents where linkname != '负面新闻' and mname='食品'";
+	$res = mysql_query($sql);
+	while ($row = mysql_fetch_assoc($res)) {
+		$t = array('h5'=>$row['linkname'], 'a'=>$row['notes']);
+		array_push($ary2, $t);
+	}
+	
+	//3. 关联上面两部分：
 	$count = 1;
 	$nails_rest = array();
 	$c = '';
+	$loop = 1; $x = 0;
 	$n = '<ul class="thumbnails">';
 
-	$loop = 1;
 	foreach($ary as $t) {
 		$c  = '<li class="span3"><div class="thumbnail">'."\n";
 		$c .= '<a href="#">';
 		$c .= $t;
 		$c .= '</a>';
-		$c .= '<div class="caption"><h5><a href="#">食品卫生主题循环显示'.$count++.'</a></h5>';
-		$c .= '<p>--['.$loop.']'.($count*20).'</p>';
+		$c .= '<div class="caption"><h5><a href="'.$ary2[$x]['h5'].'">'.$ary2[$x]['h5'].'</a></h5>';
+		$c .= '<p>'.$ary2[$x++]['h5'].'</p>';
 		$c .= "</div></div></li>\n";
 		$n .= $c;
 		$c = '';
+		$count++;
 		if ($count == PER_TOTAL) {
 			$n .= "</ul>\n";
 			$nails_rest[] = $n;
@@ -92,31 +104,31 @@ function get_ary_thumbnails()
 	$thumbnails = array(
 		array(
 			'img' => $ary[0],
-			'alt' => $ary[0],
-			'h5' => '1. 中国移民主流不是富豪',
-			'p' => '根据《经济学人》和胡润研究院近日发布的报告称，中国大陆目前家产丰厚的富人大都准备和打算移民海外，中国大陆似乎已经留不住他们。',
-			'a' => $ary[0],
+			'alt' => 'http://www.chinafnews.com/2012/0717/9968.shtml',
+			'h5' => '三元酸奶保质期内变质导致腹泻 冷链管理遭质疑',
+			'p' => '消费者投诉称，其购买的三元酸奶食用后，出现了严重的腹泻症状，为此对三元酸奶质量产生了质疑。',
+			'a' => 'http://www.chinafnews.com/2012/0717/9968.shtml',
 		),
 		array(
 			'img' => $ary[1],
-			'alt' => $ary[1],
-			'h5' => '2. 中产移民主要是为求安稳',
-			'p' => '根据《经济学人》和胡润研究院近日发布的报告称，中国大陆目前家产丰厚的富人大都准备和打算移民海外，中国大陆似乎已经留不住他们。',
-			'a' => $ary[1],
+			'alt' => 'http://www.chinafnews.com/2012/0705/9916.shtml',
+			'h5' => '娃哈哈八宝粥里现茶叶遭投诉',
+			'p' => '消费者投诉称，浙江娃哈哈八宝粥内有一片泡开了的茶叶。',
+			'a' => 'http://www.chinafnews.com/2012/0705/9916.shtml',
 		),
 		array(
 			'img' => $ary[2],
-			'alt' => $ary[2],
-			'h5' => '3. 中国移民主流不是富豪 中产移民主要是为求安稳',
-			'p' => '根据《经济学人》和胡润研究院近日发布的报告称，中国大陆目前家产丰厚的富人大都准备和打算移民海外，中国大陆似乎已经留不住他们。',
-			'a' => $ary[2],
+			'alt' => 'http://www.chinafnews.com/2012/0807/10026.shtml',
+			'h5' => '汇源被指“商标欺诈” 或成第二个“王老吉”',
+			'p' => '汇源果汁如今也打起了商标官司，被指“涉嫌商标授权欺诈”。',
+			'a' => 'http://www.chinafnews.com/2012/0807/10026.shtml',
 		),
 		array(
 			'img' => $ary[3],
-			'alt' => $ary[3],
-			'h5' => '4. 中产移民主要是为求安稳',
-			'p' => '根据《经济学人》和胡润研究院近日发布的报告称，中国大陆目前家产丰厚的富人大都准备和打算移民海外，中国大陆似乎已经留不住他们。',
-			'a' => $ary[3],
+			'alt' => 'http://www.chinafnews.com/2012/0702/9896.shtml',
+			'h5' => '硒牛乳业无资质产奶销售两年 5孩子喝后呕吐',
+			'p' => '出厂不到半个月的核桃奶居然有股腥臭味，孩子喝后感觉恶心呕吐被送医就诊。',
+			'a' => 'http://www.chinafnews.com/2012/0702/9896.shtml',
 		),
 	);
 

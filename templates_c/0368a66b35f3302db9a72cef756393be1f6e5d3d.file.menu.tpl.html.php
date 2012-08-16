@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.0.4, created on 2012-08-15 23:58:26
+<?php /* Smarty version Smarty-3.0.4, created on 2012-08-16 02:21:08
          compiled from "./themes/default/templates/menu.tpl.html" */ ?>
-<?php /*%%SmartyHeaderCode:1010502c9a120613c7-45551216%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:8010502cbb842c1f44-30976939%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '0368a66b35f3302db9a72cef756393be1f6e5d3d' => 
     array (
       0 => './themes/default/templates/menu.tpl.html',
-      1 => 1345100301,
+      1 => 1345108773,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '1010502c9a120613c7-45551216',
+  'nocache_hash' => '8010502cbb842c1f44-30976939',
   'function' => 
   array (
   ),
@@ -71,7 +71,7 @@ if ($_smarty_tpl->_count($_from) > 0){
     <li>禁忌</li>
     <li>科技</li>
   </ul-->
-      <input type="text" class="input-medium search-query" id="typeahead" data-provide="typeahead" autocompltete="off" placeholder="查询..." />
+      <input type="text" class="input-medium search-query" id="typeahead" data-provide="typeahead" autocompltete="off" placeholder="查询 （比如： 负面新闻）" />
       <button type="submit" class="btn btn-primary"><i class="icon-search icon-white"></i>搜索</button>
     </form>
   </div>
@@ -96,7 +96,6 @@ $(function() {
 				beforeSend: function(){
 				},
 				success: function(data) {
-					console.log(data);
 					typeahead.process(data);
 				}
 			});

@@ -33,7 +33,7 @@ class DixiClass extends BaseClass
 	}
 	
 	function get_definition() {
-		$sql = "select content from contents where linkname like '负面新闻%'";
+		$sql = "select content from contents where linkname = '负面新闻' and mname='食品' ";
 		$res = $this->mdb2->queryOne($sql);
 		if (PEAR::isError($res)) {
 			die($res->getMessage(). ' - line ' . __LINE__ . ': ' . $sql);
@@ -41,6 +41,20 @@ class DixiClass extends BaseClass
 		return $res;
 	}
 	
+	function get_carousel_title() {
+		$ary = array();
+		$sql = "select linkname, notes from contents where linkname != '负面新闻' and mname='食品'";
+		$res = $this->mdb2->query($sql);
+		if (PEAR::isError($res)) {
+			die($res->getMessage(). ' - line ' . __LINE__ . ': ' . $sql);
+		}
+		while ($row = $res->fetchRow(MDB2_FETCHMODE_ASSOC)) {
+			$t = array('h5'=>$row['linkname'], 'a'=>$row['notes']);
+			array_push($ary, $t);
+		}
+		return $ary;
+	}
+
 	function get_sitemap() 
 	{
 		return array( 

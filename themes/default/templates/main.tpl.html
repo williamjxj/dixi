@@ -3,7 +3,7 @@
 $(function() {
 	for (var i=1; i<=6; i++) {
 		$('ul.nav>li>a', '#Tab'+i).removeClass('active');
-		console.log($(('li', '#Tab'+i)).first().text());
+		//console.log($(('li', '#Tab'+i)).first().text());
 		$('li', '#Tab'+i).first().addClass('active');
 		var id = '#TabContent'+i;
 		$('div'+id).find('div:first').addClass('active in');
@@ -19,12 +19,13 @@ $(function() {
 	$('#js-news').ticker();
 });
 </script>
+<div style="margin:20px;">
 {foreach $aoa_tabs as $no => $tabs}
 <div class="row">
   <div class="span12">
     <ul class="nav nav-tabs" id="Tab{$no}">
       {foreach $tabs as $tab}
-      <li><a data-toggle="tab" href="#{$tab}">{$tab}</a></li>
+      <li><a data-toggle="tab" href="#{$tab}"><strong>{$tab}</strong></a></li>
       {/foreach}
     </ul>
     <div class="tab-content" id="TabContent{$no}"> {foreach $tabs as $tab}
@@ -35,6 +36,7 @@ $(function() {
   </div>
 </div>
 {/foreach}
+</div>
 <!------------------>
 <style type="text/css">
 #myCarousel2.thumbnails {
