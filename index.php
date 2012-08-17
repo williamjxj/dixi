@@ -25,8 +25,8 @@ $config['self'] = $obj->__t($obj->self);
 $config['browser'] = $obj->browser_id();
 
 // login or not?
-if(isset($_SESSION['dixi']['username'])) {
-	$config['username'] = $_SESSION['dixi']['username'];
+if(isset($_SESSION[PACKAGE]['username'])) {
+	$config['username'] = $_SESSION[PACKAGE]['username'];
 }
 $obj->assign('common', $common);
 $obj->assign('config', $config);
@@ -42,7 +42,8 @@ if(isset($_GET['js_get_tab_list'])) {
 else if(isset($_GET['test'])) {
 	header('Content-Type: text/html; charset=utf-8'); 
 	//echo "<pre>"; print_r($obj->get_latest()); print_r($obj->get_hot()); print_r($obj->get_loop1()); print_r($obj->get_loop2()); echo "</pre>";
-	echo "<pre>"; print_r(get_menu()); echo "</pre>";
+	$t = $obj->get_keywors();
+	echo "<pre>"; print_r($t); echo "</pre>";
 	exit;
 }
 else {	
@@ -61,7 +62,7 @@ else {
 
 	$obj->assign('latest', $obj->get_latest());
 	$obj->assign('hot', $obj->get_hot());
-
+	$obj->assign('keywords', $obj->get_keywors());
 		
 	$obj->assign('header_template', $tdir.'header.tpl.html');
 	$obj->assign('menu_template', $tdir.'menu.tpl.html');

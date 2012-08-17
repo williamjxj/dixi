@@ -1,25 +1,43 @@
 {*$url={$SCRIPT_NAME}*}
 {$url={$config.general}}
-<div class="span4">
-  <form class="well form-search">
-    <!--ul>
-    <li class="selected">所有栏目</li>
-    <li>食品</li>
-    <li>药物</li>
-    <li>质量</li>
-    <li>医疗</li>
-    <li>禁忌</li>
-    <li>科技</li>
-  </ul-->
-    <input type="text" class="input-medium search-query" id="typeahead" data-provide="typeahead" autocompltete="off" placeholder="查询 （比如： 负面新闻）" />
-    <button type="submit" class="btn btn-primary"><i class="icon-search icon-white"></i>搜索</button>
-  </form>
+<!--
+< script type="text/javascript">
+$(function() {
+	$('button[type=submit]', '#search_form').click(function(e) {
+		e.preventDefault();
+		t=$('#typeahead').val();
+		if (/^\s+$/.test(t) || t=='') {
+			if(! $('#s_alert').is(':visible')){
+				$('#s_alert').show();
+				return false;
+			}
+		}
+		console.log($(this));
+		$('#search_form').submit();	
+		return false;
+	});	
+});
+</script>
+-->
+<div class="row">
+  <div class="span8">
+    <form class="well form-search" action="{$url}" method="post" id="search_form">
+      <input type="text" name="key" class="input-medium search-query" style="width:399px" id="typeahead" data-provide="typeahead" autocompltete="off" placeholder="查询 （比如： 负面新闻）" />
+      <button type="submit" class="btn btn-primary"><i class="icon-search icon-white"></i>搜索</button>
+      <div id="s_alert" class="alert" style="display:none;">
+        <button class="close" data-dismiss="alert">×</button>
+        <strong>无法查询:</strong>请输入查询字 </div>
+    </form>
+  </div>
+  <div class="span4"> <span class="label label-warning">热门搜索词:</span>
+    <div class="alert"> {foreach $keywords as $kw}
+      {$kw.0},&nbsp;
+      {/foreach} </div>
+  </div>
 </div>
 <div class="row" id="div_menu">
   <div class="span12">
-    <div class="btn-group"> {foreach $menu as $m}
-      <a class="btn" href="{$config.general}?i={$m.cid}&n={$m.curl}">{$m.name}</a>
-      {/foreach} </div>
+    <div class="btn-group"> {foreach $menu as $m} <a class="btn" href="{$config.general}?i={$m.cid}&n={$m.curl}">{$m.name}</a> {/foreach} </div>
   </div>
 </div>
 <!-------------------->
@@ -46,20 +64,19 @@
         {/foreach} </div>
       <a data-slide="prev" href="#myCarousel" class="left carousel-control">‹</a> <a data-slide="next" href="#myCarousel" class="right carousel-control">›</a> </div>
   </div>
-
   <div id="div_latest" class="span4">
-    <h5>最新曝光</h5>
-    <div class="more"><a title="食品安全问题-最新曝光查看更多" href="FoodsNewsList-0-3-0.html">查看更多</a></div>
-    <ul>
+    <div class="head1">最新曝光</div>
+    <!--div class="more"><a title="食品安全问题-最新曝光查看更多" href="FoodsNewsList-0-3-0.html">查看更多</a></div-->
+    <ul class="tab2">
       {foreach $latest as $l}
       <li class="tab_list"><a href="{$url}?cid={$l.0}">{$l.1}</a></li>
       {/foreach}
     </ul>
   </div>
   <div id="div_hot" class="span4">
-    <h5>热点追踪</h5>
-    <div class="more"><a title="食品安全问题-最新曝光查看更多" href="FoodsNewsList-0-3-0.html">查看更多</a></div>
-    <ul>
+    <div class="head1">热点追踪</div>
+    <!--div class="more"><a title="食品安全问题-最新曝光查看更多" href="FoodsNewsList-0-3-0.html">查看更多</a></div-->
+    <ul class="tab2">
       {foreach $hot as $h}
       <li class="tab_list"><a href="{$url}?cid={$h.0}">{$h.1}</a></li>
       {/foreach}
@@ -89,28 +106,6 @@ $(function() {
 				}
 			});
 		}
-	});
-
-	//'top': parseFloat(parseFloat(p.top)+30)+'px'})
-	$('#searchSelected.searchSelected').click(function(e) {
-		var p = $(this).position();
-		// alert(p.left+", " + p.top);
-		e.preventDefault();
-		$('#searchTab.searchTab').css({
-			'left': p.left,
-			'top': p.top})
-		.toggle();
-  		$('#searchTab.searchTab ul li').each(function() {
-			var sli = $(this);
-			sli.click(function() {
-				$('#searchSelected').text($(this).text());
-				$(this).siblings().removeClass('selected');
-				$(this).addClass('selected');
-				$('#searchTab.searchTab').hide();
-				$('#typeahead').focus();
-				return false;
-			});
-		});
 	});
 });
 </script>

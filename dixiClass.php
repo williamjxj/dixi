@@ -24,6 +24,15 @@ class DixiClass extends BaseClass
 		return $res;
 	}
 
+	function get_keywors() {
+		$sql = "select keyword from keywords order by updated desc, created desc limit 0,5";
+		$res = $this->mdb2->queryAll($sql);
+		if (PEAR::isError($res)) {
+			die($res->getMessage(). ' - line ' . __LINE__ . ': ' . $sql);
+		}
+		return $res;
+	}
+	
 	function get_latest() {
 		return $this->get_tab_list(true, 0);
 	}
@@ -49,7 +58,7 @@ class DixiClass extends BaseClass
         if (PEAR::isError($res)) die($res->getMessage());
         return $res;
  	}
-	//Same:
+	//Same and no use
 	function get_contents() {
 		$ary = array();
 		$sql = "select cid, linkname from contents where linkname != '负面新闻' and mname='食品' order by cid desc";

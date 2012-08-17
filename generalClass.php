@@ -15,7 +15,6 @@ class GeneralClass extends BaseClass
 	}
 
 	function get_menu_info($cid) {
-		$ary = array();
 		$query = "select name, description, frequency, tag from categories where cid=" . $cid;
 		$res = mysql_query($query);
 		$row = mysql_fetch_assoc($res);
@@ -23,11 +22,36 @@ class GeneralClass extends BaseClass
 	}
 
 	function get_content($cid) {
-		$ary = array();
 		$sql = "select content, linkname, notes from contents where cid=".$cid;
 		$res = mysql_query($sql);
 		$row = mysql_fetch_assoc($res);
 		return $row;
 	}
+	function get_content_1($cid) {
+		$sql = "select content from contents where cid=".$cid;
+		$res = mysql_query($sql);
+		$row = mysql_fetch_assoc($res);
+		return $row['content'];
+	}
+	function select_contents_by_keyword($key) {
+		$ary = array();
+		$sql = "select linkname, cid from contents where content like '%".$key ."%'";
+		//echo $sql;
+		$res = mysql_query($sql);
+		while($row = mysql_fetch_assoc($res)) {
+			array_push($ary, $row);
+		}
+
+		if($key!='') {
+			//INSERT INTO keywords (keyword,createdby, created) VALUES (aaaa,Adminadmin,now()) ON DUPLICATE KEY UPDATE updatedby=Adminadmin, total=total+1
+			$user = isset($_SESSION[PACKAGE]['username']) ? $_SESSION[PACKAGE]['username'] : '';
+			$query = "INSERT INTO keywords (keyword,createdby, created) VALUES ".
+				"('".$key."', '".$user."', now()) ON DUPLICATE KEY UPDATE updatedby='".$user."', total=total+1";
+			mysql_query($query);
+		}
+		
+		return $ary;
+	}
+
 }
 ?>

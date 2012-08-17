@@ -101,3 +101,34 @@ p.banner {
 	height:400px;
 	margin-bottom:1em;
 }
+/*qq*/
+.searchTxt {
+	-moz-border-bottom-colors: none;
+	-moz-border-image: none;
+	-moz-border-left-colors: none;
+	-moz-border-right-colors: none;
+	-moz-border-top-colors: none;
+	border-color: #D3D3D3 -moz-use-text-color #D3D3D3 #D3D3D3;
+	border-style: solid none solid solid;
+	border-width: 2px 0 2px 2px;
+	float: left;
+	height: 30px;
+	position: relative;
+	width: 399px;
+	z-index: 22;
+}
+.searchTxtHover {
+	-moz-border-bottom-colors: none;
+	-moz-border-image: none;
+	-moz-border-left-colors: none;
+	-moz-border-right-colors: none;
+	-moz-border-top-colors: none;
+	border-color: #3297D8 -moz-use-text-color #3297D8 #3297D8;
+	border-style: solid none solid solid;
+	border-width: 2px 0 2px 2px;
+	float: left;
+	height: 30px;
+	position: relative;
+	width: 399px;
+	z-index: 22;
+}
