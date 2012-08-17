@@ -23,7 +23,7 @@
 	margin-bottom:0px !important;
 }
 #scrollbar1 {
-    margin: 0 !important;
+	margin: 0 !important;
 }
 .hero-unit p {
 	font-size: 12px !important;
@@ -31,72 +31,15 @@
 .hero-unit {
 	padding:30px;
 }
-.page {
-    text-align: center;
-}
-.page li {
-    float: left;
-}
-.page a {
-    background-color: #FFFFFF;
-    border: 1px solid #DDDDDD;
-    color: #454545;
-    float: left;
-    font-family: Arial,Helvetica,sans-serif;
-    height: 20px;
-    line-height: 20px;
-    margin: 0 6px 0 0;
-    padding: 0 6px;
-    text-align: center;
-    vertical-align: middle;
-}
-.page a:hover, a.now {
-    border-color: #0066CC;
-    text-decoration: none;
-}
-.page a.now {
-    background: none repeat scroll 0 0 #2266BB;
-    color: #FFFFFF;
-    font-weight: bold;
-}
-.pagination {
-    margin: 0 auto;
-    text-align: center;
-}
-.pagination a {
-    background-color: #FFFFFF;
-    border: 1px solid #DDDDDD;
-    color: #2266BB;
-    float: left;
-    font-family: Arial;
-    height: 20px;
-    line-height: 20px;
-    margin: 0 6px 0 0;
-    padding: 0 6px;
-    text-align: center;
-    vertical-align: middle;
-}
-.pagination a:hover, .pagination a.now {
-    border-color: #2266BB;
-}
-.pagination a.now {
-    background-color: #2266BB;
-    color: #FFFFFF;
-    font-weight: bold;
-}
-.pagination a.no-op {
-    background: none repeat scroll 0 0 #FFFFFF;
-    border-color: #DDDDDD;
-}
 ul {
-    list-style: none outside none;
-    margin: 0;
-    padding: 0;
+	list-style: none outside none;
+	margin: 0;
+	padding: 0;
 }
 .clear {
-    clear: both;
+	clear: both;
 }
-li.tab_list{
+li.tab_list {
 	line-height: 24px;
 }
 .more, ul li a {
@@ -106,10 +49,10 @@ li.tab_list{
 	margin-top: 10px;
 }
 .more:hover, ul li a:hover {
-    color: #CC0000;
+	color: #CC0000;
 }
 ul li a, .more:focus {
-    outline: medium none;
+	outline: medium none;
 }
 .display_content {
 	background:#EEEEEE !important;
@@ -138,7 +81,7 @@ ul li a, .more:focus {
 	margin-bottom:6px;
 }
 .head1:hover {
-    color: #999999;
+	color: #999999;
 }
 .head2 {
 	color: #CC0000;
@@ -149,7 +92,7 @@ ul li a, .more:focus {
 	margin-bottom:6px;
 }
 .head2:hover {
-    color: #999999;
+	color: #999999;
 }
 ul.tab2 {
 	height:250px;
@@ -157,10 +100,10 @@ ul.tab2 {
 	max-height:300px;
 	overflow:hidden;
 }
-#div_latest,#div_hot {
+#div_latest, #div_hot {
 	/*border: 1px solid #DBDADA;*/
     line-height: 27px;
-    padding: 0 8px;	
+	padding: 0 8px;
 	width: 280px;
 	-moz-border-bottom-colors: none;
 	-moz-border-image: none;
@@ -172,17 +115,98 @@ ul.tab2 {
 	border-style: solid;
 	border-width: 1px;
 }
-.box2{
+.box2 {
 	margin-top:6px;
-/*    border-top: 1px solid #3E6D8E;
-    border-bottom: 1px solid #3E6D8E;
-    background-color: #E0EAF1;
-*/
+}
+.box5 {
+	-moz-border-bottom-colors: none;
+	-moz-border-image: none;
+	-moz-border-left-colors: none;
+	-moz-border-right-colors: none;
+	-moz-border-top-colors: none;
+	border-color: #D2E1F1;
+	border-right: 1px solid #D2E1F1;
+	border-style: solid;
+	border-width: 1px;
+	border-top: 0px dotted #DBDADA;
+	overflow:hidden;
+}
+.span7 {
+	width: 510px !important;
+}
+.box7 {
+	-moz-border-bottom-colors: none;
+	-moz-border-image: none;
+	-moz-border-left-colors: none;
+	-moz-border-right-colors: none;
+	-moz-border-top-colors: none;
+	overflow:hidden;
+	border: 1px solid #DBDADA;
+	padding: 10px;
+	/*min-height:200px;
+	max-height:1000px;
+	max-width:520px;
+	/*overflow:scroll;*/
 }
 .li3 {
-	padding-top:2px;
-	padding-bottom:2px;
+	padding:6px 10px;
+}
+.li33 a:hover {
+	color: blue;
+    box-shadow: 2px 2px 2px #888888;
+    text-decoration: underline;
+}
+.li3 a:active {
+    background: none repeat scroll 0 0 #BBBBBB;
+}
+.li3 a:visited {
+	color: red !important;
+	border-color: #0066CC !important;
+	text-decoration: none;
+}
+li.li3:nth-child(odd) {
+}
+li.li3:nth-child(even) {
+	background-color: #FCFCE8;
 }
 .rss {
-    margin-top: 10px;
+	margin-top: 10px;
+}
+.pager1 {
+	display: block;
+	float: right;
+	font-size: 11px;
+	font-weight: bold;
+	margin-right: -5px;
+	margin-top: 19px;
+	padding: 0 30px 15px 0;
+	text-align: right;
+	width: 400px;
+}
+.pager-bottom {
+	padding-top:6px;
+}
+.pager1 a {
+	background: url("../images/pager.png") no-repeat scroll 0 0 transparent;
+	color: #434343 !important;
+	padding: 5px 9px;
+	text-align: center;
+}
+#ie7 .pager1 a, #ie7 .pager1 a.selected, #ie7 .bigPagerButton {
+	line-height:23px;
+}
+.pager1 a.selected {
+	color:#fff !important;
+	background-position:0 -25px
+}
+.bigPagerButton {
+	background-position: -26px 0 !important;
+	margin: 0;
+	padding: 5px 12px !important;
+	text-align: center !important;
+}
+.currnt_page {
+	color:#455368;
+	font-size:11px;
+	float:left;
 }

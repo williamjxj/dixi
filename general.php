@@ -31,19 +31,24 @@ $obj->assign('common', $common);
 $tdir = SITEROOT.'themes/default/general/';
 $tshared = SITEROOT.'themes/default/shared/';
 
-/*
- * i=3&n=food，$menu['frequency']
- */
-$info = array();
 if(!empty($_GET)) {
 	if(isset($_GET['js_get_content'])) {
 		echo $obj->get_content_1($_GET['cid']);
+		exit;
+	}
+	elseif(isset($_GET['js_sitemap'])) {
+		$info = array();
+		$info['title'] = $obj->get_sitemap($_GET['sitemap']);
+		$info['content'] = "目前该分类还处在开发阶段，很快就会有内容呈现。谢谢关注。<br>\n";
+		$obj->assign('info', $info);
+		$obj->display($tdir.'general.tpl.html');
 		exit;
 	}
 	elseif(isset($_GET['i']) && isset($_GET['n'])) {
 		if($_GET['n'] == 'food') {
 		}
 		else {
+			$info = array();
 			$menu = $obj->get_menu_info($_GET['i']);
 			$info['title'] = $menu['name'];
 			$t = '分类为：'. $menu['name']."<br>\n";
@@ -51,35 +56,51 @@ if(!empty($_GET)) {
 			$t .= '标签为：' . $menu['tag']?$menu['tag']:$menu['name']."<br>\n";
 			$t .= "目前该分类还处在开发阶段，很快就会有内容呈现。谢谢关注。<br>\n";
 			$info['content'] = $t;
+			$obj->assign('info', $info);
 		}
 	}
-	elseif(isset($_GET['i'])) {
-	}
-	elseif(isset($_GET['n'])) {
-	}
 	elseif(isset($_GET['cid'])) {
+		$info = array();
 		//general.php?cid=47
 		$row = $obj->get_content($_GET['cid']);
 		$info['title'] = $row['linkname'];
 		$info['content'] = '<div class="display_content">'.$row['content'].'</div>';
+		$obj->assign('info', $info);
 	}
 	elseif(isset($_GET['sitemap'])) {
+		$info = array();
 		$info['title'] = $obj->get_sitemap($_GET['sitemap']);
 		$info['content'] = "目前该分类还处在开发阶段，很快就会有内容呈现。谢谢关注。<br>\n";
+		$obj->assign('info', $info);
 	}
 	elseif(isset($_GET['test'])) {
 		header('Content-Type: text/html; charset=utf-8'); 
-		//echo "<pre>"; print_r($_GET); echo "</pre>";
 		echo "<pre>"; print_r($obj->select_contents_by_keyword($_GET['test'])); echo "</pre>";
+		echo "<pre>"; print_r($_SESSION); echo "</pre>";
 		exit;
 	}
-	$obj->assign('info', $info);
+	elseif(isset($_GET['page'])) {
+		//echo "<pre>"; print_r($_SESSION); echo "</pre>";
+		$obj->assign('results', $obj->select_contents_by_page());
+		$obj->assign('search_template', $tdir.'search.tpl.html');
+	
+		$pagination = $obj->draw();	
+		$obj->assign("pagination", $pagination);
+	}
+	else {
+		die('啊，出错啦，不可能到这里。');
+	}
 }
 //[key] => 负面新闻
 elseif(isset($_POST['key'])) {
+	if (isset($_SESSION[SEARCH])) unset($_SESSION[SEARCH]);
 	$key = $_POST['key'];
+	$_SESSION[SEARCH]['key'] = $_POST['key']?$_POST['key']:'所有记录';
 	$obj->assign('results', $obj->select_contents_by_keyword($key));
 	$obj->assign('search_template', $tdir.'search.tpl.html');
+
+	$pagination = $obj->draw();	
+	$obj->assign("pagination", $pagination);
 }
 else {
 	header('Location: login.php');
@@ -94,5 +115,4 @@ $obj->assign('sitemap', $obj->get_sitemap());
 $obj->assign('footer_template', $tdir.'footer.tpl.html');
 
 $obj->display($tdir.'layout.tpl.html');
-
 ?>

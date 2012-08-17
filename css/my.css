@@ -132,3 +132,60 @@ p.banner {
 	width: 399px;
 	z-index: 22;
 }
+.page {
+	text-align: center;
+}
+.page li {
+	float: left;
+}
+.page a {
+	background-color: #FFFFFF;
+	border: 1px solid #DDDDDD;
+	color: #454545;
+	float: left;
+	font-family: Arial, Helvetica, sans-serif;
+	height: 20px;
+	line-height: 20px;
+	margin: 0 6px 0 0;
+	padding: 0 6px;
+	text-align: center;
+	vertical-align: middle;
+}
+.page a:hover, a.now {
+	border-color: #0066CC;
+	text-decoration: none;
+}
+.page a.now {
+	background: none repeat scroll 0 0 #2266BB;
+	color: #FFFFFF;
+	font-weight: bold;
+}
+.pagination {
+	margin: 0 auto;
+	text-align: center;
+}
+.pagination a {
+	background-color: #FFFFFF;
+	border: 1px solid #DDDDDD;
+	color: #2266BB;
+	float: left;
+	font-family: Arial;
+	height: 20px;
+	line-height: 20px;
+	margin: 0 6px 0 0;
+	padding: 0 6px;
+	text-align: center;
+	vertical-align: middle;
+}
+.pagination a:hover, .pagination a.now {
+	border-color: #2266BB;
+}
+.pagination a.now {
+	background-color: #2266BB;
+	color: #FFFFFF;
+	font-weight: bold;
+}
+.pagination a.no-op {
+	background: none repeat scroll 0 0 #FFFFFF;
+	border-color: #DDDDDD;
+}
