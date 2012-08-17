@@ -24,7 +24,9 @@
 <div class="container">
   <div id="header"> {include file="{$header_template}"} </div>
   {if {$search_template}}
-  <div id="search">{include file="{$search_template}"}</div>
+  <div id="general">
+    <div id="search">{include file="{$search_template}"}</div>
+  </div>
   {else}
   <div id="general">{include file="{$general_template}"}</div>
   {/if}
