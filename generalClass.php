@@ -17,13 +17,29 @@ class GeneralClass extends BaseClass
 		$this->dbh = $this->mysql_connect_dixi();
 	}
 
+	//////////////// Category ////////////////
 	function get_menu_info($cid) {
 		$query = "select name, description, frequency, tag from categories where cid=" . $cid;
 		$res = mysql_query($query);
 		$row = mysql_fetch_assoc($res);
+		mysql_free_result($res);
 		return $row;
 	}
-
+	
+	//////////////// Items ////////////////
+	function get_items($category='食品') {
+		$ary = array();
+		$query = "select name, iid, description from items where category='" . $category . "' order by weight;";
+		$res = mysql_query($query);
+		while($row = mysql_fetch_assoc($res)) {
+			array_push($ary, $row);
+		}
+		mysql_free_result($res);
+		return $ary;
+	}
+		
+	//////////////// Contents ////////////////
+	
 	function get_content($cid) {
 		$sql = "select content, linkname, notes from contents where cid=".$cid;
 		$res = mysql_query($sql);
@@ -34,7 +50,25 @@ class GeneralClass extends BaseClass
 		$sql = "select content from contents where cid=".$cid;
 		$res = mysql_query($sql);
 		$row = mysql_fetch_assoc($res);
+		mysql_free_result($res);
 		return $row['content'];
+	}
+	
+	function get_contents_list($iid) {
+		$ary = array();
+		$sql = "select linkname, cid from contents where iid=".$iid . " order by weight;";;
+		$res = mysql_query($sql);
+		
+		
+		$t = '<ul>';
+		
+		// $t .= '<li><a href="'.$config['general'].'?cid='.$row['cid'].'">'.$row['linkname']."</a></li>\n"; 
+		while($row = mysql_fetch_assoc($res)) {
+			$t .= '<li><a href="./general.php?cid='.$row['cid'].'">'.$row['linkname']."</a></li>\n"; 
+		}
+		$t .= '</ul>';
+		mysql_free_result($res);
+		return $t;
 	}
 
 	function set_keywords($key) 
@@ -84,6 +118,7 @@ class GeneralClass extends BaseClass
 		while($row = mysql_fetch_assoc($res)) {
 			array_push($ary, $row);
 		}
+		mysql_free_result($res);
 		//返回生成的结果。
 		return $ary;
 	}
@@ -108,13 +143,12 @@ class GeneralClass extends BaseClass
 		$sql .= " limit  " . $row_no . "," . ROWS_PER_PAGE;
 		$_SESSION[SEARCH]['sql'] = $sql;
 		
-		//echo "<pre>"; print_r($_SESSION); echo "</pre>";		
-		//echo "$sql<br>\n";
 		$ary = array();	
 		$res = mysql_query($sql);
 		while($row = mysql_fetch_assoc($res)) {
 			array_push($ary, $row);
 		}
+		mysql_free_result($res);
 		//返回生成的结果。
 		return $ary;
 	}
