@@ -36,6 +36,10 @@ if(!empty($_GET)) {
 		echo $obj->get_content_1($_GET['cid']);
 		exit;
 	}
+	if(isset($_GET['js_get_contents_list'])) {
+		echo $obj->get_contents_list($_GET['iid']);
+		exit;
+	}	
 	elseif(isset($_GET['js_sitemap'])) {
 		$info = array();
 		$info['title'] = $obj->get_sitemap($_GET['sitemap']);
@@ -46,6 +50,9 @@ if(!empty($_GET)) {
 	}
 	elseif(isset($_GET['i']) && isset($_GET['n'])) {
 		if($_GET['n'] == 'food') {
+			$info = $obj->get_items();
+			$obj->assign('info', $info);
+			$obj->assign('item_template', $tdir.'item.tpl.html');
 		}
 		else {
 			$info = array();
@@ -75,8 +82,11 @@ if(!empty($_GET)) {
 	}
 	elseif(isset($_GET['test'])) {
 		header('Content-Type: text/html; charset=utf-8'); 
+		echo "<pre>"; print_r($obj->get_items()); echo "</pre>";
+		/*
 		echo "<pre>"; print_r($obj->select_contents_by_keyword($_GET['test'])); echo "</pre>";
 		echo "<pre>"; print_r($_SESSION); echo "</pre>";
+		*/
 		exit;
 	}
 	elseif(isset($_GET['page'])) {

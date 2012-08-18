@@ -53,7 +53,7 @@ else {
 	$obj->assign('menu', get_menu());
 	$obj->assign('aoa_tabs', get_tabs());
 	
-	$obj->assign('nails_first', get_ary_thumbnails());
+	//$obj->assign('nails_first', get_ary_thumbnails());
 	$obj->assign('carousel1', get_carousel1());
 	$obj->assign('carousel2', get_carousel2());
 	

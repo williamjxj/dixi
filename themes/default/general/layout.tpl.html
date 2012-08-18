@@ -1,4 +1,4 @@
-{debug}
+{*debug*}
 <!DOCTYPE html>
 <html lang="{$common.header.lang}">
 <head>
@@ -23,13 +23,15 @@
 <body id="{$config.browser}">
 <div class="container">
   <div id="header"> {include file="{$header_template}"} </div>
-  {if {$search_template}}
   <div id="general">
+  {if {$search_template}}
     <div id="search">{include file="{$search_template}"}</div>
-  </div>
+  {elseif {$item_template}}
+  <div id="item">{include file="{$item_template}"}</div>
   {else}
-  <div id="general">{include file="{$general_template}"}</div>
+  {include file="{$general_template}"}
   {/if}
+  </div>
   <div id="footer"> {include file="{$footer_template}"} </div>
 </div>
 </body>

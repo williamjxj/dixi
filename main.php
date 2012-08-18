@@ -29,20 +29,41 @@ function get_menu() {
 	return $ary;
 }
 
-function get_carousel1() {
-	$ary = array();
-    $query = "select concat(path,file) as carousel1_file from resources where file like '%300x180%'";
+function get_carousel1() 
+{
+	$total=0; $ary1=array(); $ary2=array(); $html='';
+	
+	//$query = "select concat(path,file) as carousel1_file from resources where file like '%300x180%'";
+    $query = "select concat(path,file) as carousel1_file from resources where file like '%300x294%' order by rand()";
     $res = mysql_query($query);
+	$total = mysql_num_rows($res);
     while($row = mysql_fetch_assoc($res)) {
-		array_push ($ary, $row['carousel1_file']);
+		$t = '<img src="'. $row['carousel1_file'] . '" />';
+		array_push ($ary1, $t);
 	}
-	return $ary;
+
+	$sql = "select linkname, cid from contents where linkname != '负面新闻' and mname='食品' order by rand() limit 0,13";
+	$res = mysql_query($sql);
+	while ($row = mysql_fetch_assoc($res)) {
+		array_push($ary2, $row);
+	}
+    // echo "<pre>"; echo $total; print_r($ary2); print_r($ary1); echo "</pre>"; exit;
+	//'      <p>' . $ary2[$i]['linkname'] . '</p>' .
+	for($i=0; $i<$total; $i++) {
+		$html .= 
+		'<div class="item">' . '<a href="./general.php?cid=' . $ary2[$i]['cid'] . '">' . $ary1[$i] . '</a>' .
+		'  <div class="carousel-caption">' . 
+		'    <h4>' . $ary2[$i]['linkname'] . '</h4>' .
+		'   </div>' .
+		"</div>\n";
+	}
+	return $html;
 }
 
 function get_carousel2() {
 	//1. 图片
 	$ary = array();
-    $query = "select concat(path,file) as carousel2_file from resources where file like '%220x130%'";
+    $query = "select concat(path,file) as carousel2_file from resources where file like '%220x130%' order by rand()";
     $res = mysql_query($query);
     while($row = mysql_fetch_assoc($res)) {
 		$t = '<img src="'. $row['carousel2_file'] . '" />';
@@ -51,10 +72,10 @@ function get_carousel2() {
 	
 	//2. 内容
 	$ary2 = array();
-	$sql = "select linkname, notes from contents where linkname != '负面新闻' and mname='食品'";
+	$sql = "select linkname, cid from contents where linkname != '负面新闻' and mname='食品' order by rand() limit 0,13";
 	$res = mysql_query($sql);
 	while ($row = mysql_fetch_assoc($res)) {
-		$t = array('h5'=>$row['linkname'], 'a'=>$row['notes']);
+		$t = array('h5'=>$row['linkname'], 'a'=>'./general.php?cid='.$row['cid']);
 		array_push($ary2, $t);
 	}
 	
@@ -70,7 +91,7 @@ function get_carousel2() {
 		$c .= '<a href="#">';
 		$c .= $t;
 		$c .= '</a>';
-		$c .= '<div class="caption"><h5><a href="'.$ary2[$x]['h5'].'">'.$ary2[$x]['h5'].'</a></h5>';
+		$c .= '<div class="caption"><h5><a href="'.$ary2[$x]['a'].'">'.$ary2[$x]['h5'].'</a></h5>';
 		$c .= '<p>'.$ary2[$x++]['h5'].'</p>';
 		$c .= "</div></div></li>\n";
 		$n .= $c;
@@ -91,7 +112,7 @@ function get_carousel2() {
 	return $nails_rest;
 }
 
-
+// Not use anymore.
 function get_ary_thumbnails() 
 {
 	$ary = array();
@@ -131,7 +152,7 @@ function get_ary_thumbnails()
 			'a' => 'http://www.chinafnews.com/2012/0702/9896.shtml',
 		),
 	);
-
+	
 	$nails_first = '<ul class="thumbnails">';
 	$c = '';
 	foreach($thumbnails as $t) {
