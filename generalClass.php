@@ -17,6 +17,22 @@ class GeneralClass extends BaseClass
 		$this->dbh = $this->mysql_connect_dixi();
 	}
 
+	// breadcrumb
+	// 'active' => 1,
+	public function get_breadcrumb($breadcrumb) {
+		if(!isset($_SESSION[PACKAGE]['breadcrumb'])) {
+			$_SESSION[PACKAGE]['breadcrumb'][] = array(
+				'link' => '/',
+				'name' => '首页'
+			);
+		}
+		$_SESSION[PACKAGE]['breadcrumb'][] = array(
+			'link' => $breadcrumb.link,
+			'name' => $breadcrumb.name,
+			'active' => 1,
+		);
+	}
+	
 	//////////////// Category ////////////////
 	function get_menu_info($cid) {
 		$query = "select name, description, frequency, tag from categories where cid=" . $cid;
