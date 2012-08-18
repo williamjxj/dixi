@@ -3,5 +3,5 @@ logs/
 cache/
 test/*
 templates_c/
-templates_c/*
 resources/
+templates_c/*
