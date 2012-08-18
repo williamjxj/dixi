@@ -58,10 +58,8 @@ class GeneralClass extends BaseClass
 		$ary = array();
 		$sql = "select linkname, cid from contents where iid=".$iid . " order by weight;";;
 		$res = mysql_query($sql);
-		
-		
-		$t = '<ul>';
-		
+
+		$t = '<ul class="nav nav-pills nav-stacked">';
 		// $t .= '<li><a href="'.$config['general'].'?cid='.$row['cid'].'">'.$row['linkname']."</a></li>\n"; 
 		while($row = mysql_fetch_assoc($res)) {
 			$t .= '<li><a href="./general.php?cid='.$row['cid'].'">'.$row['linkname']."</a></li>\n"; 

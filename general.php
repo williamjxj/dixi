@@ -36,7 +36,7 @@ if(!empty($_GET)) {
 		echo $obj->get_content_1($_GET['cid']);
 		exit;
 	}
-	if(isset($_GET['js_get_contents_list'])) {
+	elseif(isset($_GET['js_get_contents_list'])) {
 		echo $obj->get_contents_list($_GET['iid']);
 		exit;
 	}	
@@ -48,6 +48,11 @@ if(!empty($_GET)) {
 		$obj->display($tdir.'general.tpl.html');
 		exit;
 	}
+	elseif(isset($_GET['js_get_contents_by_item'])) {
+		$info = $obj->get_contents_list($_GET['iid']);
+		$obj->assign('info', $info);
+		$obj->assign('content_template', $tdir.'contents.tpl.html');
+	}	
 	elseif(isset($_GET['i']) && isset($_GET['n'])) {
 		if($_GET['n'] == 'food') {
 			$info = $obj->get_items();

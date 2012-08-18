@@ -36,19 +36,17 @@
   background-color: #efd;
   z-index: 3;
 }
-
-.rss a img {
-  border: 0;
-}
-
 /*
  * 1. tom.com
  * 2. http://stackoverflow.com/questions/11216940/get-height-of-li-using-jquery-so-news-ticker-scrolls-up-the-exact-amount-needed/11217076#11217076
  */
 .rss {
-    margin-top: 6px;
+	margin-top: 10px;
     overflow: hidden;
 	font-size:12px;
+}
+.rss a img {
+  border: 0;
 }
 .rss .newslist {
     -moz-border-bottom-colors: none;
@@ -86,26 +84,6 @@
     color: #A5A5A5;
    /* box-shadow: 2px 2px 2px #888888;*/
 }
-.box {
-    background-color: #E0EAF1;
-    border-bottom: 1px solid #3E6D8E;
-    border-right: 1px solid #7F9FB6;
-    color: #3E6D8E;
-    font-size: 90%;
-    line-height: 2.4;
-    margin: 2px 2px 2px 0;
-    padding: 3px 4px;
-    text-decoration: none;
-    white-space: nowrap;
-}
-.box:hover {
-    background-color: #3E6D8E;
-    border-bottom: 1px solid #37607D;
-    border-right: 1px solid #37607D;
-    color: #E0EAF1;
-    text-decoration: none;
-}
-
 .rss [class*="span"] {
   margin-left: 6px !important;
 }

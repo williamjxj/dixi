@@ -28,6 +28,8 @@
     <div id="search">{include file="{$search_template}"}</div>
   {elseif {$item_template}}
   <div id="item">{include file="{$item_template}"}</div>
+  {elseif {$content_template}}
+  {include file="{$content_template}"}
   {else}
   {include file="{$general_template}"}
   {/if}

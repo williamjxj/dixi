@@ -15,18 +15,21 @@ class DixiClass extends BaseClass
 	    $this->mdb2 = $this->pear_connect_admin();
 	}
 	
-	function get_definition() {
-		$sql = "select content from contents where linkname = '负面新闻' and mname='食品' ";
-		$res = $this->mdb2->queryOne($sql);
+	// keywords 表.
+	function get_keywords() {
+		$sql = "select keyword from keywords order by updated desc, created desc limit 0,5";
+		$res = $this->mdb2->queryAll($sql);
 		if (PEAR::isError($res)) {
 			die($res->getMessage(). ' - line ' . __LINE__ . ': ' . $sql);
 		}
 		return $res;
 	}
-
-	function get_keywors() {
-		$sql = "select keyword from keywords order by updated desc, created desc limit 0,5";
-		$res = $this->mdb2->queryAll($sql);
+	
+	// items 表.
+	function get_items($category='食品') {
+		$ary = array();
+		$query = "select name, iid, description from items where category='" . $category . "' order by weight;";
+		$res = $this->mdb2->queryAll($query, '', MDB2_FETCHMODE_ASSOC);
 		if (PEAR::isError($res)) {
 			die($res->getMessage(). ' - line ' . __LINE__ . ': ' . $sql);
 		}
@@ -44,6 +47,16 @@ class DixiClass extends BaseClass
 	}
 	function get_loop2() {
 		return $this->get_tab_list(false, 13, 13);
+	}
+
+	// contents 表.
+	function get_definition() {
+		$sql = "select content from contents where linkname = '负面新闻' and mname='食品' ";
+		$res = $this->mdb2->queryOne($sql);
+		if (PEAR::isError($res)) {
+			die($res->getMessage(). ' - line ' . __LINE__ . ': ' . $sql);
+		}
+		return $res;
 	}
 	
 	//select cid, linkname from contents where linkname != '负面新闻' and mname='食品' order by cid desc limit 0, 10

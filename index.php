@@ -42,7 +42,7 @@ if(isset($_GET['js_get_tab_list'])) {
 else if(isset($_GET['test'])) {
 	header('Content-Type: text/html; charset=utf-8'); 
 	//echo "<pre>"; print_r($obj->get_latest()); print_r($obj->get_hot()); print_r($obj->get_loop1()); print_r($obj->get_loop2()); echo "</pre>";
-	$t = $obj->get_keywors();
+	$t = $obj->get_keywords();
 	echo "<pre>"; print_r($t); echo "</pre>";
 	exit;
 }
@@ -62,7 +62,12 @@ else {
 
 	$obj->assign('latest', $obj->get_latest());
 	$obj->assign('hot', $obj->get_hot());
-	$obj->assign('keywords', $obj->get_keywors());
+	$obj->assign('keywords', $obj->get_keywords());
+
+// 下面的span5方框需要填充,用食品的items.
+	$info = $obj->get_items();
+	$obj->assign('info', $info);
+	$obj->assign('item_template', $tdir.'../general/item.tpl.html');
 		
 	$obj->assign('header_template', $tdir.'header.tpl.html');
 	$obj->assign('menu_template', $tdir.'menu.tpl.html');
