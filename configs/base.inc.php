@@ -134,6 +134,12 @@ class BaseClass extends Smarty
 			"$k" => __FILE__.__LINE__.$this->url.$this->self.'底细真相事实3333',
 		);
 	}
-	  
+
+	function __p($obj)
+	{
+		if(isset($config['debug']) && $config['debug']) {
+			echo "<pre>"; print_r($obj); echo "</pre>";
+		}
+	}	  
 }
 ?>

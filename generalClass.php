@@ -4,84 +4,174 @@ defined('SITEROOT') or define('SITEROOT', './');
 defined('SEARCH') or define('SEARCH', 'search');
 defined('ROWS_PER_PAGE') or define('ROWS_PER_PAGE', 25);
 require_once(SITEROOT."configs/base.inc.php");
+//global $config;
+//echo "<pre>"; print_r($config); echo "</pre>";
 
 class GeneralClass extends BaseClass
 {
 	var $sid, $url, $self;
 	public function __construct($site_id) {
+		global $config;
 		parent::__construct();
 		$this -> sid = $site_id;
 		$this -> url = $_SERVER['PHP_SELF'];
 		$this -> self = basename($this -> url, '.php');
 	    $this->template_dir = SITEROOT.'themes/default/templates/';
 		$this->dbh = $this->mysql_connect_dixi();
+		$this->general = $config['general'];
 	}
 
-	// breadcrumb
-	// 'active' => 1,
-	public function get_breadcrumb($breadcrumb) {
-		if(!isset($_SESSION[PACKAGE]['breadcrumb'])) {
-			$_SESSION[PACKAGE]['breadcrumb'][] = array(
-				'link' => '/',
-				'name' => '首页'
-			);
-		}
+	// 每次用户点击,breadcrumb 都应该重组.
+	function set_1_breadcrumb() {
+		unset($_SESSION[PACKAGE]['breadcrumb']);
 		$_SESSION[PACKAGE]['breadcrumb'][] = array(
-			'link' => $breadcrumb.link,
-			'name' => $breadcrumb.name,
-			'active' => 1,
+			'link' => 'index.php',
+			'name' => '首页'
 		);
 	}
-	
+	/*
+	function get_breadcrumb() {
+		$this->set_1_breadcrumb();
+		echo "<pre>"; print_r($_SESSION[PACKAGE]['breadcrumb']); echo "</pre>";
+		return $_SESSION[PACKAGE]['breadcrumb'];
+	}
+	*/
+	public function set_breadcrumb($breadcrumb)
+	{
+		$this->set_1_breadcrumb();
+		if(count($breadcrumb)>1) {
+			foreach($breadcrumb as $b)
+				$_SESSION[PACKAGE]['breadcrumb'][] = $b;
+		}
+		else {
+			array_push($_SESSION[PACKAGE]['breadcrumb'], array_pop($breadcrumb));
+		}
+		$this->__p($_SESSION[PACKAGE]['breadcrumb']);
+	}
+
 	//////////////// Category ////////////////
-	function get_menu_info($cid) {
-		$query = "select name, description, frequency, tag from categories where cid=" . $cid;
+	function get_menu_info($cate_id) {
+		$query = "select name, description, frequency, tag from categories where cid=" . $cate_id;
 		$res = mysql_query($query);
 		$row = mysql_fetch_assoc($res);
 		mysql_free_result($res);
+
+		$b = array();
+		// 逻辑：当面包屑为一时，表示只有一层，数组个数为一；当面包屑>1时，表示有多层，数组个数>1
+		// 这里，要用array(array(..))来控制count()=1, 否则count()>1.
+		$b[] = array('name'=>$row['name'], 'active'=>1);
+		$this->set_breadcrumb($b);
+
 		return $row;
 	}
-	
-	//////////////// Items ////////////////
-	function get_items($category='食品') {
+	function get_category_list() 
+	{
+		list($cate_id, $category) = array(0, '');
 		$ary = array();
-		$query = "select name, iid, description from items where category='" . $category . "' order by weight;";
+		$query = "select name, cid, description, frequency, tag from categories order by weight";
 		$res = mysql_query($query);
+
 		while($row = mysql_fetch_assoc($res)) {
+			if(!$cate_id && !$category) {
+				$cate_id = $row['cid'];
+				$category = $row['name'];
+			}
 			array_push($ary, $row);
 		}
 		mysql_free_result($res);
+
+		$b = array();
+		$b[] = array('name'=>$category, 'active'=>1);
+		$this->set_breadcrumb($b);
+
+		return $ary;
+	}
+	
+	//////////////// Items ////////////////
+	function get_item_list($items_category='食品') 
+	{
+		list($cate_id, $category, $item) = array(0, '', '');
+		$ary = array();
+		$query = "select name, iid, description, category, cid from items where category='" . $items_category . "' order by weight;";
+		$res = mysql_query($query);
+
+		while($row = mysql_fetch_assoc($res)) {
+			if(!$cate_id && !$category && !$item) {
+				$cate_id = $row['cid'];
+				$category = $row['category'];
+				$item = $row['name'];
+			}
+			array_push($ary, $row);
+		}
+		mysql_free_result($res);
+
+		$b = array();
+		$b[] = array('name'=>$category, 'link'=>$this->general.'?category_menu='.$cate_id);
+		$b[] = array('name'=>$item, 'active'=>1);
+		$this->set_breadcrumb($b);
 		return $ary;
 	}
 		
 	//////////////// Contents ////////////////
 	
 	function get_content($cid) {
-		$sql = "select content, linkname, notes from contents where cid=".$cid;
-		$res = mysql_query($sql);
-		$row = mysql_fetch_assoc($res);
-		return $row;
-	}
-	function get_content_1($cid) {
-		$sql = "select content from contents where cid=".$cid;
+		$sql = "select content, linkname, cid, category, cate_id, item, iid from contents where cid=".$cid;
 		$res = mysql_query($sql);
 		$row = mysql_fetch_assoc($res);
 		mysql_free_result($res);
+
+		//添加面包屑功能.
+		$b = array();
+		$b[] = array('name'=>$row['category'], 'link'=>$this->general.'?category_menu='.$row['cate_id']);
+		$b[] = array('name'=>$row['item'], 'link'=>$this->general.'?iid='.$row['iid']);
+		$b[] = array('name'=>$row['linkname'], 'active'=>1);
+		$this->set_breadcrumb($b);
+
+		return $row;
+	}
+
+	// 输出内容，并构建面包屑
+	function get_content_1($cid) 
+	{
+		$sql = "select content, linkname, cid, category, cate_id, item, iid from contents where cid=".$cid;
+		$res = mysql_query($sql);
+		$row = mysql_fetch_assoc($res);
+		mysql_free_result($res);
+
+		//添加面包屑功能.
+		$b = array();
+		$b[] = array('name'=>$row['category'], 'link'=>$this->general.'?category_menu='.$row['cate_id']);
+		$b[] = array('name'=>$row['item'], 'link'=>$this->general.'?iid='.$row['iid']);
+		$b[] = array('name'=>$row['linkname'], 'active'=>1);
+		$this->set_breadcrumb($b);
+
 		return $row['content'];
 	}
 	
 	function get_contents_list($iid) {
 		$ary = array();
-		$sql = "select linkname, cid from contents where iid=".$iid . " order by weight;";;
+		$sql = "select linkname, cid, category, cate_id, item, iid from contents where iid=".$iid . " order by weight;";;
 		$res = mysql_query($sql);
 
+		list($cate_id, $category, $item) = array(0, '', '');
 		$t = '<ul class="nav nav-pills nav-stacked">';
 		// $t .= '<li><a href="'.$config['general'].'?cid='.$row['cid'].'">'.$row['linkname']."</a></li>\n"; 
 		while($row = mysql_fetch_assoc($res)) {
-			$t .= '<li><a href="./general.php?cid='.$row['cid'].'">'.$row['linkname']."</a></li>\n"; 
+			if(!$cate_id && !$category && !$item) {
+				$cate_id = $row['cate_id'];
+				$category = $row['category'];
+				$item = $row['item'];
+			}
+			$t .= '<li><a href="'.$this->general.'?cid='.$row['cid'].'">'.$row['linkname']."</a></li>\n"; 
 		}
 		$t .= '</ul>';
 		mysql_free_result($res);
+
+		//添加面包屑功能.
+		$b = array();
+		$b[] = array('name'=>$category, 'link'=>$this->general.'?category_menu='.$cate_id);
+		$b[] = array('name'=>$item, 'active'=>1);
+		$this->set_breadcrumb($b);
 		return $t;
 	}
 
@@ -108,23 +198,29 @@ class GeneralClass extends BaseClass
 	function select_contents_by_keyword($key)
 	{
 		$this->set_keywords($key);
+		$_SESSION[PACKAGE][SEARCH]['key'] = $_POST['key']?$_POST['key']:'所有记录';
 		
+		//添加面包屑功能.
+		$b = array();
+		$b[] = array('name'=>'搜索 - '.$_SESSION[PACKAGE][SEARCH]['key'], 'active'=>1);
+		$this->set_breadcrumb($b);
+
 		//计算对于此关键词，总共多少记录。
 	    $total = $this->get_contents_count($key);
 		$total_pages = ceil($total/ROWS_PER_PAGE);
-		$_SESSION[SEARCH]['total'] = $total;
-		$_SESSION[SEARCH]['total_pages'] = $total_pages;
+		$_SESSION[PACKAGE][SEARCH]['total'] = $total;
+		$_SESSION[PACKAGE][SEARCH]['total_pages'] = $total_pages;
 		
 		//第一页：
 		$page = 1;
-		$_SESSION[SEARCH]['page'] = $page;
+		$_SESSION[PACKAGE][SEARCH]['page'] = $page;
 
 		//当前从第几条记录开始显示。
 		$row_no = 0;
 
 		//生成新的查询语句。
 		$sql = "select linkname, cid, date(created) as date from contents where content like '%".$key ."%' order by cid desc";
-		$_SESSION[SEARCH]['sql'] = $sql;
+		$_SESSION[PACKAGE][SEARCH]['sql'] = $sql;
 		$sql .= " limit  " . $row_no . "," . ROWS_PER_PAGE;
 		
 		$ary = array();	
@@ -140,22 +236,22 @@ class GeneralClass extends BaseClass
 	function select_contents_by_page()
 	{		
 		//计算共有多少页？
-		$total_pages = isset($_SESSION[SEARCH]['total_pages']) ? $_SESSION[SEARCH]['total_pages'] : 1;
+		$total_pages = isset($_SESSION[PACKAGE][SEARCH]['total_pages']) ? $_SESSION[PACKAGE][SEARCH]['total_pages'] : 1;
 		$page = isset($_GET['page']) ? $_GET['page'] : 1;
 		if ($page > $total_pages) $page = $total_pages;
 		if ($page < 1) $page = 1;
-		$_SESSION[SEARCH]['page'] = $page;
+		$_SESSION[PACKAGE][SEARCH]['page'] = $page;
 
 		//当前从第几条记录开始显示。
 		$row_no = ((int)$page-1)*ROWS_PER_PAGE;
 
 		//生成新的查询语句。
-		if(preg_match("/limit/i", $_SESSION[SEARCH]['sql']))
-			$_SESSION[SEARCH]['sql'] = preg_replace("/limit.*$/i", '', $_SESSION[SEARCH]['sql']);
+		if(preg_match("/limit/i", $_SESSION[PACKAGE][SEARCH]['sql']))
+			$_SESSION[PACKAGE][SEARCH]['sql'] = preg_replace("/limit.*$/i", '', $_SESSION[PACKAGE][SEARCH]['sql']);
 
-		$sql = $_SESSION[SEARCH]['sql'];
+		$sql = $_SESSION[PACKAGE][SEARCH]['sql'];
 		$sql .= " limit  " . $row_no . "," . ROWS_PER_PAGE;
-		$_SESSION[SEARCH]['sql'] = $sql;
+		$_SESSION[PACKAGE][SEARCH]['sql'] = $sql;
 		
 		$ary = array();	
 		$res = mysql_query($sql);
@@ -163,14 +259,15 @@ class GeneralClass extends BaseClass
 			array_push($ary, $row);
 		}
 		mysql_free_result($res);
+
 		//返回生成的结果。
 		return $ary;
 	}
 
 	function draw()
 	{
-		$current_page = $_SESSION[SEARCH]['page'] ? $_SESSION[SEARCH]['page'] : 1;
-		$total_pages = $_SESSION[SEARCH]['total_pages'] ? $_SESSION[SEARCH]['total_pages'] : 0;
+		$current_page = $_SESSION[PACKAGE][SEARCH]['page'] ? $_SESSION[PACKAGE][SEARCH]['page'] : 1;
+		$total_pages = $_SESSION[PACKAGE][SEARCH]['total_pages'] ? $_SESSION[PACKAGE][SEARCH]['total_pages'] : 0;
 		
 		$plinks = array(); $links = array(); $slinks = array(); $queryURL = '';
 

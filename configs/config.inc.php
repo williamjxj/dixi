@@ -1,7 +1,7 @@
 <?php
 defined('PACKAGE') or define('PACKAGE', 'dixi');
 defined('SITEROOT') or define('SITEROOT', '/');
-defined('DEBUG') or define('DEBUG', true);
+defined('DEBUG') or define('DEBUG', false);
 
 $config = array(
   'debug' => DEBUG,

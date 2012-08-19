@@ -1,8 +1,14 @@
+{if ! $url}
+{$url={$config.general}}
+{/if}
 <script type="text/javascript">
 $(function() {
 	$('div.sitemap').find('a.btn').click(function(e) {
 		e.preventDefault();
-		$('#general').load("{$config.general}"+$(this).attr('href')+"&js_sitemap=1");
+		var t = '{$url}'+$(this).attr('href');
+		$('#general').hide().load(t+'&js_sitemap=1', function() {
+			$('#breadcrumb').load(t+'&js_get_breadcrumb=1');
+		}).fadeIn(200);
 		// window.location.href="{$config.general}"+$(this).attr('href');		
 		return false;
 	});

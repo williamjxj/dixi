@@ -14,7 +14,10 @@
   $(function() {
 	$('li.li3 a').click(function(e) {
 		e.preventDefault();
-		$('#div_display').hide().load($(this).attr('href')).fadeIn(200);
+		var t = $(this).attr('href').replace(/&.*$/, '');
+		$('#div_display').hide().load($(this).attr('href'), function() {
+			$('#breadcrumb').load(t+'&js_get_breadcrumb=1');
+		}).fadeIn(200);
 		return false;
 	});
 	$('.pager1 a').each(function(){

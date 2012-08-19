@@ -1,0 +1,10 @@
+{$url={$config.general}}
+<div class="span5 box5">
+  <ul class="nav nav-pills nav-stacked">
+    {$no=1}
+    {foreach $info as $is}
+    <li class="li3"><span class="badge badge-warning">{$no++}</span> <a href="{$url}?iid={$is.cid}" title="{$is.description}">{$is.name}</a></li>
+    {/foreach}
+  </ul>
+</div>
+<div style="clear:both;"></div>

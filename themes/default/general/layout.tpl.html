@@ -25,6 +25,8 @@
   <div id="general">
   {if {$search_template}}
     <div id="search">{include file="{$search_template}"}</div>
+  {elseif {$category_template}}
+  <div id="category">{include file="{$category_template}"}</div>
   {elseif {$item_template}}
   <div id="item">{include file="{$item_template}"}</div>
   {elseif {$content_template}}
