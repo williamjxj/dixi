@@ -5,14 +5,14 @@
     {$info.content='没有关于这个关键词的记录。'}
 	{include file="{$general_template}"}
 {else}
-	{$no=1+({$smarty.session.search.page}-1)*25}
+	{$no=1+({$smarty.session.dixi.search.page}-1)*25}
     <div class="row">
   <div class="span5 box5"> 
         <div class="alert">
       <button class="close" data-dismiss="alert">×</button>
-      查询：&lt;<strong>{$smarty.session.search.key}</strong>&gt;, 
-      匹配总数：&lt;<strong>{$smarty.session.search.total}</strong>&gt;, 
-      页数：&lt;<strong>{$smarty.session.search.page}/{$smarty.session.search.total_pages}</strong>&gt;
+      查询：&lt;<strong>{$smarty.session.dixi.search.key}</strong>&gt;, 
+      匹配总数：&lt;<strong>{$smarty.session.dixi.search.total}</strong>&gt;, 
+      页数：&lt;<strong>{$smarty.session.dixi.search.page}/{$smarty.session.dixi.search.total_pages}</strong>&gt;
       {if !empty($pagination)} <span class="pager1"> {$pagination} </span> {/if} </div>
            
         <ul class="nav nav-pills nav-stacked">
@@ -31,7 +31,9 @@
 $(function() {
 	$('li.li3 a').click(function(e) {
 		e.preventDefault();
-		$('#div_display').hide().load($(this).attr('href')).fadeIn(200);
+		var h = $(this).attr('href');
+		$('#div_display').hide().load(h).fadeIn(200);
+		$('#breadcrumb').hide().load(h.replace(/js_get_content/, "js_get_breadcrumb")).fadeIn(200);
 		return false;
 	});
 	$('.pager1 a').each(function(){

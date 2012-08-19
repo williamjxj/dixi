@@ -100,7 +100,7 @@ $(function() {
     <ul class="nav nav-pills nav-stacked">
       {$no=1}
       {foreach $info as $is}
-      <li class="li3"><span class="badge badge-warning">{$no++}</span> <a href="{$config.general}?iid={$is.iid}&js_get_contents_by_item=1" title="{$is.description}">{$is.name}</a></li>
+      <li class="li3"><span class="badge badge-warning">{$no++}</span> <a href="{$config.general}?iid={$is.iid}" title="{$is.description}">{$is.name}</a></li>
       {/foreach}
     </ul>
   </div>
