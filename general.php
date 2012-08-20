@@ -121,10 +121,16 @@ if(!empty($_GET)) {
 	elseif(isset($_GET['page'])) {
 		//echo "<pre>"; print_r($_SESSION); echo "</pre>";
 		$obj->assign('results', $obj->select_contents_by_page());
-		$obj->assign('search_template', $tdir.'search.tpl.html');
-	
 		$pagination = $obj->draw();	
 		$obj->assign("pagination", $pagination);
+		// 以下是:去掉search.tpl.html ajax 部分,程序仍然能工作.
+		if(isset($_GET['js_page'])) {
+			$obj->display($tdir.'search.tpl.html');
+			exit;
+		}
+		else {
+			$obj->assign('search_template', $tdir.'search.tpl.html');
+		}
 	}
 	else {
 		header('Content-Type: text/html; charset=utf-8'); 
