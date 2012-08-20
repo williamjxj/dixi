@@ -5,12 +5,12 @@
   <div class="span10">
     <div class="btn-toolbar"> <span>当前时间： {$smarty.now|date_format:'%Y-%m-%d %H:%M'}， <span id="st" style="cursor: pointer;">切至繁体版</span> </span>
       <div class="btn-group"> <a href="#" class="btn btn-info btn-small"><i class="icon-list-alt icon-white"></i>&nbsp;显示字体</a> <a href="#" data-toggle="dropdown" class="btn  btn-info btn-small dropdown-toggle"><span class="caret"></span></a>
-        <ul class="dropdown-menu">
+        <ul class="dropdown-menu" id="switcher">
           <li><a href="#" id="switcher-default">缺省</a></li>
           <li><a href="#" id="switcher-large">放大</a></li>
           <li><a href="#" id="switcher-small">缩小</a></li>
           <li class="divider"></li>
-          <li><a href="#container" id="prlnk"><i class="icon-print"></i>&nbsp;打印</a></li>
+          <li><a href="div.container" id="prlnk"><i class="icon-print"></i>&nbsp;打印</a></li>
         </ul>
       </div>
       {if {$config.username}}
@@ -22,10 +22,10 @@
         </ul>
       </div>
       {/if}
-      <div class="btn-group"> <a href="#" class="btn btn-info btn-small"><i class="icon-user icon-white"></i>帮助中心</a> <a href="#" data-toggle="dropdown" class="btn btn-info btn-small dropdown-toggle"><span class="caret"></span></a>
-        <ul class="dropdown-menu">
-          <li><a href="{$config.path}/templates/help.tpl.html" id="help" title="帮助信息">帮助中心</a></li>
+      <div class="btn-group"> <a href="#" class="btn btn-info btn-small dropdown-toggle"><i class="icon-user icon-white"></i>帮助中心</a> <a href="#" data-toggle="dropdown" class="btn btn-info btn-small dropdown-toggle"><span class="caret"></span></a>
+        <ul class="dropdown-menu" id="contact_help">
           <li><a data-toggle="modal" class="contact" href="#myModal">联络我们</a></li>
+          <li><a data-toggle="modal" class="help1"    href="#modal1">帮助中心</a></li>
           <li class="divider"></li>
           <li><a id="login_signup" href="login/login_admin.php"><img src="images/lock.png" width="10" height="10" border="0" />&nbsp;后台管理</a></li>
         </ul>
@@ -34,13 +34,20 @@
   </div>
 </div>
 <section>
-  <div class="modal hide" id="myModal"></div>
+  <div class="modal hide fade" id="myModal"></div>
   <div id="div_ls" style="display:none;"></div>
+  <div class="modal hide fade" id="modal1">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal">×</button>
+      <h2>了解更多</h2>
+    </div>
+    <div class="modal-body"> {include file="{$help_template}"} </div>
+    <div class="modal-footer"> <a href="#" class="btn" data-dismiss="modal">关闭</a> </div>
+  </div>
 </section>
-<script language="javascript" type="text/javascript">
+<script type="text/javascript">
 $(function() {
-
-	var $speech = $('#container');
+	var $speech = $('div.container');
 	var defaultSize = $speech.css('fontSize') || $('body').css('fontSize');
 	$('#switcher a').live("click", function () {
 		var num = parseFloat($speech.css('fontSize'), 10) || parseFloat($('body').css('fontSize'));
@@ -55,7 +62,7 @@ $(function() {
 		default:
 			num = parseFloat(defaultSize, 10);
 		}
-		$('#container').stop().animate({
+		$('div.container').stop().animate({
 			fontSize: num + 'px'
 		}, 'slow');
 	});
@@ -67,8 +74,10 @@ $(function() {
 	}).show();
 
     $('#myModal').modal({ show: false });
+    $('#modal1').modal({ show: false });
+	
     $('a.contact[data-toggle="modal"]').click(function(e) {
-        e.preventDefault();
+	    e.preventDefault();
         var url = 'fancy_contact.php';
         $.ajax({
             type: 'get',
@@ -82,8 +91,17 @@ $(function() {
                 alert('error ' + textStatus + " " + errorThrown);
             }
         });
-        return false;
+        return true;
     });
+	//从general.php移过来,应该'modal1, myModal'在一起.
+	$('a.help1[data-toggle="modal"]').click(function(e) {
+		e.preventDefault();
+		$('#modal1').modal({ show: true });
+		 // alert($('ul.dropdown-menu', '#contact_help').is(':visible'));
+		 // $('div.open>.dropdown-menu').removeClass('open');
+		 // $('#contact_help').hide();
+		return false;
+	});
 
 	//dixi_admin
 	$('#login_signup').click(function(e) {
@@ -100,22 +118,22 @@ $(function() {
 				$(t2).load($(this).attr('href')).hide().fadeIn(200);
 			}
 		}
-		return false;
 	});
+	//如果返回false;下拉菜单就关闭不了,所以应该返回true.缺省是true.
 });
 </script>
-  <ul class="breadcrumb" id="breadcrumb">
-    {if $smarty.session.dixi.breadcrumb}
-    {foreach $smarty.session.dixi.breadcrumb as $b}
-    {if {$b.active}}
-    <li class="active">{$b.name}</a></li>
-    {else}
-    <li><a href="{$b.link}">{$b.name}</a> <span class="divider">/</span></li>
-    {/if}
-    {/foreach}
-    {else}
-    <li> <a href="index.php">首页</a> <span class="divider">/</span> </li>
-    <li> <a href="general.php?i=3&n=food">食品</a> <span class="divider">/</span> </li>
-    <li class="active">饮品酒类</li>
-    {/if}
-  </ul>
+<ul class="breadcrumb" id="breadcrumb">
+  {if $smarty.session.dixi.breadcrumb}
+  {foreach $smarty.session.dixi.breadcrumb as $b}
+  {if {$b.active}}
+  <li class="active">{$b.name}</a></li>
+  {else}
+  <li><a href="{$b.link}">{$b.name}</a> <span class="divider">/</span></li>
+  {/if}
+  {/foreach}
+  {else}
+  <li> <a href="index.php">首页</a> <span class="divider">/</span> </li>
+  <li> <a href="general.php?i=3&n=food">食品</a> <span class="divider">/</span> </li>
+  <li class="active">饮品酒类</li>
+  {/if}
+</ul>

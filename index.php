@@ -11,7 +11,6 @@ require_once(SITEROOT."configs/config.inc.php");
 global $config;
 
 require_once(SITEROOT."main.php");
-
 require_once(SITEROOT.'dixiClass.php');
 
 try {
@@ -20,9 +19,13 @@ try {
   echo $e->getMessage(), "line __LINE__.\n";
 }
 
+$tdir = $config['templates'];
+$tshared = SITEROOT.'themes/default/shared/';
+
 $config['url'] = $obj->url;
 $config['self'] = $obj->__t($obj->self);
 $config['browser'] = $obj->browser_id();
+$obj->assign('help_template', $tshared.'help.tpl.html');
 
 // login or not?
 if(isset($_SESSION[PACKAGE]['username'])) {
@@ -32,7 +35,6 @@ $obj->assign('common', $common);
 $obj->assign('config', $config);
 
 
-$tdir = $config['templates'];
 
 ///////////////////////////////
 
