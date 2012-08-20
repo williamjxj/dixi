@@ -106,8 +106,9 @@ class GeneralClass extends BaseClass
 		mysql_free_result($res);
 
 		$b = array();
-		$b[] = array('name'=>$category, 'link'=>$this->general.'?category_menu='.$cate_id);
-		$b[] = array('name'=>$item, 'active'=>1);
+		$b[] = array('name'=>$category, 'active'=>1);
+		//$b[] = array('name'=>$category, 'link'=>$this->general.'?category_menu='.$cate_id);
+		//$b[] = array('name'=>$item, 'active'=>1);
 		$this->set_breadcrumb($b);
 		return $ary;
 	}

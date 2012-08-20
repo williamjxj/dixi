@@ -7,13 +7,14 @@
 {else}
 	{$no=1+({$smarty.session.dixi.search.page}-1)*25}
     <div class="row">
+
   <div class="span5 box5"> 
         <div class="alert">
       <button class="close" data-dismiss="alert">×</button>
       查询：&lt;<strong>{$smarty.session.dixi.search.key}</strong>&gt;, 
       匹配总数：&lt;<strong>{$smarty.session.dixi.search.total}</strong>&gt;, 
       页数：&lt;<strong>{$smarty.session.dixi.search.page}/{$smarty.session.dixi.search.total_pages}</strong>&gt;
-      {if !empty($pagination)} <span class="pager1"> {$pagination} </span> {/if} </div>
+      {if !empty($pagination)} <div class="pager1"> {$pagination} </div> {/if} </div>
            
         <ul class="nav nav-pills nav-stacked">
       {foreach $results as $rts}
@@ -32,12 +33,27 @@ $(function() {
 	$('li.li3 a').click(function(e) {
 		e.preventDefault();
 		var h = $(this).attr('href');
-		$('#div_display').hide().load(h).fadeIn(200);
-		$('#breadcrumb').hide().load(h.replace(/js_get_content/, "js_get_breadcrumb")).fadeIn(200);
+		$('#div_display').hide().load(h, function() {
+			$('#breadcrumb').hide().load(h.replace(/js_get_content/, "js_get_breadcrumb")).fadeIn(200);
+		}).fadeIn(200);
 		return false;
 	});
-	$('.pager1 a').each(function(){
+	$('div.pager1 a').each(function(){
 	    if(!parseInt($(this).text())) $(this).addClass('bigPagerButton');
+	});
+	$('div.pager1 a').bind('click', function(e) {
+		e.preventDefault();
+		var url = $(this).attr('href');
+		$.ajax({
+			type: 'get',
+			url: url,
+			data: 'js_page=1',
+			success: function(data) {
+				console.log(data);
+				$('div#search').find('div.row').first().html(data).fadeIn(200);
+			}
+		});
+		return false;
 	});
 });
 </script>
