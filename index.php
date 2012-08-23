@@ -20,7 +20,7 @@ try {
 }
 
 $tdir = $config['templates'];
-$tshared = SITEROOT.'themes/default/shared/';
+$tshared = SITEROOT.'templates/shared/';
 
 $config['url'] = $obj->url;
 $config['self'] = $obj->__t($obj->self);

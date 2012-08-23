@@ -346,7 +346,7 @@ try {
 
 $config['url'] = $obj->url;
 $config['self'] = $obj->self;
-$config['path'] = SITEROOT . 'themes/default/';
+$config['path'] = SITEROOT . 'templates/';
 define('TMP_DIR', $config['path'].'templates/');
 
 if(isset($_GET['js_get_content'])) {

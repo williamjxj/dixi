@@ -23,7 +23,7 @@ class BaseClass extends Smarty
     
     $this->caching = false; //$this->caching = Smarty::CACHING_LIFETIME_CURRENT;
     $this->auto_literal = true;
-    $this->template_dir = SITEROOT.'themes/default/templates/';
+    $this->template_dir = SITEROOT.'templates/default/';
     $this->compile_dir = SITEROOT.'templates_c/';
     $this->config_dir = SITEROOT.'configs/';
     $this->cache_dir = SITEROOT.'cache/';

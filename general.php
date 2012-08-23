@@ -25,8 +25,8 @@ try {
 }
 
 
-$tdir = SITEROOT.'themes/default/general/';
-$tshared = SITEROOT.'themes/default/shared/';
+$tdir = SITEROOT.'templates/general/';
+$tshared = SITEROOT.'templates/shared/';
 
 $config['browser'] = $obj->browser_id();
 $obj->assign('config', $config);
