@@ -4,17 +4,14 @@
     <div id="logo"> <a href="{$config.url}" title="{$common.header.title}"><img src="{$common.logo.logo_130x60}" /> </a> </div>
   </div>
   <div class="span10">
-    <div class="btn-toolbar"> <span>当前时间： {$smarty.now|date_format:'%Y-%m-%d %H:%M'}， <span id="st" style="cursor: pointer;">切至繁体版</span> </span>
-      <div class="btn-group"> <a href="#" class="btn btn-info btn-small"><i class="icon-list-alt icon-white"></i>&nbsp;显示字体</a> <a href="#" data-toggle="dropdown" class="btn  btn-info btn-small dropdown-toggle"><span class="caret"></span></a>
-        <ul class="dropdown-menu" id="switcher">
-          <li><a href="#" id="switcher-default">缺省</a></li>
-          <li><a href="#" id="switcher-large">放大</a></li>
-          <li><a href="#" id="switcher-small">缩小</a></li>
-          <li class="divider"></li>
-          <li><a href="div.container" id="prlnk"><i class="icon-print"></i>&nbsp;打印</a></li>
+    <div class="btn-toolbar"> <span>当前时间： {$smarty.now|date_format:'%Y-%m-%d %H:%M'}，</span>
+      <div class="btn-group"> <a href="#" class="btn btn-info btn-small"><i class="icon-list-alt icon-white"></i>&nbsp; <span id="default_language"></span></a> <a href="#" data-toggle="dropdown" class="btn  btn-info btn-small dropdown-toggle"><span class="caret"></span></a>
+        <ul class="dropdown-menu" id="language">
+          <li><a class="chinese" href="#">中文</a></li>
+          <li><a class="english" href="#">English</a></li>
         </ul>
       </div>
-{if {$config.username}}
+      <span id="st" style="cursor: pointer;">切至繁体版</span> {if {$config.username}}
       <div class="btn-group"> <a href="#" class="btn btn-info btn-small"><i class="icon-user icon-white"></i>{$config.username}</a> <a href="#" data-toggle="dropdown" class="btn btn-info btn-small dropdown-toggle"><span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li><a href="#"><i class="icon-pencil"></i>{$config.username}信息</a></li>
@@ -22,11 +19,12 @@
           <li><a href="login.php?logout=1"><i class="icon-trash"></i>注销</a></li>
         </ul>
       </div>
-{/if}
+      {/if}
       <div class="btn-group"> <a href="#" class="btn btn-info btn-small"><i class="icon-user icon-white"></i>帮助中心</a> <a href="#" data-toggle="dropdown" class="btn btn-info btn-small dropdown-toggle"><span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li><a data-toggle="modal" class="contact" href="#myModal">联络我们</a></li>
-          <li><a data-toggle="modal" class="help1"    href="#modal1">帮助中心</a></li>
+          <li><a data-toggle="modal" class="help1"	href="#modal1">帮助中心</a></li>
+          <li><a data-toggle="modal" class="help2"	href="#modal2">视频帮助</a></li>
           <li class="divider"></li>
           <li><a id="login_signup" href="login/login_admin.php"><img src="images/lock.png" width="10" height="10" border="0" />&nbsp;后台管理</a></li>
         </ul>
@@ -37,17 +35,38 @@
 <section>
   <div class="modal hide fade" id="myModal"></div>
   <div id="div_ls" style="display:none;"></div>
-<div class="modal hide fade" id="modal1">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal">×</button>
-    <h2>了解更多</h2>
+  <div class="modal hide fade" id="modal1">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <h2>了解更多</h2>
+    </div>
+    <div class="modal-body"> {include file="{$help_template}"} </div>
+    <div class="modal-footer"> <a href="#" class="btn" data-dismiss="modal">关闭</a> </div>
   </div>
-  <div class="modal-body"> {include file="{$help_template}"} </div>
-  <div class="modal-footer"> <a href="#" class="btn" data-dismiss="modal">关闭</a> </div>
-</div>  
+  <div class="modal hide" id="modal2" style="width:640px;height:480px;">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    </div>
+    <div class="modal-body">
+      <iframe width="640" height="480" src="http://www.youtube.com/embed/Z5bHsrD0wic" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </div>
 </section>
-<script language="javascript" type="text/javascript">
+<script type="text/javascript">
 $(function() {
+	if( $.cookie("dixi[language]") ) {
+		$('#default_language').text( $.cookie("dixi[language]") );
+	}
+	else {
+		$('#default_language').text('中文');
+	}
+	if(! $('#default_language').text().match(/English/i)) {
+		$('#st').show();
+	}
+	else {
+		$('#st').hide();
+	}
+
 	var $speech = $('div.container');
 	var defaultSize = $speech.css('fontSize') || $('body').css('fontSize');
 	$('#switcher a').live("click", function () {
@@ -100,6 +119,11 @@ $(function() {
 		$('#modal1').modal({ show:true });
 		return false;
 	});
+	$('a.help2[data-toggle="modal"]').click(function(e) {
+		e.preventDefault();
+		$('#modal2').modal({ show:true });
+		return false;
+	});
 
 	//dixi_admin
 	$('#login_signup').click(function(e) {
@@ -117,6 +141,20 @@ $(function() {
 			}
 		}
 		return true;
+	});
+	/* $(this).closest('div').find('a:first').text();
+	 * alert(e.target.nodeName+', '+$(this).attr('class'));
+	 */
+	$('a', 'ul#language').click(function(e) {
+		e.preventDefault();
+		var $old = $('#default_language').text();
+		var $new = $(this).text();
+		if ($new != $old) {
+			$('#default_language').text($new); 
+			$.cookie("dixi[language]", $new);
+			window.location.href="index.php";
+		}
+		return false;
 	});
 });
 </script>

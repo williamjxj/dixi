@@ -12,10 +12,7 @@ require_once(SITEROOT.'generalClass.php');
 
 /*
 任何情况下,$_GET, $_POST,都有设置,但可能为空.
-echo "<pre>"; print_r($_REQUEST); echo "</pre>";
-echo "<pre>"; print_r($_POST); echo "</pre>";
-echo "<pre>"; print_r($_GET); echo "</pre>";
-exit;
+echo "<pre>"; print_r($_REQUEST);print_r($_POST);print_r($_GET);print_r($_COOKIE); echo "</pre>";
 */
 
 try {

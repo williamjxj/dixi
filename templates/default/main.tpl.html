@@ -1,40 +1,8 @@
-{*debug*}
+{debug}
 {$url={$SCRIPT_NAME}}
-<script type="text/javascript">
-$(function() {
-	for (var i=1; i<=6; i++) {
-		$('ul.nav>li>a', '#Tab'+i).removeClass('active');
-		//console.log($(('li', '#Tab'+i)).first().text());
-		$('li', '#Tab'+i).first().addClass('active');
-		var id = '#TabContent'+i;
-		$('div'+id).find('div:first').addClass('active in');
-		$('#Tab'+i).click(function(e) {
-			e.preventDefault();
-			$(this).tab('show');
-		});
-	}
-	$('#myTab a').click(function (e) {
-		e.preventDefault();
-		$(this).tab('show');
-	});
-	$('#js-news').ticker();
-	
-});
-$(window).load(function() {
-	$.getJSON('{$url}?js_get_tab_list=1', function(data) {
-		//console.log(data);
-		//console.log($('#TabContent1.tab-content').find('div').first().html()+','+data.length);
-		t = '<ul>';
-		for(i=0; i<data.length; i++) {
-			t+='<li class="tab_list"><a href="general.php?cid='+data[i][0]+'">'+data[i][1]+'</a></li>';
-		}
-		t+='</ul>';
-		$('#TabContent1.tab-content').find('div').first().html(t);
-	});
-	return false;
-});
+{$url={$config.general}}
+{if $smarty.session.dixi.language != 'English'}
 
-</script>
 <div> {$cn=1}
   {foreach $aoa_tabs as $no => $tabs}
   
@@ -43,12 +11,12 @@ $(window).load(function() {
     <div class="span6">
       <ul class="nav nav-tabs" id="Tab{$no}">
         {foreach $tabs as $tab}
-        <li><a data-toggle="tab" href="#{$tab}"><span class="head2">{$tab}</span></a></li>
+        <li><a data-toggle="tab" href="#{$tab.curl}"><span class="head2">{$tab.name|lower|capitalize}</span></a></li>
         {/foreach}
       </ul>
       <div class="tab-content tab1" id="TabContent{$no}"> {foreach $tabs as $tab}
-        <div id="{$tab}" class="tab-pane fade">
-          <p>{$tab}</p>
+        <div id="{$tab.curl}" class="tab-pane fade">
+          <p>{$tab.name}</p>
         </div>
         {/foreach} </div>
     </div>
@@ -67,15 +35,6 @@ $(window).load(function() {
       <a class="carousel-control left" href="#myCarousel2" data-slide="prev">&lsaquo;</a> <a class="carousel-control right" href="#myCarousel2" data-slide="next">&rsaquo;</a> </div>
   </div>
 </div>
-<script type="text/javascript">
-$(function() {
-	$('#myCarousel2.carousel').carousel({
-	  interval: false
-	});
-	$('#myCarousel2 div.item').first().addClass('active');
-});
-</script>
-<!------------------>
 <div class="row">
   <div class="span7">
     <div id="scrollbar1">
@@ -105,8 +64,115 @@ $(function() {
     </ul>
   </div>
 </div>
+
+
+
+{else}
+
+
+<div> {$cn=1}
+  {foreach $aoa_tabs as $no => $tabs}
+  
+  {if $cn%2}
+  <div class="row"> {/if}
+    <div class="span6">
+      <ul class="nav nav-tabs" id="Tab{$no}">
+        {foreach $tabs as $tab}
+        <li><a data-toggle="tab" href="#{$tab.curl}"><span class="head2">{$tab.curl|lower|capitalize}</span></a></li>
+        {/foreach}
+      </ul>
+      <div class="tab-content tab1" id="TabContent{$no}"> {foreach $tabs as $tab}
+        <div id="{$tab.curl}" class="tab-pane fade">
+          <p>{$tab.curl|lower|capitalize}</p>
+        </div>
+        {/foreach} </div>
+    </div>
+    {if $cn%2}
+    {$cn=$cn+1}
+    {else} 
+    {$cn=$cn+1} </div>
+  {/if}
+  {/foreach} </div>
+<div class="row box2">
+  <div class="span12">
+    <div id="myCarousel2" class="carousel slide">
+      <div class="carousel-inner"> {foreach $carousel2 as $v}
+        <div class="item">{$v}</div>
+        {/foreach} </div>
+      <a class="carousel-control left" href="#myCarousel2" data-slide="prev">&lsaquo;</a> <a class="carousel-control right" href="#myCarousel2" data-slide="next">&rsaquo;</a> </div>
+  </div>
+</div>
+<div class="row">
+  <div class="span7">
+    <div id="scrollbar1">
+      <div class="scrollbar">
+        <div class="track">
+          <div class="thumb">
+            <div class="end"></div>
+          </div>
+        </div>
+      </div>
+      <div class="viewport">
+        <div class="overview  hero-unit">
+          <h3>百度百科：负面新闻</h3>
+          <div style="line-height: 140%; margin: 0px; width: 28px; float: left; color: #c74b15; font-size: 28px; font-weight: bolder; border: #000000 0px solid; padding: 0px;">定义：</div>
+          <p>{$definition} </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="span4 hero-unit" id="div_items">
+  	<h2><span class="label label-warning">食品分类:</span></h2>
+    <ul class="nav nav-pills nav-stacked">
+      {$no=1}
+      {foreach $info as $is}
+      <li class="li3"><span class="badge badge-warning">{$no++}</span> <a href="{$config.general}?iid={$is.iid}" title="{$is.description}">{$is.name}</a></li>
+      {/foreach}
+    </ul>
+  </div>
+</div>
+
+
+{/if}
+
+
 <script type="text/javascript">
 $(function() {
+	for (var i=1; i<=6; i++) {
+		$('ul.nav>li>a', '#Tab'+i).removeClass('active');
+		//console.log($(('li', '#Tab'+i)).first().text());
+		$('li', '#Tab'+i).first().addClass('active');
+		var id = '#TabContent'+i;
+		$('div'+id).find('div:first').addClass('active in');
+		$('#Tab'+i).click(function(e) {
+			e.preventDefault();
+			$(this).tab('show');
+		});
+	}
+	$('#myTab a').click(function (e) {
+		e.preventDefault();
+		$(this).tab('show');
+	});
+	$('#js-news').ticker();
+
 	$('#scrollbar1').tinyscrollbar();
+	$('#myCarousel2.carousel').carousel({
+	  interval: false
+	});
+	$('#myCarousel2 div.item').first().addClass('active');
+	
+});
+$(window).load(function() {
+	$.getJSON('{$url}?js_get_tab_list=1', function(data) {
+		//console.log(data);
+		//console.log($('#TabContent1.tab-content').find('div').first().html()+','+data.length);
+		t = '<ul>';
+		for(i=0; i<data.length; i++) {
+			t+='<li class="tab_list"><a href="general.php?cid='+data[i][0]+'">'+data[i][1]+'</a></li>';
+		}
+		t+='</ul>';
+		$('#TabContent1.tab-content').find('div').first().html(t);
+	});
+	return false;
 });
 </script>

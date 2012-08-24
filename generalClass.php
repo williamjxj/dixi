@@ -149,6 +149,7 @@ class GeneralClass extends BaseClass
 		return $row['content'];
 	}
 	
+	// and language='' 
 	function get_contents_list($iid) {
 		$ary = array();
 		$sql = "select linkname, cid, category, cate_id, item, iid from contents where iid=".$iid . " order by weight;";;

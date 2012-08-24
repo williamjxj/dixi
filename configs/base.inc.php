@@ -111,17 +111,17 @@ class BaseClass extends Smarty
 	function get_sitemap($item='') 
 	{
 		$ary = array( 
-			'dixi' => '关于底细',
-			'us' => '联系我们',
-			'privacy' => '隐私保护',
-			'ads' => '广告服务',
-			'business' => '商务洽谈',
-			'recruit' => '底细招聘',
-			'welfare' => '底细公益',
-			'customer' => '客服中心',
-			'navigator' => '网站导航',
-			'law' => '法律声明',
-			'report' => '有害短信息举报',
+			'dixi' => array('关于底细', 'About Dixi'),
+			'us' => array('联系我们','Contact Us'),
+			'privacy' => array('隐私保护','Privacy'),
+			'ads' => array('广告服务','Advertisement'),
+			'business' => array('商务洽谈','Business'),
+			'recruit' => array('底细招聘','Recruitment'),
+			'welfare' => array('底细公益','Charity'),
+			'customer' => array('客服中心','Customer Service Center'),
+			'navigator' => array('网站导航','Site Navigation'),
+			'law' => array('法律声明','Legal Notices'),
+			'report' => array('有害短信息举报','Harmful SMS Report'),
 		);
 		if($item) return $ary[$item];
 		else return $ary;
