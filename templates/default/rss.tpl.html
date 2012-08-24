@@ -1,3 +1,39 @@
+{if $smarty.session.dixi.language=='English'}
+
+<div class="rss"> 
+
+<span class="span3">
+  <h3>Chinadaily</h3>
+  <div id="rss_daily" class="news-feed newslist"> Chinadaily </div>
+  </span> 
+  
+<span class="span3">
+  <h3>Chinapost</h3>
+  <div id="rss_post" class="news-feed newslist"> Chinapost </div>
+  </span> 
+  
+  <span class="span3">
+  <h3>Shanghai Daily</h3>
+  <div id="rss_sh"  class="news-feed newslist"> Shanghai Daily</div>
+  </span> 
+  
+  <span class="span3">
+  <h3>BBC</h3>
+  <div id="rss_bbc"  class="news-feed newslist"> BBC </div>
+  </span>
+</div>
+<script type="text/javascript">
+$(function() {
+	//true mean get rss from worldwide(English) other than Chinese media.
+	$('#rss_daily').rotator(true);
+	$('#rss_post').rotator(true);
+	$('#rss_sh').rotator(true);
+	$('#rss_bbc').rotator(true);
+});
+</script>
+
+{else}
+
 <div class="rss"> <span class="span3">
   <h3>中国大陆</h3>
   <div class="btn-group"> <a class="btn btn-info btn-mini" id="cn" href="#"> <img src="{$config.img}sina.ico" width="12px" height="12px" border="0" /> 新浪</a> <a class="btn btn-info btn-mini dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
@@ -37,3 +73,6 @@ $(function() {
 	});
 });
 </script>
+
+{/if}
+

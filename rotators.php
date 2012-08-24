@@ -18,14 +18,33 @@ $rss_array = array(
 	'default' => 'http://rss.sina.com.cn/news/marquee/ddt.xml',
 );
 
-if(isset($_GET['rss'])) {
-	$rss_url = $rss_array[$_GET['rss']];
+$rss_world_array = array(
+
+	'daily' => 'http://www.chinadaily.com.cn/rss/china_rss.xml',
+	'post' => 'http://www.chinapost.com.tw/rss/front.xml',
+	'sh' => 'http://www.shanghaidaily.com/rss/latest/',
+	'bbc' => 'http://feeds.bbci.co.uk/news/world-asia-pacific-11710880/rss.xml',
+);
+
+if (isset($_GET['ww'])) {
+	if(isset($_GET['rss'])) {
+		$rss_url = $rss_world_array[$_GET['rss']];
+	}
+	else {
+		$rss_url = $rss_world_array['daily'];
+	}
 }
 else {
-	$rss_url = $rss_array['default'];
+	if(isset($_GET['rss'])) {
+		$rss_url = $rss_array[$_GET['rss']];
+	}
+	else {
+		$rss_url = $rss_array['default'];
+	}
 }
-$rawFeed = file_get_contents($rss_url);
 
+
+$rawFeed = file_get_contents($rss_url);
 
 $xml = simplexml_load_string($rawFeed);
 //$xml = new SimpleXmlElement($rawFeed);
