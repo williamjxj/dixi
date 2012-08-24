@@ -2,13 +2,17 @@
 session_start();
 error_reporting(E_ALL);
 define("SITEROOT", "./");
- 
+
 require_once(SITEROOT.'configs/common.inc.php');
 //require_once(SITEROOT.'configs/mini-app.inc.php');
 global $common;
 
 require_once(SITEROOT."configs/config.inc.php");
 global $config;
+
+
+set_lang();
+ 
 
 require_once(SITEROOT."main.php");
 require_once(SITEROOT.'dixiClass.php');
@@ -20,7 +24,7 @@ try {
 }
 
 $tdir = $config['templates'];
-$tshared = SITEROOT.'themes/default/shared/';
+$tshared = SITEROOT.'templates/shared/';
 
 $config['url'] = $obj->url;
 $config['self'] = $obj->__t($obj->self);
@@ -33,7 +37,6 @@ if(isset($_SESSION[PACKAGE]['username'])) {
 }
 $obj->assign('common', $common);
 $obj->assign('config', $config);
-
 
 
 ///////////////////////////////

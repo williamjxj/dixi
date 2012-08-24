@@ -39,5 +39,12 @@ $common = array(
 	),
 );
 
-
+function set_lang() {
+	if(isset($_COOKIE[PACKAGE]['language'])) {
+		$_SESSION[PACKAGE]['language'] = $_COOKIE[PACKAGE]['language'];
+	}
+	else {
+		$_SESSION[PACKAGE]['language'] = '中文';
+	}
+}
 ?>

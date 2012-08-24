@@ -13,6 +13,7 @@ class DixiClass extends BaseClass
 		$this -> url = $_SERVER['PHP_SELF'];
 		$this -> self = basename($this -> url, '.php');
 	    $this->mdb2 = $this->pear_connect_admin();
+		$this->lang = $_SESSION[PACKAGE]['language'];
 	}
 	
 	// keywords 表.
@@ -65,7 +66,7 @@ class DixiClass extends BaseClass
 		if($desc) $order = ' order by cid desc ';
 		else $order = ' order by cid ';
 		$limit = 'limit ' . $start . ', ' . $limit;
-		$sql = "select cid, linkname from contents where linkname != '负面新闻' and mname='食品' ". $order . $limit;
+		$sql = "select cid, linkname from contents where active='Y' and language='".$this->lang."' ". $order . $limit;
 		//echo "<br>\n".$sql."<br>\n";
         $res = $this->mdb2->queryAll($sql);
         if (PEAR::isError($res)) die($res->getMessage());
@@ -74,7 +75,7 @@ class DixiClass extends BaseClass
 	//Same and no use
 	function get_contents() {
 		$ary = array();
-		$sql = "select cid, linkname from contents where linkname != '负面新闻' and mname='食品' order by cid desc";
+		$sql = "select cid, linkname from contents where active='Y' and language='".$this->lang."' order by cid desc";
 		$res = $this->mdb2->query($sql);
 		if (PEAR::isError($res)) {
 			die($res->getMessage(). ' - line ' . __LINE__ . ': ' . $sql);

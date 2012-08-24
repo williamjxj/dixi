@@ -8,13 +8,13 @@ mysql_connect_dixi();
 
 function get_tabs() {
 	$ary = array();
-    $query = "select name, frequency from categories order by frequency, weight";
+    $query = "select name, curl, frequency from categories order by frequency, weight";
     $res = mysql_query($query);
     while($row = mysql_fetch_assoc($res)) {
 		if(!isset($ary[$row['frequency']]) || !is_array($ary[$row['frequency']])) {
 			$ary[$row['frequency']] = array();
 		}
-		array_push ($ary[$row['frequency']], $row['name']);
+		array_push ($ary[$row['frequency']], $row);
 	}
 	return $ary;
 }

@@ -16,7 +16,7 @@ class GeneralClass extends BaseClass
 		$this -> sid = $site_id;
 		$this -> url = $_SERVER['PHP_SELF'];
 		$this -> self = basename($this -> url, '.php');
-	    $this->template_dir = SITEROOT.'themes/default/templates/';
+	    $this->template_dir = SITEROOT.'templates/default/';
 		$this->dbh = $this->mysql_connect_dixi();
 		$this->general = $config['general'];
 	}
@@ -149,6 +149,7 @@ class GeneralClass extends BaseClass
 		return $row['content'];
 	}
 	
+	// and language='' 
 	function get_contents_list($iid) {
 		$ary = array();
 		$sql = "select linkname, cid, category, cate_id, item, iid from contents where iid=".$iid . " order by weight;";;
