@@ -2,14 +2,13 @@
 	var ts = 5000;
     $.fn.rotator = function (param) {
         var $container = $(this);
-		var did;
+		var did, ww;
 		
 		if(param !== undefined || typeof param !== 'undefined') {
-			did = param;
+			ww = param;
 		}
-		else {
-			did = $container.attr('id').replace(/rss_/,'');
-		}
+
+		did = $container.attr('id').replace(/rss_/,'');
 		
         $(this).each(function () {
             $container.empty();
@@ -27,7 +26,9 @@
                 'alt': '正在下载,请稍等...'
             }).addClass('news-wait').appendTo($container);
 
-            $.get('rotators.php?rss='+did, function (data) {
+			var url = 'rotators.php?rss='+did;
+			if(ww) url += '&ww=1';
+            $.get(url, function (data) {
 
                 $loadingIndicator.remove();
                 $(data).each(function () {
