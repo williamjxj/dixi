@@ -6,7 +6,6 @@
   <p style="margin:10px;padding:10px;">{$content}</p>
   <p style="margin-top:20px;"><a class="btn btn-primary btn-large" href="index.php"><i class="icon-home icon-white"></i> 返回主页 </a>&nbsp; <a class="btn btn-primary btn-large contact" data-toggle="modal" href="#myModal"><i class="icon-flag icon-white"></i> 联系我们 </a>&nbsp; <a class="btn btn-primary btn-large knowmore" data-toggle="modal" href="#modal1"><i class="icon-info-sign icon-white"></i> 了解更多 &raquo;</a> </p>
 </div>
-
 <script type="text/javascript">
 $(function() {
 	$('a.knowmore', 'div.hero-unit').click(function(e) {
@@ -16,3 +15,29 @@ $(function() {
 	$('p,br', 'div.display_content').css('background-color', '#EEEEEE');
 });
 </script>
+<div class="clear"></div>
+<hr class="hr1">
+<div class="row">
+  <div class="span12"> <span>上一篇：<a href="#">...</a></span> <span>下一篇：<a href="#">...</a></span> </div>
+</div>
+<div class="row">
+  <div class="span7"> <span>文章关键词: </span><a href="#">关键词1</a>&nbsp;<a href="#">关键词2</a> </div>
+  <div class="span5">
+    <form method="GET" name="search"  class="form-search" >
+      <input type="text" placeholder="全文检索" name="search" class="input-medium search-query" />
+      <button type="submit" class="btn btn-success">搜&#12288;索</button>
+    </form>
+  </div>
+</div>
+{include file="../shared/pinglun.tpl.html"}
+<div class="row">
+  <div class="span7">
+    <h2><span><a target="_blank" href="#"></a> 相关评论</span></h2>
+    <ul>
+      <li><a href="#">.......</a></li>
+    </ul>
+  </div>
+  <div class="span5">
+    <h2><span>相关推荐</span></h2>
+  </div>
+</div>
