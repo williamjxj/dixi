@@ -228,3 +228,7 @@ li.li3:nth-child(even) {
     position: absolute;
     right: 10px;
 }
+.hr1 {
+	border-top: 1px dotted #999;
+	margin-top: 5px;
+}

@@ -163,17 +163,22 @@ $(function() {
 	var hide = true;
 	$('a span.more', '#div_items').click(function() {
 		var t = $('#div_items');
+		var t1 = $(this);
 		if(hide) {
-			$(this).find('span').html('&laquo;');
 			t.animate({
 				height: "100%",
-			}, 2000, function(){ hide=false; });
+			}, 2000, function(){ 
+				t1.find('span').html('&laquo;');
+				hide=false;
+			});
 		}
 		else {
-			$(this).find('span').html('&raquo;')
 			t.animate({
 				height: "240px",
-			}, 1000, function(){ hide=true; });
+			}, 1000, function(){ 
+				t1.find('span').html('&raquo;');
+				hide=true;
+			});
 		}
 		return false;
 	});
