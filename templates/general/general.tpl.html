@@ -19,27 +19,24 @@ $(function() {
 </script>
 <div class="clear"></div>
 <hr class="hr1">
-<div class="row">
-  <div class="span12"> <span>上一篇：<a href="#">...</a></span> <span>下一篇：<a href="#">...</a></span> </div>
+<div class="row" style="margin-bottom:10px;">
+  <div class="span12"> <span class="label label-warning">上一篇</span><a href="#">...</a> <span class="label label-warning">下一篇：</span> <a href="#">...</a></div>
 </div>
 <div class="row">
-  <div class="span7"> <span>文章关键词: </span><a href="#">关键词1</a>&nbsp;<a href="#">关键词2</a> </div>
+  <div class="span7"> <span class="label label-warning">文章关键词: </span><a href="#">关键词1</a>&nbsp;<a href="#">关键词2</a> </div>
   <div class="span5">
     <form method="GET" name="search"  class="form-search" >
       <input type="text" placeholder="全文检索" name="search" class="input-medium search-query" />
-      <button type="submit" class="btn btn-success">搜&#12288;索</button>
+      <button type="submit" class="btn btn-success"><i class="icon-white icon-search"></i> 搜&#12288;索</button>
     </form>
   </div>
 </div>
 {include file="../shared/pinglun.tpl.html"}
-<div class="row">
-  <div class="span7">
-    <h2><span><a target="_blank" href="#"></a> 相关评论</span></h2>
+<div class="row" style="margin-top:6px;">
+  <div class="span7"> <a href="#"><span class="label label-warning">相关评论</span></a>
     <ul>
       <li><a href="#">.......</a></li>
     </ul>
   </div>
-  <div class="span5">
-    <h2><span>相关推荐</span></h2>
-  </div>
+  <div class="span5"> <a href="#"><span class="label label-warning">相关推荐</span></a> </div>
 </div>
