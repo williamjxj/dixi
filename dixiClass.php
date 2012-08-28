@@ -37,6 +37,16 @@ class DixiClass extends BaseClass
 		return $res;
 	}
 	
+	function get_tab_list($desc=false, $start=0, $limit=TAB_LIST) {
+		if($desc) $order = ' order by cid desc ';
+		else $order = ' order by cid ';
+		$limit = 'limit ' . $start . ', ' . $limit;
+		$sql = "select cid, linkname, (FLOOR( 1 + RAND( ) *1000 )) AS guanzhu from contents where active='Y' and language='".$this->lang."' ". $order . $limit;
+        $res = $this->mdb2->queryAll($sql);
+        if (PEAR::isError($res)) die($res->getMessage());
+        return $res;
+ 	}
+	
 	function get_latest() {
 		return $this->get_tab_list(true, 0);
 	}
@@ -60,18 +70,6 @@ class DixiClass extends BaseClass
 		return $res;
 	}
 	
-	//select cid, linkname from contents where linkname != '负面新闻' and mname='食品' order by cid desc limit 0, 10
-	//select cid, linkname from contents where linkname != '负面新闻' and mname='食品' order by cid desc limit 10, 10	
-	function get_tab_list($desc=false, $start=0, $limit=TAB_LIST) {
-		if($desc) $order = ' order by cid desc ';
-		else $order = ' order by cid ';
-		$limit = 'limit ' . $start . ', ' . $limit;
-		$sql = "select cid, linkname from contents where active='Y' and language='".$this->lang."' ". $order . $limit;
-		//echo "<br>\n".$sql."<br>\n";
-        $res = $this->mdb2->queryAll($sql);
-        if (PEAR::isError($res)) die($res->getMessage());
-        return $res;
- 	}
 	//Same and no use
 	function get_contents() {
 		$ary = array();
