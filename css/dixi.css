@@ -31,6 +31,13 @@
 #div_items.hero-unit {
 	height:240px;
 	overflow:hidden;
+	padding: 20px;
+	position:relative;
+}
+#div_items .more {
+	font-size:12px;
+	position:absolute;
+	right:10px;
 }
 ul {
 	list-style: none outside none;
@@ -209,9 +216,6 @@ li.li3:nth-child(even) {
 	font-size: 16px;
 	font-weight:bold;
 	color: #E1FC11;
-}
-#div_items.hero-unit {
-	padding:10px;
 }
 .guanzhu .renshu {
 	color: #999999;

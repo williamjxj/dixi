@@ -55,7 +55,7 @@
     </div>
   </div>
   <div class="span4 hero-unit" id="div_items">
-  	<h2><span class="label label-warning">食品分类:</span></h2>
+  	<h2><span class="label label-warning">食品分类:</span> <a href="#"><span class="more">更多<span>&raquo;</span></span></a></h2>
     <ul class="nav nav-pills nav-stacked">
       {$no=1}
       {foreach $info as $is}
@@ -115,14 +115,14 @@
       <div class="viewport">
         <div class="overview  hero-unit">
           <h3>百度百科：负面新闻</h3>
-          <div style="line-height: 140%; margin: 0px; width: 28px; float: left; color: #c74b15; font-size: 28px; font-weight: bolder; border: #000000 0px solid; padding: 0px;">定义：</div>
+          <div style="line-height: 140%; margin: 0px; width: 28px; float: left; color: #c74b15; font-size: 28px; font-weight: bolder; border: #000000 0px solid; padding: 0px;">Definition：</div>
           <p>{$definition} </p>
         </div>
       </div>
     </div>
   </div>
   <div class="span4 hero-unit" id="div_items">
-  	<h2><span class="label label-warning">食品分类:</span> <a href=""><span class="more">更多&raquo;</span></a></h2>
+  	<h2><span class="label label-warning">Food items:</span> <a href="#"><span class="more">more<span>&raquo;</span></span></a></h2>
     <ul class="nav nav-pills nav-stacked">
       {$no=1}
       {foreach $info as $is}
@@ -160,7 +160,23 @@ $(function() {
 	  interval: false
 	});
 	$('#myCarousel2 div.item').first().addClass('active');
-	
+	var hide = true;
+	$('a span.more', '#div_items').click(function() {
+		var t = $('#div_items');
+		if(hide) {
+			$(this).find('span').html('&laquo;');
+			t.animate({
+				height: "100%",
+			}, 2000, function(){ hide=false; });
+		}
+		else {
+			$(this).find('span').html('&raquo;')
+			t.animate({
+				height: "240px",
+			}, 1000, function(){ hide=true; });
+		}
+		return false;
+	});
 });
 $(window).load(function() {
 	$.getJSON('{$url}?js_get_tab_list=1', function(data) {
