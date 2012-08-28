@@ -47,8 +47,7 @@ function get_carousel1()
 	while ($row = mysql_fetch_assoc($res)) {
 		array_push($ary2, $row);
 	}
-    // echo "<pre>"; echo $total; print_r($ary2); print_r($ary1); echo "</pre>"; exit;
-	//'      <p>' . $ary2[$i]['linkname'] . '</p>' .
+
 	for($i=0; $i<$total; $i++) {
 		$html .= 
 		'<div class="item">' . '<a href="./general.php?cid=' . $ary2[$i]['cid'] . '">' . $ary1[$i] . '</a>' .

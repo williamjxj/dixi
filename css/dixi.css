@@ -28,8 +28,9 @@
 .hero-unit p {
 	font-size: 12px !important;
 }
-.hero-unit {
-	padding:30px;
+#div_items.hero-unit {
+	height:240px;
+	overflow:hidden;
 }
 ul {
 	list-style: none outside none;
@@ -211,4 +212,15 @@ li.li3:nth-child(even) {
 }
 #div_items.hero-unit {
 	padding:10px;
+}
+.guanzhu .renshu {
+	color: #999999;
+    font-size: 11px;
+}
+#TabContent1 ul {
+	position:relative;
+}
+#TabContent1 .guanzhu .renshu {
+    position: absolute;
+    right: 10px;
 }
