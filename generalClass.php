@@ -201,7 +201,26 @@ class GeneralClass extends BaseClass
 			mysql_query($query);
 		}
 		return true;
-	}	
+	}
+	function insert_comments()
+	{
+		$sql ="insert into comments(content, create_time, author, cid) values('" .
+			$_POST['fayan'] . "', now(), '" .
+			$_POST['username'] . "', " .
+			$_POST['cid'] . ")";
+		mysql_query($sql);
+	}
+	function get_comments($cid)
+	{
+		$ary = array();
+		$sql = "select id, content, author, create_time, cid from comments where cid=".$cid." order by id desc";
+		$res = mysql_query($sql);
+		while($row = mysql_fetch_row($res)) {
+			array_push($ary, $row);
+		}
+		return $ary;
+	}
+	
 	function get_contents_count($key)
 	{
 		$sql = "select count(*) from contents where content like '%".$key ."%'";

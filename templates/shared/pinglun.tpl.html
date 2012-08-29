@@ -1,3 +1,13 @@
+{if {$smarty.session.dixi.username}}
+	{$user=$smarty.session.dixi.username}
+{else}
+	{$user='访问用户'}
+{/if}
+{if $info.cid}
+	{$cid=$info.cid}
+{else}
+	{'出错了，无法插入comments表，cid未知。'}
+{/if}
 <div class="hero-unit" style="margin:0;padding:0 0 6px 10px;">
   <form class="form-horizontal" id="form_fayan">
     <legend><span class="label label-warning">网友留言</span></legend>
@@ -12,6 +22,8 @@
         <button type="submit" class="btn btn-success"><i class="icon-comment icon-white"></i> 发表评论</button>
         <span>请文明上网，<a href="#">登录</a>发言并遵守相关规定 <a href="#">立即注册</a></span> </div>
     </div>
+    <input type="hidden" name="cid" value="{$cid}"  />
+    <input type="hidden" name="username" value="{$user}"  />
   </form>
 </div>
 <script type="text/javascript">
@@ -42,7 +54,7 @@ $(function() {
 		var msg = '<div class="accordion-group">' + 
 				'<div class="accordion-heading">' +
 				' <a href="#' + tid + '" data-parent="#commentlist" data-toggle="collapse" class="accordion-toggle">' +
-				'{$smarty.session.dixi.username} 于 {$smarty.now|date_format:"%Y-%m-%d %T"} </a>' +
+				'{$user} 于 {$smarty.now|date_format:"%Y-%m-%d %T"} </a>' +
 				' </div> ' +
 				 ' <div class="accordion-body collapse in" id="' + tid + '">' +
 					'<div class="accordion-inner">' + $('#fayan').val() + '</div>' +
@@ -50,6 +62,5 @@ $(function() {
 			'</div>';
 		$(msg).prependTo('#commentlist');
 	});
-	$(".collapse").collapse();
 });
 </script>
