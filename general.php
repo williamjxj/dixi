@@ -100,10 +100,22 @@ if(!empty($_GET)) {
 	}
 	elseif(isset($_GET['cid'])) {
 		$info = array();
-		//general.php?cid=47
 		$row = $obj->get_content($_GET['cid']);
 		$info['title'] = $row['linkname'];
 		$info['content'] = '<div class="display_content">'.$row['content'].'</div>';
+		
+		$prev = $obj->get_content_previous($_GET['cid']);
+		$info['previous'] = array(
+			'cid' => $prev['cid'],
+			'linkname' => $prev['linkname'],
+		);
+		$next = $obj->get_content_next($_GET['cid']);
+		$info['next'] = array(
+			'cid' => $next['cid'],
+			'linkname' => $next['linkname'],
+		);
+		$ary = $obj->get_rand_keywords();
+		$info['keywords'] = array_slice($ary, rand(0,3));
 		$obj->assign('info', $info);
 	}
 	elseif(isset($_GET['test'])) {
@@ -116,7 +128,6 @@ if(!empty($_GET)) {
 		exit;
 	}
 	elseif(isset($_GET['page'])) {
-		//echo "<pre>"; print_r($_SESSION); echo "</pre>";
 		$obj->assign('results', $obj->select_contents_by_page());
 		$pagination = $obj->draw();	
 		$obj->assign("pagination", $pagination);

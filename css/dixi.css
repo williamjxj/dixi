@@ -232,3 +232,7 @@ li.li3:nth-child(even) {
 	border-top: 1px dotted #999;
 	margin-top: 5px;
 }
+#general .label-warning {
+	font-size: 14px;
+	padding: 4px;
+}

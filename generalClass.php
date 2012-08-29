@@ -130,6 +130,20 @@ class GeneralClass extends BaseClass
 
 		return $row;
 	}
+	function get_content_previous($cid) {
+		$sql = "select linkname, cid from contents where cid < " . $cid . " order by cid desc limit 1";
+		$res = mysql_query($sql);
+		$row = mysql_fetch_assoc($res);
+		mysql_free_result($res);
+		return $row;
+	}
+	function get_content_next($cid) {
+		$sql = "select linkname, cid from contents where cid >".$cid. " order by cid limit 1";
+		$res = mysql_query($sql);
+		$row = mysql_fetch_assoc($res);
+		mysql_free_result($res);
+		return $row;
+	}
 
 	// 输出内容，并构建面包屑
 	function get_content_1($cid) 
@@ -302,5 +316,16 @@ class GeneralClass extends BaseClass
 		}
 	}
 
+	# 随机从数据库中抽取6个,随即生成1-6个记录.
+	function get_rand_keywords() {
+		$ary = array();
+		$sql = "select keyword from keywords order by rand() limit 0, 4";
+		$res = mysql_query($sql);
+		while($row = mysql_fetch_row($res)) {
+			array_push($ary, $row[0]);
+		}
+		mysql_free_result($res);
+		return $ary;
+	}
 }
 ?>
