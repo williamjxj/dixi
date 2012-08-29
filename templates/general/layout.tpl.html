@@ -8,12 +8,12 @@
 <meta name="robots" content="{$config.header.robots|default:{$common.header.robots}}">
 <link rel="stylesheet" type="text/css" href="{$common.css.bootstrap}" media="screen" />
 <link rel="stylesheet" type="text/css" href="{$common.css.dixi}" media="screen" />
-<!--link rel="stylesheet" type="text/css" href="{$config.path}css/dixi2.css" media="screen" /-->
 <script type="text/javascript" src="{$common.js.jquery}"></script>
 <script type="text/javascript" src="{$common.js.gb_big5}"></script>
 <script type="text/javascript" src="{$common.js.ga}"></script>
 <script type="text/javascript" src="{$common.js.cookie}"></script>
-<script type="text/javascript" src="{$common.js.bootstrap}"></script>
+<script type="text/javascript" src="{$common.js.bts}"></script>
+<!--script type="text/javascript" src="{$common.js.bootstrap}"></script-->
 <script type="text/javascript" src="js/jquery.validate.min.js"></script>
 <!------------------------>
 <meta content="index, follow" name="robots">
@@ -32,6 +32,8 @@
   <div id="item">{include file="{$item_template}"}</div>
   {elseif {$content_template}}
   {include file="{$content_template}"}
+  {elseif {$norecord_template}}
+  {include file="{$norecord_template}"}
   {else}
   {include file="{$general_template}"}
   {/if}

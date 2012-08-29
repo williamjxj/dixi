@@ -3,34 +3,41 @@
     <div id="logo"> <a href="{$config.url}" title="{$common.header.title}"><img src="{$common.logo.logo_130x60}" /> </a> </div>
   </div>
   <div class="span10">
-    <div class="btn-toolbar"> <span>当前时间： {$smarty.now|date_format:'%Y-%m-%d %H:%M'}， <span id="st" style="cursor: pointer;">切至繁体版</span> </span>
+    <div class="btn-toolbar"> <span class="curtime">{$smarty.now|date_format:'%Y-%m-%d %H:%M'}</span> {if {$config.username}}
+      <div class="btn-group"> <a href="#" class="btn btn-info btn-small"><i class="icon-user icon-white"></i>{$config.username}</a> <a href="#" data-toggle="dropdown" class="btn btn-info btn-small dropdown-toggle"><span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="#"><i class="icon-info-sign"></i> {$config.username} 信息</a></li>
+          <li><a href="#"><i class="icon-edit"></i> 修改 {$config.username}</a></li>
+          <li><a href="login.php?logout=1"><i class="icon-share"></i> 注销</a></li>
+        </ul>
+      </div>
+      {/if}
+      <div class="btn-group"> <a href="#" class="btn btn-info btn-small"><i class="icon-list-alt icon-white"></i>&nbsp; <span id="default_language"></span></a> <a href="#" data-toggle="dropdown" class="btn  btn-info btn-small dropdown-toggle"><span class="caret"></span></a>
+        <ul class="dropdown-menu" id="language">
+          <li><a class="chinese" href="#"><img src="images/cn.png" style="margin-right:6px;" />中文</a></li>
+          <li><a class="english" href="#"><img src="images/en.png" style="margin-right:6px;" />English</a></li>
+        </ul>
+      </div>
+      <span id="st" style="cursor: pointer;" class="curtime">切至繁体版</span>
       <div class="btn-group"> <a href="#" class="btn btn-info btn-small"><i class="icon-list-alt icon-white"></i>&nbsp;显示字体</a> <a href="#" data-toggle="dropdown" class="btn  btn-info btn-small dropdown-toggle"><span class="caret"></span></a>
         <ul class="dropdown-menu" id="switcher">
-          <li><a href="#" id="switcher-default">缺省</a></li>
-          <li><a href="#" id="switcher-large">放大</a></li>
-          <li><a href="#" id="switcher-small">缩小</a></li>
+          <li><a href="#" id="switcher-default"> 缺省</a></li>
+          <li><a href="#" id="switcher-large"> 放大</a></li>
+          <li><a href="#" id="switcher-small"> 缩小</a></li>
           <li class="divider"></li>
           <li><a href="div.container" id="prlnk"><i class="icon-print"></i>&nbsp;打印</a></li>
         </ul>
       </div>
-      {if {$config.username}}
-      <div class="btn-group"> <a href="#" class="btn btn-info btn-small"><i class="icon-user icon-white"></i>{$config.username}</a> <a href="#" data-toggle="dropdown" class="btn btn-info btn-small dropdown-toggle"><span class="caret"></span></a>
+      <div class="btn-group"> <a href="#" class="btn btn-info btn-small"><i class="icon-user icon-white"></i> 帮助中心</a> <a href="#" data-toggle="dropdown" class="btn btn-info btn-small dropdown-toggle"><span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a href="#"><i class="icon-pencil"></i>{$config.username}信息</a></li>
-          <li><a href="#"><i class="icon-trash"></i>修改{$config.username}</a></li>
-          <li><a href="login.php?logout=1"><i class="icon-trash"></i>注销</a></li>
-        </ul>
-      </div>
-      {/if}
-      <div class="btn-group"> <a href="#" class="btn btn-info btn-small dropdown-toggle"><i class="icon-user icon-white"></i>帮助中心</a> <a href="#" data-toggle="dropdown" class="btn btn-info btn-small dropdown-toggle"><span class="caret"></span></a>
-        <ul class="dropdown-menu" id="contact_help">
-          <li><a data-toggle="modal" class="contact" href="#myModal">联络我们</a></li>
-          <li><a data-toggle="modal" class="help1"    href="#modal1">帮助中心</a></li>
+          <li><a data-toggle="modal" class="contact" href="#myModal"> 联络我们</a></li>
+          <li><a data-toggle="modal" class="help1"	href="#modal1"> 帮助中心</a></li>
+          <li><a data-toggle="modal" class="help2"	href="#modal2"> 视频帮助</a></li>
           <li class="divider"></li>
           <li><a id="login_signup" href="login/login_admin.php"><img src="images/lock.png" width="10" height="10" border="0" />&nbsp;后台管理</a></li>
         </ul>
       </div>
-      <a href="/weibo/" class="btn btn-info btn-small" style="vertical-align:top;"><img src="{$config.img}sina.ico" width="16px" height="16px" border="0" />新浪微博</a> <a href="/iweibo/" class="btn btn-info btn-small" style="vertical-align:top;"><img src="{$config.img}qq.ico" width="16px" height="16px" border="0" />腾讯微博</a> </div>
+      <a href="/weibo/" class="btn btn-info btn-small" style="vertical-align:top;"><img src="{$config.img}sina.ico" width="16px" height="16px" border="0" /> 新浪微博</a> <a href="/iweibo/" class="btn btn-info btn-small" style="vertical-align:top;"><img src="{$config.img}qq.ico" width="16px" height="16px" border="0" /> 腾讯微博</a> </div>
   </div>
 </div>
 <section>
@@ -44,9 +51,29 @@
     <div class="modal-body"> {include file="{$help_template}"} </div>
     <div class="modal-footer"> <a href="#" class="btn" data-dismiss="modal">关闭</a> </div>
   </div>
+  <div class="modal hide" id="modal2" style="width:640px;height:480px;">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    </div>
+    <div class="modal-body">
+      <iframe width="640" height="480" src="http://www.youtube.com/embed/Z5bHsrD0wic" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </div>
 </section>
 <script type="text/javascript">
 $(function() {
+	if( $.cookie("dixi[language]") ) {
+		$('#default_language').text( $.cookie("dixi[language]") );
+	}
+	else {
+		$('#default_language').text('中文');
+	}
+	if(! $('#default_language').text().match(/English/i)) {
+		$('#st').show();
+	}
+	else {
+		$('#st').hide();
+	}
 	var $speech = $('div.container');
 	var defaultSize = $speech.css('fontSize') || $('body').css('fontSize');
 	$('#switcher a').live("click", function () {
@@ -102,6 +129,11 @@ $(function() {
 		 // $('#contact_help').hide();
 		return false;
 	});
+	$('a.help2[data-toggle="modal"]').click(function(e) {
+		e.preventDefault();
+		$('#modal2').modal({ show:true });
+		return false;
+	});
 
 	//dixi_admin
 	$('#login_signup').click(function(e) {
@@ -120,13 +152,25 @@ $(function() {
 		}
 	});
 	//如果返回false;下拉菜单就关闭不了,所以应该返回true.缺省是true.
+	$('a', 'ul#language').click(function(e) {
+		e.preventDefault();
+		var $old = $('#default_language').text();
+		var $new = $(this).text();
+		if ($new != $old) {
+			$('#default_language').text($new); 
+			$.cookie("dixi[language]", $new);
+			window.location.href="index.php";
+		}
+		return false;
+	});
 });
 </script>
 <ul class="breadcrumb" id="breadcrumb">
+  <li><i class="icon-home"></i></li>
   {if $smarty.session.dixi.breadcrumb}
   {foreach $smarty.session.dixi.breadcrumb as $b}
   {if {$b.active}}
-  <li class="active">{$b.name}</a></li>
+  <li class="active">{$b.name}</li>
   {else}
   <li><a href="{$b.link}">{$b.name}</a> <span class="divider">/</span></li>
   {/if}
@@ -136,6 +180,5 @@ $(function() {
   <li> <a href="general.php?i=3&n=food">食品</a> <span class="divider">/</span> </li>
   <li class="active">饮品酒类</li>
   {/if}
+  <li style="float:right"> {include file="../shared/bshare.tpl.html"} </li>
 </ul>
-{include file="../shared/bshare.tpl.html"}
-

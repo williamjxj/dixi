@@ -1,11 +1,1 @@
-{if $info}
 <div id="div_contents"> {$info} </div>
-{elseif $breadcrumb}
-    {foreach $breadcrumb as $b}
-    {if {$b.active}}
-<li class="active">{$b.name}</li>
-{else}
-<li><a href="{$b.link}">{$b.name}</a> <span class="divider">/</span></li>
-{/if}
-    {/foreach}
-{/if} 

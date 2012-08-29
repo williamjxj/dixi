@@ -236,3 +236,15 @@ div.container .label-warning {
 	font-size: 14px;
 	padding: 4px;
 }
+.curtime {
+	color: #C09853;
+}
+ul li .bshare-custom {
+	margin-top: -10px;
+}
+#footer .btn-group.sitemap > .btn {
+	margin-right:4px;
+}
+#menu .btn-group > .btn {
+	margin-right:4px;
+}

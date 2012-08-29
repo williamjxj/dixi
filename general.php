@@ -8,6 +8,9 @@ global $common;
 require_once(SITEROOT."configs/config.inc.php");
 global $config;
 
+//显示 general模板 还是 no_record 模板.
+$no_record = false;
+
 require_once(SITEROOT.'generalClass.php');
 
 /*
@@ -43,37 +46,39 @@ if(!empty($_GET)) {
 	}
 	if(isset($_GET['js_get_breadcrumb'])) {
 		if(isset($_GET['sitemap'])) {
-			$name = $obj->get_sitemap($_GET['sitemap']);
+			$t = $obj->get_sitemap($_GET['sitemap']);
+			$name = $obj->lang=='English' ? $t[1] : $t[0];
 			$obj->set_breadcrumb(array(array('name'=>$name, 'active'=>1)));
 		}
 		//$obj->assign('breadcrumb', $obj->get_breadcrumb());
 		$obj->assign('breadcrumb', $_SESSION[PACKAGE]['breadcrumb']);
-		$obj->display($tdir.'contents.tpl.html');
+		$obj->display($tdir.'breadcrumb.tpl.html');
 		exit;
 	}
 	elseif(isset($_GET['js_get_contents_list'])) {
 		echo $obj->get_contents_list($_GET['iid']);
 		exit;
 	}	
+	elseif(isset($_GET['iid'])) {
+		$info = $obj->get_contents_list($_GET['iid']);
+		$obj->assign('info', $info);
+		$obj->assign('content_template', $tdir.'contents.tpl.html');
+	}	
 	elseif(isset($_GET['sitemap']) || (isset($_GET['js_sitemap'])) ) {
-		$info = array();
-		$info['title'] = $obj->get_sitemap($_GET['sitemap']);
-		$info['content'] = "目前该分类还处在开发阶段，很快就会有内容呈现。谢谢关注。<br>\n";
+		$sm = $obj->get_sitemap($_GET['sitemap']);
+		$info = $obj->assemble_sitemap($sm);
 		if(isset($_GET['js_sitemap'])) {
 			$obj->assign('info', $info);
 			$obj->display($tdir.'norecord.tpl.html');
 			exit;
 		}
 		else {
-			$name = $obj->get_sitemap($_GET['sitemap']);
+			$no_record = true;
+			$t = $obj->get_sitemap($_GET['sitemap']);
+			$name = $obj->lang=='English' ? $t[1] : $t[0];
 			$obj->set_breadcrumb(array(array('name'=>$name, 'active'=>1)));
 			$obj->assign('info', $info);
 		}
-	}	
-	elseif(isset($_GET['iid'])) {
-		$info = $obj->get_contents_list($_GET['iid']);
-		$obj->assign('info', $info);
-		$obj->assign('content_template', $tdir.'contents.tpl.html');
 	}	
 	elseif(isset($_GET['category_menu'])) {
 		if($_GET['category_menu'] == 3) {
@@ -82,14 +87,9 @@ if(!empty($_GET)) {
 			$obj->assign('item_template', $tdir.'item.tpl.html');
 		}
 		else {
-			$info = array();
-			$menu = $obj->get_menu_info($_GET['category_menu']);
-			$info['title'] = $menu['name'];
-			$t = '分类为：'. $menu['name']."<br>\n";
-			$t .= '详细信息为：'. $menu['description']."<br>\n";
-			$t .= '标签为：' . $menu['tag']?$menu['tag']:$menu['name']."<br>\n";
-			$t .= "目前该分类还处在开发阶段，很快就会有内容呈现。谢谢关注。<br>\n";
-			$info['content'] = $t;
+			$no_record = true;
+            $menu = $obj->get_menu_info($_GET['category_menu']);
+			$info = $obj->assemble_menu($menu);
 			$obj->assign('info', $info);
 		}
 	}
@@ -123,7 +123,9 @@ if(!empty($_GET)) {
 	}
 	elseif(isset($_GET['test'])) {
 		header('Content-Type: text/html; charset=utf-8'); 
-		echo "<pre>"; print_r($obj->get_item_list()); echo "</pre>";
+		echo $obj->assemble_menu();
+		
+		//echo "<pre>"; print_r($obj->get_item_list()); echo "</pre>";
 		/*
 		echo "<pre>"; print_r($obj->select_contents_by_keyword($_GET['test'])); echo "</pre>";
 		echo "<pre>"; print_r($_SESSION); echo "</pre>";
@@ -169,8 +171,12 @@ else {
 	exit;
 }
 
-$obj->assign('general_template', $tdir.'general.tpl.html');
-
+if($no_record) {
+	$obj->assign('norecord_template', $tdir.'norecord.tpl.html');
+}
+else {
+	$obj->assign('general_template', $tdir.'general.tpl.html');
+}
 $obj->assign('header_template', $tdir.'header.tpl.html');
 $obj->assign('sitemap', $obj->get_sitemap());
 $obj->assign('footer_template', $tdir.'footer.tpl.html');

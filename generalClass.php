@@ -25,9 +25,10 @@ class GeneralClass extends BaseClass
 	// 每次用户点击,breadcrumb 都应该重组.
 	function set_1_breadcrumb() {
 		unset($_SESSION[PACKAGE]['breadcrumb']);
+		$home = $this->lang=='English' ? 'Home' : '首页';
 		$_SESSION[PACKAGE]['breadcrumb'][] = array(
 			'link' => 'index.php',
-			'name' => '首页'
+			'name' => $home
 		);
 	}
 	/*
@@ -52,7 +53,7 @@ class GeneralClass extends BaseClass
 
 	//////////////// Category ////////////////
 	function get_menu_info($cate_id) {
-		$query = "select name, description, frequency, tag from categories where cid=" . $cate_id;
+		$query = "select name, curl, description, frequency, tag from categories where cid=" . $cate_id;
 		$res = mysql_query($query);
 		$row = mysql_fetch_assoc($res);
 		mysql_free_result($res);
@@ -346,6 +347,40 @@ class GeneralClass extends BaseClass
 		}
 		mysql_free_result($res);
 		return $ary;
+	}
+	
+	function assemble_menu($menu)
+	{
+		$info = array();
+		if (preg_match("/English/i", $this->lang)) {
+			$info['title'] = $menu['curl'];
+			$t = 'Category：'. $menu['curl']."<br>\n";
+			$t .= "Currently this model is still under developing, will be ready shortly. Thanks for the visiting.<br>\n";
+			$info['content'] = $t;
+		}
+		else {
+			$info['title'] = $menu['name'];
+			$t = '分类为：'. $menu['name']."<br>\n";
+			$t .= '详细信息为：'. $menu['description']."<br>\n";
+			$t .= '标签为：' . $menu['tag']?$menu['tag']:$menu['name']."<br>\n";
+			$t .= "目前该分类还处在开发阶段，很快就会有内容呈现。谢谢关注。<br>\n";
+			$info['content'] = $t;			
+		}
+		return $info;
+	}
+
+	function assemble_sitemap($sm)
+	{
+		$info = array();
+		if (preg_match("/English/i", $this->lang)) {
+			$info['title'] = $sm[1];
+			$info['content'] = "Currently this model is under developing, will be ready shortly.<br>\n";
+		}
+		else {
+			$info['title'] = $sm[0];
+			$info['content'] = "目前该分类还处在开发阶段，很快就会有内容呈现。谢谢关注。<br>\n";
+		}
+		return $info;		
 	}
 }
 ?>
