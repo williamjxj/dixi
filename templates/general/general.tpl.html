@@ -1,3 +1,4 @@
+{debug}
 <div class="hero-unit"> {if {$info}}
   {$title=$info.title}
   {$content=$info.content}
@@ -15,18 +16,27 @@ $(function() {
 		return false;
 	});
 	$('p,br', 'div.display_content').css('background-color', '#EEEEEE');
+	$('a.keyword', 'div.container').click(function(e) {
+		e.preventDefault();
+		$('form.form-search').find('input[name=key]').val($(this).text());
+		$('form.form-search').submit();
+	});
 });
 </script>
 <div class="clear"></div>
 <hr class="hr1">
 <div class="row" style="margin-bottom:10px;">
-  <div class="span12"> <span class="label label-warning">上一篇</span><a href="#">...</a> <span class="label label-warning">下一篇：</span> <a href="#">...</a></div>
-</div>
+<ul class="pager">
+  <li class="previous"> <a href="?cid={$info.previous.cid}">&larr; {$info.previous.linkname}</a> </li>
+  <li class="next"> <a href="?cid={$info.next.cid}">{$info.next.linkname} &rarr;</a></li>
+</ul>
 <div class="row">
-  <div class="span7"> <span class="label label-warning">文章关键词: </span><a href="#">关键词1</a>&nbsp;<a href="#">关键词2</a> </div>
-  <div class="span5">
-    <form method="GET" name="search"  class="form-search" >
-      <input type="text" placeholder="全文检索" name="search" class="input-medium search-query" />
+  <div class="span7"> <span class="label label-warning">文章关键词: </span>&nbsp;
+    {foreach $info.keywords as $k} <a href="#" class="keyword">{$k}</a>, {/foreach}
+  </div>
+  <div class="span5" style="margin-top:0;padding-top:0">
+    <form method="post" name="search" action="general.php"  class="form-search" >
+      <input type="text" placeholder="全文检索" name="key" class="input-large search-query" />
       <button type="submit" class="btn btn-success"><i class="icon-white icon-search"></i> 搜&#12288;索</button>
     </form>
   </div>
