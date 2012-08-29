@@ -61,7 +61,7 @@ if(!empty($_GET)) {
 		$info['content'] = "目前该分类还处在开发阶段，很快就会有内容呈现。谢谢关注。<br>\n";
 		if(isset($_GET['js_sitemap'])) {
 			$obj->assign('info', $info);
-			$obj->display($tdir.'general.tpl.html');
+			$obj->display($tdir.'norecord.tpl.html');
 			exit;
 		}
 		else {

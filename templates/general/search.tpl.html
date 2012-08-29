@@ -50,8 +50,7 @@ $(function() {
 			url: url,
 			data: 'js_page=1',
 			success: function(data) {
-				console.log(data);
-				$('div#search').find('div.row').first().html(data).fadeIn(200);
+				$('div#search').hide().html(data).fadeIn(200);
 			}
 		});
 		return false;
