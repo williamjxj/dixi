@@ -3,7 +3,9 @@
     <div id="logo"> <a href="{$config.url}" title="{$common.header.title}"><img src="{$common.logo.logo_130x60}" /> </a> </div>
   </div>
   <div class="span10">
-    <div class="btn-toolbar"> <span class="curtime">{$smarty.now|date_format:'%Y-%m-%d %H:%M'}</span> {if {$config.username}}
+    <div class="btn-toolbar">
+    
+    <i class="icon-time"></i> <span class="curtime">{$smarty.now|date_format:'%Y-%m-%d %H:%M'}</span> {if {$config.username}}
       <div class="btn-group"> <a href="#" class="btn btn-info btn-small"><i class="icon-user icon-white"></i>{$config.username}</a> <a href="#" data-toggle="dropdown" class="btn btn-info btn-small dropdown-toggle"><span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li><a href="#"><i class="icon-info-sign"></i> {$config.username} 信息</a></li>
@@ -21,20 +23,20 @@
       <span id="st" style="cursor: pointer;" class="curtime">切至繁体版</span>
       <div class="btn-group"> <a href="#" class="btn btn-info btn-small"><i class="icon-list-alt icon-white"></i>&nbsp;显示字体</a> <a href="#" data-toggle="dropdown" class="btn  btn-info btn-small dropdown-toggle"><span class="caret"></span></a>
         <ul class="dropdown-menu" id="switcher">
-          <li><a href="#" id="switcher-default"> 缺省</a></li>
-          <li><a href="#" id="switcher-large"> 放大</a></li>
-          <li><a href="#" id="switcher-small"> 缩小</a></li>
+          <li><a href="#" id="switcher-default"><i class="icon-th"></i> 缺省</a></li>
+          <li><a href="#" id="switcher-large"><i class="icon-zoom-in"></i> 放大</a></li>
+          <li><a href="#" id="switcher-small"><i class="icon-zoom-out"></i> 缩小</a></li>
           <li class="divider"></li>
-          <li><a href="div.container" id="prlnk"><i class="icon-print"></i>&nbsp;打印</a></li>
+          <li><a href="div.container" id="prlnk"><i class="icon-print"></i> 打印</a></li>
         </ul>
       </div>
       <div class="btn-group"> <a href="#" class="btn btn-info btn-small"><i class="icon-user icon-white"></i> 帮助中心</a> <a href="#" data-toggle="dropdown" class="btn btn-info btn-small dropdown-toggle"><span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a data-toggle="modal" class="contact" href="#myModal"> 联络我们</a></li>
-          <li><a data-toggle="modal" class="help1"	href="#modal1"> 帮助中心</a></li>
-          <li><a data-toggle="modal" class="help2"	href="#modal2"> 视频帮助</a></li>
+          <li><a data-toggle="modal" class="contact" href="#myModal"><i class="icon-envelope"></i> 联络我们</a></li>
+          <li><a data-toggle="modal" class="help1"	href="#modal1"><i class="icon-globe"></i> 帮助中心</a></li>
+          <li><a data-toggle="modal" class="help2"	href="#modal2"><i class="icon-facetime-video"></i> 视频帮助</a></li>
           <li class="divider"></li>
-          <li><a id="login_signup" href="login/login_admin.php"><img src="images/lock.png" width="10" height="10" border="0" />&nbsp;后台管理</a></li>
+          <li><a id="login_signup" href="login/login_admin.php"><i class="icon-flag"></i> 后台管理</a></li>
         </ul>
       </div>
       <a href="/weibo/" class="btn btn-info btn-small" style="vertical-align:top;"><img src="{$config.img}sina.ico" width="16px" height="16px" border="0" /> 新浪微博</a> <a href="/iweibo/" class="btn btn-info btn-small" style="vertical-align:top;"><img src="{$config.img}qq.ico" width="16px" height="16px" border="0" /> 腾讯微博</a> </div>
@@ -64,16 +66,22 @@
 $(function() {
 	if( $.cookie("dixi[language]") ) {
 		$('#default_language').text( $.cookie("dixi[language]") );
+		//$('#default_language').text().match(/English/i)
+		if($.cookie("dixi[language]").match(/English/i)) {
+			$('#default_icon').html('<img src="images/en.png" style="margin-right:6px;" />');
+			$('#st').hide();
+		}
+		else {
+			$('#default_icon').html('<img src="images/cn.png" style="margin-right:6px;" />');
+			$('#st').show();
+		}
 	}
 	else {
 		$('#default_language').text('中文');
-	}
-	if(! $('#default_language').text().match(/English/i)) {
+		$('#default_icon').html('<img src="images/cn.png" style="margin-right:6px;" />');
 		$('#st').show();
 	}
-	else {
-		$('#st').hide();
-	}
+
 	var $speech = $('div.container');
 	var defaultSize = $speech.css('fontSize') || $('body').css('fontSize');
 	$('#switcher a').live("click", function () {

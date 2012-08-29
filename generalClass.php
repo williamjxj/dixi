@@ -225,7 +225,7 @@ class GeneralClass extends BaseClass
 	
 	function get_contents_count($key)
 	{
-		$sql = "select count(*) from contents where content like '%".$key ."%'";
+		$sql = "select count(*) from contents where content like '%".$key ."%' and language='" . $this->lang . "'";
 		$result = mysql_query($sql);
 		$num = mysql_fetch_row($result);
 		mysql_free_result($result);
@@ -235,11 +235,20 @@ class GeneralClass extends BaseClass
 	function select_contents_by_keyword($key)
 	{
 		$this->set_keywords($key);
-		$_SESSION[PACKAGE][SEARCH]['key'] = $_POST['key']?$_POST['key']:'所有记录';
+		$t=''; $name='';
+		if($this->lang=='English') {
+		  $t = 'All Records';
+		  $name = 'Search - ';    
+		}
+        else {
+          $t = '所有记录';
+          $name = '搜索 - ';
+        }
+		$_SESSION[PACKAGE][SEARCH]['key'] = $_POST['key']?$_POST['key']:$t;
 		
 		//添加面包屑功能.
 		$b = array();
-		$b[] = array('name'=>'搜索 - '.$_SESSION[PACKAGE][SEARCH]['key'], 'active'=>1);
+		$b[] = array('name'=>$name.$_SESSION[PACKAGE][SEARCH]['key'], 'active'=>1);
 		$this->set_breadcrumb($b);
 
 		//计算对于此关键词，总共多少记录。
@@ -256,7 +265,8 @@ class GeneralClass extends BaseClass
 		$row_no = 0;
 
 		//生成新的查询语句。
-		$sql = "select linkname, cid, date(created) as date from contents where content like '%".$key ."%' order by cid desc";
+		$lang_case = " and language = '" . $this->lang . "' ";
+		$sql = "select linkname, cid, date(created) as date from contents where content like '%".$key ."%' ".$lang_case." order by cid desc";
 		$_SESSION[PACKAGE][SEARCH]['sql'] = $sql;
 		$sql .= " limit  " . $row_no . "," . ROWS_PER_PAGE;
 		

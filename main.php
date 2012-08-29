@@ -42,7 +42,8 @@ function get_carousel1()
 		array_push ($ary1, $t);
 	}
 
-	$sql = "select linkname, cid from contents where linkname != '负面新闻' and mname='食品' order by rand() limit 0,13";
+    $t = isset($_SESSION[PACKAGE]['language']) ? $_SESSION[PACKAGE]['language'] : '';
+    $sql = "select linkname, cid from contents where language='". $t ."' order by rand() limit 0,13";
 	$res = mysql_query($sql);
 	while ($row = mysql_fetch_assoc($res)) {
 		array_push($ary2, $row);
@@ -71,7 +72,8 @@ function get_carousel2() {
 	
 	//2. 内容
 	$ary2 = array();
-	$sql = "select linkname, cid from contents where linkname != '负面新闻' and mname='食品' order by rand() limit 0,13";
+    $t = isset($_SESSION[PACKAGE]['language']) ? $_SESSION[PACKAGE]['language'] : '';
+	$sql = "select linkname, cid from contents where language='". $t ."' order by rand() limit 0,13";
 	$res = mysql_query($sql);
 	while ($row = mysql_fetch_assoc($res)) {
 		$t = array('h5'=>$row['linkname'], 'a'=>'./general.php?cid='.$row['cid']);
