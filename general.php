@@ -163,7 +163,14 @@ elseif(isset($_POST['key'])) {
 	$obj->assign("pagination", $pagination);
 }
 elseif(isset($_POST['fayan'])) {
+	if (!empty($_REQUEST['captcha'])) {
+		if (empty($_SESSION['captcha']) || trim(strtolower($_REQUEST['captcha'])) != $_SESSION['captcha']) {
+			echo 'N';
+			exit;
+		}
+	}
 	$obj->insert_comments();
+	echo 'Y';
 	exit;
 }
 else {

@@ -5,18 +5,24 @@
 <div class="clear"></div>
 <div id="affix">
   <hr class="hr1">
-  <div class="row" style="margin-bottom:10px;">
+  <div class="row" style="margin-bottom:0px;">
     <ul class="pager">
       <li class="previous"> <a href="?cid={$info.previous.cid}">&larr; {$info.previous.linkname}</a> </li>
       <li class="next"> <a href="?cid={$info.next.cid}">{$info.next.linkname} &rarr;</a></li>
     </ul>
   </div>
   <div class="row">
-    <div class="span7"> <span class="label label-warning">文章关键词: </span>&nbsp;
-      {foreach $info.keywords as $k} <a href="#" class="keyword">{$k}</a>, {/foreach} </div>
-    <div class="span5" style="margin-top:0;padding-top:0">
-      <form method="post" name="search" action="general.php"  class="form-search" >
-        <input type="text" placeholder="全文检索" name="key" class="input-large search-query" />
+    <div class="span7">
+      <ul id="keylist" class="pager">
+        <li><span class="label label-warning"><i class="icon-tags icon-white"></i> 文章关键词:&nbsp;</span></li>
+        {foreach $info.keywords as $k}
+        <li><a href="#" class="keyword">{$k}</a></li>
+        {/foreach}
+      </ul>
+    </div>
+    <div class="span5" style="margin:0;padding:0">
+      <form method="post" name="search" action="general.php"  class="form-search">
+        <input type="text" placeholder="全文检索" name="key" class="input-medium search-query" autocomplete="off" />
         <button type="submit" class="btn btn-success"><i class="icon-white icon-search"></i> 搜&#12288;索</button>
       </form>
     </div>

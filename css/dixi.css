@@ -248,3 +248,19 @@ ul li .bshare-custom {
 #menu .btn-group > .btn {
 	margin-right:4px;
 }
+#form_fayan legend {
+	margin-bottom:0;
+}
+#change-image { 
+	font-size: 0.8em;
+}
+#result {
+	float:right;
+	padding-right:10px;
+	font-weight:bolder;
+}
+#keylist.pager {
+	text-align:left;
+	margin-bottom: 0px;
+	margin-top: -10px;
+}
