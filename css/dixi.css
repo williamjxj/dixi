@@ -191,8 +191,8 @@ li.li3:nth-child(even) {
 }
 .pager1 a {
 	background: url("../images/pager.png") no-repeat scroll 0 0 transparent;
-	color: #434343 !important;
-	padding: 5px 9px;
+	/*color: #434343 !important;*/
+	padding: 5px 6px;
 	text-align: center;
 }
 #ie7 .pager1 a, #ie7 .pager1 a.selected, #ie7 .bigPagerButton {

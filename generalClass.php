@@ -19,6 +19,7 @@ class GeneralClass extends BaseClass
 	    $this->template_dir = SITEROOT.'templates/default/';
 		$this->dbh = $this->mysql_connect_dixi();
 		$this->general = $config['general'];
+		$this->lang = $_SESSION[PACKAGE]['language'];
 	}
 
 	// 每次用户点击,breadcrumb 都应该重组.
@@ -311,25 +312,25 @@ class GeneralClass extends BaseClass
 				if ($key != 'page') $queryURL .= '&'.$key.'='.$value;
 			}
 		}		
+		// $plinks[] = ' <a href="?page='.($current_page - 1).$queryURL.'">&laquo; 前页</a> ';
 		if (($total_pages) > 1) {
 			if ($current_page != 1) {
-				$plinks[] = ' <a href="'.$this->url.'?page=1'.$queryURL.'">&laquo;&laquo; 首页 </a> ';
-				$plinks[] = ' <a href="'.$this->url.'?page='.($current_page - 1).$queryURL.'">&laquo; 前页</a> ';
+				$plinks[] = ' <a href="?page=1'.$queryURL.'">&laquo;&laquo; 首页 </a> ';
 			}
 
-			for ($j = ($current_page-5); $j < ($current_page+5); $j++) {
+			for ($j = ($current_page-3); $j < ($current_page+3); $j++) {
 			  if($j<1) continue;
 			  if($j>$total_pages) break;
 			  if ($current_page == $j) {
 				$links[] = ' <a class="selected">'.$j.'</a> ';
 			  } else {
-				$links[] = ' <a href="'.$this->url.'?page='.$j.$queryURL.'">'.$j.'</a> ';
+				$links[] = ' <a href="?page='.$j.$queryURL.'">'.$j.'</a> ';
 			  }
 			}
 
+			// $slinks[] = ' <a href="?page='.($current_page + 1).$queryURL.'"> 下页 &raquo; </a> ';
 			if ($current_page < $total_pages) {
-				$slinks[] = ' <a href="'.$this->url.'?page='.($current_page + 1).$queryURL.'"> 下页 &raquo; </a> ';
-				$slinks[] = ' <a href="'.$this->url.'?page='.($total_pages).$queryURL.'"> 最后 &raquo;&raquo; </a> ';
+				$slinks[] = ' <a href="?page='.($total_pages).$queryURL.'"> 最后 &raquo;&raquo; </a> ';
 			}
 	        return implode(' ', $plinks).implode(' ', $links).implode(' ', $slinks);
 		}
