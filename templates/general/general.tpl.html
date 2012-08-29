@@ -1,4 +1,4 @@
-{debug}
+{*debug*}
 <div class="hero-unit"> {if {$info}}
   {$title=$info.title}
   {$content=$info.content}
@@ -32,8 +32,7 @@ $(function() {
 </ul>
 <div class="row">
   <div class="span7"> <span class="label label-warning">文章关键词: </span>&nbsp;
-    {foreach $info.keywords as $k} <a href="#" class="keyword">{$k}</a>, {/foreach}
-  </div>
+    {foreach $info.keywords as $k} <a href="#" class="keyword">{$k}</a>, {/foreach} </div>
   <div class="span5" style="margin-top:0;padding-top:0">
     <form method="post" name="search" action="general.php"  class="form-search" >
       <input type="text" placeholder="全文检索" name="key" class="input-large search-query" />
@@ -43,10 +42,12 @@ $(function() {
 </div>
 {include file="../shared/pinglun.tpl.html"}
 <div class="row" style="margin-top:6px;">
-  <div class="span7"> <a href="#"><span class="label label-warning">相关评论</span></a>
-    <ul>
-      <li><a href="#">.......</a></li>
-    </ul>
+  <div class="span7">
+    <div class="label label-warning">相关评论</div>
+    <div id="commentlist"> </div>
   </div>
-  <div class="span5"> <a href="#"><span class="label label-warning">相关推荐</span></a> </div>
+  <div class="span5">
+    <div class="label label-warning">相关推荐</div>
+    <div id="recommadlist"> </div>
+  </div>
 </div>

@@ -157,6 +157,10 @@ elseif(isset($_POST['key'])) {
 	$pagination = $obj->draw();	
 	$obj->assign("pagination", $pagination);
 }
+elseif(isset($_POST['fayan'])) {
+	echo "<pre>"; print_r($_POST); echo "</pre>";
+	exit;
+}
 else {
 	header('Location: login.php');
 	exit;
