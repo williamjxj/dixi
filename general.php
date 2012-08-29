@@ -101,6 +101,7 @@ if(!empty($_GET)) {
 	elseif(isset($_GET['cid'])) {
 		$info = array();
 		$row = $obj->get_content($_GET['cid']);
+		$info['cid'] = $row['cid'];
 		$info['title'] = $row['linkname'];
 		$info['content'] = '<div class="display_content">'.$row['content'].'</div>';
 		
@@ -116,6 +117,8 @@ if(!empty($_GET)) {
 		);
 		$ary = $obj->get_rand_keywords();
 		$info['keywords'] = array_slice($ary, rand(0,3));
+		
+		$info['comments'] = $obj->get_comments($_GET['cid']);
 		$obj->assign('info', $info);
 	}
 	elseif(isset($_GET['test'])) {
@@ -156,6 +159,10 @@ elseif(isset($_POST['key'])) {
 
 	$pagination = $obj->draw();	
 	$obj->assign("pagination", $pagination);
+}
+elseif(isset($_POST['fayan'])) {
+	$obj->insert_comments();
+	exit;
 }
 else {
 	header('Location: login.php');

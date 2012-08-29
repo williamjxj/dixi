@@ -1,10 +1,20 @@
+{if {$smarty.session.dixi.username}}
+	{$user=$smarty.session.dixi.username}
+{else}
+	{$user='访问用户'}
+{/if}
+{if $info.cid}
+	{$cid=$info.cid}
+{else}
+	{'出错了，无法插入comments表，cid未知。'}
+{/if}
 <div class="hero-unit" style="margin:0;padding:0 0 6px 10px;">
-  <form class="form-horizontal">
+  <form class="form-horizontal" id="form_fayan">
     <legend><span class="label label-warning">网友留言</span></legend>
     <div class="control-group">
       <label class="control-label" for="fayan">我也来说两句:</label>
       <div class="controls">
-        <textarea style="height:75px;width:90%;border:1px solid #7f9db9; overflow:auto" id="fayan" name="fayan"></textarea>
+        <textarea id="fayan" name="fayan" style="width:90%"></textarea>
       </div>
     </div>
     <div class="control-group">
@@ -12,47 +22,45 @@
         <button type="submit" class="btn btn-success"><i class="icon-comment icon-white"></i> 发表评论</button>
         <span>请文明上网，<a href="#">登录</a>发言并遵守相关规定 <a href="#">立即注册</a></span> </div>
     </div>
+    <input type="hidden" name="cid" value="{$cid}"  />
+    <input type="hidden" name="username" value="{$user}"  />
   </form>
 </div>
 <script type="text/javascript">
 $(function() {
-	var validator = $('#taskform').validate({
-		rules: { fayan: "required" },
-		messages: { fayan: "" }
+	var count = 1;
+	var validator = $('#form_fayan').validate({
+		rules: { "fayan": "required" },
+		messages: { fayan: "" },
+		highlight: function(label) {
+			$(label).closest('.control-group').addClass('error');
+		},
+		success: function(label) {
+			label.closest('.control-group').addClass('success');
+		}	
 	});
-	$('#taskform').submit(function(e) {
-		e.preventDefault();
-		
+	$('button:submit', '#form_fayan').click(function(e) {
+		e.preventDefault();		
 		if(!validator.form()) {
+			$('#fayan').attr('placeholder', '请输入您的评论。');
+			$('#form_fayan').find('div.control-group').first().removeClass('success').addClass('error');
 			return false;
 		}
-		$('<div/>').attr('id',did).addClass('clear').appendTo('#tasklist');
 
-		if(count%2) {
-		$('div[id="'+did+'"]').addClass('ldiv').removeClass('clear');
-		}
+		var tid = 'collapse' + count++;
 		
-		$('<label class="checkbox ctask"><input type="checkbox" />' + task + '</label>')
-		.appendTo(did1);
+		$.post("general.php", $("#form_fayan").serialize() );
 		
-		$('<span class="delete"><a href="'+ did1 +'"><i class="icon-remove"/></a></span>')
-		.appendTo(did1);
-		
-		$('<hr/>').addClass('clear').appendTo(did1);
-		
-		$('<ol class="ctask" />').append('<li><em>' + who + '</em>, ' + when + '</li>').appendTo(did1);	
+		var msg = '<div class="accordion-group">' + 
+				'<div class="accordion-heading">' +
+				' <a href="#' + tid + '" data-parent="#commentlist" data-toggle="collapse" class="accordion-toggle">' +
+				'{$user} 于 {$smarty.now|date_format:"%Y-%m-%d %T"} </a>' +
+				' </div> ' +
+				 ' <div class="accordion-body collapse in" id="' + tid + '">' +
+					'<div class="accordion-inner">' + $('#fayan').val() + '</div>' +
+			  '</div>' +
+			'</div>';
+		$(msg).prependTo('#commentlist');
 	});
-	
-    $('input[type="checkbox"]').live('change', function() {	
-		$(this).closest('div').animate({ height:'show',width:'show',opacity: 'show' }, 'slow');
-		var did = $(this).closest('div');
-		if($('label', did).is('.info')) {
-			$('ol>li, label', did).removeClass('info');
-		}
-		else {	
-			$('ol>li, label', did).addClass('info');
-		}
-    });
-	
 });
 </script>

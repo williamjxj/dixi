@@ -1,14 +1,9 @@
-{debug}
-<div class="hero-unit"> {if {$info}}
-  {$title=$info.title}
-  {$content=$info.content}
-  {/if}
-  <h2>{$title}</h2>
-  <p style="margin:10px;padding:10px;">{$content}</p>
-  <!--
-  <p style="margin-top:20px;"><a class="btn btn-primary btn-large" href="index.php"><i class="icon-home icon-white"></i> 返回主页 </a>&nbsp; <a class="btn btn-primary btn-large contact" data-toggle="modal" href="#myModal"><i class="icon-flag icon-white"></i> 联系我们 </a>&nbsp; <a class="btn btn-primary btn-large knowmore" data-toggle="modal" href="#modal1"><i class="icon-info-sign icon-white"></i> 了解更多 &raquo;</a> </p>
-  -->
+{if {$info}}
+<div class="hero-unit">
+  <h2>{$info.title}</h2>
+  <p style="margin:10px;padding:10px;">{$info.content}</p>
 </div>
+{/if}
 <script type="text/javascript">
 $(function() {
 	$('a.knowmore', 'div.hero-unit').click(function(e) {
@@ -21,19 +16,20 @@ $(function() {
 		$('form.form-search').find('input[name=key]').val($(this).text());
 		$('form.form-search').submit();
 	});
+	$(".collapse").collapse();
 });
 </script>
 <div class="clear"></div>
 <hr class="hr1">
 <div class="row" style="margin-bottom:10px;">
-<ul class="pager">
-  <li class="previous"> <a href="?cid={$info.previous.cid}">&larr; {$info.previous.linkname}</a> </li>
-  <li class="next"> <a href="?cid={$info.next.cid}">{$info.next.linkname} &rarr;</a></li>
-</ul>
+  <ul class="pager">
+    <li class="previous"> <a href="?cid={$info.previous.cid}">&larr; {$info.previous.linkname}</a> </li>
+    <li class="next"> <a href="?cid={$info.next.cid}">{$info.next.linkname} &rarr;</a></li>
+  </ul>
+</div>
 <div class="row">
   <div class="span7"> <span class="label label-warning">文章关键词: </span>&nbsp;
-    {foreach $info.keywords as $k} <a href="#" class="keyword">{$k}</a>, {/foreach}
-  </div>
+    {foreach $info.keywords as $k} <a href="#" class="keyword">{$k}</a>, {/foreach} </div>
   <div class="span5" style="margin-top:0;padding-top:0">
     <form method="post" name="search" action="general.php"  class="form-search" >
       <input type="text" placeholder="全文检索" name="key" class="input-large search-query" />
@@ -43,10 +39,21 @@ $(function() {
 </div>
 {include file="../shared/pinglun.tpl.html"}
 <div class="row" style="margin-top:6px;">
-  <div class="span7"> <a href="#"><span class="label label-warning">相关评论</span></a>
-    <ul>
-      <li><a href="#">.......</a></li>
-    </ul>
+  <div class="span7">
+    <div class="label label-warning">相关评论</div>
+    <div id="commentlist" class="accordion"> {if $info.comments}
+      {foreach $info.comments as $i}
+      <div class="accordion-group">
+        <div class="accordion-heading"> <a href="#collapse_{$i.4}_{$i.0}" data-parent="#commentlist" data-toggle="collapse" class="accordion-toggle"> {$i.2} 于 {$i.3} </a> </div>
+        <div class="accordion-body collapse in" id="collapse_{$i.4}_{$i.0}">
+          <div class="accordion-inner"> {$i.1} </div>
+        </div>
+      </div>
+      {/foreach}
+      {/if} </div>
   </div>
-  <div class="span5"> <a href="#"><span class="label label-warning">相关推荐</span></a> </div>
+  <div class="span5">
+    <div class="label label-warning">相关推荐</div>
+    <div id="recommadlist" class="accordion"> </div>
+  </div>
 </div>
