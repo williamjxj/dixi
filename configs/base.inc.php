@@ -121,7 +121,7 @@ class BaseClass extends Smarty
 			'customer' => array('客服中心','Customer Service Center'),
 			'navigator' => array('网站导航','Site Navigation'),
 			'law' => array('法律声明','Legal Notices'),
-			'report' => array('有害短信息举报','Harmful SMS Report'),
+			'report' => array('有害信息举报','Harmful SMS Report'),
 		);
 		if($item) return $ary[$item];
 		else return $ary;
