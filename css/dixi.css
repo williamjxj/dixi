@@ -152,8 +152,11 @@ ul.tab2 {
 	overflow:hidden;
 	margin-top:20px;
 }
-#div_display.span7 {
-	width: 510px !important;
+#div_display {
+	padding: 4px;
+	overflow:scroll;
+	height:500px;
+	max-height:700px;
 }
 .li3 {
 	padding:6px 0 4px 20px;
@@ -263,4 +266,10 @@ ul li .bshare-custom {
 	text-align:left;
 	margin-bottom: 0px;
 	margin-top: -10px;
+}
+li.previous a {
+	margin-left: 50px;
+}
+li.next a {
+	margin-right:40px;
 }

@@ -14,7 +14,7 @@
     <div class="control-group">
       <label class="control-label" for="fayan">我也来说两句:</label>
       <div class="controls">
-        <textarea id="fayan" name="fayan" placeholder="我的输入评论" style="width:90%" rows="5"></textarea>
+        <textarea id="fayan" name="fayan" placeholder="我的评论" style="width:90%" rows="5"></textarea>
       </div>
     </div>
     <div class="control-group">
@@ -49,16 +49,14 @@ $(function() {
 		}	
 	});
 	$('button:submit', '#form_fayan').click(function(e) {
-		e.preventDefault();
-		
-		if($('#captcha-form').val()=='') {
-			$('#result').html('请输入验证码。').show();
-			return false;
-		}
-		
+		e.preventDefault();		
 		if(!validator.form()) {
 			$('#fayan').attr('placeholder', '请输入您的评论。');
 			$('#form_fayan').find('div.control-group').first().removeClass('success').addClass('error');
+			return false;
+		}
+		if($('#captcha-form').val()=='') {
+			$('#result').html('请输入验证码。').show();
 			return false;
 		}
 
