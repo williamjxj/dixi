@@ -1,15 +1,18 @@
 {$url={$config.general}}
  {if {$info}}
-<div class="span5 box5">
-  <ul class="nav nav-pills nav-stacked">
-    {$no=1}
-    {foreach $info as $is}
-    <li class="li3"><span class="badge badge-warning">{$no++}</span> <a href="{$url}?iid={$is.iid}&js_get_contents_list=1" title="{$is.description}">{$is.name}</a></li>
-    {/foreach}
-  </ul>
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span4 box5">
+      <ul class="nav nav-pills nav-stacked">
+        {$no=1}
+        {foreach $info as $is}
+        <li class="li3"><span class="badge badge-warning">{$no++}</span> <a href="{$url}?iid={$is.iid}&js_get_contents_list=1" title="{$is.description}">{$is.name}</a></li>
+        {/foreach}
+      </ul>
+    </div>
+    <div class="span8 box5" id="div_display" style="display:none;"> </div>
+  </div>
 </div>
-<div class="span6 box5" id="div_display" style="display:none;"> </div>
-<div style="clear:both;"></div>
 <script type="text/javascript">
   $(function() {
 	$('li.li3 a').click(function(e) {
@@ -25,6 +28,4 @@
 	});
 });
 </script>
-{else}
-<span class="btn btn-danger">没有相关记录</span>
-{/if} 
+{else} <span class="btn btn-danger">没有相关记录</span> {/if} 

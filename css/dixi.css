@@ -152,10 +152,10 @@ ul.tab2 {
 	overflow:hidden;
 	margin-top:20px;
 }
-#div_display {
+#div_display, #item_display {
 	padding: 4px;
 	overflow:scroll;
-	height:800px;
+	height:620px;
 	max-height:1000px;
 }
 .li3 {

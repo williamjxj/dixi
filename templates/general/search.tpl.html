@@ -41,7 +41,7 @@
 $(function() {
 	$('li.li3 a').click(function(e) {
 		e.preventDefault();
-		$('#div_display').html();
+		$('#div_display').html('');
 		
 		var h = $(this).attr('href');
 		t = h.replace(/\&js_get_content=1/,'');
