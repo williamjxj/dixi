@@ -155,8 +155,8 @@ ul.tab2 {
 #div_display {
 	padding: 4px;
 	overflow:scroll;
-	height:500px;
-	max-height:700px;
+	height:800px;
+	max-height:1000px;
 }
 .li3 {
 	padding:6px 0 4px 20px;

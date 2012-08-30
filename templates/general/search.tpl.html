@@ -1,13 +1,18 @@
 {*debug*}
 {$url={$SCRIPT_NAME}}
 {if empty($results)}
-  {$title='没有关于这个关键词的记录'}
-  {$content='没有关于这个关键词的记录。'}
-<div class="hero-unit">
-  <h2>{$title}</h2>
-  <p style="margin:10px;padding:10px;">{$content}</p>
-  <p style="margin-top:20px;"><a class="btn btn-primary btn-large" href="index.php"><i class="icon-home icon-white"></i> 返回主页 </a>&nbsp; <a class="btn btn-primary btn-large contact" data-toggle="modal" href="#myModal"><i class="icon-flag icon-white"></i> 联系我们 </a>&nbsp; <a class="btn btn-primary btn-large knowmore" data-toggle="modal" href="#modal1"><i class="icon-info-sign icon-white"></i> 了解更多 &raquo;</a> </p>
-</div>
+
+{if $smarty.session.dixi.language!='English'}
+  {$info.title='没有关于这个关键词的记录'}
+  {$info.content='没有关于这个关键词的记录。'}
+{else}
+  {$info.title='No record matching it, try again:'}
+  {$info.content=''}
+{/if}
+
+{include file="templates/general/norecord.tpl.html"}
+
+
 {else}
   {$no=1+({$smarty.session.dixi.search.page}-1)*25}
 <div class="container-fluid">
@@ -41,7 +46,7 @@ $(function() {
 		var h = $(this).attr('href');
 		t = h.replace(/\&js_get_content=1/,'');
 		t = '<a href="' + t + '">' + $(this).text() + '</a>';
-		$('<h3></h3>').html(t).prependTo('#div_display');
+		$('<h2></h2>').html(t).prependTo('#div_display');
 		$.get(h, function(data) {
 			$(data).appendTo('#div_display');
 			$('#div_display').hide().fadeIn(200);
