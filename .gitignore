@@ -3,6 +3,4 @@ logs/
 cache/
 test/*
 templates_c/
-resources
-resources/
 templates_c/*
