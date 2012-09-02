@@ -1,0 +1,223 @@
+@charset "utf-8";
+/******* form 部分*************/
+fieldset legend {
+  text-decoration:underline;
+  cursor:pointer;
+  cursor:hand;
+}
+/* textarea:focus */
+input:focus, select:focus{
+  background-color: lightyellow;
+}
+/******* table 部分*************/
+table tbody tr:hover{
+	background-color: #e1eafe;
+}
+table tbody tr th span{
+	border-bottom-color:#0000CC;
+	border-bottom-style:dotted;
+	border-bottom-width:medium;
+}
+/******* div 部分*************/
+div.ajaxloading {
+    height: 32px; 
+    width: 32px;
+    background-color: #fff;
+    background-image: url('images/spinner.gif');
+    background-position:  center center;
+    background-repeat: no-repeat;
+    opacity: 1;
+}
+div.ajaxloading * {
+    opacity: .8;
+}
+/******* link 部分*************/
+a:hover {
+    box-shadow: 2px 2px 2px #888888;
+    text-decoration: underline;
+}
+a:active {
+    background: none repeat scroll 0 0 #BBBBBB;
+}
+/******* box 部分*************/
+.box_sina
+{
+	background: none repeat scroll 0 0 #F5F8FD;
+	border: 1px solid #C8D8F2;
+	margin: 12px 0;
+	padding:10px 4px;
+    overflow: hidden;
+}
+/* 以下是http://sports.sina.com.cn/g/ucl/2012-08-31/01026207844.shtml的完整定义: */
+/* 标题 */
+h1.title {
+	border-bottom: 1px solid #C8D8F2;
+    color: #03005C;
+    font-family: "黑体";
+    font-size: 20px;
+    font-weight: normal;
+    height: 35px;
+    line-height: 35px;
+    overflow: hidden;
+    text-align: center;
+}
+/*标题下的副标题:span,a*/
+h1.notes {
+}
+/*网友热评 <i class="iconcomment"></i>*/
+.reping h2 {
+	background-color: #F5F8FD;
+	height: 28px;
+	line-height: 26px;
+	padding: 10px 20px 0;
+}
+.reping h2 .title {
+    background: url(images/reping.gif) no-repeat scroll 0 0 transparent;
+    color: #464646;
+    float: left;
+    font-family: "微软雅黑,黑体";
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 18px;
+    padding-left: 24px;
+}
+.reping h2 div.canyu {
+	float:right;
+}
+/*每段的定义*/
+.reping_item {
+    border-top: 1px dotted #CCCCCC;
+    padding: 10px 19px 4px;
+}
+.reping_item .t_info {
+    color: #666666;
+    float: left;
+    font-size: 12px;
+    line-height: 20px;
+}
+.reping_item .t_txt {
+    color: #414159;
+    font-size: 14px;
+    line-height: 24px;
+    margin-left: 124px;
+}
+.reping_item .t_date {
+    color: #D0D0D0;
+    font-size: 12px;
+    margin-top: 10px;
+}
+
+/* 评论 */
+.pinglun {
+    background-color: #F5F8FD;
+    border-color: #C8D8F2;
+    border-style: solid;
+    border-width: 1px 0 0;
+    padding: 0 10px 5px;
+}
+.pinglun h2 {
+    height: 28px;
+    line-height: 26px;
+    padding: 10px 10px 0;
+}
+.pinglun h2 .title {
+    background: url(reping.gif) no-repeat scroll 0 -30px transparent;
+    color: #464646;
+    float: left;
+    font-family: "微软雅黑,黑体";
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 18px;
+    padding-left: 24px;
+}
+/******* 装饰 部分*************/
+.more {
+	font-size:12px;
+	position:absolute;
+	right:10px;
+}
+.more:focus {
+	outline: medium none;
+}
+.more:hover {
+}
+/* stackoverflow.com: a button*/
+a.post-tag:hover {
+    background-color: #3E6D8E;
+    border-bottom: 1px solid #37607D;
+    border-right: 1px solid #37607D;
+    color: #E0EAF1;
+    text-decoration: none;
+}
+a:hover {
+    box-shadow: 2px 2px 2px #888888;
+    text-decoration: underline;
+}
+a:active {
+    background: none repeat scroll 0 0 #BBBBBB;
+}
+.post-tag {
+    background-color: #E0EAF1;
+    border-bottom: 1px solid #3E6D8E;
+    border-right: 1px solid #7F9FB6;
+    color: #3E6D8E;
+    font-size: 90%;
+    line-height: 2.4;
+    margin: 2px 2px 2px 0;
+    padding: 3px 4px;
+    text-decoration: none;
+    white-space: nowrap;
+}
+/* 参考*/
+#livetip {
+	position: absolute;
+	background-color: #cfc;
+	border: 2px solid #c9c;
+	border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+}
+body #TabbedPanels1 div.TabbedPanelsContentGroup{
+	-moz-border-radius: 4px 4px 4px 4px !important;
+	-webkit-border-radius: 4px 4px 4px 4px !important;
+	border-radius: 4px 4px 4px 4px !important;
+    border: 1px solid #C6D0DF !important;
+    margin: 31px 34px !important;
+	background: #fff !important;
+    box-shadow: 1px 1px 1px #888888;		
+}
+/** twitter-bootstrap carousel vertical sliding
+ * http://stackoverflow.com/questions/11589816/twitter-bootstrap-carousel-vertical-sliding
+ */
+.vertical .carousel-inner {
+  height: 100%;
+}
+.carousel.vertical .item {
+  -webkit-transition: 0.6s ease-in-out top;
+     -moz-transition: 0.6s ease-in-out top;
+      -ms-transition: 0.6s ease-in-out top;
+       -o-transition: 0.6s ease-in-out top;
+          transition: 0.6s ease-in-out top;
+}
+.carousel.vertical .active {
+  top: 0;
+}
+.carousel.vertical .next {
+  top: 100%;
+}
+.carousel.vertical .prev {
+  top: -100%;
+}
+.carousel.vertical .next.left,
+.carousel.vertical .prev.right {
+  top: 0;
+}
+.carousel.vertical .active.left {
+  top: -100%;
+}
+.carousel.vertical .active.right {
+  top: 100%;
+}
+.carousel.vertical .item {
+    left: 0;
+}​ 

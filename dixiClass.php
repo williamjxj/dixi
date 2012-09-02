@@ -3,6 +3,9 @@ defined('SITEROOT') or define('SITEROOT', './');
 require_once(SITEROOT."configs/base.inc.php");
 
 define('TAB_LIST', 10);
+define('PER_TOTAL', 5);
+require_once(SITEROOT.'configs/mini-app.inc.php');
+mysql_connect_dixi();
 
 class DixiClass extends BaseClass
 {
@@ -82,6 +85,112 @@ class DixiClass extends BaseClass
 			array_push($ary, array($row['cid'], $row['linkname']));
 		}
 		return $ary;
+	}
+
+	function get_tabs() {
+		$ary = array();
+		$query = "select name, curl, frequency from categories order by frequency, weight";
+		$res = mysql_query($query);
+		while($row = mysql_fetch_assoc($res)) {
+			if(!isset($ary[$row['frequency']]) || !is_array($ary[$row['frequency']])) {
+				$ary[$row['frequency']] = array();
+			}
+			array_push ($ary[$row['frequency']], $row);
+		}
+		return $ary;
+	}
+	
+	function get_menu() {
+		$ary = array();
+		$query = "select cid, curl, name from categories where active='Y' order by weight";
+		$res = mysql_query($query);
+		while($row = mysql_fetch_assoc($res)) {
+			array_push ($ary, $row);
+		}
+		return $ary;
+	}
+	
+	function get_carousel1() 
+	{
+		$total=0; $ary1=array(); $ary2=array(); $html='';
+		
+		$query = "select concat(path,file) as carousel1_file from resources where file like '%300x294%' order by rand()";
+		$res = mysql_query($query);
+		$total = mysql_num_rows($res);
+		while($row = mysql_fetch_assoc($res)) {
+			$t = '<img src="'. $row['carousel1_file'] . '" />';
+			array_push ($ary1, $t);
+		}
+	
+		$t = isset($_SESSION[PACKAGE]['language']) ? $_SESSION[PACKAGE]['language'] : '';
+		$sql = "select linkname, cid from contents where language='". $t ."' order by rand() limit 0,13";
+		$res = mysql_query($sql);
+		while ($row = mysql_fetch_assoc($res)) {
+			array_push($ary2, $row);
+		}
+	
+		for($i=0; $i<$total; $i++) {
+			$html .= 
+			'<div class="item">' . '<a href="./general.php?cid=' . $ary2[$i]['cid'] . '">' . $ary1[$i] . '</a>' .
+			'  <div class="carousel-caption">' . 
+			'    <h4>' . $ary2[$i]['linkname'] . '</h4>' .
+			'   </div>' .
+			"</div>\n";
+		}
+		return $html;
+	}
+	
+	function get_carousel2() {
+		//1. 图片
+		$ary = array();
+		$query = "select concat(path,file) as carousel2_file from resources where file like '%220x130%' order by rand()";
+		$res = mysql_query($query);
+		while($row = mysql_fetch_assoc($res)) {
+			$t = '<img src="'. $row['carousel2_file'] . '" />';
+			array_push ($ary, $t);
+		}
+		
+		//2. 内容
+		$ary2 = array();
+		$t = isset($_SESSION[PACKAGE]['language']) ? $_SESSION[PACKAGE]['language'] : '';
+		$sql = "select linkname, cid from contents where language='". $t ."' order by rand() limit 0,13";
+		$res = mysql_query($sql);
+		while ($row = mysql_fetch_assoc($res)) {
+			$t = array('h4'=>$row['linkname'], 'a'=>'./general.php?cid='.$row['cid']);
+			array_push($ary2, $t);
+		}
+		
+		//3. 关联上面两部分：
+		$count = 1;
+		$nails_rest = array();
+		$c = '';
+		$loop = 1; $x = 0;
+		$n = '<ul class="thumbnails">';
+	
+		foreach($ary as $t) {
+			$c  = '<li class="span3"><div class="thumbnail">'."\n";
+			$c .= '<a href="#">';
+			$c .= $t;
+			$c .= '</a>';
+			$c .= '<div class="caption"><h4><a href="'.$ary2[$x]['a'].'">'.$ary2[$x]['h4'].'</a></h4>';
+			$c .= '<p>'.$ary2[$x++]['h4'].'</p>';
+			$c .= "</div></div></li>\n";
+			$n .= $c;
+			$c = '';
+			$count++;
+			if ($count == PER_TOTAL) {
+				$n .= "</ul>\n";
+				$nails_rest[] = $n;
+				$n = '<ul class="thumbnails">';
+				$count = 1;
+				$loop ++;
+			}
+		}
+		if($count != PER_TOTAL) {
+			$n .= "</ul>\n";
+			$nails_rest[] = $n;
+		}
+		return $nails_rest;
 	}
 
 }

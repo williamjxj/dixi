@@ -10,11 +10,8 @@ global $common;
 require_once(SITEROOT."configs/config.inc.php");
 global $config;
 
-
 set_lang();
- 
 
-require_once(SITEROOT."main.php");
 require_once(SITEROOT.'dixiClass.php');
 
 try {
@@ -43,6 +40,7 @@ $obj->assign('config', $config);
 
 if(isset($_GET['js_get_tab_list'])) {
 	echo json_encode($obj->get_tab_list());
+	exit;
 }
 else if(isset($_GET['test'])) {
 	header('Content-Type: text/html; charset=utf-8'); 
@@ -55,12 +53,12 @@ else {
 	$obj->assign('config', $config);
 	$obj->assign('common', $common);
 	
-	$obj->assign('menu', get_menu());
-	$obj->assign('aoa_tabs', get_tabs());
+	$obj->assign('menu', $obj->get_menu());
+	$obj->assign('aoa_tabs', $obj->get_tabs());
 	
 	//$obj->assign('nails_first', get_ary_thumbnails());
-	$obj->assign('carousel1', get_carousel1());
-	$obj->assign('carousel2', get_carousel2());
+	$obj->assign('carousel1', $obj->get_carousel1());
+	$obj->assign('carousel2', $obj->get_carousel2());
 	
 	$obj->assign('sitemap', $obj->get_sitemap());
 	$obj->assign('definition', $obj->get_definition());

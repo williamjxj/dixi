@@ -7,6 +7,9 @@
             return this.enMonthNames[this.getMonth()];
         },
         cnMonthNames: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
+        getCNMonthName: function () {
+            return this.cnMonthNames[this.getMonth()];
+        },
         get_current_datetime: function () {
             var dt = new Date();
             //return dt.getFullYear() + '年' + (dt.getMonth() + 1) + '月' + dt.getDate() + '日';
@@ -16,9 +19,6 @@
 			var dt = new Date();
 			return dt.getMonth();
 		},
-        getCNMonthName: function () {
-            return this.cnMonthNames[this.getMonth()];
-        },
         getShortMonthName: function () {
             return this.getENMonthName().substr(0, 3);
         },
@@ -31,4 +31,70 @@
             return [b.toDateString(), b.getShortMonthName(), d, b.getFullYear()];
         }
     };
+})(jQuery);
+
+// public functions definition
+/*$.fn.pluginName.functionName = function(foo) {
+	return this;
+};
+// private functions definition
+function foobar() {}
+*/
+function get_date()
+{
+	var today = new Date();
+	var wday = '星期';
+	switch (today.getDay()) {
+		case 0: wday += '日'; break;
+		case 1: wday += '一'; break;
+		case 2: wday += '二'; break;
+		case 3: wday += '三'; break;
+		case 4: wday += '四'; break;
+		case 5: wday += '五'; break;
+		case 6: wday += '六'; break;
+	}
+	document.write((today.getMonth()+1)+'月'+today.getDate()+'日'+wday); 
+}
+/* https://github.com/cabbiepete/jQuery-Share-Email/blob/master/src/jquery.shareemail.js */
+;(function($) {
+
+  // replace 'pluginName' with the name of your plugin
+  $.fn.shareEmail = function(options) {
+
+    // extends defaults with options provided
+    var o = $.fn.shareEmail.defaults;
+    if (options) {
+      o = $.extend(o, options);
+    }
+    // iterate over matched elements
+    return this.each(function() {
+      $.tmpl(o.template, o).appendTo($(this));
+
+      $(this).click(function() {
+        var data = {
+          title: document.title,
+          description: $('meta[name=description]').attr('content'),
+          url: window.location.href,
+          nl: "\n" // tmpl seems to each newline chars so we use this instead.
+        }
+        var url = 'mailto:?Subject=';
+        var subject = $.tmpl(o.subjectTemplate, data).text();
+        url += encodeURIComponent(subject);
+        url += '&Body=';
+        var eBody = $.tmpl(o.bodyTemplate, data).text();
+        url += encodeURIComponent(eBody);
+        window.location.href = url;
+      });
+    });
+  };
+
+  // plugin default options
+  $.fn.shareEmail.defaults = {
+    displayText: '通过邮件共享',
+    title: '通过邮件共享这篇文章',
+    template: '<span style="text-decoration:none;display:inline-block;cursor:pointer;" class="button"><span class="chicklets email"><a class="btn btn-danger btn-small" href="javascript:;"><i class="icon-envelope icon-white"></i>${displayText}</a></span></span>',
+    subjectTemplate: "${title} - 想和你共享",
+    bodyTemplate: "${nl}${nl}${title}${nl}${nl}源文件: ${url}${nl}${nl}${description}"
+  };
+  
 })(jQuery);

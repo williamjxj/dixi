@@ -114,7 +114,17 @@ class GeneralClass extends BaseClass
 		$this->set_breadcrumb($b);
 		return $ary;
 	}
-		
+	function get_item_count() {
+		$ary = array();
+		$sql = "select count(*) total, iid from contents group by iid";
+		$res = mysql_query($sql);
+		while($row = mysql_fetch_assoc($res)) {
+			array_push($ary, $row);
+		}
+		mysql_free_result($res);
+		return $ary;
+	}
+
 	//////////////// Contents ////////////////
 	
 	function get_content($cid) {
@@ -312,6 +322,40 @@ class GeneralClass extends BaseClass
 	}
 
 	function draw()
+	{
+		$current_page = $_SESSION[PACKAGE][SEARCH]['page'] ? $_SESSION[PACKAGE][SEARCH]['page'] : 1;
+		$total_pages = $_SESSION[PACKAGE][SEARCH]['total_pages'] ? $_SESSION[PACKAGE][SEARCH]['total_pages'] : 0;		
+		$links = array(); $queryURL = '';
+		if (count($_GET)) {
+			foreach ($_GET as $key => $value) {
+				if ($key != 'page') $queryURL .= '&'.$key.'='.$value;
+			}
+		}
+		if (($total_pages) > 1) {
+			if ($current_page != 1) {
+				$links[] = '<a href="?page=1'.$queryURL.'">&laquo;&laquo; 首页 </a>';
+				$links[] = '<a href="?page='.($current_page - 1).$queryURL.'">&laquo; 前页</a>';
+			}
+
+			for ($j = ($current_page-4); $j < ($current_page+4); $j++) {
+			  if($j<1) continue;
+			  if($j>$total_pages) break;
+			  if ($current_page == $j) {
+				$links[] = '<a href="javascript:;">'.$j.'</a>';
+			  } else {
+				$links[] = '<a href="?page='.$j.$queryURL.'">'.$j.'</a>';
+			  }
+			}
+
+			if ($current_page < $total_pages) {
+				$links[] = '<a href="?page='.($current_page + 1).$queryURL.'"> 下页 &raquo; </a>';
+				$links[] = '<a href="?page='.($total_pages).$queryURL.'"> 末页 &raquo;&raquo; </a>';
+			}
+	        return $links;
+		}
+	}
+	// deprecated.
+	function draw_old()
 	{
 		$current_page = $_SESSION[PACKAGE][SEARCH]['page'] ? $_SESSION[PACKAGE][SEARCH]['page'] : 1;
 		$total_pages = $_SESSION[PACKAGE][SEARCH]['total_pages'] ? $_SESSION[PACKAGE][SEARCH]['total_pages'] : 0;

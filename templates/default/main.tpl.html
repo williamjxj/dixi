@@ -27,13 +27,11 @@
   {/if}
   {/foreach} </div>
 <div class="row box2">
-  <div class="span12">
     <div id="myCarousel2" class="carousel slide">
       <div class="carousel-inner"> {foreach $carousel2 as $v}
         <div class="item">{$v}</div>
         {/foreach} </div>
-      <a class="carousel-control left" href="#myCarousel2" data-slide="prev">&lsaquo;</a> <a class="carousel-control right" href="#myCarousel2" data-slide="next">&rsaquo;</a> </div>
-  </div>
+      <a class="carousel-control left" href="#myCarouse2" data-slide="prev">&lsaquo;</a> <a class="carousel-control right" href="#myCarousel2" data-slide="next">&rsaquo;</a> </div>
 </div>
 <!--
 <div class="row">
@@ -95,47 +93,13 @@
   {/if}
   {/foreach} </div>
 <div class="row box2">
-  <div class="span12">
     <div id="myCarousel2" class="carousel slide">
       <div class="carousel-inner"> {foreach $carousel2 as $v}
         <div class="item">{$v}</div>
         {/foreach} </div>
       <a class="carousel-control left" href="#myCarousel2" data-slide="prev">&lsaquo;</a> <a class="carousel-control right" href="#myCarousel2" data-slide="next">&rsaquo;</a> </div>
-  </div>
 </div>
-<!--
-<div class="row">
-  <div class="span7">
-    <div id="scrollbar1">
-      <div class="scrollbar">
-        <div class="track">
-          <div class="thumb">
-            <div class="end"></div>
-          </div>
-        </div>
-      </div>
-      <div class="viewport">
-        <div class="overview  hero-unit">
-          <h3>Negative News</h3>
-          <div style="line-height: 140%; margin: 0px; width: 28px; float: left; color: #c74b15; font-size: 28px; font-weight: bolder; border: #000000 0px solid; padding: 0px;">Definition：</div>
-          <p>{$definition} </p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="span4 hero-unit" id="div_items">
-  	<h2><span class="label label-warning"><a href="general.php?category_menu=3">Food items:</a></span> <a href="#"><span class="more">more<span>&raquo;</span></span></a></h2>
-    <ul class="nav nav-pills nav-stacked">
-      {$no=1}
-      {foreach $info as $is}
-      <li class="li3"><span class="badge badge-warning">{$no++}</span> <a href="{$config.general}?iid={$is.iid}" title="{$is.description}">{$is.name}</a></li>
-      {/foreach}
-    </ul>
-  </div>
-</div>
--->
 {/if}
-
 
 <script type="text/javascript">
 $(function() {
