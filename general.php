@@ -80,6 +80,10 @@ if(!empty($_GET)) {
 			$obj->assign('info', $info);
 		}
 	}	
+	elseif(isset($_GET['js_get_item_count'])) {
+		echo json_encode($obj->get_item_count());
+		exit;
+	}
 	elseif(isset($_GET['category_menu'])) {
 		if($_GET['category_menu'] == 3) {
 			$info = $obj->get_item_list();
@@ -123,9 +127,7 @@ if(!empty($_GET)) {
 	}
 	elseif(isset($_GET['test'])) {
 		header('Content-Type: text/html; charset=utf-8'); 
-		echo $obj->assemble_menu();
-		
-		//echo "<pre>"; print_r($obj->get_item_list()); echo "</pre>";
+		echo "<pre>"; print_r($obj->get_item_list()); print_r($obj->get_item_count()); echo "</pre>";		
 		/*
 		echo "<pre>"; print_r($obj->select_contents_by_keyword($_GET['test'])); echo "</pre>";
 		echo "<pre>"; print_r($_SESSION); echo "</pre>";

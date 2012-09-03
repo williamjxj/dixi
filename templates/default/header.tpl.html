@@ -6,7 +6,7 @@
   <div class="span10">
     <div class="btn-toolbar"> 
 
-    <i class="icon-time"></i><span class="curtime">{$smarty.now|date_format:'%Y-%m-%d %H:%M'}</span>
+    <i class="icon-time"></i><span class="curtime" id="today"></span>
       {if {$config.username}}
       <div class="btn-group"> <a href="#" class="btn btn-info btn-small"><i class="icon-user icon-white"></i>{$config.username}</a> <a href="#" data-toggle="dropdown" class="btn btn-info btn-small dropdown-toggle"><span class="caret"></span></a>
         <ul class="dropdown-menu">
@@ -39,13 +39,13 @@
         </ul>
       </div>
 
-      <div class="btn-group"> <a href="#" class="btn btn-info btn-small"><i class="icon-user icon-white"></i> 帮助中心</a> <a href="#" data-toggle="dropdown" class="btn btn-info btn-small dropdown-toggle"><span class="caret"></span></a>
+      <div class="btn-group"> <a href="#" class="btn btn-info btn-small"><i class="icon-flag icon-white"></i> 帮助中心</a> <a href="#" data-toggle="dropdown" class="btn btn-info btn-small dropdown-toggle"><span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li><a data-toggle="modal" class="contact" href="#myModal"><i class="icon-envelope"></i> 联络我们</a></li>
           <li><a data-toggle="modal" class="help1"	href="#modal1"><i class="icon-globe"></i> 帮助中心</a></li>
           <li><a data-toggle="modal" class="help2"	href="#modal2"><i class="icon-facetime-video"></i> 视频帮助</a></li>
           <li class="divider"></li>
-          <li><a id="login_signup" href="login/login_admin.php"><i class="icon-flag"></i> 后台管理</a></li>
+          <li><a id="login_signup" href="login/login_admin.php"><i class="icon-user"></i> 后台管理</a></li>
         </ul>
       </div>
       <a href="/weibo/" class="btn btn-info btn-small" style="vertical-align:top;"><img src="{$config.img}sina.ico" width="16px" height="16px" border="0" /> 新浪微博</a> <a href="/iweibo/" class="btn btn-info btn-small" style="vertical-align:top;"><img src="{$config.img}qq.ico" width="16px" height="16px" border="0" /> 腾讯微博</a> </div>
@@ -73,6 +73,7 @@
 </section>
 <script type="text/javascript">
 $(function() {
+	/* 语言部分的判定 */
 	if( $.cookie("dixi[language]") ) {
 		$('#default_language').text( $.cookie("dixi[language]") );
 		//$('#default_language').text().match(/English/i)
@@ -90,7 +91,7 @@ $(function() {
 		$('#default_icon').html('<img src="images/cn.png" style="margin-right:6px;" />');
 		$('#st').show();
 	}
-
+	/* 字体调整 */
 	var $speech = $('div.container');
 	var defaultSize = $speech.css('fontSize') || $('body').css('fontSize');
 	$('#switcher a').live("click", function () {
@@ -119,7 +120,8 @@ $(function() {
 
     $('#myModal').modal({ show: false });
     $('#modal1').modal({ show: false });
-		
+
+	/* 弹出窗口 */
     $('a.contact[data-toggle="modal"]').click(function(e) {
         e.preventDefault();
         var url = 'fancy_contact.php';
@@ -150,7 +152,7 @@ $(function() {
 		return false;
 	});
 
-	//dixi_admin
+	// 注册到dixi_admin
 	$('#login_signup').click(function(e) {
 	    e.preventDefault();
 		var t2 = $('#div_ls');
@@ -181,5 +183,22 @@ $(function() {
 		}
 		return false;
 	});
+	$('#today').html(get_date());
 });
+/*{$smarty.now|date_format:'%Y-%m-%d %H:%M'}*/
+function get_date()
+{
+	var today = new Date();
+	var wday = '星期';
+	switch (today.getDay()) {
+		case 0: wday += '日'; break;
+		case 1: wday += '一'; break;
+		case 2: wday += '二'; break;
+		case 3: wday += '三'; break;
+		case 4: wday += '四'; break;
+		case 5: wday += '五'; break;
+		case 6: wday += '六'; break;
+	}
+	return (today.getMonth()+1)+'月'+today.getDate()+'日'+wday; 
+}
 </script>

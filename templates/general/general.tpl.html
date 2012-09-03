@@ -1,39 +1,46 @@
+<script type="text/javascript" src="include/jquery-jquery-tmpl/jquery.tmpl.min.js"></script>
+<script type="text/javascript" src="js/dixi.js"></script>
 <div class="hero-unit">
   <h2>{$info.title}</h2>
   <p style="margin:10px;padding:10px;">{$info.content}</p>
 </div>
 <div class="clear"></div>
 <div id="affix">
-  <hr class="hr1">
-  <div class="row" style="margin-bottom:0px;">
-    <ul class="pager">
-      <li class="previous"> <a href="?cid={$info.previous.cid}">&larr; {$info.previous.linkname}</a> </li>
-      <li class="next"> <a href="?cid={$info.next.cid}">{$info.next.linkname} &rarr;</a></li>
-    </ul>
-  </div>
-  <div class="row">
-    <div class="span7">
-      <ul id="keylist" class="pager">
-        <li><span class="label label-warning"><i class="icon-tags icon-white"></i> 文章关键词:&nbsp;</span></li>
-        {foreach $info.keywords as $k}
-        <li><a href="#" class="keyword">{$k}</a></li>
-        {/foreach}
-      </ul>
+  <div class="box_sina">
+    <div class="row" style="margin-bottom:0px;">
+      <div class="span9">
+        <ul class="pager">
+          <li class="previous"> <a href="?cid={$info.previous.cid}"><i class="icon-arrow-left"></i> {$info.previous.linkname}</a> </li>
+          <li class="next"> <a href="?cid={$info.next.cid}">{$info.next.linkname} <i class="icon-arrow-right"></i></a></li>
+        </ul>
+      </div>
+      <div class="span3" style="width:200px">
+        <form method="post" name="search" action="general.php"  class="form-search">
+          <input type="text" placeholder="全文检索" name="key" class="input-small search-query" autocomplete="off" />
+          <button type="submit" class="btn btn-success"><i class="icon-white icon-search"></i> 搜索</button>
+        </form>
+      </div>
     </div>
-    <div class="span5" style="margin:0;padding:0">
-      <form method="post" name="search" action="general.php"  class="form-search">
-        <input type="text" placeholder="全文检索" name="key" class="input-medium search-query" autocomplete="off" />
-        <button type="submit" class="btn btn-success"><i class="icon-white icon-search"></i> 搜&#12288;索</button>
-      </form>
+    <div class="row">
+      <div class="span7">
+        <ul id="keylist" class="pager">
+          <li><span class="label label-warning"><i class="icon-tags icon-white"></i> 文章关键词:&nbsp;</span></li>
+          {foreach $info.keywords as $k}
+          <li><a href="#" class="keyword">{$k}</a></li>
+          {/foreach}
+        </ul>
+      </div>
+      <div class="span5" style="margin:0;padding:0"><span class="st_email"></span>
+ 分享到：{include file="templates/shared/bshare.tpl.html"}</div>
     </div>
   </div>
-  {include file="../shared/pinglun.tpl.html"}
+  <div id="pinglun"> {include file="../general/pinglun.tpl.html"} </div>
   <div class="row" style="margin-top:6px;">
     <ul class="nav nav-tabs" id="myTab">
       <li class="active"><a href="#commentlist">相关评论</a></li>
       <li><a href="#recommandlist">相关推荐</a></li>
     </ul>
-    <div class="tab-content">
+    <div class="tab-content tab1">
       <div class="tab-pane active accordion" id="commentlist"> {if $info.comments}
         {foreach $info.comments as $i}
         <div class="accordion-group">
@@ -43,27 +50,50 @@
           </div>
         </div>
         {/foreach}
+        {else}
+        <p>相关评论</p>
         {/if} </div>
-      <div class="tab-pane accordion" id="recommandlist"></div>
+      <div class="tab-pane accordion" id="recommandlist">
+      <p>相关推荐</p></div>
     </div>
   </div>
 </div>
+{include file="templates/general/reping.tpl.html"}
+
+<!-- lezhi code start -->
+<div id="bShareRecommDiv"></div>
+<script type="text/javascript" charset="utf-8" src="http://lzstatic.bshare.cn/plugin/lz.js#uuid=d8f82eca-2bd6-4349-8c57-82ae6c7a6598"></script>
+<!-- lezhi code end -->
+
+
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7002060840784536";
+/* 负面新闻728x90-Leaderboard */
+google_ad_slot = "0589515868";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
 <script type="text/javascript">
+(function($) {
+	$(".st_email").shareEmail();
+})(jQuery);
 $(function() {
 	$('#myTab a').click(function(e) {
 		e.preventDefault();
 		$(this).tab('show');
 	});
-	$('a.knowmore', 'div.hero-unit').click(function(e) {
-		$('#modal1').modal({ show:true });
-		return false;
-	});
-	$('p,br', 'div.display_content').css('background-color', '#EEEEEE');
+
 	$('a.keyword', 'div.container').click(function(e) {
 		e.preventDefault();
 		$('form.form-search').find('input[name=key]').val($(this).text());
 		$('form.form-search').submit();
 	});
+	
 	$(".collapse").collapse();
 });
 </script>
