@@ -316,13 +316,14 @@ div.ajaxloading * {
     opacity: .8;
 }
 /******* link 部分*************/
-a:hover {
+#affix a:hover {
     box-shadow: 2px 2px 2px #888888;
     text-decoration: underline;
 }
-a:active {
+#affix a:active {
     background: none repeat scroll 0 0 #BBBBBB;
 }
+
 /******* box 部分*************/
 .box_sina
 {
@@ -392,6 +393,15 @@ a:active {
 	float:right;
 	display:inline;
 	margin-right:6px;
+}
+.reping .a_huifu {
+	padding: 10px;
+}
+.a_huifu, .a_zhichi {
+	opacity:0.5;
+}
+.a_huifu:hover, .a_zhichi:hover {
+	opacity:1;
 }
 .reping_item .well {
     background-color: #EAF0FB;
@@ -463,13 +473,6 @@ a.post-tag:hover {
     border-right: 1px solid #37607D;
     color: #E0EAF1;
     text-decoration: none;
-}
-a:hover {
-    box-shadow: 2px 2px 2px #888888;
-    text-decoration: underline;
-}
-a:active {
-    background: none repeat scroll 0 0 #BBBBBB;
 }
 .post-tag {
     background-color: #E0EAF1;
