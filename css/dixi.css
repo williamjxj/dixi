@@ -16,7 +16,7 @@
 #myCarousel2 .thumbnails {
 	height:236px;
 	overflow:hidden;
-	margin-left:0px;
+	margin-left:10px;
 }
 #myCarousel2 .thumbnails > li > p {
 	margin-bottom:0 !important;
@@ -35,9 +35,6 @@
 }
 #myCarousel2.carousel {
 	margin-bottom:4px !important;
-}
-#myCarousel2.carousel  .active{
-	left:10px;
 }
 #myCarousel2 .thumbnail {
 	height:220px;
@@ -346,7 +343,6 @@ a:active {
     line-height: 20px;
     margin: 0 auto;
     overflow: hidden;
-    width: 638px;
 }
 .reping h2 {
 	background-color: #F5F8FD;
