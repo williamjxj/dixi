@@ -8,7 +8,7 @@
   {$info.title='No record matching it, try again:'}
   {$info.content=''}
 {/if}
-{include file="templates/general/norecord.tpl.html"}
+{include file="{$config.detail}/help/norecord.tpl.html"}
 {else}
   {$no=1+({$smarty.session.dixi.search.page}-1)*25}
 <div class="container-fluid">

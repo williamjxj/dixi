@@ -1,18 +1,17 @@
-{if {$smarty.session.dixi.username}} {$user=$smarty.session.dixi.username}
-{else} {$user='访问用户'}
-{/if}
-{if $info.cid} {$cid=$info.cid}
-{else}{'出错了，无法插入comments表，cid未知。'}
-{/if}
 <form id="fayanForm">
   <div class="hero-unit" style="margin:0;padding:0 0 6px 10px;">
     <legend>
     <span class="label label-warning">网友留言</span>
-    <h5 style="display:inline;margin-left:20px;"><a class="btn" href="#login">登录</a> &nbsp; <a class="btn" href="#signup">立即注册</a></h5>
+    <h5 style="display:inline;margin-left:20px;">
+    	<a class="btn" href="#login">登录</a> &nbsp; 
+        <a class="btn" href="#signup">立即注册</a>
+        <span style="margin-left:20px;">(快捷登录:<a href="javascript:;" rel="tooltip" title="本网站共享QQ账号"><img src="images/qq.ico" /> 用QQ账号登录</a> | 
+        <a href="javascript:;" rel="tooltip" title="本网站共享新浪账号"><img src="images/sina.ico" /> 用新浪微博账号登录</a>)</span>
+    </h5>
     <span id="result" class="alert" style="display:none;"></span>
     </legend>
     <div class="control-group">
-      <label class="control-label" for="fayan">我也来说两句:<span class="alert">（网友评论仅供其表达个人看法。）</span></label>
+      <label class="control-label" for="fayan">我要评论:<span class="alert">（网友评论仅供其表达个人看法。）</span></label>
       <div class="controls">
         <textarea id="fayan" name="fayan" placeholder="文明上网，登录发贴。" style="width:96%" rows="8"></textarea>
       </div>
@@ -35,13 +34,13 @@ $(function() {
 	$('a.btn[href="#login"]').click(function() {
 		var t = $('#login');
 		if (t.html().length>1) t.modal();
-		else t.load('./templates/general/login.tpl.html').modal();
+		else t.load('{$path}help/login.tpl.html').modal();
 		return false;
 	});
 	$('a.btn[href="#signup"]').click(function(e) {
 		t = $('#signup'); 
 		if (t.html().length>1) t.modal();
-		else  t.load('./templates/general/signup.tpl.html').modal({ show: true });
+		else  t.load('{$path}help/signup.tpl.html').modal({ show: true });
 		return false;
 	});
 	
@@ -98,5 +97,7 @@ $(function() {
 		});		
 	});
 	
+	// tooltip 提示条
+	$('a[rel="tooltip"]').tooltip();
 });
 </script>

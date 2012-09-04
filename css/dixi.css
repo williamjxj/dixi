@@ -248,6 +248,49 @@ li.li3:nth-child(even) {
 	height:620px;
 	max-height:1000px;
 }
+#toTop {
+	display:none;
+	text-decoration:none;
+	position:fixed;
+	bottom:10px;
+	right:10px;
+	overflow:hidden;
+	width:51px;
+	height:51px;
+	border:none;
+	text-indent:100%;
+	background:url(../images/scrolltop.png) no-repeat left top;
+}
+
+#toTopHover {
+	background:url(../images/scrolltop.png) no-repeat left -51px;
+	width:51px;
+	height:51px;
+	display:block;
+	overflow:hidden;
+	float:left;
+	opacity: 0;
+	-moz-opacity: 0;
+	filter:alpha(opacity=0);
+}
+
+#toTop:active, #toTop:focus {
+	outline:none;
+}
+#toTop1 {
+    background: url(../images/scrolltop.png) no-repeat scroll 50% 0 transparent;
+    bottom: 100px;
+    cursor: pointer;
+    display: block;
+    height: 50px;
+    line-height: 999px;
+    overflow: hidden;
+    position: fixed;
+    visibility: hidden;
+}
+.ie6 #toTop1 {
+    bottom: auto;
+}
 /** 关注人数 **/
 .guanzhu .renshu {
 	color: #999999;
@@ -307,7 +350,7 @@ div.ajaxloading {
     height: 32px; 
     width: 32px;
     background-color: #fff;
-    background-image: url('images/spinner.gif');
+    background-image: url(../images/spinner.gif);
     background-position:  center center;
     background-repeat: no-repeat;
     opacity: 1;
@@ -413,47 +456,28 @@ div.ajaxloading * {
 .reping_item form {
 	margin: 0;
 }
-.reping_item .control-group {
+.reping_item .control-group, #fayanForm .control-group {
 	margin-bottom: 2px;
 }
 .reping_item form textarea {
 	margin-bottom: 0;
 }
 /* 以下是http://sports.sina.com.cn/g/ucl/2012-08-31/01026207844.shtml的完整定义: */
-/* 标题 */
-h1.title {
-	border-bottom: 1px solid #C8D8F2;
-    color: #03005C;
-    font-family: "黑体";
-    font-size: 20px;
-    font-weight: normal;
-    height: 35px;
-    line-height: 35px;
-    overflow: hidden;
-    text-align: center;
-}
 /* 评论 */
-.pinglun {
+.weibo {
     background-color: #F5F8FD;
     border-color: #C8D8F2;
     border-style: solid;
     border-width: 1px;
     padding: 0 10px 5px;
+	border-bottom: 1px solid #C8D8F2;
+    color: #03005C;
+	margin-bottom:10px;
 }
-.pinglun h2 {
+.weibo h3 {
     color:#5D5D5D;
-    height: 28px;
-    line-height: 26px;
+    font-family: "黑体";
     padding: 10px 10px 0;
-}
-.pinglun h2 .title {
-    color: #464646;
-    float: left;
-    font-family: "微软雅黑,黑体";
-    font-size: 18px;
-    font-weight: bold;
-    line-height: 18px;
-    padding-left: 24px;
 }
 /******* 装饰 部分*************/
 .more {

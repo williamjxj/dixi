@@ -1,0 +1,23 @@
+<div class="row" style="margin-top:6px; margin-left:0px;">
+  <ul class="nav nav-tabs" id="myTab">
+    <li class="active"><a href="#commentlist">相关文章</a></li>
+    <li><a href="#recommandlist">相关推荐</a></li>
+  </ul>
+  <div class="tab-content tab1">
+    <div class="tab-pane active accordion" id="commentlist"> {if $info.comments}
+      {foreach $info.comments as $i}
+      <div class="accordion-group">
+        <div class="accordion-heading"> <a href="#collapse_{$i.4}_{$i.0}" data-parent="#commentlist" data-toggle="collapse" class="accordion-toggle"> {$i.2} 于 {$i.3} </a> </div>
+        <div class="accordion-body collapse in" id="collapse_{$i.4}_{$i.0}">
+          <div class="accordion-inner"> {$i.1} </div>
+        </div>
+      </div>
+      {/foreach}
+      {else}
+      <p>相关评论</p>
+      {/if} </div>
+    <div class="tab-pane accordion" id="recommandlist">
+      <p>相关推荐</p>
+    </div>
+  </div>
+</div>

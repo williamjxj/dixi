@@ -4247,7 +4247,7 @@ input[type="submit"].btn.btn-mini {
 
 .modal-footer .btn + .btn {
   margin-bottom: 0;
-  margin-left: 5px;
+  margin-left: 5px;o
 }
 
 .modal-footer .btn-group .btn + .btn {
@@ -4290,7 +4290,7 @@ input[type="submit"].btn.btn-mini {
   bottom: 0;
   left: 50%;
   margin-left: -5px;
-  border-top: 5px solid #000000;
+  border-top: 5px solid #FCF8E3;
   border-right: 5px solid transparent;
   border-left: 5px solid transparent;
 }
@@ -4301,7 +4301,7 @@ input[type="submit"].btn.btn-mini {
   margin-top: -5px;
   border-top: 5px solid transparent;
   border-bottom: 5px solid transparent;
-  border-left: 5px solid #000000;
+  border-left: 5px solid #FCF8E3;
 }
 
 .tooltip.bottom .tooltip-arrow {
@@ -4309,7 +4309,7 @@ input[type="submit"].btn.btn-mini {
   left: 50%;
   margin-left: -5px;
   border-right: 5px solid transparent;
-  border-bottom: 5px solid #000000;
+  border-bottom: 5px solid #FCF8E3;
   border-left: 5px solid transparent;
 }
 
@@ -4318,17 +4318,17 @@ input[type="submit"].btn.btn-mini {
   left: 0;
   margin-top: -5px;
   border-top: 5px solid transparent;
-  border-right: 5px solid #000000;
+  border-right: 5px solid #FCF8E3;
   border-bottom: 5px solid transparent;
 }
 
 .tooltip-inner {
   max-width: 200px;
   padding: 3px 8px;
-  color: #ffffff;
+  color: #C09853;
   text-align: center;
   text-decoration: none;
-  background-color: #000000;
+  background-color: #FCF8E3;
   -webkit-border-radius: 4px;
      -moz-border-radius: 4px;
           border-radius: 4px;
