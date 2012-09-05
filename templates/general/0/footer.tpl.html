@@ -1,4 +1,4 @@
-{$url={$config.general}}
+{$url={$config.d}}
 <div class="container"> {if $smarty.session.dixi.language != 'English'}
   <div class="box">
     <div class="btn-group sitemap"> {foreach $sitemap as $k=>$v} <a class="btn" href="?sitemap={$k}">{$v.0}</a> {/foreach} </div>
@@ -21,7 +21,7 @@ $(function() {
 			$('#breadcrumb').load(t+'&js_get_breadcrumb=1');
 			$('#affix').empty();
 		}).fadeIn(200);
-		// window.location.href="{$config.general}"+$(this).attr('href');		
+		// window.location.href="{$config.d}"+$(this).attr('href');		
 		return false;
 	});
 });

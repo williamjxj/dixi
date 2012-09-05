@@ -1,5 +1,5 @@
 <div class="row" style="margin-top:6px; margin-left:0px;">
-  <ul class="nav nav-tabs" id="myTab">
+  <ul class="nav nav-tabs" id="xiangguanList">
     <li class="active"><a href="#commentlist">相关文章</a></li>
     <li><a href="#recommandlist">相关推荐</a></li>
   </ul>
@@ -21,3 +21,11 @@
     </div>
   </div>
 </div>
+<script type="text/javascript">
+$(function() {
+	$('#xiangguanList a').click(function(e) {
+		e.preventDefault();
+		$(this).tab('show');
+	});
+});
+</script>

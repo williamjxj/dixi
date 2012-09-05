@@ -7,7 +7,7 @@
       </ul>
     </div>
     <div tyle="width:100%">
-      <form method="post" name="search" action="general.php"  class="form-search">
+      <form method="post" name="search" action="d.php"  class="form-search">
         <input type="text" placeholder="全文检索" name="key" class="input-small search-query" autocomplete="off" />
         <button type="submit" class="btn btn-success"><i class="icon-white icon-search"></i> 搜索</button>
       </form>
@@ -22,6 +22,6 @@
         {/foreach}
       </ul>
     </div>
-    <div class="span5" style="margin:0;padding:0"><span class="st_email"></span> 分享到：{include file="templates/shared/bshare.tpl.html"}</div>
+    <div class="span5" style="margin:0;padding:0"><span class="st_email"></span> 分享到：{include file="{$config.shared}bshare.tpl.html"}</div>
   </div>
 </div>

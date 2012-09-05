@@ -9,7 +9,7 @@ $common = array(
 	'header' => array(
 		'lang' => 'zh_CN',
 		'charset' => 'UTF-8',
-		'title' => '负面新闻网.关于中国的负面新闻,比如明星,食品,体育,医疗,教育,人物,机构,娱乐,财经,政府等.底细,真相,还原真相,反映实际情况.',
+		'title' => '负面新闻网',
 		'desc' => '负面新闻网.关于中国的负面新闻,比如明星,食品,体育,医疗,教育,人物,机构,娱乐,财经,政府等.底细,真相,还原真相,反映实际情况.',
 		'keywords' => '负面新闻,底细,真相,还原真相,反映实际情况',
 		'robots' => 'index,',
@@ -37,6 +37,7 @@ $common = array(
 		'ga' => SITEROOT.'js/ga.js',
 		'cookie' => SITEROOT.'js/cookie.js',
 		'fancybox'  => SITEROOT.'include/jquery.fancybox',
+		'dixi' => SITEROOT.'js/dixi.js',
 	),
 );
 

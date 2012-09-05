@@ -156,6 +156,7 @@ li.li3:nth-child(even) {
 	float:right;
 	padding-right:10px;
 	font-weight:bolder;
+	display:none;
 }
 #keylist.pager {
 	text-align:left;
@@ -234,8 +235,6 @@ li.li3:nth-child(even) {
 	border-style: solid;
 	border-width: 1px;
 	border-top: 1px solid #DBDADA;
-	overflow:hidden;
-	margin-top:10px;
 }
 /** 其它扩展 **/
 #affix .bshare-custom {
@@ -245,8 +244,10 @@ li.li3:nth-child(even) {
 	padding: 4px;
 	/*width: auto;
 	overflow:scroll;*/
-	height:620px;
-	max-height:1000px;
+	overflow-y: scroll;
+	min-height: 0px;
+	max-height: 600px;
+	margin-bottom:20px;
 }
 #toTop {
 	display:none;
@@ -562,4 +563,8 @@ body #TabbedPanels1 div.TabbedPanelsContentGroup{
 }
 .carousel.vertical .item {
     left: 0;
-}​ 
+}​
+/** 通过邮件共享 */
+a.tqmail {
+    background: url("http://mat1.gtimg.com/news/imgcss_article_qq/qqmail.png") no-repeat scroll 0 0 transparent;
+}

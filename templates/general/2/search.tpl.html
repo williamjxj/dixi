@@ -1,0 +1,51 @@
+{if ! {$path2}}
+{$path2="{$config.general}2/"}
+{/if}
+<div class="row">
+  <div class="span4 box5"> {$no=1+({$smarty.session.dixi.search.page}-1)*25}
+    {include file="{$path2}search_summary.tpl.html"}
+    {include file="{$path2}pagination.tpl.html"}
+    <ul class="nav nav-pills nav-stacked">
+      {foreach $results as $rts}
+      <li class="li3"><span class="badge badge-warning">{$no++}</span> <a href="{$url}?cid={$rts.cid}&js_get_content=1">{$rts.linkname} ({$rts.date})</a></li>
+      {/foreach}
+    </ul>
+    {include file="{$path2}pagination.tpl.html"} </div>
+  <div class="span8 box5">
+    <div id="div_display" style="display:none;"></div>
+    {include file="{$path2}weibo.tpl.html"}
+    {include file="{$path2}reping.tpl.html"} 
+    {include file="{$path2}pk.tpl.html"} </div>
+</div>
+<script type="text/javascript">
+$(function() {
+	$('li.li3 a').click(function(e) {
+		e.preventDefault();
+		$('#div_display').html('');
+		
+		var h = $(this).attr('href');
+		t = h.replace(/\&js_get_content=1/,'');
+		t = '<a href="' + t + '">' + $(this).text() + '</a>';
+		$('<h2></h2>').html(t).prependTo('#div_display');
+		$.get(h, function(data) {
+			$(data).appendTo('#div_display');
+			$('#div_display').hide().fadeIn(200);
+			$('#breadcrumb').hide().load(h.replace(/js_get_content/, "js_get_breadcrumb")).fadeIn(200);			
+		});
+		return false;
+	});
+	$('div.pagination a').bind('click', function(e) {
+		e.preventDefault();
+		var url = $(this).attr('href');
+		$.ajax({
+			type: 'get',
+			url: url,
+			data: 'js_page=1',
+			success: function(data) {
+				$('div#search').hide().html(data).fadeIn(200);
+			}
+		});
+		return false;
+	});
+});
+</script>

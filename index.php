@@ -70,7 +70,7 @@ else {
 // 下面的span5方框需要填充,用食品的items.
 	$info = $obj->get_items();
 	$obj->assign('info', $info);
-	$obj->assign('item_template', $tdir.'../general/item.tpl.html');
+	$obj->assign('item_template', $tdir.'../general/2/item.tpl.html');
 		
 	$obj->assign('header_template', $tdir.'header.tpl.html');
 	$obj->assign('menu_template', $tdir.'menu.tpl.html');

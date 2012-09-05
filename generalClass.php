@@ -18,7 +18,7 @@ class GeneralClass extends BaseClass
 		$this -> self = basename($this -> url, '.php');
 	    $this->template_dir = SITEROOT.'templates/default/';
 		$this->dbh = $this->mysql_connect_dixi();
-		$this->general = $config['general'];
+		$this->general = $config['d'];
 		$this->lang = $_SESSION[PACKAGE]['language'];
 	}
 
@@ -63,7 +63,6 @@ class GeneralClass extends BaseClass
 		// 这里，要用array(array(..))来控制count()=1, 否则count()>1.
 		$b[] = array('name'=>$row['name'], 'active'=>1);
 		$this->set_breadcrumb($b);
-
 		return $row;
 	}
 	function get_category_list() 
@@ -124,7 +123,17 @@ class GeneralClass extends BaseClass
 		mysql_free_result($res);
 		return $ary;
 	}
-
+	function get_category_count() {
+		$ary = array();
+		$sql = "select count(*) total, cid from items group by cid";
+		$res = mysql_query($sql);
+		while($row = mysql_fetch_assoc($res)) {
+			array_push($ary, $row);
+		}
+		mysql_free_result($res);
+		return $ary;
+	}
+	
 	//////////////// Contents ////////////////
 	
 	function get_content($cid) {

@@ -62,7 +62,7 @@ if(!empty($_GET)) {
 	elseif(isset($_GET['iid'])) {
 		$info = $obj->get_contents_list($_GET['iid']);
 		$obj->assign('info', $info);
-		$obj->assign('content_template', $tdir.'contents.tpl.html');
+		$obj->assign('content_template', $tdir.'2/contents.tpl.html');
 	}	
 	elseif(isset($_GET['sitemap']) || (isset($_GET['js_sitemap'])) ) {
 		$sm = $obj->get_sitemap($_GET['sitemap']);
@@ -79,16 +79,20 @@ if(!empty($_GET)) {
 			$obj->set_breadcrumb(array(array('name'=>$name, 'active'=>1)));
 			$obj->assign('info', $info);
 		}
-	}	
+	}
 	elseif(isset($_GET['js_get_item_count'])) {
 		echo json_encode($obj->get_item_count());
+		exit;
+	}
+	elseif(isset($_GET['js_get_category_count'])) {
+		echo json_encode($obj->get_category_count());
 		exit;
 	}
 	elseif(isset($_GET['category_menu'])) {
 		if($_GET['category_menu'] == 3) {
 			$info = $obj->get_item_list();
 			$obj->assign('info', $info);
-			$obj->assign('item_template', $tdir.'item.tpl.html');
+			$obj->assign('item_template', $tdir.'2/item.tpl.html');
 		}
 		else {
 			$no_record = true;
@@ -100,7 +104,7 @@ if(!empty($_GET)) {
 	elseif(isset($_GET['cate_id'])) {
 		$info = $obj->get_category_list();
 		$obj->assign('info', $info);
-		$obj->assign('category_template', $tdir.'category.tpl.html');
+		$obj->assign('category_template', $tdir.'2/category.tpl.html');
 	}
 	elseif(isset($_GET['cid'])) {
 		$info = array();
@@ -140,11 +144,11 @@ if(!empty($_GET)) {
 		$obj->assign("pagination", $pagination);
 		// 以下是:去掉search.tpl.html ajax 部分,程序仍然能工作.
 		if(isset($_GET['js_page'])) {
-			$obj->display($tdir.'search.tpl.html');
+			$obj->display($tdir.'2/search.tpl.html');
 			exit;
 		}
 		else {
-			$obj->assign('search_template', $tdir.'search.tpl.html');
+			$obj->assign('search_template', $tdir.'2/d2.tpl.html');
 		}
 	}
 	else {
@@ -159,7 +163,7 @@ elseif(isset($_POST['key'])) {
 	if (isset($_SESSION[PACKAGE][SEARCH])) unset($_SESSION[PACKAGE][SEARCH]);
 	$key = $_POST['key'];
 	$obj->assign('results', $obj->select_contents_by_keyword($key));
-	$obj->assign('search_template', $tdir.'search.tpl.html');
+	$obj->assign('search_template', $tdir.'2/d2.tpl.html');
 
 	$pagination = $obj->draw();	
 	$obj->assign("pagination", $pagination);
@@ -184,11 +188,11 @@ if($no_record) {
 	$obj->assign('norecord_template', $tdir.'norecord.tpl.html');
 }
 else {
-	$obj->assign('general_template', $tdir.'general.tpl.html');
+	$obj->assign('general_template', $tdir.'3/d3.tpl.html');
 }
-$obj->assign('header_template', $tdir.'header.tpl.html');
+$obj->assign('header_template', $tdir.'0/header.tpl.html');
 $obj->assign('sitemap', $obj->get_sitemap());
-$obj->assign('footer_template', $tdir.'footer.tpl.html');
+$obj->assign('footer_template', $tdir.'0/footer.tpl.html');
 
-$obj->display($tdir.'layout.tpl.html');
+$obj->display($tdir.'0/layout.tpl.html');
 ?>

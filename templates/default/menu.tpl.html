@@ -1,6 +1,6 @@
 {*debug*}
 {*$url={$SCRIPT_NAME}*}
-{$url={$config.general}}
+{$url={$config.d}}
 {if $smarty.session.dixi.language != 'English'}
 
 <div class="row">
@@ -21,7 +21,7 @@
 </div>
 <div class="row" id="div_menu">
   <div class="span12">
-    <div class="btn-group"> {foreach $menu as $m} <a class="btn" href="{$config.general}?category_menu={$m.cid}">{$m.name}</a> {/foreach} </div>
+    <div class="btn-group"> {foreach $menu as $m} <a class="btn" href="{$config.d}?category_menu={$m.cid}">{$m.name}</a> {/foreach} </div>
   </div>
 </div>
 <div>
@@ -82,7 +82,7 @@
 </div>
 <div class="row" id="div_menu">
   <div class="span12">
-    <div class="btn-group"> {foreach $menu as $m} <a class="btn" href="{$config.general}?category_menu={$m.cid}">{$m.curl|lower|capitalize}</a> {/foreach} </div>
+    <div class="btn-group"> {foreach $menu as $m} <a class="btn" href="{$config.d}?category_menu={$m.cid}">{$m.curl|lower|capitalize}</a> {/foreach} </div>
   </div>
 </div>
 <div>

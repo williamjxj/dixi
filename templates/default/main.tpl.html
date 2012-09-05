@@ -1,6 +1,6 @@
 {*debug*}
 {$url={$SCRIPT_NAME}}
-{*$url={$config.general}*}
+{*$url={$config.d}*}
 {if $smarty.session.dixi.language != 'English'}
 
 <div> {$cn=1}
@@ -33,38 +33,6 @@
         {/foreach} </div>
       <a class="carousel-control left" href="#myCarousel2" data-slide="prev">&lsaquo;</a> <a class="carousel-control right" href="#myCarousel2" data-slide="next">&rsaquo;</a> </div>
 </div>
-<!--
-<div class="row">
-  <div class="span7">
-    <div id="scrollbar1">
-      <div class="scrollbar">
-        <div class="track">
-          <div class="thumb">
-            <div class="end"></div>
-          </div>
-        </div>
-      </div>
-      <div class="viewport">
-        <div class="overview  hero-unit">
-          <h3>百度百科：负面新闻</h3>
-          <div style="line-height: 140%; margin: 0px; width: 28px; float: left; color: #c74b15; font-size: 28px; font-weight: bolder; border: #000000 0px solid; padding: 0px;">定义：</div>
-          <p>{$definition} </p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="span4 hero-unit" id="div_items">
-  	<h2><span class="label label-warning"><a href="general.php?category_menu=3">食品分类:</a></span> <a href="#"><span class="more">更多<span>&raquo;</span></span></a></h2>
-    <ul class="nav nav-pills nav-stacked">
-      {$no=1}
-      {foreach $info as $is}
-      <li class="li3"><span class="badge badge-warning">{$no++}</span> <a href="{$config.general}?iid={$is.iid}" title="{$is.description}">{$is.name}</a></li>
-      {/foreach}
-    </ul>
-  </div>
-</div>
--->
-
 
 {else}
 
@@ -153,7 +121,7 @@ $(window).load(function() {
 		//console.log($('#TabContent1.tab-content').find('div').first().html()+','+data.length);
 		t = '<ul>';
 		for(i=0; i<data.length; i++) {
-			t+='<li class="tab_list"><i class="icon-chevron-right"></i>  <a href="general.php?cid='+data[i][0]+'">'+data[i][1]+'</a><span class="guanzhu"><span class="renshu">'+data[i][2]+'</span></span></li>';
+			t+='<li class="tab_list"><i class="icon-chevron-right"></i>  <a href="d.php?cid='+data[i][0]+'">'+data[i][1]+'</a><span class="guanzhu"><span class="renshu">'+data[i][2]+'</span></span></li>';
 		}
 		t+='</ul>';
 		$('#TabContent1.tab-content').find('div').first().html(t);
