@@ -304,6 +304,13 @@ li.li3:nth-child(even) {
     position: absolute;
     right: 10px;
 }
+#articleList ul, #recommandList ul {
+	position:relative;
+}
+#articleList .renshu, #recommandList .renshu {
+    position: absolute;
+    right: 10px;
+}
 .hr1 {
 	border-top: 1px dotted #999;
 	margin-top: 5px;
@@ -427,6 +434,8 @@ div.ajaxloading * {
     font-size: 12px;
     /*line-height: 24px;*/
     margin-left: 124px;
+	margin-bottom:10px;
+	border-bottom: 1px dotted #ccc;
 }
 .reping_item .t_date {
     color: #D0D0D0;

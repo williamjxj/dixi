@@ -2,21 +2,12 @@
   <h2><span class="title"> 网友热评</span></h2>
   <div style="font-size:12px;">
     <div class="reping_item">
-      <div class="t_info"><i class="icon-gift"></i> 陈小殇要惜财 <br>
-        <span class="t_area">北京</span></div>
-      <div class="t_txt"> 唉，c朗帮皇马罗到冠军 加上欧锦赛的表现甘都罗唔到，真黑人 <span class="t_date"> 2012-09-02 16:45:30 </span></div>
-    </div>
-    <div class="reping_item">
-      <div class="t_info"><i class="icon-gift"></i> 战争中 <br>
-        <span class="t_area">北京</span></div>
-      <div class="t_txt"> 说小白得奖是大赛年出成绩（今年联赛伤停很久，表现没有C罗梅西强），可2010大赛年凭什么是梅西得奖呢，欧足联的标准每年都变，不变的是能找出各种理由把奖给巴萨。 <span class="t_date"> 2012-09-02 10:26:30 </span></div>
-    </div>
-    <div class="reping_item">
-      <div class="t_info"><i class="icon-gift"></i> 暖尘微光 <br>
-        <span class="t_area">北京</span></div>
-      <div class="t_txt">恭喜小白！ <span class="t_date"> 2012-09-01 22:49:32 <span class="t_reply"><a href="javascript:;" class="a_huifu">回复</a> <a href="javascript:;" class="a_zhichi">支持</a></span> </span> </div>
-      <div class="well" id="div_huifu" style="display:none;">
-        <form name="huifuForm" id="huifuForm" method="post" action="javascript:;">
+    {foreach $info.rps as $rp}
+      <div class="t_info"><i class="icon-gift"></i> {$rp.author} <br>
+        <span class="t_area">{$rp.area}</span></div>
+      <div class="t_txt">{$rp.content}<span class="t_date"> {$rp.create_time} <span class="t_reply"><a href="javascript:;" class="a_huifu">回复</a> <a href="javascript:;" class="a_zhichi">支持</a></span> </span> </div>
+      <div class="well" id="div_huifu_{$rp.id}" style="display:none;">
+        <form name="huifuForm" id="huifuForm_{$rp.id}" method="post" action="javascript:;">
           <div class="control-group">
             <div class="controls">
               <textarea name="t_huifu" placeholder="文明上网，登录发贴。" style="width:100%" rows="6"></textarea>
@@ -29,6 +20,7 @@
           </div>
         </form>
       </div>
+    {/foreach}
     </div>
   </div>
 </div>
@@ -41,9 +33,10 @@ $(function() {
 	});
 	$('a.a_huifu', 'span.t_reply').click(function(e) {
 		e.preventDefault();
-		t = $('#div_huifu');
-		if(t.is(':visible')) t.hide();
-		else t.show();
+		var t = $(this).closest('div.t_txt').next('div.well').attr('id');
+		var dt = $('#'+t);
+		if(dt.is(':visible')) dt.hide();
+		else dt.show();
 		return false;
 	});
 });

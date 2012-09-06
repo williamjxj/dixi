@@ -34,6 +34,7 @@ $obj->assign('common', $common);
 $obj->assign('help_template', $tshared.'help.tpl.html');
 
 //每次，在url下添加?d， 比如：localhost/dixi?d, localhost/dixi/?d=1,则打印出中间测试数据。
+//AJAX 的'js_'开头的放在前面,不然$_GET['cid']就会截获ajax的请求.
 if(isset($_REQUEST['d']) && $_REQUEST['d'])
 	$config['debug'] = true;
 else 
@@ -44,7 +45,7 @@ if(!empty($_GET)) {
 		echo $obj->get_content_1($_GET['cid']);
 		exit;
 	}
-	if(isset($_GET['js_get_breadcrumb'])) {
+	elseif(isset($_GET['js_get_breadcrumb'])) {
 		if(isset($_GET['sitemap'])) {
 			$t = $obj->get_sitemap($_GET['sitemap']);
 			$name = $obj->lang=='English' ? $t[1] : $t[0];
@@ -55,10 +56,14 @@ if(!empty($_GET)) {
 		$obj->display($tdir.'breadcrumb.tpl.html');
 		exit;
 	}
+	elseif(isset($_GET['js_get_recommand'])) {
+		echo $obj->get_relative_references($_GET['cid'], $_GET['iid'], $_GET['cate_id']);
+		exit;
+	}	
 	elseif(isset($_GET['js_get_contents_list'])) {
 		echo $obj->get_contents_list($_GET['iid']);
 		exit;
-	}	
+	}
 	elseif(isset($_GET['iid'])) {
 		$info = $obj->get_contents_list($_GET['iid']);
 		$obj->assign('info', $info);
@@ -104,6 +109,8 @@ if(!empty($_GET)) {
 		$info['cid'] = $row['cid'];
 		$info['title'] = $row['linkname'];
 		$info['content'] = '<div class="display_content">'.$row['content'].'</div>';
+		$info['cate_id'] = $row['cate_id'];
+		$info['iid'] = $row['iid'];
 		
 		$prev = $obj->get_content_previous($_GET['cid']);
 		$info['previous'] = array(
@@ -117,8 +124,10 @@ if(!empty($_GET)) {
 		);
 		$ary = $obj->get_rand_keywords();
 		$info['keywords'] = array_slice($ary, rand(0,3));
+
+		$info['articles'] = $obj->get_relative_articles($_GET['cid'], $info['iid'], $info['cate_id']);
 		
-		$info['comments'] = $obj->get_comments($_GET['cid']);
+		$info['rps'] = $obj->get_comments($_GET['cid']);
 		$obj->assign('info', $info);
 	}
 	elseif(isset($_GET['test'])) {
