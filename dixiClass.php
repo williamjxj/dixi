@@ -89,7 +89,7 @@ class DixiClass extends BaseClass
 
 	function get_tabs() {
 		$ary = array();
-		$query = "select name, curl, frequency from categories order by frequency, weight";
+		$query = "select name, curl, frequency, description from categories order by frequency, weight";
 		$res = mysql_query($query);
 		while($row = mysql_fetch_assoc($res)) {
 			if(!isset($ary[$row['frequency']]) || !is_array($ary[$row['frequency']])) {
