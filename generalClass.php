@@ -136,7 +136,7 @@ class GeneralClass extends BaseClass
 	}
 	
 	//////////////// Contents ////////////////
-	
+	//上下文应该是同一个category或item下的所有内容,而不是所有的,连续的cid.
 	function get_content($cid) {
 		$sql = "select content, linkname, cid, category, cate_id, item, iid from contents where cid=".$cid;
 		$res = mysql_query($sql);
@@ -235,9 +235,10 @@ class GeneralClass extends BaseClass
 	function get_comments($cid)
 	{
 		$ary = array();
-		$sql = "select id, content, author, create_time, cid from comments where cid=".$cid." order by id desc";
+		//$sql = "select id, content, author, create_time, cid, area from comments where cid=".$cid." order by id desc";
+		$sql = "select id, content, author, create_time, cid, area from comments order by rand()";
 		$res = mysql_query($sql);
-		while($row = mysql_fetch_row($res)) {
+		while($row = mysql_fetch_assoc($res)) {
 			array_push($ary, $row);
 		}
 		return $ary;
@@ -446,5 +447,31 @@ class GeneralClass extends BaseClass
 		}
 		return $info;		
 	}
+	
+	function get_relative_articles($cid,$iid,$cate_id) {
+		$ary = array();
+		$sql = "select cid, linkname, (FLOOR( 1 + RAND( ) *1000 )) AS guanzhu  from contents where cid!=$cid and iid=$iid order by published_date desc limit 0,6";
+		$res = mysql_query($sql);
+		while($row = mysql_fetch_array($res)) {
+			array_push($ary, $row);
+		}
+		mysql_free_result($res);
+		return $ary;
+	}
+
+	function get_relative_references($cid,$iid,$cate_id) 
+	{
+		$sql = "select cid, linkname, (FLOOR( 1 + RAND( ) *1000 )) AS guanzhu  from contents where cid!=$cid and iid=$iid order by rand() limit 0,6";
+		$res = mysql_query($sql);
+		$html = "<ul>\n";
+		while($row = mysql_fetch_array($res)) {
+			$html .= '<li class="tab_list"><i class="icon-circle-arrow-right"></i> <a href="?cid=';
+			$html .= $row[0] . '">' . $row[1] . '</a><span class="renshu">';
+			$html .= $row[2] . '</span></li>' . "\n";
+		}
+		$html .= "</ul>\n";
+		mysql_free_result($res);
+		return $html;		
+	}	
 }
 ?>
