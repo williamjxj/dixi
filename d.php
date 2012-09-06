@@ -88,18 +88,10 @@ if(!empty($_GET)) {
 		echo json_encode($obj->get_category_count());
 		exit;
 	}
-	elseif(isset($_GET['category_menu'])) {
-		if($_GET['category_menu'] == 3) {
-			$info = $obj->get_item_list();
-			$obj->assign('info', $info);
-			$obj->assign('item_template', $tdir.'2/item.tpl.html');
-		}
-		else {
-			$no_record = true;
-            $menu = $obj->get_menu_info($_GET['category_menu']);
-			$info = $obj->assemble_menu($menu);
-			$obj->assign('info', $info);
-		}
+	elseif(isset($_GET['cmenu'])) {
+		$info = $obj->get_item_list($_GET['cmenu']);
+		$obj->assign('info', $info);
+		$obj->assign('item_template', $tdir.'2/item.tpl.html');
 	}
 	elseif(isset($_GET['cate_id'])) {
 		$info = $obj->get_category_list();
