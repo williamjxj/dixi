@@ -297,10 +297,10 @@ li.li3:nth-child(even) {
 	color: #999999;
     font-size: 11px;
 }
-#TabContent1 ul {
+#main ul {
 	position:relative;
 }
-#TabContent1 .guanzhu .renshu {
+#main .guanzhu .renshu {
     position: absolute;
     right: 10px;
 }
