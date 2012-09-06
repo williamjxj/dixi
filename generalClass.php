@@ -89,11 +89,11 @@ class GeneralClass extends BaseClass
 	}
 	
 	//////////////// Items ////////////////
-	function get_item_list($items_category='食品') 
+	function get_item_list($cid) 
 	{
 		list($cate_id, $category, $item) = array(0, '', '');
 		$ary = array();
-		$query = "select name, iid, description, category, cid from items where category='" . $items_category . "' order by weight;";
+		$query = "select name, iid, description, category, cid from items where cid=$cid order by weight;";
 		$res = mysql_query($query);
 
 		while($row = mysql_fetch_assoc($res)) {
@@ -108,11 +108,12 @@ class GeneralClass extends BaseClass
 
 		$b = array();
 		$b[] = array('name'=>$category, 'active'=>1);
-		//$b[] = array('name'=>$category, 'link'=>$this->general.'?category_menu='.$cate_id);
+		//$b[] = array('name'=>$category, 'link'=>$this->general.'?cmenu='.$cate_id);
 		//$b[] = array('name'=>$item, 'active'=>1);
 		$this->set_breadcrumb($b);
 		return $ary;
 	}
+	
 	function get_item_count() {
 		$ary = array();
 		$sql = "select count(*) total, iid from contents group by iid";
@@ -144,7 +145,7 @@ class GeneralClass extends BaseClass
 
 		//添加面包屑功能.
 		$b = array();
-		$b[] = array('name'=>$row['category'], 'link'=>$this->general.'?category_menu='.$row['cate_id']);
+		$b[] = array('name'=>$row['category'], 'link'=>$this->general.'?cmenu='.$row['cate_id']);
 		$b[] = array('name'=>$row['item'], 'link'=>$this->general.'?iid='.$row['iid']);
 		$b[] = array('name'=>$row['linkname'], 'active'=>1);
 		$this->set_breadcrumb($b);
@@ -176,7 +177,7 @@ class GeneralClass extends BaseClass
 
 		//添加面包屑功能.
 		$b = array();
-		$b[] = array('name'=>$row['category'], 'link'=>$this->general.'?category_menu='.$row['cate_id']);
+		$b[] = array('name'=>$row['category'], 'link'=>$this->general.'?cmenu='.$row['cate_id']);
 		$b[] = array('name'=>$row['item'], 'link'=>$this->general.'?iid='.$row['iid']);
 		$b[] = array('name'=>$row['linkname'], 'active'=>1);
 		$this->set_breadcrumb($b);
@@ -206,7 +207,7 @@ class GeneralClass extends BaseClass
 
 		//添加面包屑功能.
 		$b = array();
-		$b[] = array('name'=>$category, 'link'=>$this->general.'?category_menu='.$cate_id);
+		$b[] = array('name'=>$category, 'link'=>$this->general.'?cmenu='.$cate_id);
 		$b[] = array('name'=>$item, 'active'=>1);
 		$this->set_breadcrumb($b);
 		return $t;
