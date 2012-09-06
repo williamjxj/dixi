@@ -15,7 +15,7 @@
       </div>
       <div class="tab-pane accordion" id="tengxunList">
         <div class="ajaxloading"></div>
-        <iframe width="100%" scrolling="yes" height="500" frameborder="0" src="http://search.t.qq.com/index.php?pos=1002&su=1&smart=1&k=负面新闻">腾讯微博</iframe>
+        <iframe width="100%" scrolling="yes" height="500" frameborder="0" src=""></iframe>
       </div>
       <div class="tab-pane accordion" id="163list">
         <div class="ajaxloading"></div>
@@ -40,8 +40,12 @@ $(function() {
 			$(t1).find('iframe').attr('src', t2);
 		}
 		else if(/tengxun/.test(t1)) {
-			t2 = t2.replace(/k=.*$/, 'k={$info.0.name}&');
-			$(t1).find('iframe').attr('src', t2);
+			//t2 = t2.replace(/k=.*$/, 'k={$info.0.name}&');
+			//$(t1).find('iframe').attr('src', t2);
+			if($(t1).find('iframe').attr('src')=='') {
+				$(t1).find('iframe').attr('src', 'http://search.t.qq.com/index.php?pos=1002&su=1&smart=1&k=负面新闻');
+			}
+			$("div.ajaxloading").remove();
 		}
 		else {
 		}
