@@ -39,10 +39,23 @@ class DixiClass extends BaseClass
 		}
 		return $res;
 	}
-	
+	function get_tab_list_1($id) 
+	{
+		$t = " and cs.frequency=$id and cs.weight=1 and ct.active='Y' 
+			and ct.cate_id=cs.cid
+			and ct.category=cs.name		
+			order by rand() limit 0, " . TAB_LIST;
+		$sql = "select ct.cid, ct.linkname, (FLOOR( 1 + RAND( ) *1000 )) AS guanzhu from contents ct, categories cs  where language='".$this->lang."' ". $t;
+		//echo $sql; exit;
+        $res = $this->mdb2->queryAll($sql);
+        if (PEAR::isError($res)) die($res->getMessage());
+        return $res;
+ 	}
 	function get_tab_list($desc=false, $start=0, $limit=TAB_LIST) {
 		if($desc) $order = ' order by cid desc ';
 		else $order = ' order by cid ';
+		// william add temporily:
+		$order = 'order by rand() ';
 		$limit = 'limit ' . $start . ', ' . $limit;
 		$sql = "select cid, linkname, (FLOOR( 1 + RAND( ) *1000 )) AS guanzhu from contents where active='Y' and language='".$this->lang."' ". $order . $limit;
         $res = $this->mdb2->queryAll($sql);
@@ -65,7 +78,7 @@ class DixiClass extends BaseClass
 
 	// contents 表.
 	function get_definition() {
-		$sql = "select content from contents where linkname = '负面新闻' and mname='食品' ";
+		$sql = "select content from contents where linkname = '负面新闻' ";
 		$res = $this->mdb2->queryOne($sql);
 		if (PEAR::isError($res)) {
 			die($res->getMessage(). ' - line ' . __LINE__ . ': ' . $sql);

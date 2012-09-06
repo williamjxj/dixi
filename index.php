@@ -39,7 +39,7 @@ $obj->assign('config', $config);
 ///////////////////////////////
 
 if(isset($_GET['js_get_tab_list'])) {
-	echo json_encode($obj->get_tab_list());
+	echo json_encode($obj->get_tab_list_1($_GET['js_get_tab_list']));
 	exit;
 }
 else if(isset($_GET['test'])) {
@@ -61,7 +61,7 @@ else {
 	$obj->assign('carousel2', $obj->get_carousel2());
 	
 	$obj->assign('sitemap', $obj->get_sitemap());
-	$obj->assign('definition', $obj->get_definition());
+	//$obj->assign('definition', $obj->get_definition());
 
 	$obj->assign('latest', $obj->get_latest());
 	$obj->assign('hot', $obj->get_hot());

@@ -1,4 +1,4 @@
-{debug}
+{*debug*}
 {$url={$SCRIPT_NAME}}
 {*$url={$config.d}*}
 {if $smarty.session.dixi.language != 'English'}
@@ -116,16 +116,23 @@ $(function() {
 		return false;
 	});
 });
-$(window).load(function() {
-	$.getJSON('{$url}?js_get_tab_list=1', function(data) {
+function init_tab_list(id) {
+	var tab_div = '#TabContent'+id;
+	$.getJSON('{$url}?js_get_tab_list='+id, function(data) {
 		//console.log($('#TabContent1.tab-content').find('div').first().html()+','+data.length);
 		t = '<ul>';
 		for(i=0; i<data.length; i++) {
 			t+='<li class="tab_list"><i class="icon-chevron-right"></i>  <a href="d.php?cid='+data[i][0]+'">'+data[i][1]+'</a><span class="guanzhu"><span class="renshu">'+data[i][2]+'</span></span></li>';
 		}
 		t+='</ul>';
-		$('#TabContent1.tab-content').find('div').first().html(t);
+		$(tab_div + '.tab-content').find('div').first().html(t);
 	});
 	return false;
+}
+
+$(window).load(function() {
+	for (i=1; i<=6; i++) {
+		init_tab_list(i);
+	}
 });
 </script>
