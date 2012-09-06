@@ -39,14 +39,15 @@ class DixiClass extends BaseClass
 		}
 		return $res;
 	}
-	function get_tab_list_1($id) 
+	function get_tab_list_1()
 	{
-		$t = " and cs.frequency=$id and cs.weight=1 and ct.active='Y' 
-			and ct.cate_id=cs.cid
-			and ct.category=cs.name		
+		$frequency = $_GET['group'];
+		if(isset($_GET['curl']))  $t1 = " and cs.curl='".trim($_GET['curl'])."' ";
+		else $t1 = " and cs.weight=1 ";
+
+		$t = $t1 . " and cs.frequency=$frequency and ct.cate_id=cs.cid and ct.category=cs.name		
 			order by rand() limit 0, " . TAB_LIST;
 		$sql = "select ct.cid, ct.linkname, (FLOOR( 1 + RAND( ) *1000 )) AS guanzhu from contents ct, categories cs  where language='".$this->lang."' ". $t;
-		//echo $sql; exit;
         $res = $this->mdb2->queryAll($sql);
         if (PEAR::isError($res)) die($res->getMessage());
         return $res;

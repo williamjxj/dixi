@@ -39,7 +39,7 @@ $obj->assign('config', $config);
 ///////////////////////////////
 
 if(isset($_GET['js_get_tab_list'])) {
-	echo json_encode($obj->get_tab_list_1($_GET['js_get_tab_list']));
+	echo json_encode($obj->get_tab_list_1());
 	exit;
 }
 else if(isset($_GET['test'])) {
