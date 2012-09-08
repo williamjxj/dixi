@@ -2,7 +2,7 @@
 <div class="pagination">
   <ul>
     {foreach $pagination as $p}
-    {if preg_match("/\>{$smarty.session.dixi.search.page}<\/a>/", $p)}
+    {if preg_match("/\>{$smarty.session.dixi.search.page}\<\/a\>/", $p)}
     <li class="active">{$p}</li>
     {else}
     <li> {$p} </li>
@@ -10,5 +10,5 @@
     {/foreach}
   </ul>
 </div>
-<!-- ÓÐ¿ÉÄÜÖ´ÐÐÁ½´Î: ÉÏºÍÏÂ --->
+<!-- ï¿½Ð¿ï¿½ï¿½ï¿½Ö´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½: ï¿½Ïºï¿½ï¿½ï¿½ --->
 {/if} 
