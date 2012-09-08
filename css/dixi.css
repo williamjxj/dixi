@@ -41,9 +41,6 @@
 	margin-top:4px;
 }
 /*******************/
-#scrollbar1 {
-	margin: 0 !important;
-}
 .hero-unit p {
 	font-size: 12px !important;
 }
@@ -240,7 +237,10 @@ li.li3:nth-child(even) {
 #affix .bshare-custom {
 	display:inline;
 }
-#div_display, #item_display {
+#div_display {
+	margin-bottom:20px;
+}
+#item_display {
 	padding: 4px;
 	/*width: auto;
 	overflow:scroll;*/

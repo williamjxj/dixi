@@ -1,5 +1,5 @@
 /*
- * Tiny Scrollbar 1.8
+ * Tiny Scrollbar 1.81
  * http://www.baijs.nl/tinyscrollbar/
  *
  * Copyright 2012, Maarten Baijs
@@ -7,7 +7,7 @@
  * http://www.opensource.org/licenses/mit-license.php
  * http://www.opensource.org/licenses/gpl-2.0.php
  *
- * Date: 26 / 07 / 2012
+ * Date: 13 / 08 / 2012
  * Depends on library: jQuery
  *
  */
@@ -17,12 +17,13 @@
 
     $.tiny.scrollbar = {
         options: {
-                axis       : 'y'    // vertical or horizontal scrollbar? ( x || y ).
-            ,   wheel      : 40     // how many pixels must the mouswheel scroll at a time.
-            ,   scroll     : true   // enable or disable the mousewheel.
-            ,   lockscroll : true   // return scrollwheel to browser if there is no more content.
-            ,   size       : 'auto' // set the size of the scrollbar to auto or a fixed number.
-            ,   sizethumb  : 'auto' // set the size of the thumb to auto or a fixed number.
+                axis         : 'y'    // vertical or horizontal scrollbar? ( x || y ).
+            ,   wheel        : 40     // how many pixels must the mouswheel scroll at a time.
+            ,   scroll       : true   // enable or disable the mousewheel.
+            ,   lockscroll   : true   // return scrollwheel to browser if there is no more content.
+            ,   size         : 'auto' // set the size of the scrollbar to auto or a fixed number.
+            ,   sizethumb    : 'auto' // set the size of the thumb to auto or a fixed number.
+            ,   invertscroll : false  // Enable mobile invert style scrolling
         }
     };
 
@@ -133,6 +134,8 @@
 
         function start( event )
         {
+            $( "body" ).addClass( "noSelect" );
+
             var oThumbDir   = parseInt( oThumb.obj.css( sDirection ), 10 );
             iMouse.start    = sAxis ? event.pageX : event.pageY;
             iPosition.start = oThumbDir == 'auto' ? 0 : oThumbDir;
@@ -180,13 +183,13 @@
         {
             if( oContent.ratio < 1 )
             {
-                if( ! touchEvents )
+                if( options.invertscroll && touchEvents )
                 {
-                    iPosition.now = Math.min( ( oTrack[ options.axis ] - oThumb[ options.axis ] ), Math.max( 0, ( iPosition.start + ( ( sAxis ? event.pageX : event.pageY ) - iMouse.start))));
+                    iPosition.now = Math.min( ( oTrack[ options.axis ] - oThumb[ options.axis ] ), Math.max( 0, ( iPosition.start + ( iMouse.start - ( sAxis ? event.pageX : event.pageY ) ))));
                 }
                 else
                 {
-                    iPosition.now = Math.min( ( oTrack[ options.axis ] - oThumb[ options.axis ] ), Math.max( 0, ( iPosition.start + ( iMouse.start - ( sAxis ? event.pageX : event.pageY ) ))));
+                     iPosition.now = Math.min( ( oTrack[ options.axis ] - oThumb[ options.axis ] ), Math.max( 0, ( iPosition.start + ( ( sAxis ? event.pageX : event.pageY ) - iMouse.start))));
                 }
 
                 iScroll = iPosition.now * oScrollbar.ratio;
@@ -197,6 +200,7 @@
         
         function end()
         {
+            $( "body" ).removeClass( "noSelect" );
             $( document ).unbind( 'mousemove', drag );
             $( document ).unbind( 'mouseup', end );
             oThumb.obj.unbind( 'mouseup', end );

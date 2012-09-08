@@ -1,11 +1,10 @@
 #scrollbar1 {
-	width: 520px;
+	width: 100%;
 	clear: both;
-	margin: 20px 0 10px;
+	margin: 0;
 }
 #scrollbar1 .viewport {
-	width: 500px;
-	height: 254px;
+	height: 480px;
 	overflow: hidden;
 	position: relative;
 }
@@ -14,6 +13,26 @@
 	position: absolute;
 	left: 0;
 	top: 0;
+	padding:10px;
+}
+#scrollbar1 .overview  h3 {
+    font-family: "Î¢ÈíÑÅºÚ","ºÚÌå";
+    font-size: 16px;
+	font-weight:bolder;
+    line-height: 33px;
+	text-align:center;
+	border-bottom:1px dotted #333;
+}
+#scrollbar1 .overview  h3 a:link, #scrollbar1 .overview h3 a:visited {
+    color: #A90000;
+    text-decoration: none;
+}
+#scrollbar1 .overview  h3 a:hover, #scrollbar1 .overview  h3 a:active {
+    color: #FF0000;
+    text-decoration: underline;
+}
+#scrollbar1 .overview p{
+	margin-top:12px;
 }
 #scrollbar1 .thumb .end, #scrollbar1 .thumb {
 	background-color: #003D5D;
@@ -24,27 +43,27 @@
 	width: 15px;
 }
 #scrollbar1 .scrollbar {
-    background: url(../images/bg-scrollbar-track-y.png) no-repeat scroll 0 0 transparent;
-    float: right;
-    position: relative;
-    width: 15px;
+	background: url(../images/bg-scrollbar-track-y.png) no-repeat scroll 0 0 transparent;
+	float: right;
+	position: relative;
+	width: 15px;
 }
 #scrollbar1 .track {
 	background-color: #D8EEFD;
 	height: 100%;
-	width:10px;
+	width:15px;
 	position: relative;
 	padding: 0 1px;
 }
 #scrollbar1 .track {
-    background: url(../images/bg-scrollbar-trackend-y.png) no-repeat scroll 0 100% transparent;
-    height: 100%;
-    position: relative;
-    width: 15px;
+	background: url(../images/bg-scrollbar-trackend-y.png) no-repeat scroll 0 100% transparent;
+	height: 100%;
+	position: relative;
+	width: 15px;
 }
 #scrollbar1 .thumb {
 	height: 20px;
-	width: 10px;
+	width: 15px;
 	cursor: pointer;
 	overflow: hidden;
 	position: absolute;
@@ -53,23 +72,23 @@
 #scrollbar1 .thumb .end {
 	overflow: hidden;
 	height: 5px;
-	width: 10px;
+	width: 15px;
 }
 #scrollbar1 .thumb {
-    background: url(../images/bg-scrollbar-thumb-y.png) no-repeat scroll 50% 100% transparent;
-    cursor: pointer;
-    height: 20px;
-    left: -5px;
-    overflow: hidden;
-    position: absolute;
-    top: 0;
-    width: 25px;
+	background: url(../images/bg-scrollbar-thumb-y.png) no-repeat scroll 50% 100% transparent;
+	cursor: pointer;
+	height: 20px;
+	left: -5px;
+	overflow: hidden;
+	position: absolute;
+	top: 0;
+	width: 25px;
 }
 #scrollbar1 .thumb .end {
-    background: url(../images/bg-scrollbar-thumb-y.png) no-repeat scroll 50% 0 transparent;
-    height: 5px;
-    overflow: hidden;
-    width: 25px;
+	background: url(../images/bg-scrollbar-thumb-y.png) no-repeat scroll 50% 0 transparent;
+	height: 5px;
+	overflow: hidden;
+	width: 25px;
 }
 #scrollbar1 .disable {
 	display: none;
