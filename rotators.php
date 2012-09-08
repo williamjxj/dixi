@@ -26,7 +26,7 @@ $rss_world_array = array(
 	'bbc' => 'http://feeds.bbci.co.uk/news/world-asia-pacific-11710880/rss.xml',
 );
 
-if (isset($_GET['ww'])) {
+if (isset($_GET['ww']) && (! preg_match("/cn_/",$_GET['ww']))) {
 	if(isset($_GET['rss'])) {
 		$rss_url = $rss_world_array[$_GET['rss']];
 	}
@@ -35,11 +35,11 @@ if (isset($_GET['ww'])) {
 	}
 }
 else {
-	if(isset($_GET['rss'])) {
-		$rss_url = $rss_array[$_GET['rss']];
+	if(isset($_GET['ww'])) {
+		$rss_url = $rss_array[$_GET['ww']];
 	}
 	else {
-		$rss_url = $rss_array['default'];
+		$rss_url = $rss_array[$_GET['rss']];
 	}
 }
 

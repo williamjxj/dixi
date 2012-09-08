@@ -189,6 +189,7 @@ li.li3:nth-child(even) {
 .head1:hover {
 	color: #999999;
 }
+/* head2 比 head1 只是多了一条下划线 */
 .head2 {
 	color: #CC0000;
 	font-size: 14px;
@@ -200,11 +201,43 @@ li.li3:nth-child(even) {
 .head2:hover {
 	color: #999999;
 }
+/*rotator标题效果*/
+.rss .span3 {
+    border-color: #C8D8F2;
+    border-style: solid;
+    border-width: 1px;
+}
+.rss .span3 h3 {
+    background-color: #F5F8FD;
+    font-family: "微软雅黑","黑体";
+    font-size: 16px;
+	font-weight:bolder;
+    color: #A90000;
+    text-decoration: none;
+	padding-left: 4px;
+	padding-bottom:4px;
+}
+.rss .span h3:hover {
+    color: #FF0000;
+    text-decoration: underline;
+}
 #userSignupForm, #userLoginForm {
 	margin: 0;
 }
 /********* box定义 **********/
 .box {
+	-moz-border-radius: 4px 4px 4px 4px;
+	-webkit-border-radius: 4px 4px 4px 4px;
+	border-radius: 4px 4px 4px 4px;
+    border: 1px solid #C6D0DF;
+    color: #3E6D8E;
+    margin: 20px;
+	background: #fff;
+    box-shadow: 1px 1px 1px #888888;
+	text-align:center;
+	padding:10px;
+}
+.box3 {
     background-color: #E0EAF1;
     color: #3E6D8E;
     font-size: 90%;
@@ -238,6 +271,7 @@ li.li3:nth-child(even) {
 	display:inline;
 }
 #div_display {
+	min-height:20px;
 	margin-bottom:20px;
 }
 #item_display {
@@ -349,9 +383,6 @@ table tbody tr:hover{
 	background-color: #e1eafe;
 }
 table tbody tr th span{
-	border-bottom-color:#0000CC;
-	border-bottom-style:dotted;
-	border-bottom-width:medium;
 }
 /******* div 部分*************/
 div.ajaxloading {
@@ -479,15 +510,24 @@ div.ajaxloading * {
     border-color: #C8D8F2;
     border-style: solid;
     border-width: 1px;
-    padding: 0 10px 5px;
+    padding: 0 2px 0;
 	border-bottom: 1px solid #C8D8F2;
-    color: #03005C;
-	margin-bottom:10px;
+	margin-bottom:4px;
 }
 .weibo h3 {
-    color:#5D5D5D;
-    font-family: "黑体";
-    padding: 10px 10px 0;
+    font-family: "微软雅黑","黑体";
+    font-size: 16px;
+	font-weight:bolder;
+    line-height: 33px;
+	text-align:center;
+}
+.weibo h3 a, .weibo h3 a:link, .weibo h3 a:visited {
+    color: #A90000;
+    text-decoration: none;
+}
+.weibo h3 a:hover, .weibo h3 a:active {
+    color: #FF0000;
+    text-decoration: underline;
 }
 /******* 装饰 部分*************/
 .more {
@@ -528,15 +568,6 @@ a.post-tag:hover {
 	border-radius: 4px;
 	-webkit-border-radius: 4px;
 	-moz-border-radius: 4px;
-}
-body #TabbedPanels1 div.TabbedPanelsContentGroup{
-	-moz-border-radius: 4px 4px 4px 4px !important;
-	-webkit-border-radius: 4px 4px 4px 4px !important;
-	border-radius: 4px 4px 4px 4px !important;
-    border: 1px solid #C6D0DF !important;
-    margin: 31px 34px !important;
-	background: #fff !important;
-    box-shadow: 1px 1px 1px #888888;		
 }
 /** twitter-bootstrap carousel vertical sliding
  * http://stackoverflow.com/questions/11589816/twitter-bootstrap-carousel-vertical-sliding
