@@ -1,3 +1,4 @@
+// 最开始的时间函数库.
 ;(function ($) {
 	$.dixi = $.dixi || {};
     $.dixi = {

@@ -67,7 +67,7 @@ else {
 	$obj->assign('hot', $obj->get_hot());
 	$obj->assign('keywords', $obj->get_keywords());
 
-// 下面的span5方框需要填充,用食品的items.
+	// 下面的span5方框需要填充,用食品的items.
 	$info = $obj->get_items();
 	$obj->assign('info', $info);
 	$obj->assign('item_template', $tdir.'../general/2/item.tpl.html');
@@ -75,6 +75,7 @@ else {
 	$obj->assign('header_template', $tdir.'header.tpl.html');
 	$obj->assign('menu_template', $tdir.'menu.tpl.html');
 	$obj->assign('rss_template', $tdir.'rss.tpl.html');
+	//$obj->assign('rss_template', $tdir.'bootstrap_rss.tpl.html');
 	$obj->assign('left_template', $tdir.'left.tpl.html');
 	$obj->assign('main_template', $tdir.'main.tpl.html');
 	$obj->assign('right_template', $tdir.'right.tpl.html');
