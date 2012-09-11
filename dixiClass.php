@@ -206,6 +206,5 @@ class DixiClass extends BaseClass
 		}
 		return $nails_rest;
 	}
-
 }
 ?>
