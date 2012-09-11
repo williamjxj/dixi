@@ -187,8 +187,9 @@ class GeneralClass extends BaseClass
 	
 	// and language='' 
 	function get_contents_list($iid) {
+	echo "<pre>"; print_r($_SESSION); echo "</pre>";
 		$ary = array();
-		$sql = "select linkname, cid, category, cate_id, item, iid from contents where iid=".$iid . " order by weight;";;
+		$sql = "select linkname, cid, category, cate_id, item, iid from contents where iid=".$iid . " order by weight;";
 		$res = mysql_query($sql);
 
 		list($cate_id, $category, $item) = array(0, '', '');

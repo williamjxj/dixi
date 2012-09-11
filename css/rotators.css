@@ -50,6 +50,7 @@
     -moz-border-top-colors: none;
     overflow: hidden;
 }
+/* 用了ul 和 li 了吗? */
 .rss .newslist ul {
     overflow: hidden;
 }
@@ -65,9 +66,9 @@
 	height: 150px;
 	top: 370px;
 	overflow: hidden;
-	border-bottom-color:#0000CC;
+	/*border-bottom-color:#0000CC;
 	border-bottom-style:dotted;
-	border-bottom-width:thin;
+	border-bottom-width:thin;*/
 }
 .rss .headline h4 {
     padding: 0 10px;
