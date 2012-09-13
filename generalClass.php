@@ -138,7 +138,8 @@ class GeneralClass extends BaseClass
 	//////////////// Contents ////////////////
 	//上下文应该是同一个category或item下的所有内容,而不是所有的,连续的cid.
 	function get_content($cid) {
-		$sql = "select content, linkname, cid, category, cate_id, item, iid from contents where cid=".$cid;
+		#$sql = "select content, linkname, cid, category, cate_id, item, iid from contents where cid=".$cid;
+		$sql = "select * from contents where cid=".$cid;
 		$res = mysql_query($sql);
 		$row = mysql_fetch_assoc($res);
 		mysql_free_result($res);

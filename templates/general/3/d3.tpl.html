@@ -9,7 +9,12 @@
 <script type="text/javascript" src="{$config.include}/jquery-jquery-tmpl/jquery.tmpl.min.js"></script>
 <script type="text/javascript" src="{$config.js}/dixi.js"></script>
 <div class="hero-unit">
-  <h2>{$info.title}</h2>
+  <h2><a href="{$info.row.url}">{$info.title}</a></h2>
+
+  <p><span>来源: {$info.row.source}</span>&nbsp;&nbsp;<span>时间: {$info.row.pubdate}</span></p>
+  <p><span>阅读: {$info.row.clicks}</span>&nbsp;<span>关注: {$info.row.likes}</span>&nbsp;<span>标签:
+  {$info.row.tags}</span></p>
+
   <p style="margin:10px;padding:10px;">{$info.content}</p>
 </div>
 <div class="clear"></div>

@@ -1,23 +1,23 @@
-{debug}
 <div class="container-fluid">
   <div class="row-fluid">
     <div class="box5">
-      <table width="60%" border="1">
+      <table width="100%" border="0" cellpadding="2px" cellspacing="2px">
         <tr>
-          <th><h3><a href="?cid={$info.cid}">{$info.linkname}</a></h3></th>
+          <th><h3><a href="?cid={$row.cid}">{$row.linkname}</a></h3></th>
         </tr>
         <tr>
-          <td><span>来源: {$info.source}</span>&nbsp;<span>位置: <a href="?cmenu={$info.cate_id}">{$info.category}</a> / <a href="?iid={$info.iid}">{$info.item}</a> / </span>&nbsp;<span>时间: {$info.pubdate}</span></td>
+          <td><span>来源: {$row.author}</span>&nbsp;<span>位置: <a href="?cmenu={$row.cate_id}">{$row.category}</a> / <a
+		  href="?iid={$row.iid}">{$row.item}</a> / </span>&nbsp;<span>时间: {$row.pubdate}</span></td>
         </tr>
         <tr>
-          <td><span>阅读: {$info.clicks}</span>&nbsp;<span>关注: {$info.likes}</span>&nbsp;<span>标签: {$info.tags}</span></td>
+          <td><span>阅读: {$row.clicks}</span>&nbsp;<span>关注: {$row.likes}</span>&nbsp;<span>标签: {$row.tags}</span></td>
         </tr>
         <tr>
-          <td>{$info.content}</td>
+          <td>{$row.content}</td>
         </tr>
         <tr>
           <td><a
-href="{$info.url}">阅读全文</a></td>
+href="{$row.url}">阅读全文</a></td>
         </tr>
       </table>
     </div>

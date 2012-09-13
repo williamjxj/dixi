@@ -43,7 +43,7 @@ else
 if(!empty($_GET)) {
 	if(isset($_GET['js_get_content'])) {
 		$row = $obj->get_content_1($_GET['cid']);
-		$obj->assign('info', $row);
+		$obj->assign('row', $row);
 		$obj->display($tdir.'2/single.tpl.html');
 		exit;
 	}
@@ -108,6 +108,7 @@ if(!empty($_GET)) {
 	elseif(isset($_GET['cid'])) {
 		$info = array();
 		$row = $obj->get_content($_GET['cid']);
+		$info['row'] = $row;
 		$info['cid'] = $row['cid'];
 		$info['title'] = $row['linkname'];
 		$info['content'] = '<div class="display_content">'.$row['content'].'</div>';
