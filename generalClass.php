@@ -170,7 +170,8 @@ class GeneralClass extends BaseClass
 	// 输出内容，并构建面包屑
 	function get_content_1($cid) 
 	{
-		$sql = "select content, linkname, cid, category, cate_id, item, iid from contents where cid=".$cid;
+		#$sql = "select content, linkname, cid, category, cate_id, item, iid from contents where cid=".$cid;
+		$sql = "select * from contents where cid=".$cid;
 		$res = mysql_query($sql);
 		$row = mysql_fetch_assoc($res);
 		mysql_free_result($res);
@@ -181,15 +182,13 @@ class GeneralClass extends BaseClass
 		$b[] = array('name'=>$row['item'], 'link'=>$this->general.'?iid='.$row['iid']);
 		$b[] = array('name'=>$row['linkname'], 'active'=>1);
 		$this->set_breadcrumb($b);
-
-		return $row['content'];
+		return $row;
 	}
 	
 	// and language='' 
 	function get_contents_list($iid) {
-	echo "<pre>"; print_r($_SESSION); echo "</pre>";
 		$ary = array();
-		$sql = "select linkname, cid, category, cate_id, item, iid from contents where iid=".$iid . " order by weight;";
+		$sql = "select linkname, cid, category, cate_id, item, iid from contents where iid=".$iid . " order by cid desc";
 		$res = mysql_query($sql);
 
 		list($cate_id, $category, $item) = array(0, '', '');
@@ -451,7 +450,7 @@ class GeneralClass extends BaseClass
 	
 	function get_relative_articles($cid,$iid,$cate_id) {
 		$ary = array();
-		$sql = "select cid, linkname, (FLOOR( 1 + RAND( ) *1000 )) AS guanzhu  from contents where cid!=$cid and iid=$iid order by published_date desc limit 0,6";
+		$sql = "select cid, linkname, (FLOOR( 1 + RAND( ) *1000 )) AS guanzhu  from contents where cid!=$cid and iid=$iid order by pubdate desc limit 0,6";
 		$res = mysql_query($sql);
 		while($row = mysql_fetch_array($res)) {
 			array_push($ary, $row);

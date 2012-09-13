@@ -42,7 +42,9 @@ else
 
 if(!empty($_GET)) {
 	if(isset($_GET['js_get_content'])) {
-		echo $obj->get_content_1($_GET['cid']);
+		$row = $obj->get_content_1($_GET['cid']);
+		$obj->assign('info', $row);
+		$obj->display($tdir.'2/single.tpl.html');
 		exit;
 	}
 	elseif(isset($_GET['js_get_breadcrumb'])) {
