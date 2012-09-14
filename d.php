@@ -162,15 +162,23 @@ if(!empty($_GET)) {
 		exit;
 	}
 }
-//[key] => 负面新闻
+/**
+ * [key] => 负面新闻, 要做如下的事情:
+ *  1. 更新keywords表,插入/计数新的关键词.
+ *  2. 搜索并显示结果
+ *  3. 百度的<script>调用。
+ *  4. 网页抓取程序的调用：百度查询，并将结果存入数据库。
+ */
 elseif(isset($_POST['key'])) {
 	if (isset($_SESSION[PACKAGE][SEARCH])) unset($_SESSION[PACKAGE][SEARCH]);
 	$key = $_POST['key'];
-	$obj->assign('results', $obj->select_contents_by_keyword($key));
+	$obj->assign('results', $obj->r($key));
 	//$obj->assign('search_template', $tdir.'2/d2.tpl.html');
 	$obj->assign('search_template', $tdir.'2/search.tpl.html');
 	$pagination = $obj->draw();	
 	$obj->assign("pagination", $pagination);
+    exec("ls -l /home/williamjxj/scraper");
+	exec("nohup /home/williamjxj/scraper/baidu/search.pl $_POST['key'] >/tmp/123456 2>&1");
 }
 elseif(isset($_POST['fayan'])) {
 	if (!empty($_REQUEST['captcha'])) {
