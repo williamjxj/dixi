@@ -1,3 +1,0 @@
-# robotstxt.org/
-# Edit this file to include any pages you need hidden from search engines.
-User-agent: *
