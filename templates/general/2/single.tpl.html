@@ -6,7 +6,12 @@
           <th><h3><a href="?cid={$row.cid}">{$row.linkname}</a></h3></th>
         </tr>
         <tr>
-          <td><span>来源: {$row.author}</span>&nbsp;<span>位置: <a href="?cmenu={$row.cate_id}">{$row.category}</a> / <a
+          <td><span>
+          {if {$row.source} && {$row.author}}来源: {$row.author}
+          {elseif {$row.source}}来源: {$row.source}
+          {elseif {$row.author}}来源: {$row.author}
+          {/if}
+          </span>&nbsp;<span>位置: <a href="?cmenu={$row.cate_id}">{$row.category}</a> / <a
 		  href="?iid={$row.iid}">{$row.item}</a> / </span>&nbsp;<span>时间: {$row.pubdate}</span></td>
         </tr>
         <tr>

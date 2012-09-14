@@ -1,6 +1,8 @@
 {if ! {$path2}}
 {$path2="{$config.general}2/"}
 {/if}
+<script type="text/javascript" src="js/gb2312utf8.js"></script>
+<script type="text/javascript" src="js/UrlEncode.js"></script>
 <div class="row span12">
   <div class="span4 box5"> {$no=1+({$smarty.session.dixi.search.page}-1)*25}
     {include file="{$path2}search_summary.tpl.html"}
@@ -12,14 +14,23 @@
     </ul>
     {include file="{$path2}pagination.tpl.html"} </div>
   <div class="span8">
-    <div id="div_display" class="box5"> {include file="{$path2}scrollbar.tpl.html"} </div>
+    <div id="div_display" class="box5">
+      <script type="text/javascript">
+var t1 = UrlEncode('{$smarty.session.dixi.search.key}');
+var t2='http://news.baidu.com/ns?word=title%3A';
+var t3='&tn=newsfcu&from=news&cl=2&rn=10&ct=0';
+var t = t2 + t1 + t3;
+document.write('<script type="text\/javascript" src=');
+document.write(t);
+document.write('><\/script>');
+</script>
+      {include file="{$path2}scrollbar.tpl.html"} </div>
     {include file="{$path2}weibo.tpl.html"}
     {include file="{$path2}reping.tpl.html"} 
     {include file="{$path2}pk.tpl.html"} </div>
 </div>
 <script type="text/javascript">
 $(function() {
-
 	var oScrollbar = $('#scrollbar1');
 	oScrollbar.tinyscrollbar({ size:'auto', sizethumb:'auto' });
 

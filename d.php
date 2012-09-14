@@ -167,8 +167,8 @@ elseif(isset($_POST['key'])) {
 	if (isset($_SESSION[PACKAGE][SEARCH])) unset($_SESSION[PACKAGE][SEARCH]);
 	$key = $_POST['key'];
 	$obj->assign('results', $obj->select_contents_by_keyword($key));
-	$obj->assign('search_template', $tdir.'2/d2.tpl.html');
-
+	//$obj->assign('search_template', $tdir.'2/d2.tpl.html');
+	$obj->assign('search_template', $tdir.'2/search.tpl.html');
 	$pagination = $obj->draw();	
 	$obj->assign("pagination", $pagination);
 }
