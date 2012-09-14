@@ -11,6 +11,8 @@ require_once(SITEROOT."configs/config.inc.php");
 global $config;
 
 set_lang();
+// if(get_env()=='Windows') define('RESOURCES', '.\\data\\june_2011\\');
+// else define('RESOURCES', './data/pipe/');
 
 require_once(SITEROOT.'dixiClass.php');
 
