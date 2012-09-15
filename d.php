@@ -171,14 +171,16 @@ if(!empty($_GET)) {
  */
 elseif(isset($_POST['key'])) {
 	if (isset($_SESSION[PACKAGE][SEARCH])) unset($_SESSION[PACKAGE][SEARCH]);
-	$key = $_POST['key'];
-	$obj->assign('results', $obj->r($key));
+	$key = trim($_POST['key']);
+	if (!empty($key)) {
+		exec("nohup /home/williamjxj/scraper/baidu/search.pl '" . $key ."' >/dev/null 2>&1");
+		// exec("/home/williamjxj/scraper/baidu/search.pl '" . $key ."' >>/tmp/123456 2>&1");
+	}
+	$obj->assign('results', $obj->select_contents_by_keyword($key));
 	//$obj->assign('search_template', $tdir.'2/d2.tpl.html');
 	$obj->assign('search_template', $tdir.'2/search.tpl.html');
 	$pagination = $obj->draw();	
 	$obj->assign("pagination", $pagination);
-    exec("ls -l /home/williamjxj/scraper");
-	exec("nohup /home/williamjxj/scraper/baidu/search.pl $_POST['key'] >/dev/null 2>&1");
 }
 elseif(isset($_POST['fayan'])) {
 	if (!empty($_REQUEST['captcha'])) {
