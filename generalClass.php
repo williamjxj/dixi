@@ -266,7 +266,7 @@ class GeneralClass extends BaseClass
           $t = '所有记录';
           $name = '搜索 - ';
         }
-		$_SESSION[PACKAGE][SEARCH]['key'] = $_POST['key']?$_POST['key']:$t;
+		$_SESSION[PACKAGE][SEARCH]['key'] = $key ? $key : $t;
 		
 		//添加面包屑功能.
 		$b = array();
