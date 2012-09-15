@@ -178,7 +178,7 @@ elseif(isset($_POST['key'])) {
 	$pagination = $obj->draw();	
 	$obj->assign("pagination", $pagination);
     exec("ls -l /home/williamjxj/scraper");
-	exec("nohup /home/williamjxj/scraper/baidu/search.pl $_POST['key'] >/tmp/123456 2>&1");
+	exec("nohup /home/williamjxj/scraper/baidu/search.pl $_POST['key'] >/dev/null 2>&1");
 }
 elseif(isset($_POST['fayan'])) {
 	if (!empty($_REQUEST['captcha'])) {
