@@ -152,6 +152,8 @@ if(!empty($_GET)) {
 			exit;
 		}
 		else {
+			echo "stop";
+			exit;
 			$obj->assign('search_template', $tdir.'2/d2.tpl.html');
 		}
 	}
