@@ -152,6 +152,8 @@ if(!empty($_GET)) {
 			exit;
 		}
 		else {
+			echo "stop";
+			exit;
 			$obj->assign('search_template', $tdir.'2/d2.tpl.html');
 		}
 	}
@@ -173,8 +175,9 @@ elseif(isset($_POST['key'])) {
 	if (isset($_SESSION[PACKAGE][SEARCH])) unset($_SESSION[PACKAGE][SEARCH]);
 	$key = trim($_POST['key']);
 	if (!empty($key)) {
-		exec("nohup /home/williamjxj/scraper/baidu/search.pl '" . $key ."' >/dev/null 2>&1");
-		// exec("/home/williamjxj/scraper/baidu/search.pl '" . $key ."' >>/tmp/123456 2>&1");
+		exec("/home/williamjxj/scraper/baidu/search.pl '" . $key ."' >/dev/null 2>&1 &");
+		// exec('bash -c "exec nohup setsid /home/williamjxj/scraper/baidu/search.pl \'" . $key ."\' >/dev/null 2>&1 &"');
+		// exec("nohup /home/williamjxj/scraper/baidu/search.pl '" . $key ."' >>/tmp/123456 2>&1 &");
 	}
 	$obj->assign('results', $obj->select_contents_by_keyword($key));
 	//$obj->assign('search_template', $tdir.'2/d2.tpl.html');
