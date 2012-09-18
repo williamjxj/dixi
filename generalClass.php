@@ -22,7 +22,7 @@ class GeneralClass extends BaseClass
 		$this->lang = $_SESSION[PACKAGE]['language'];
 	}
 
-	// 每次用户点击,breadcrumb 都应该重组.
+	// 每次用户点击,breadcrumb 都应该重�?
 	function set_1_breadcrumb() {
 		unset($_SESSION[PACKAGE]['breadcrumb']);
 		$home = $this->lang=='English' ? 'Home' : '首页';
@@ -52,7 +52,7 @@ class GeneralClass extends BaseClass
 		mysql_free_result($res);
 
 		$b = array();
-		// 逻辑：当面包屑为一时，表示只有一层，数组个数为一；当面包屑>1时，表示有多层，数组个数>1
+		// 逻辑：当面包屑为一时，表示只有一层，数组个数为一；当面包�?1时，表示有多层，数组个数>1
 		// 这里，要用array(array(..))来控制count()=1, 否则count()>1.
 		$b[] = array('name'=>$row['name'], 'active'=>1);
 		$this->set_breadcrumb($b);
@@ -129,7 +129,7 @@ class GeneralClass extends BaseClass
 	}
 	
 	//////////////// Contents ////////////////
-	//上下文应该是同一个category或item下的所有内容,而不是所有的,连续的cid.
+	//上下文应该是同一个category或item下的所有内�?而不是所有的,连续的cid.
 	function get_content($cid) {
 		#$sql = "select content, linkname, cid, category, cate_id, item, iid from contents where cid=".$cid;
 		$sql = "select * from contents where cid=".$cid;
@@ -137,7 +137,7 @@ class GeneralClass extends BaseClass
 		$row = mysql_fetch_assoc($res);
 		mysql_free_result($res);
 
-		//添加面包屑功能.
+		//添加面包屑功�?
 		$b = array();
 		$b[] = array('name'=>$row['category'], 'link'=>$this->general.'?cmenu='.$row['cate_id']);
 		$b[] = array('name'=>$row['item'], 'link'=>$this->general.'?iid='.$row['iid']);
@@ -161,7 +161,7 @@ class GeneralClass extends BaseClass
 		return $row;
 	}
 
-	// 输出内容，并构建面包屑
+	// 输出内容，并构建面包�?
 	function get_content_1($cid) 
 	{
 		#$sql = "select content, linkname, cid, category, cate_id, item, iid from contents where cid=".$cid;
@@ -170,7 +170,7 @@ class GeneralClass extends BaseClass
 		$row = mysql_fetch_assoc($res);
 		mysql_free_result($res);
 
-		//添加面包屑功能.
+		//添加面包屑功�?
 		$b = array();
 		$b[] = array('name'=>$row['category'], 'link'=>$this->general.'?cmenu='.$row['cate_id']);
 		$b[] = array('name'=>$row['item'], 'link'=>$this->general.'?iid='.$row['iid']);
@@ -200,7 +200,7 @@ class GeneralClass extends BaseClass
 		$t .= '</ul>';
 		mysql_free_result($res);
 
-		//添加面包屑功能.
+		//添加面包屑功�?
 		$b = array();
 		$b[] = array('name'=>$category, 'link'=>$this->general.'?cmenu='.$cate_id);
 		$b[] = array('name'=>$item, 'active'=>1);
@@ -210,17 +210,17 @@ class GeneralClass extends BaseClass
 
 	function set_keywords($key) 
 	{
-		//将关键词写入keywords表。
+		//将关键词写入keywords表�?
 		if($key!='') {
 			$user = isset($_SESSION[PACKAGE]['username']) ? $_SESSION[PACKAGE]['username'] : '';
 			if(empty($user)) $user = basename(__FILE__).', search';
 
 			$query = "INSERT INTO keywords (keyword,createdby, created) VALUES ".
-				"('".$key."', '".$user."', now()) ON DUPLICATE KEY UPDATE updatedby='".$user."', total=total+1";
+				"('".$key."', '".$user."', now()) ON DUPLICATE KEY UPDATE total=total+1";
 			mysql_query($query);
 
 			$query = "insert into tags (name, createdby, created) values " .
-				"('".$key."', '".$user."', now()) ON DUPLICATE KEY UPDATE updatedby='".$user."', total=total+1";
+				"('".$key."', '".$user."', now()) ON DUPLICATE KEY UPDATE total=total+1";
 			mysql_query($query);
 		}
 		return true;
@@ -267,17 +267,17 @@ class GeneralClass extends BaseClass
 		  $name = 'Search - ';    
 		}
         else {
-          $t = '所有记录';
+          $t = '所有记�?;
           $name = '搜索 - ';
         }
 		$_SESSION[PACKAGE][SEARCH]['key'] = $key ? $key : $t;
 		
-		//添加面包屑功能.
+		//添加面包屑功�?
 		$b = array();
 		$b[] = array('name'=>$name.$_SESSION[PACKAGE][SEARCH]['key'], 'active'=>1);
 		$this->set_breadcrumb($b);
 
-		//计算对于此关键词，总共多少记录。
+		//计算对于此关键词，总共多少记录�?
 	    $total = $this->get_contents_count($key);
 		$total_pages = ceil($total/ROWS_PER_PAGE);
 		$_SESSION[PACKAGE][SEARCH]['total'] = $total;
@@ -287,10 +287,10 @@ class GeneralClass extends BaseClass
 		$page = 1;
 		$_SESSION[PACKAGE][SEARCH]['page'] = $page;
 
-		//当前从第几条记录开始显示。
+		//当前从第几条记录开始显示�?
 		$row_no = 0;
 
-		//生成新的查询语句。
+		//生成新的查询语句�?
 		$lang_case = " and language = '" . $this->lang . "' ";
 		$sql = "select linkname, cid, date(created) as date from contents
 			where content like '%".$key ."%' "
@@ -306,7 +306,7 @@ class GeneralClass extends BaseClass
 			array_push($ary, $row);
 		}
 		mysql_free_result($res);
-		//返回生成的结果。
+		//返回生成的结果�?
 		return $ary;
 	}
 
@@ -319,10 +319,10 @@ class GeneralClass extends BaseClass
 		if ($page < 1) $page = 1;
 		$_SESSION[PACKAGE][SEARCH]['page'] = $page;
 
-		//当前从第几条记录开始显示。
+		//当前从第几条记录开始显示�?
 		$row_no = ((int)$page-1)*ROWS_PER_PAGE;
 
-		//生成新的查询语句。
+		//生成新的查询语句�?
 		if(preg_match("/limit/i", $_SESSION[PACKAGE][SEARCH]['sql']))
 			$_SESSION[PACKAGE][SEARCH]['sql'] = preg_replace("/limit.*$/i", '', $_SESSION[PACKAGE][SEARCH]['sql']);
 
@@ -337,7 +337,7 @@ class GeneralClass extends BaseClass
 		}
 		mysql_free_result($res);
 
-		//返回生成的结果。
+		//返回生成的结果�?
 		return $ary;
 	}
 
@@ -405,13 +405,13 @@ class GeneralClass extends BaseClass
 
 			// $slinks[] = ' <a href="?page='.($current_page + 1).$queryURL.'"> 下页 &raquo; </a> ';
 			if ($current_page < $total_pages) {
-				$slinks[] = ' <a href="?page='.($total_pages).$queryURL.'"> 最后 &raquo;&raquo; </a> ';
+				$slinks[] = ' <a href="?page='.($total_pages).$queryURL.'"> 最�?&raquo;&raquo; </a> ';
 			}
 	        return implode(' ', $plinks).implode(' ', $links).implode(' ', $slinks);
 		}
 	}
 
-	# 随机从数据库中抽取6个,随即生成1-6个记录.
+	# 随机从数据库中抽�?�?随即生成1-6个记�?
 	function get_rand_keywords() {
 		$ary = array();
 		$sql = "select keyword from keywords order by rand() limit 0, 4";
@@ -428,7 +428,7 @@ class GeneralClass extends BaseClass
 		$info = array();
 		if (preg_match("/English/i", $this->lang)) {
 			$info['title'] = $menu['curl'];
-			$t = 'Category：'. $menu['curl']."<br>\n";
+			$t = 'Category�?. $menu['curl']."<br>\n";
 			$t .= "Currently this model is still under developing, will be ready shortly. Thanks for the visiting.<br>\n";
 			$info['content'] = $t;
 		}
@@ -437,7 +437,7 @@ class GeneralClass extends BaseClass
 			$t = '分类为：'. $menu['name']."<br>\n";
 			$t .= '详细信息为：'. $menu['description']."<br>\n";
 			$t .= '标签为：' . $menu['tag']?$menu['tag']:$menu['name']."<br>\n";
-			$t .= "目前该分类还处在开发阶段，很快就会有内容呈现。谢谢关注。<br>\n";
+			$t .= "目前该分类还处在开发阶段，很快就会有内容呈现。谢谢关注�?br>\n";
 			$info['content'] = $t;			
 		}
 		return $info;
@@ -452,7 +452,7 @@ class GeneralClass extends BaseClass
 		}
 		else {
 			$info['title'] = $sm[0];
-			$info['content'] = "目前该分类还处在开发阶段，很快就会有内容呈现。谢谢关注。<br>\n";
+			$info['content'] = "目前该分类还处在开发阶段，很快就会有内容呈现。谢谢关注�?br>\n";
 		}
 		return $info;		
 	}
