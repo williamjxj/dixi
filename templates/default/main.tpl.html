@@ -1,4 +1,3 @@
-{*debug*}
 {$url={$SCRIPT_NAME}}
 {*$url={$config.d}*}
 {if $smarty.session.dixi.language != 'English'}
@@ -10,12 +9,12 @@
     <div class="span6">
       <ul class="nav nav-tabs" id="Tab{$no}">
         {foreach $tabs as $tab}
-        <li><a data-toggle="tab" href="#{$tab.curl}"><span class="head2">{$tab.name|lower|capitalize}</span></a></li>
+        <li><a data-toggle="tab" href="#{$tab.curl}" title="{$tab.description}"><span class="head2">{$tab.name}</span></a></li>
         {/foreach}
       </ul>
       <div class="tab-content tab1" id="TabContent{$no}"> {foreach $tabs as $tab}
         <div id="{$tab.curl}" class="tab-pane fade"></div>
-        {/foreach} </div>
+        {/foreach}</div>
     </div>
     {if $cn%2}
     {$cn=$cn+1}
@@ -44,7 +43,8 @@
       </ul>
       <div class="tab-content tab1" id="TabContent{$no}"> {foreach $tabs as $tab}
         <div id="{$tab.curl}" class="tab-pane fade"></div>
-        {/foreach} </div>
+        {/foreach} 
+        <span class="more"><a href="./d.php?cmenu=">更多&raquo;</a></div>
     </div>
     {if $cn%2}
     {$cn=$cn+1}
@@ -75,11 +75,19 @@ function get_tab_list(group, curl) {
 
 	$.getJSON(query, function(data) {
 		//console.log($('#TabContent1.tab-content').find('div').first().html()+','+data.length);
+		cate_id = 0;
 		t = '<ul>';
 		for(i=0; i<data.length; i++) {
 			t+='<li class="tab_list"><i class="icon-chevron-right"></i>  <a href="d.php?cid='+data[i][0]+'">'+data[i][1]+'</a><span class="guanzhu"><span class="renshu">'+data[i][2]+'</span></span></li>';
+			if(!cate_id) cate_id = data[i][3];
 		}
 		t+='</ul>';
+		if(/\<li/.test(t)) {
+			t+='<span class="more"><a href="./d.php?cmenu=' + cate_id + '">更多&raquo;</a>';
+		}
+		else {
+			t='<div>暂无内容。</div>';
+		}
 		if (curl) $(tab_div + '.tab-content').find('div#'+curl).html(t);
 		else $(tab_div + '.tab-content').find('div').first().html(t);
 	});

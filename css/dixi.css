@@ -528,6 +528,17 @@ div.ajaxloading * {
 	font-weight:bolder;
 	line-height: 33px;
 	text-align:center;
+	display:inline;
+	color: #A90000;
+}
+.weibo:hover, .weibo:focus {
+	color: #FF0000;
+}
+.weibo form {
+	display:inline;
+	float: right;
+	margin-right:20px;
+	margin-top:10px;
 }
 .weibo h3 a, .weibo h3 a:link, .weibo h3 a:visited {
 	color: #A90000;
@@ -539,14 +550,19 @@ div.ajaxloading * {
 }
 /******* 装饰 部分*************/
 .more {
-	font-size:12px;
-	position:absolute;
-	right:10px;
+	font-size:11px;
+	float:right;
+	padding-right: 10px;
+	padding-bottom:6px;
 }
 .more:focus {
 	outline: medium none;
 }
-.more:hover {
+.more a {
+	color:#008000;
+}
+.more a:hover {
+	text-decoration:underline;
 }
 /* stackoverflow.com: a button*/
 a.post-tag:hover {
@@ -615,6 +631,7 @@ a.post-tag:hover {
 a.tqmail {
 	background: url("http://mat1.gtimg.com/news/imgcss_article_qq/qqmail.png") no-repeat scroll 0 0 transparent;
 }
+/* 没有用到. */
 .baidu {
 	font-size:14px;
 	line-height:24px;
