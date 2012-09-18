@@ -31,13 +31,6 @@ class GeneralClass extends BaseClass
 			'name' => $home
 		);
 	}
-	/*
-	function get_breadcrumb() {
-		$this->set_1_breadcrumb();
-		echo "<pre>"; print_r($_SESSION[PACKAGE]['breadcrumb']); echo "</pre>";
-		return $_SESSION[PACKAGE]['breadcrumb'];
-	}
-	*/
 	public function set_breadcrumb($breadcrumb)
 	{
 		$this->set_1_breadcrumb();
@@ -150,7 +143,7 @@ class GeneralClass extends BaseClass
 		$b[] = array('name'=>$row['item'], 'link'=>$this->general.'?iid='.$row['iid']);
 		$b[] = array('name'=>$row['linkname'], 'active'=>1);
 		$this->set_breadcrumb($b);
-
+		$this->update_total($cid);
 		return $row;
 	}
 	function get_content_previous($cid) {
@@ -183,6 +176,7 @@ class GeneralClass extends BaseClass
 		$b[] = array('name'=>$row['item'], 'link'=>$this->general.'?iid='.$row['iid']);
 		$b[] = array('name'=>$row['linkname'], 'active'=>1);
 		$this->set_breadcrumb($b);
+		$this->update_total($cid);
 		return $row;
 	}
 	
@@ -219,11 +213,21 @@ class GeneralClass extends BaseClass
 		//将关键词写入keywords表。
 		if($key!='') {
 			$user = isset($_SESSION[PACKAGE]['username']) ? $_SESSION[PACKAGE]['username'] : '';
+			if(empty($user) $user = basename(__FILE__).', search';
+
 			$query = "INSERT INTO keywords (keyword,createdby, created) VALUES ".
+				"('".$key."', '".$user."', now()) ON DUPLICATE KEY UPDATE updatedby='".$user."', total=total+1";
+			mysql_query($query);
+
+			$query = "insert into tags (name, createdby, created) values " .
 				"('".$key."', '".$user."', now()) ON DUPLICATE KEY UPDATE updatedby='".$user."', total=total+1";
 			mysql_query($query);
 		}
 		return true;
+	}
+	function update_total($cid) {
+		$sql = "update contents set total=toal+1 where cid=".$cid;
+		mysql_query($sql);
 	}
 	function insert_comments()
 	{
