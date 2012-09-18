@@ -294,8 +294,8 @@ class GeneralClass extends BaseClass
 			.$lang_case." order by cid desc";
 		$_SESSION[PACKAGE][SEARCH]['sql'] = $sql;
 		$sql .= " limit  " . $row_no . "," . ROWS_PER_PAGE;
+		// select linkname, cid, date(created) as date from contents where content like '%打砸抢烧将被追究%' or linkname like '%打砸抢烧将被追究%' and language = '中文' order by cid desc limit 0,25 
 
-echo $sql;		
 		$ary = array();	
 		$res = mysql_query($sql);
 		while($row = mysql_fetch_assoc($res)) {
