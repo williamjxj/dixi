@@ -116,7 +116,7 @@ class DixiClass extends BaseClass
 	
 	function get_menu() {
 		$ary = array();
-		$query = "select cid, curl, name from categories where active='Y' order by weight";
+		$query = "select cid, curl, name from categories where active='Y' order by frequency, weight";
 		$res = mysql_query($query);
 		while($row = mysql_fetch_assoc($res)) {
 			array_push ($ary, $row);

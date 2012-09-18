@@ -176,15 +176,11 @@ $(function() {
   {if $smarty.session.dixi.breadcrumb}
   {foreach $smarty.session.dixi.breadcrumb as $b}
   {if {$b.active}}
-  <li class="active">{$b.name}</li>
+  <li class="active">正文: {$b.name}</li>
   {else}
   <li><a href="{$b.link}">{$b.name}</a> <span class="divider">/</span></li>
   {/if}
   {/foreach}
-  {else}
-  <li> <a href="index.php">首页</a> <span class="divider">/</span> </li>
-  <li> <a href="d.php?i=3&n=food">食品</a> <span class="divider">/</span> </li>
-  <li class="active">饮品酒类</li>
   {/if}
   <li style="float:right"> {include file="{$config.shared}bshare.tpl.html"} </li>
 </ul>
