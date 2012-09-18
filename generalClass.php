@@ -213,7 +213,7 @@ class GeneralClass extends BaseClass
 		//将关键词写入keywords表。
 		if($key!='') {
 			$user = isset($_SESSION[PACKAGE]['username']) ? $_SESSION[PACKAGE]['username'] : '';
-			if(empty($user) $user = basename(__FILE__).', search';
+			if(empty($user)) $user = basename(__FILE__).', search';
 
 			$query = "INSERT INTO keywords (keyword,createdby, created) VALUES ".
 				"('".$key."', '".$user."', now()) ON DUPLICATE KEY UPDATE updatedby='".$user."', total=total+1";

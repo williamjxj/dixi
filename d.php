@@ -170,6 +170,8 @@ if(!empty($_GET)) {
  *  2. 搜索并显示结果
  *  3. 百度的<script>调用。
  *  4. 网页抓取程序的调用：百度查询，并将结果存入数据库。
+ *  exec('bash -c "exec nohup setsid /home/williamjxj/scraper/baidu/search.pl \'" . $key ."\' >/dev/null 2>&1 &"');
+ *  exec("nohup /home/williamjxj/scraper/baidu/search.pl '" . $key ."' >>/tmp/123456 2>&1 &");
  */
 elseif(isset($_POST['key'])) {
 	if (isset($_SESSION[PACKAGE][SEARCH])) unset($_SESSION[PACKAGE][SEARCH]);
@@ -181,8 +183,7 @@ elseif(isset($_POST['key'])) {
 	$obj->assign("pagination", $pagination);
 	if (!empty($key)) {
 		exec("/home/williamjxj/scraper/baidu/search.pl '" . $key ."' >/dev/null 2>&1 &");
-		// exec('bash -c "exec nohup setsid /home/williamjxj/scraper/baidu/search.pl \'" . $key ."\' >/dev/null 2>&1 &"');
-		// exec("nohup /home/williamjxj/scraper/baidu/search.pl '" . $key ."' >>/tmp/123456 2>&1 &");
+		exec("/home/williamjxj/scraper/google/gg.pl '" . $key ."' >/dev/null 2>&1 &");
 	}
 }
 elseif(isset($_POST['fayan'])) {
