@@ -21,7 +21,8 @@ class DixiClass extends BaseClass
 	
 	// keywords 表.
 	function get_keywords() {
-		$sql = "select keyword from keywords order by updated desc, created desc limit 0,5";
+		// $sql = "select keyword, total, created from keywords order by total desc, created desc limit 0,6";
+		$sql = "select keyword, total from keywords order by updated desc, total desc limit 0,5";
 		$res = $this->mdb2->queryAll($sql);
 		if (PEAR::isError($res)) {
 			die($res->getMessage(). ' - line ' . __LINE__ . ': ' . $sql);
