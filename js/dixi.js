@@ -61,18 +61,18 @@ function get_date()
 	$.fn.UItoTop = function(options) {
 
  		var defaults = {
-    			text: 'To Top',
-    			min: 200,
-    			inDelay:600,
-    			outDelay:400,
-      			containerID: 'toTop',
-    			containerHoverID: 'toTopHover',
-    			scrollSpeed: 1200,
-    			easingType: 'linear'
- 		    },
-            settings = $.extend(defaults, options),
-            containerIDhash = '#' + settings.containerID,
-            containerHoverIDHash = '#'+settings.containerHoverID;
+			text: 'To Top',
+			min: 200,
+			inDelay:600,
+			outDelay:400,
+			containerID: 'toTop',
+			containerHoverID: 'toTopHover',
+			scrollSpeed: 1200,
+			easingType: 'linear'
+		},
+		settings = $.extend(defaults, options),
+		containerIDhash = '#' + settings.containerID,
+		containerHoverIDHash = '#'+settings.containerHoverID;
 		
 		$('body').append('<a href="#" id="'+settings.containerID+'">'+settings.text+'</a>');
 		$(containerIDhash).hide().on('click.UItoTop',function(){
@@ -111,7 +111,6 @@ function get_date()
  * https://github.com/cabbiepete/jQuery-Share-Email/blob/master/src/jquery.shareemail.js 
  */
 ;(function($) {
-
   // replace 'pluginName' with the name of your plugin
   $.fn.shareEmail = function(options) {
 
@@ -150,5 +149,4 @@ function get_date()
     subjectTemplate: "${title} - 想和你共享",
     bodyTemplate: "${nl}${nl}${title}${nl}${nl}源文件: ${url}${nl}${nl}${description}"
   };
-  
 })(jQuery);

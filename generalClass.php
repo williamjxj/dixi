@@ -295,7 +295,6 @@ class GeneralClass extends BaseClass
 		$_SESSION[PACKAGE][SEARCH]['sql'] = $sql;
 		$sql .= " limit  " . $row_no . "," . ROWS_PER_PAGE;
 
-echo $sql;		
 		$ary = array();	
 		$res = mysql_query($sql);
 		while($row = mysql_fetch_assoc($res)) {

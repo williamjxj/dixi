@@ -1,3 +1,4 @@
+{debug}
 {if ! {$path2}}
 {$path2="{$config.general}2/"}
 {/if}
@@ -12,7 +13,8 @@
       <li class="li3"><span class="badge badge-warning">{$no++}</span> <a href="{$url}?cid={$rts.cid}&js_get_content=1">{$rts.linkname} ({$rts.date})</a></li>
       {/foreach}
     </ul>
-    <div class="pages">{include file="{$path2}pagination.tpl.html"}</div> </div>
+    <div class="pages">{include file="{$path2}pagination.tpl.html"}</div>
+  </div>
   <div class="span8" style="width:580px">
     <div id="div_display" class="box5">
       <script type="text/javascript">

@@ -47,7 +47,7 @@ class DixiClass extends BaseClass
 
 		$t = $t1 . " and cs.frequency=$frequency and ct.cate_id=cs.cid and ct.category=cs.name		
 			order by rand() limit 0, " . TAB_LIST;
-		$sql = "select ct.cid, ct.linkname, (FLOOR( 1 + RAND( ) *1000 )) AS guanzhu from contents ct, categories cs  where language='".$this->lang."' ". $t;
+		$sql = "select ct.cid, ct.linkname, (FLOOR( 1 + RAND( ) *1000 )) AS guanzhu, ct.cate_id from contents ct, categories cs  where language='".$this->lang."' ". $t;
         $res = $this->mdb2->queryAll($sql);
         if (PEAR::isError($res)) die($res->getMessage());
         return $res;
@@ -103,7 +103,7 @@ class DixiClass extends BaseClass
 
 	function get_tabs() {
 		$ary = array();
-		$query = "select name, curl, frequency, description from categories order by frequency, weight";
+		$query = "select name, curl, frequency, cid, description from categories order by frequency, weight";
 		$res = mysql_query($query);
 		while($row = mysql_fetch_assoc($res)) {
 			if(!isset($ary[$row['frequency']]) || !is_array($ary[$row['frequency']])) {
