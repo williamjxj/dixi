@@ -292,22 +292,21 @@ class GeneralClass extends BaseClass
 
 		//生成新的查询语句�?
 		$lang_case = " and language = '" . $this->lang . "' ";
-		/* select cid, title, date(created) as date, match(title, content) against('不理性行为' in boolean mode) as score
+		/* select cid, title, date(created) as date, match(title, content) against('不理性行为' in boolean mode) as relevance
 		 * from contents where match(title, content) against ('不理性行为' in boolean mode) 
-		 * and language = '中文' order by score desc  limit 0,25
+		 * and language = '中文' order by relevance desc  limit 0,25
 		 */
 		$sql = "select cid, title, date(created) as date,
-			MATCH(title, content) AGAINST('$key') as score
+			MATCH(title, content) AGAINST('$key' in boolean mode) as relevancy
 		 from contents
-			where MATCH(title, content) AGAINST('$key') "
-			.$lang_case." order by score desc";
+			where MATCH(title, content) AGAINST('$key' in boolean mode) "
+			.$lang_case." order by relevancy desc";
 		
 		$_SESSION[PACKAGE][SEARCH]['sql'] = $sql;
 		$sql .= " limit  " . $row_no . "," . ROWS_PER_PAGE;
 
 		$ary = array();	
 		$res = mysql_query($sql);
-		// echo $sql;
 		while($row = mysql_fetch_assoc($res)) {
 			array_push($ary, $row);
 		}
