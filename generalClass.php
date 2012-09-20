@@ -109,7 +109,7 @@ class GeneralClass extends BaseClass
 	
 	function get_item_count() {
 		$ary = array();
-		$sql = "select count(*) total, iid from contents group by iid";
+		$sql = "select iid, count(*) total from contents group by iid";
 		$res = mysql_query($sql);
 		while($row = mysql_fetch_assoc($res)) {
 			array_push($ary, $row);
@@ -119,7 +119,7 @@ class GeneralClass extends BaseClass
 	}
 	function get_category_count() {
 		$ary = array();
-		$sql = "select count(*) total, cid from items group by cid";
+		$sql = "select cid, count(*) total from items group by cid";
 		$res = mysql_query($sql);
 		while($row = mysql_fetch_assoc($res)) {
 			array_push($ary, $row);
@@ -248,16 +248,6 @@ class GeneralClass extends BaseClass
 		}
 		return $ary;
 	}
-	
-	function get_contents_count($key)
-	{
-		$sql = "select count(*) from contents where content like '%".$key ."%' and language='" . $this->lang . "'";
-		$result = mysql_query($sql);
-		$num = mysql_fetch_row($result);
-		mysql_free_result($result);
-		return $num[0];
-	}
-
 	function select_contents_by_keyword($key)
 	{
 		$this->set_keywords($key);
@@ -270,7 +260,7 @@ class GeneralClass extends BaseClass
           $t = '所有记录';
           $name = '搜索 - ';
         }
-		$_SESSION[PACKAGE][SEARCH]['key'] = $key ? $key : $t;
+		$_SESSION[PACKAGE][SEARCH]['key'] = $key ? mysql_real_escape_string($key) : $t;
 		
 		//添加面包屑功�?
 		$b = array();
@@ -295,13 +285,19 @@ class GeneralClass extends BaseClass
 		/* select cid, title, date(created) as date, match(title, content) against('不理性行为' in boolean mode) as relevance
 		 * from contents where match(title, content) against ('不理性行为' in boolean mode) 
 		 * and language = '中文' order by relevance desc  limit 0,25
-		 */
+		 *
 		$sql = "select cid, title, date(created) as date,
 			MATCH(title, content) AGAINST('$key' in boolean mode) as relevancy
 		 from contents
 			where MATCH(title, content) AGAINST('$key' in boolean mode) "
 			.$lang_case." order by relevancy desc";
-		
+		 */
+
+		$sql = "select cid, title, date(created) as date from contents
+			where content like '%".$key ."%' "
+			. " or title like '%".$key ."%' "
+			.$lang_case." order by cid desc";
+	
 		$_SESSION[PACKAGE][SEARCH]['sql'] = $sql;
 		$sql .= " limit  " . $row_no . "," . ROWS_PER_PAGE;
 
@@ -313,6 +309,15 @@ class GeneralClass extends BaseClass
 		mysql_free_result($res);
 		//返回生成的结果�?
 		return $ary;
+	}
+	function get_contents_count($key)
+	{
+		$sql = "select count(*) from contents 
+			where content like '%".$key ."%' " . " or title like '%".$key ."%' and language='" . $this->lang . "'";
+		$result = mysql_query($sql);
+		$num = mysql_fetch_row($result);
+		mysql_free_result($result);
+		return $num[0];
 	}
 
 	function select_contents_by_page()
