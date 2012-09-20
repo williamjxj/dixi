@@ -292,13 +292,20 @@ class GeneralClass extends BaseClass
 
 		//生成新的查询语句�?
 		$lang_case = " and language = '" . $this->lang . "' ";
+		/*
 		$sql = "select linkname, cid, date(created) as date from contents
 			where content like '%".$key ."%' "
 			. " or linkname like '%".$key ."%' "
 			.$lang_case." order by cid desc";
+		*/
+		$sql = "select cid, linkname, date(created) as date from contents
+			where match(linkname, content) against ('$key')
+			 content like '%".$key ."%' "
+			. " or linkname like '%".$key ."%' "
+			.$lang_case." order by cid desc";
+		
 		$_SESSION[PACKAGE][SEARCH]['sql'] = $sql;
 		$sql .= " limit  " . $row_no . "," . ROWS_PER_PAGE;
-		// select linkname, cid, date(created) as date from contents where content like '%�������ս���׷��%' or linkname like '%�������ս���׷��%' and language = '����' order by cid desc limit 0,25 
 
 		$ary = array();	
 		$res = mysql_query($sql);
