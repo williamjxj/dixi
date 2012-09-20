@@ -110,7 +110,7 @@ if(!empty($_GET)) {
 		$row = $obj->get_content($_GET['cid']);
 		$info['row'] = $row;
 		$info['cid'] = $row['cid'];
-		$info['title'] = $row['linkname'];
+		$info['title'] = $row['title'];
 		$info['content'] = '<div class="display_content">'.$row['content'].'</div>';
 		$info['cate_id'] = $row['cate_id'];
 		$info['iid'] = $row['iid'];
@@ -118,12 +118,12 @@ if(!empty($_GET)) {
 		$prev = $obj->get_content_previous($_GET['cid']);
 		$info['previous'] = array(
 			'cid' => $prev['cid'],
-			'linkname' => $prev['linkname'],
+			'title' => $prev['title'],
 		);
 		$next = $obj->get_content_next($_GET['cid']);
 		$info['next'] = array(
 			'cid' => $next['cid'],
-			'linkname' => $next['linkname'],
+			'title' => $next['title'],
 		);
 		$ary = $obj->get_rand_keywords();
 		$info['keywords'] = array_slice($ary, rand(0,3));
