@@ -3,24 +3,7 @@
 
 
   <pre style="font-size:12px;border-left:1px solid #ccc;line-height:20px;background:url('http://williamjxj.files.wordpress.com/2010/11/pre_code_bg_ylw.gif') repeat-y left top;width:580px;overflow:auto;margin:20px;padding:0;"><code style="display:block;background-color:transparent;color:#000;margin:0 0 0 40px;padding:18px 0;">
-ALTER TABLE  `keywords` ADD INDEX (`keyword`);
-alter table `keywords` add unique index (`keyword`);
   </code></pre>
-1 is for speeding up,
-2 is for to prevent from duplicate key.
-Does that work?
-
-This table is used for search-form autocomplete,
-I checked the result after adding the index on `keyword` which runs 'select keyword from keywords where keyword like '%'._GET['k'].'%', it speeds up indeed. So add (2) works.
-
-According to http://stackoverflow.com's explaination: <a href="http://stackoverflow.com/questions/292230/how-wrong-is-it-to-have-a-unique-and-normal-index-on-the-same-column">How wrong is it to have a unique and normal index on the same column?</a>, 
-I don't understand what do you mean by duplicate indexes. You have three indexes in the table:
-
-I add it to speed up queries related to user_id which is what you are seeing. So there's nothing wrong with this particular table, you aren't duplicating anything. Regarding the second question, it depends on your needs, but certainly it's not bad to have more space used up in indexes than in the data.
-
-It is somewhat confused because it hires 2 index on the same field. However, it works for me in the real-world. Without the second normal index on `keyword`, it is pretty slow. With or without is quite different.
-
-Having several indexes including one field is not bad at all (essentially, they do index different things).
 
   <pre style="font-size:12px;border-left:1px solid #ccc;line-height:20px;background:url('http://williamjxj.files.wordpress.com/2010/11/pre_code_bg_ylw.gif') repeat-y left top;width:580px;overflow:auto;margin:20px;padding:0;"><code style="display:block;background-color:transparent;color:#000;margin:0 0 0 40px;padding:18px 0;">
   </code></pre>
