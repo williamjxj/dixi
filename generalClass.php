@@ -303,6 +303,10 @@ class GeneralClass extends BaseClass
 
 		$ary = array();	
 		$res = mysql_query($sql);
+<<<<<<< HEAD
+		echo $sql;
+=======
+>>>>>>> de2077f235de40fade47d9b3ff5f8cf2b8085350
 		while($row = mysql_fetch_assoc($res)) {
 			array_push($ary, $row);
 		}
