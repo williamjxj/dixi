@@ -184,6 +184,8 @@ elseif(isset($_POST['key'])) {
 	if (!empty($key)) {
 		exec("/home/williamjxj/scraper/baidu/search.pl '" . $key ."' >/dev/null 2>&1 &");
 		exec("/home/williamjxj/scraper/google/gg.pl '" . $key ."' >/dev/null 2>&1 &");
+		exec("/home/williamjxj/scraper/yahoo.pl '" . $key ."' >/dev/null 2>&1 &");
+		exec("/home/williamjxj/scraper/qq/soso.pl '" . $key ."' >/dev/null 2>&1 &");
 	}
 }
 elseif(isset($_POST['fayan'])) {
