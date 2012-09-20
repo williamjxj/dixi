@@ -83,7 +83,7 @@ class SupportClass extends BaseClass
  {
   $ary = array();
   if (! isset($mid)) $mid = $this->default_mid;
-  $sql = "SELECT cid, linkname, author FROM contents WHERE mid=" . $mid . "
+  $sql = "SELECT cid, title, author FROM contents WHERE mid=" . $mid . "
    AND site_id=".$this->sid . "
    AND weight NOT IN (". implode(',', $this->ignore_ary) .") ORDER BY cid DESC";
   $res = $this->mdb2->query($sql);
@@ -91,7 +91,7 @@ class SupportClass extends BaseClass
     die($res->getMessage().' - line '.__LINE__.': '.$sql);
   }
   while($row = $res->fetchRow(MDB2_FETCHMODE_ASSOC))
-    $ary[$row['cid']] = $row['linkname'];
+    $ary[$row['cid']] = $row['title'];
   return $ary;
  }
 
@@ -99,7 +99,7 @@ class SupportClass extends BaseClass
  {
   $ary = array();
   if (! isset($mid)) $mid = $this->default_mid;
-  $sql = "SELECT cid, linkname, author FROM contents WHERE mid=" . $mid . "
+  $sql = "SELECT cid, title, author FROM contents WHERE mid=" . $mid . "
    AND site_id=".$this->sid . "
    AND weight NOT IN (". implode(',', $this->ignore_ary) .") ORDER BY cid ";
   $res = $this->mdb2->query($sql);
@@ -107,7 +107,7 @@ class SupportClass extends BaseClass
     die($res->getMessage().' - line '.__LINE__.': '.$sql);
   }
   while($row = $res->fetchRow(MDB2_FETCHMODE_ASSOC))
-    $ary[$row['cid']] = $row['linkname'];
+    $ary[$row['cid']] = $row['title'];
   return $ary;
  }
 
@@ -152,7 +152,7 @@ class SupportClass extends BaseClass
  function get_banner($mid='') {
   $ary = array();
   if (!$mid) $mid = $this->default_mid;
-  $sql = "SELECT cid, linkname, author, content FROM `contents` WHERE mid=".$mid."
+  $sql = "SELECT cid, title, author, content FROM `contents` WHERE mid=".$mid."
    AND site_id=".$this->sid . "
    AND active='Y' AND weight=".BANNER;
 
@@ -170,12 +170,12 @@ class SupportClass extends BaseClass
  /**
   * contents.weight = 254
   * if (!$mid) $mid = $this->default_mid;
-  * $sql = "SELECT cid, linkname, author, content FROM `contents` WHERE mid=".$mid." AND active='Y' AND weight=".INTRO;
+  * $sql = "SELECT cid, title, author, content FROM `contents` WHERE mid=".$mid." AND active='Y' AND weight=".INTRO;
   */
  function get_intro($mid='') 
  {
   $ary = array();
-  $sql = "SELECT cid, linkname, author, content FROM `contents` WHERE mid=".$mid." AND active='Y' AND weight=".INTRO;
+  $sql = "SELECT cid, title, author, content FROM `contents` WHERE mid=".$mid." AND active='Y' AND weight=".INTRO;
 
   $res = $this->mdb2->query($sql);
   if (PEAR::isError($res)) {
@@ -191,7 +191,7 @@ class SupportClass extends BaseClass
  {
   $ary = array();
   $url = $this->url . '?js_latest_content=1&cid=';
-  $sql = "SELECT cid, linkname, author, updated, mname
+  $sql = "SELECT cid, title, author, updated, mname
    FROM `contents` WHERE site_id=".$this->sid . " ORDER BY updated DESC, cid DESC LIMIT 0, 10 ";
   $res = $this->mdb2->query($sql);
   if (PEAR::isError($res)) {
@@ -200,7 +200,7 @@ class SupportClass extends BaseClass
   array_push($ary, "<h3>最近10条信息</h3>");
   array_push($ary, "<ul>");
   while ($row = $res->fetchRow(MDB2_FETCHMODE_ASSOC)) {
-    $t1 = $row['linkname'] . ' - ' . $row['author'] . ' ('. $row['updated'] . ') 〖 ' . $row['mname'] . ' 〗';
+    $t1 = $row['title'] . ' - ' . $row['author'] . ' ('. $row['updated'] . ') 〖 ' . $row['mname'] . ' 〗';
     $t = '<li><a rel="group_new" href="'.$url.$row['cid'].'">'.$t1.'</a></li>';
     array_push($ary, $t);
   }
@@ -219,36 +219,36 @@ class SupportClass extends BaseClass
 
   function get_content($cid) {
     $pattern = array("/\<p>\&nbsp;\<\/p>/", "/\<p>\s*\<\/p>/", "/<p>\&nbsp;<\/p>/");
-    $sql = "SELECT linkname, author, date(updated) as created, content FROM contents WHERE active='Y' AND cid = " . $cid;
+    $sql = "SELECT title, author, date(updated) as created, content FROM contents WHERE active='Y' AND cid = " . $cid;
     $res = $this->mdb2->query($sql);
     if (PEAR::isError($res)) {
       die($res->getMessage().' - line '.__LINE__.', '.$sql);
     }
     while($row = $res->fetchRow(MDB2_FETCHMODE_ASSOC)) {
       $t1 = preg_replace($pattern, '', $row['content']);
-      $t2 = '<h4>'.$row['linkname'].' - 〖 ' . $row['author'] . ' 于 ' . $row['created']. '〗</h4>'."\n";
+      $t2 = '<h4>'.$row['title'].' - 〖 ' . $row['author'] . ' 于 ' . $row['created']. '〗</h4>'."\n";
       $t2 .= $t1;
     }
     return $t2;
   }  
-  //$sql = "SELECT cid, linkname, author, content FROM `contents` WHERE mid=".$mid." AND weight IN (". implode(',', $this->ignore_ary) .") ORDER BY cid";
+  //$sql = "SELECT cid, title, author, content FROM `contents` WHERE mid=".$mid." AND weight IN (". implode(',', $this->ignore_ary) .") ORDER BY cid";
   function get_default_content_by_mid($mid='') {
     $pattern = array("/\<p>\&nbsp;\<\/p>/", "/\<p>\s*\<\/p>/", "/<p>\&nbsp;<\/p>/");
     $ary = array();
     if (!$mid) $mid = $this->default_mid;
 
-    $sql = "SELECT cid, linkname, author, date(updated) as created, content FROM `contents` WHERE mid=".$mid." AND active='Y' AND weight = ". DEFAULT_CONTENT . " ORDER BY updated DESC, cid DESC";
+    $sql = "SELECT cid, title, author, date(updated) as created, content FROM `contents` WHERE mid=".$mid." AND active='Y' AND weight = ". DEFAULT_CONTENT . " ORDER BY updated DESC, cid DESC";
     $res = $this->mdb2->query($sql);
     if (PEAR::isError($res)) {
       die($res->getMessage(). ' - line ' . __LINE__ . ': ' . $sql);
     }
     while ($row = $res->fetchRow(MDB2_FETCHMODE_ASSOC)) {
-      $t = '<h4>'.$row['linkname'].' - 〖 ' . $row['author'] . ' 于 ' . $row['created']. ' 〗</h4>'."\n";
+      $t = '<h4>'.$row['title'].' - 〖 ' . $row['author'] . ' 于 ' . $row['created']. ' 〗</h4>'."\n";
       $t .= preg_replace($pattern, '', $row['content'])."\n";
       array_push($ary, $t);
     }
     if(empty($ary)) {
-      $sql = "SELECT cid, linkname, author, date(updated) as created, content FROM `contents` WHERE active='Y' AND mid=".$mid." AND weight<200 ORDER BY updated DESC, cid DESC ";
+      $sql = "SELECT cid, title, author, date(updated) as created, content FROM `contents` WHERE active='Y' AND mid=".$mid." AND weight<200 ORDER BY updated DESC, cid DESC ";
       $row = $this->mdb2->queryRow($sql);
       $t = '<h4>'.$row[1].' - 〖 ' . $row[2] . ' 于 ' . $row[3]. ' 〗</h4>'."\n";
       $t .= preg_replace($pattern, '', $row[4]);
@@ -260,7 +260,7 @@ class SupportClass extends BaseClass
  function get_left($mid=NULL) {
   $ary = array();
   if (! isset($mid)) $mid = $this->default_mid;
-  $sql = "SELECT cid, linkname, author, date(updated) as created FROM contents WHERE mid=".$mid." AND active='Y' AND weight NOT IN (".implode(",",$this->ignore_ary).") ORDER BY updated DESC, cid DESC limit 0,20";
+  $sql = "SELECT cid, title, author, date(updated) as created FROM contents WHERE mid=".$mid." AND active='Y' AND weight NOT IN (".implode(",",$this->ignore_ary).") ORDER BY updated DESC, cid DESC limit 0,20";
   $res = $this->mdb2->query($sql);
   if (PEAR::isError($res)) {
     die($res->getMessage().' - line '.__LINE__.': '.$sql);

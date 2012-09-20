@@ -131,7 +131,7 @@ class GeneralClass extends BaseClass
 	//////////////// Contents ////////////////
 	//上下文应该是同一个category或item下的所有内�?而不是所有的,连续的cid.
 	function get_content($cid) {
-		#$sql = "select content, linkname, cid, category, cate_id, item, iid from contents where cid=".$cid;
+		#$sql = "select cid, content, title, category, cate_id, item, iid from contents where cid=".$cid;
 		$sql = "select * from contents where cid=".$cid;
 		$res = mysql_query($sql);
 		$row = mysql_fetch_assoc($res);
@@ -141,20 +141,20 @@ class GeneralClass extends BaseClass
 		$b = array();
 		$b[] = array('name'=>$row['category'], 'link'=>$this->general.'?cmenu='.$row['cate_id']);
 		$b[] = array('name'=>$row['item'], 'link'=>$this->general.'?iid='.$row['iid']);
-		$b[] = array('name'=>$row['linkname'], 'active'=>1);
+		$b[] = array('name'=>$row['title'], 'active'=>1);
 		$this->set_breadcrumb($b);
 		$this->update_total($cid);
 		return $row;
 	}
 	function get_content_previous($cid) {
-		$sql = "select linkname, cid from contents where cid < " . $cid . " order by cid desc limit 1";
+		$sql = "select cid, title from contents where cid < " . $cid . " order by cid desc limit 1";
 		$res = mysql_query($sql);
 		$row = mysql_fetch_assoc($res);
 		mysql_free_result($res);
 		return $row;
 	}
 	function get_content_next($cid) {
-		$sql = "select linkname, cid from contents where cid >".$cid. " order by cid limit 1";
+		$sql = "select cid, title from contents where cid >".$cid. " order by cid limit 1";
 		$res = mysql_query($sql);
 		$row = mysql_fetch_assoc($res);
 		mysql_free_result($res);
@@ -164,7 +164,7 @@ class GeneralClass extends BaseClass
 	// 输出内容，并构建面包�?
 	function get_content_1($cid) 
 	{
-		#$sql = "select content, linkname, cid, category, cate_id, item, iid from contents where cid=".$cid;
+		#$sql = "select content, title, cid, category, cate_id, item, iid from contents where cid=".$cid;
 		$sql = "select * from contents where cid=".$cid;
 		$res = mysql_query($sql);
 		$row = mysql_fetch_assoc($res);
@@ -174,7 +174,7 @@ class GeneralClass extends BaseClass
 		$b = array();
 		$b[] = array('name'=>$row['category'], 'link'=>$this->general.'?cmenu='.$row['cate_id']);
 		$b[] = array('name'=>$row['item'], 'link'=>$this->general.'?iid='.$row['iid']);
-		$b[] = array('name'=>$row['linkname'], 'active'=>1);
+		$b[] = array('name'=>$row['title'], 'active'=>1);
 		$this->set_breadcrumb($b);
 		$this->update_total($cid);
 		return $row;
@@ -183,19 +183,19 @@ class GeneralClass extends BaseClass
 	// and language='' 
 	function get_contents_list($iid) {
 		$ary = array();
-		$sql = "select linkname, cid, category, cate_id, item, iid from contents where iid=".$iid . " order by cid desc";
+		$sql = "select title, cid, category, cate_id, item, iid from contents where iid=".$iid . " order by cid desc";
 		$res = mysql_query($sql);
 
 		list($cate_id, $category, $item) = array(0, '', '');
 		$t = '<ul class="nav nav-pills nav-stacked">';
-		// $t .= '<li><a href="'.$config['general'].'?cid='.$row['cid'].'">'.$row['linkname']."</a></li>\n"; 
+		// $t .= '<li><a href="'.$config['general'].'?cid='.$row['cid'].'">'.$row['title']."</a></li>\n"; 
 		while($row = mysql_fetch_assoc($res)) {
 			if(!$cate_id && !$category && !$item) {
 				$cate_id = $row['cate_id'];
 				$category = $row['category'];
 				$item = $row['item'];
 			}
-			$t .= '<li><a href="'.$this->general.'?cid='.$row['cid'].'">'.$row['linkname']."</a></li>\n"; 
+			$t .= '<li><a href="'.$this->general.'?cid='.$row['cid'].'">'.$row['title']."</a></li>\n"; 
 		}
 		$t .= '</ul>';
 		mysql_free_result($res);
@@ -292,17 +292,15 @@ class GeneralClass extends BaseClass
 
 		//生成新的查询语句�?
 		$lang_case = " and language = '" . $this->lang . "' ";
-		/*
-		$sql = "select linkname, cid, date(created) as date from contents
-			where content like '%".$key ."%' "
-			. " or linkname like '%".$key ."%' "
-			.$lang_case." order by cid desc";
-		*/
-		$sql = "select cid, linkname, date(created) as date from contents
-			where match(linkname, content) against ('$key')
-			 content like '%".$key ."%' "
-			. " or linkname like '%".$key ."%' "
-			.$lang_case." order by cid desc";
+		/* select cid, title, date(created) as date, match(title, content) against('不理性行为' in boolean mode) as score
+		 * from contents where match(title, content) against ('不理性行为' in boolean mode) 
+		 * and language = '中文' order by score desc  limit 0,25
+		 */
+		$sql = "select cid, title, date(created) as date,
+			MATCH(title, content) AGAINST('$key') as score
+		 from contents
+			where MATCH(title, content) AGAINST('$key') "
+			.$lang_case." order by score desc";
 		
 		$_SESSION[PACKAGE][SEARCH]['sql'] = $sql;
 		$sql .= " limit  " . $row_no . "," . ROWS_PER_PAGE;
@@ -467,7 +465,7 @@ class GeneralClass extends BaseClass
 	
 	function get_relative_articles($cid,$iid,$cate_id) {
 		$ary = array();
-		$sql = "select cid, linkname, (FLOOR( 1 + RAND( ) *1000 )) AS guanzhu  from contents where cid!=$cid and iid=$iid order by pubdate desc limit 0,6";
+		$sql = "select cid, title, (FLOOR( 1 + RAND( ) *1000 )) AS guanzhu  from contents where cid!=$cid and iid=$iid order by pubdate desc limit 0,6";
 		$res = mysql_query($sql);
 		while($row = mysql_fetch_array($res)) {
 			array_push($ary, $row);
@@ -478,7 +476,7 @@ class GeneralClass extends BaseClass
 
 	function get_relative_references($cid,$iid,$cate_id) 
 	{
-		$sql = "select cid, linkname, (FLOOR( 1 + RAND( ) *1000 )) AS guanzhu  from contents where cid!=$cid and iid=$iid order by rand() limit 0,6";
+		$sql = "select cid, title, (FLOOR( 1 + RAND( ) *1000 )) AS guanzhu  from contents where cid!=$cid and iid=$iid order by rand() limit 0,6";
 		$res = mysql_query($sql);
 		$html = "<ul>\n";
 		while($row = mysql_fetch_array($res)) {

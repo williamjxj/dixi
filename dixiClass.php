@@ -48,7 +48,7 @@ class DixiClass extends BaseClass
 
 		$t = $t1 . " and cs.frequency=$frequency and ct.cate_id=cs.cid and ct.category=cs.name		
 			order by rand() limit 0, " . TAB_LIST;
-		$sql = "select ct.cid, ct.linkname, (FLOOR( 1 + RAND( ) *1000 )) AS guanzhu, ct.cate_id from contents ct, categories cs  where language='".$this->lang."' ". $t;
+		$sql = "select ct.cid, ct.title, (FLOOR( 1 + RAND( ) *1000 )) AS guanzhu, ct.cate_id from contents ct, categories cs  where language='".$this->lang."' ". $t;
         $res = $this->mdb2->queryAll($sql);
         if (PEAR::isError($res)) die($res->getMessage());
         return $res;
@@ -59,7 +59,7 @@ class DixiClass extends BaseClass
 		// william add temporily:
 		$order = 'order by rand() ';
 		$limit = 'limit ' . $start . ', ' . $limit;
-		$sql = "select cid, linkname, (FLOOR( 1 + RAND( ) *1000 )) AS guanzhu from contents where active='Y' and language='".$this->lang."' ". $order . $limit;
+		$sql = "select cid, title, (FLOOR( 1 + RAND( ) *1000 )) AS guanzhu from contents where active='Y' and language='".$this->lang."' ". $order . $limit;
         $res = $this->mdb2->queryAll($sql);
         if (PEAR::isError($res)) die($res->getMessage());
         return $res;
@@ -80,7 +80,7 @@ class DixiClass extends BaseClass
 
 	// contents 表.
 	function get_definition() {
-		$sql = "select content from contents where linkname = '负面新闻' ";
+		$sql = "select content from contents where title = '负面新闻' ";
 		$res = $this->mdb2->queryOne($sql);
 		if (PEAR::isError($res)) {
 			die($res->getMessage(). ' - line ' . __LINE__ . ': ' . $sql);
@@ -91,13 +91,13 @@ class DixiClass extends BaseClass
 	//Same and no use
 	function get_contents() {
 		$ary = array();
-		$sql = "select cid, linkname from contents where active='Y' and language='".$this->lang."' order by cid desc";
+		$sql = "select cid, title from contents where active='Y' and language='".$this->lang."' order by cid desc";
 		$res = $this->mdb2->query($sql);
 		if (PEAR::isError($res)) {
 			die($res->getMessage(). ' - line ' . __LINE__ . ': ' . $sql);
 		}
 		while ($row = $res->fetchRow(MDB2_FETCHMODE_ASSOC)) {
-			array_push($ary, array($row['cid'], $row['linkname']));
+			array_push($ary, array($row['cid'], $row['title']));
 		}
 		return $ary;
 	}
@@ -138,7 +138,7 @@ class DixiClass extends BaseClass
 		}
 	
 		$t = isset($_SESSION[PACKAGE]['language']) ? $_SESSION[PACKAGE]['language'] : '';
-		$sql = "select linkname, cid from contents where language='". $t ."' order by rand() limit 0,13";
+		$sql = "select title, cid from contents where language='". $t ."' order by rand() limit 0,13";
 		$res = mysql_query($sql);
 		while ($row = mysql_fetch_assoc($res)) {
 			array_push($ary2, $row);
@@ -148,7 +148,7 @@ class DixiClass extends BaseClass
 			$html .= 
 			'<div class="item">' . '<a href="./general.php?cid=' . $ary2[$i]['cid'] . '">' . $ary1[$i] . '</a>' .
 			'  <div class="carousel-caption">' . 
-			'    <h4>' . $ary2[$i]['linkname'] . '</h4>' .
+			'    <h4>' . $ary2[$i]['title'] . '</h4>' .
 			'   </div>' .
 			"</div>\n";
 		}
@@ -168,10 +168,10 @@ class DixiClass extends BaseClass
 		//2. 内容
 		$ary2 = array();
 		$t = isset($_SESSION[PACKAGE]['language']) ? $_SESSION[PACKAGE]['language'] : '';
-		$sql = "select linkname, cid from contents where language='". $t ."' order by rand() limit 0,13";
+		$sql = "select title, cid from contents where language='". $t ."' order by rand() limit 0,13";
 		$res = mysql_query($sql);
 		while ($row = mysql_fetch_assoc($res)) {
-			$t = array('h4'=>$row['linkname'], 'a'=>'./general.php?cid='.$row['cid']);
+			$t = array('h4'=>$row['title'], 'a'=>'./general.php?cid='.$row['cid']);
 			array_push($ary2, $t);
 		}
 		
